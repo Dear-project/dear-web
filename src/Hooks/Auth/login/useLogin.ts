@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
 
+const Dummy = {
+  email: "chan2bo2@naver.com",
+  pw: "minzzang9!",
+};
+
 const useLogin = () => {
   const [email, setEmail] = useState<string>();
   const [pw, setPw] = useState<string>();
@@ -38,8 +43,7 @@ const useLogin = () => {
   };
 
   const handleConfirmButton = () => {
-    if (isConfirm) {
-      window.location.replace("/main");
+    if (isConfirm && Dummy.email === email && Dummy.pw === pw) {
       showToast("success", "로그인 성공");
     } else {
       showToast("error", "로그인 실패");
