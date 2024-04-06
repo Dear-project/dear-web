@@ -42,12 +42,10 @@ export const Sub = styled.div`
   line-height: normal;
 `;
 export const Text = styled.div`
-  display: flex;
-  justify-items: center;
-  flex-direction: column;
-  align-content: center;
   align-items: flex-start;
-  flex-wrap: nowrap;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
 `;
 export const Img = styled.img`
   object-fit: fill;
