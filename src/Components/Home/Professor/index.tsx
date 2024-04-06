@@ -25,7 +25,7 @@ const index = () => {
         {name.map((a, i) => {
           return (
             <S.Card>
-              <img src="#" alt="" />
+              <S.Img src="#" alt="" />
               <S.Text>
                 <S.Name>{name[i]}</S.Name>
                 <S.Classed>{classed[i]}</S.Classed>

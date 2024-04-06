@@ -49,3 +49,6 @@ export const Text = styled.div`
   align-items: flex-start;
   flex-wrap: nowrap;
 `;
+export const Img = styled.img`
+  object-fit: fill;
+`;
