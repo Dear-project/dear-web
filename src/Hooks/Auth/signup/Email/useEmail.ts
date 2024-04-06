@@ -23,7 +23,6 @@ const useEmail = () => {
   const handleCheckVerifyNum = () => {
     const VerifyNum = 123456;
     if (verifyNum == VerifyNum) {
-      showToast("success", "기모찌");
       setIsVerified(true);
     } else {
       setIsVerified(false);
