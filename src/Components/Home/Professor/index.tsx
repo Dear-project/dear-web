@@ -20,20 +20,22 @@ const index = () => {
   ];
   let sub = ["수학", "국어", "과학", "생명과학", "사회"];
   return (
-    <S.Box>
-      {name.map((a, i) => {
-        return (
-          <S.Card>
-            <img src="#" alt="" />
-            <S.Text>
-              <S.Name>{name[i]}</S.Name>
-              <S.Classed>{classed[i]}</S.Classed>
-              <S.Sub>전문과목: {sub[i]}</S.Sub>
-            </S.Text>
-          </S.Card>
-        );
-      })}
-    </S.Box>
+    <div>
+      <S.Box>
+        {name.map((a, i) => {
+          return (
+            <S.Card>
+              <img src="#" alt="" />
+              <S.Text>
+                <S.Name>{name[i]}</S.Name>
+                <S.Classed>{classed[i]}</S.Classed>
+                <S.Sub>전문과목: {sub[i]}</S.Sub>
+              </S.Text>
+            </S.Card>
+          );
+        })}
+      </S.Box>
+    </div>
   );
 };
 
