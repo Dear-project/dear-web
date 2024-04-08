@@ -58,7 +58,7 @@ export const Input = styled.input`
 
   border-bottom: 1px solid #d1d1d1;
 
-  color: var(--Gray500, #aaa);
+  color: var(--Gray500, #000);
   font-family: Akshar;
   font-size: 1rem;
   font-style: normal;

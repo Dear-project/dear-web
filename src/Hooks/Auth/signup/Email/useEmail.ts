@@ -5,7 +5,7 @@ import { showToast } from "src/libs/Swal/Swal";
 const useEmail = () => {
   const [email, setEmail] = useState<string>();
   const [emailValid, setEmailValid] = useState<boolean>();
-  const [verifyNum, setVerifyNum] = useState<number>();
+  const [verifyNum, setVerifyNum] = useState<string>();
   const [sendVerify, setSendVerify] = useState<boolean>();
   const [isVerified, setIsVerified] = useState(false);
   const [toSettingPw, setToSettingPw] = useState(false);
@@ -22,7 +22,7 @@ const useEmail = () => {
 
   const handleCheckVerifyNum = () => {
     const VerifyNum = 123456;
-    if (verifyNum == VerifyNum) {
+    if (verifyNum == VerifyNum.toString()) {
       setIsVerified(true);
     } else {
       setIsVerified(false);

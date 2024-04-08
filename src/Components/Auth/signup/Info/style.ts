@@ -11,7 +11,7 @@ export const Main = styled.div`
   align-self: center;
 `;
 
-export const SignUpEmailWrap = styled.div`
+export const SignUpInfolWrap = styled.div`
   min-width: 620px;
   min-height: 630px;
   width: 620px;
@@ -44,10 +44,6 @@ export const VerifyWrap = styled.div`
   align-items: center;
 `;
 
-export const Span = styled.span`
-  font-family: Assistant;
-`;
-
 export const Input = styled.input`
   width: 340px;
   height: 50px;
@@ -70,14 +66,6 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-export const EmailVerifyWrap = styled.div`
-  width: 340px;
-
-  display: flex;
-  align-items: center;
-  margin-top: 1vh;
 `;
 
 export const VerifyButton = styled.button`
@@ -151,17 +139,8 @@ export const NextButton = styled.button`
   &:focus {
     outline: none;
   }
-`;
 
-export const ErrorMessageWrap = styled.div`
-  color: var(--red-500, #f90707);
-  font-family: Assistant;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-
-  width: 100%;
-  margin-left: 16vw;
-  margin-top: 1vh;
+  &:disabled {
+    background: var(--Primary800, #ebefff);
+  }
 `;
