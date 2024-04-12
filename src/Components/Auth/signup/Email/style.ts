@@ -73,8 +73,7 @@ export const Input = styled.input`
 `;
 
 export const EmailVerifyWrap = styled.div`
-  width: 340px;
-
+  width: 80%;
   display: flex;
   align-items: center;
   margin-top: 1vh;

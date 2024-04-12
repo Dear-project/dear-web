@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 
 const usePw = () => {
-  const [pw, setPw] = useState<string>();
+  const [pw, setPw] = useState<string>("");
   const [pwValid, setPwValid] = useState<boolean>();
-  const [checkPw, setCheckPw] = useState<string>();
+  const [checkPw, setCheckPw] = useState<string>("");
   const [pwAllow, setPwAllow] = useState<boolean>();
   const [toInfo, setToInfo] = useState<boolean>();
 
@@ -31,7 +31,7 @@ const usePw = () => {
     } else {
       setToInfo(false);
     }
-    console.log(toInfo);
+    console.log(pw, checkPw);
   };
 
   return {

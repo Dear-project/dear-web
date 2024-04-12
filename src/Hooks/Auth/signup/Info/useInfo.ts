@@ -1,22 +1,40 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useCallback, useState } from "react";
+import { showToast } from "src/libs/Swal/Swal";
+
+interface SignupInfoProps {
+  name: string;
+  birthday: string;
+}
 
 const useInfo = () => {
   const [name, setName] = useState<string>("");
-  const [birthday, setBirthday] = useState<string>();
+  const [birthday, setBirthday] = useState<string>("");
+  const [signupData, setSignupData] = useState<SignupInfoProps>({
+    name: "",
+    birthday: "",
+  });
 
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
+  const handleSignupData = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value, name } = e.target;
+      setSignupData((prev) => ({ ...prev, [name]: value }));
+    },
+    [setSignupData],
+  );
 
-  const handleChangeBirthday = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthday(e.target.value);
+  const handleConfirmButton = () => {
+    showToast("success", "회원가입 완료");
+
+    console.log(name, birthday);
   };
 
   return {
     name,
     birthday,
-    handleChangeName,
-    handleChangeBirthday,
+    signupData,
+    handleSignupData,
+    handleConfirmButton,
   };
 };
 

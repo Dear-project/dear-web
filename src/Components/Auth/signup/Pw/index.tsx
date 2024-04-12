@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import usePw from "src/Hooks/Auth/signup/Pw/usePw";
+import TextField from "src/Components/common/TextField";
 
 const SignupPw = () => {
   const { ...hooks } = usePw();
@@ -10,23 +11,29 @@ const SignupPw = () => {
       <S.SignUpEmailWrap>
         <S.DearLogo>DEAR.</S.DearLogo>
         <S.VerifyWrap>
-          <S.Input
+          <TextField
+            id="password"
+            name="password"
             type="password"
-            placeholder="비밀번호 입력"
-            onChange={hooks.handleChagnePw}
             value={hooks.pw}
-            style={{ marginTop: "-5vh" }}
-          />
+            onchange={hooks.handleChagnePw}
+            functions="password"
+          >
+            비밀번호 입력
+          </TextField>
           {hooks.pwValid === false && (
             <S.ErrorMessageWrap>비밀번호는 영문, 숫자 특수문자 포함 8글자 이상입니다.</S.ErrorMessageWrap>
           )}
-          <S.Input
+          <TextField
+            id="pwCheck"
+            name="pwCheck"
             type="password"
-            placeholder="비밀번호 확인"
-            style={{ marginTop: "1vh" }}
-            onChange={(e) => hooks.setCheckPw(e.target.value)}
             value={hooks.checkPw}
-          />
+            onchange={(e) => hooks.setCheckPw(e.target.value)}
+            functions="pwCheck"
+          >
+            비밀번호 확인
+          </TextField>
           {hooks.pwAllow === false && <S.ErrorMessageWrap>비밀번호가 일치하지 않습니다.</S.ErrorMessageWrap>}
         </S.VerifyWrap>
         <S.ButtonWrap>

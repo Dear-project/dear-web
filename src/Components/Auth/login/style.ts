@@ -27,6 +27,16 @@ export const LoginWrap = styled.div`
   box-shadow: 4px 4px 8px 0px var(--Gray300, #e6e6e6);
 `;
 
+export const LoginInputBox = styled.div`
+  width: 100%;
+  height: 45px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+`;
+
 export const DearLogo = styled.h1`
   color: var(--Black, #000);
   font-family: Assistant;

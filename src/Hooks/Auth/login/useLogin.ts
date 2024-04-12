@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
 
 const Dummy = {
@@ -7,12 +7,19 @@ const Dummy = {
   pw: "minzzang9!",
 };
 
+interface LoginParam {
+  userId: string;
+  password: string;
+}
+
 const useLogin = () => {
-  const [email, setEmail] = useState<string>();
-  const [pw, setPw] = useState<string>();
   const [emailValid, setEmailValid] = useState<boolean>();
   const [pwValid, setPwValid] = useState<boolean>();
   const [isConfirm, setIsConfirm] = useState(false);
+  const [LoginData, setLoginData] = useState<LoginParam>({
+    userId: "",
+    password: "",
+  });
 
   useEffect(() => {
     if (emailValid && pwValid) {
@@ -22,28 +29,16 @@ const useLogin = () => {
     }
   }, [emailValid, pwValid]);
 
-  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,4}/;
-    setEmail(e.target.value);
-    if (emailRegex.test(e.target.value) || e.target.value === "") {
-      setEmailValid(true);
-    } else {
-      setEmailValid(false);
-    }
-  };
-
-  const handleChangePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-    setPw(e.target.value);
-    if (pwRegex.test(e.target.value) || e.target.value === "") {
-      setPwValid(true);
-    } else {
-      setPwValid(false);
-    }
-  };
+  const handleLoginChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value, name } = e.target;
+      setLoginData((prev) => ({ ...prev, [name]: value }));
+    },
+    [setLoginData],
+  );
 
   const handleConfirmButton = () => {
-    if (isConfirm && Dummy.email === email && Dummy.pw === pw) {
+    if (Dummy.email === LoginData.userId && Dummy.pw === LoginData.password) {
       showToast("success", "로그인 성공");
     } else {
       showToast("error", "로그인 실패");
@@ -51,13 +46,11 @@ const useLogin = () => {
   };
 
   return {
-    email,
-    pw,
+    LoginData,
     emailValid,
     pwValid,
     isConfirm,
-    handleChangeEmail,
-    handleChangePw,
+    handleLoginChange,
     handleConfirmButton,
   };
 };
