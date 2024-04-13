@@ -10,8 +10,8 @@ export const index = () => {
           <S.Select>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="41"
-              height="40"
+              width="30"
+              height="30"
               viewBox="0 0 41 40"
               color="var(--New, #0e2764);"
             >
