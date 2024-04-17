@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import * as S from "./style";
 import useLogin from "src/Hooks/Auth/login/useLogin";
@@ -17,6 +19,7 @@ const Login = () => {
           value={hooks.LoginData.userId}
           functions="email"
           onchange={hooks.handleLoginChange}
+          labelStyle={{ top: "39%" }}
         >
           이메일
         </TextField>
@@ -28,7 +31,7 @@ const Login = () => {
           value={hooks.LoginData.password}
           functions={hooks.handleConfirmButton}
           onchange={hooks.handleLoginChange}
-          labelStyle={{ top: "50%" }}
+          labelStyle={{ top: "49%" }}
         >
           비밀번호
         </TextField>
@@ -36,7 +39,7 @@ const Login = () => {
         <div style={{ width: "100%", marginLeft: "8vw" }}>
           <S.KeepLoginWrap>
             <S.KeepLoginBtn type="checkbox" />
-            <S.Span>로그인 유지</S.Span>
+            <S.Span style={{ marginTop: "3px" }}>로그인 유지</S.Span>
           </S.KeepLoginWrap>
         </div>
         <S.LoginButton onClick={hooks.handleConfirmButton} disabled={!hooks.isConfirm}>

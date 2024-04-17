@@ -29,7 +29,7 @@ const SignupInfo = () => {
               name="birthday"
               type="text"
               functions="text"
-              labelStyle={{ top: "57%" }}
+              labelStyle={{ top: "58%" }}
               value={hooks.signupData.birthday}
               onchange={hooks.handleSignupData}
             >

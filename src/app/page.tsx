@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Login from "src/Components/Auth/login";
+import Login from "src/Components/Auth/[login]";
 import SignUpEmail from "src/Components/Auth/signup/Email";
 import SignupInfo from "src/Components/Auth/signup/Info";
 import SignupPw from "src/Components/Auth/signup/Pw";
@@ -11,8 +11,8 @@ export default function Home() {
     <div>
       {/* <Login /> */}
       {/* <SignUpEmail /> */}
-      {/* <SignupPw /> */}
-      <SignupInfo />
+      <SignupPw />
+      {/* <SignupInfo /> */}
     </div>
   );
 }
