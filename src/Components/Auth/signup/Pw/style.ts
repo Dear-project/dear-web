@@ -42,6 +42,8 @@ export const VerifyWrap = styled.div`
 
   justify-content: center;
   align-items: center;
+
+  gap: 50px;
 `;
 
 export const Span = styled.span`

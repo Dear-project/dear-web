@@ -19,21 +19,23 @@ const SignupInfo = () => {
             functions="text"
             value={hooks.signupData.name}
             onchange={hooks.handleSignupData}
-            labelStyle={{ top: "50%" }}
+            labelStyle={{ top: "47%" }}
           >
             이름
           </TextField>
-          <TextField
-            id="text"
-            name="birthday"
-            type="text"
-            functions="text"
-            labelStyle={{ top: "55%" }}
-            value={hooks.signupData.birthday}
-            onchange={hooks.handleSignupData}
-          >
-            생년월일
-          </TextField>
+          <div>
+            <TextField
+              id="text"
+              name="birthday"
+              type="text"
+              functions="text"
+              labelStyle={{ top: "57%" }}
+              value={hooks.signupData.birthday}
+              onchange={hooks.handleSignupData}
+            >
+              생년월일
+            </TextField>
+          </div>
         </S.VerifyWrap>
         <S.ButtonWrap>
           <S.BackButton>이전</S.BackButton>

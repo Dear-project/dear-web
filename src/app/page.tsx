@@ -11,7 +11,7 @@ export default function Home() {
     <div>
       {/* <Login /> */}
       {/* <SignUpEmail /> */}
-      {/* <SignupPw />   */}
+      {/* <SignupPw /> */}
       <SignupInfo />
     </div>
   );

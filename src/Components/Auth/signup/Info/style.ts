@@ -42,6 +42,8 @@ export const VerifyWrap = styled.div`
 
   justify-content: center;
   align-items: center;
+
+  gap: 60px;
 `;
 
 export const Input = styled.input`

@@ -1,11 +1,7 @@
 "use client";
 import React, { useCallback, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
-
-interface SignupEmailProps {
-  email: string;
-  verifyNum: string;
-}
+import { SignupEmailProps } from "src/types/Auth/auth.type";
 
 const useEmail = () => {
   const [email, setEmail] = useState<string>("");

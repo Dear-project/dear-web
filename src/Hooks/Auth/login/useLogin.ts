@@ -1,16 +1,12 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
+import { LoginParam } from "src/types/Auth/auth.type";
 
 const Dummy = {
   email: "chan2bo2@naver.com",
   pw: "minzzang9!",
 };
-
-interface LoginParam {
-  userId: string;
-  password: string;
-}
 
 const useLogin = () => {
   const [emailValid, setEmailValid] = useState<boolean>();

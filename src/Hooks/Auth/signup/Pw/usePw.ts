@@ -1,26 +1,37 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { SignupPwProps } from "src/types/Auth/auth.type";
 
 const usePw = () => {
-  const [pw, setPw] = useState<string>("");
   const [pwValid, setPwValid] = useState<boolean>();
-  const [checkPw, setCheckPw] = useState<string>("");
   const [pwAllow, setPwAllow] = useState<boolean>();
   const [toInfo, setToInfo] = useState<boolean>();
+  const [signupData, setSignupData] = useState<SignupPwProps>({
+    pw: "",
+    checkPw: "",
+  });
 
-  const handleChagnePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPw(e.target.value);
-    const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-    if (pwRegex.test(e.target.value) || e.target.value === "") {
-      setPwValid(true);
-    } else {
-      setPwValid(false);
-    }
-  };
+  // const handleChagnePw = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPw(e.target.value);
+  //   const pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+  //   if (pwRegex.test(e.target.value) || e.target.value === "") {
+  //     setPwValid(true);
+  //   } else {
+  //     setPwValid(false);
+  //   }
+  // };
+
+  const handleSignupChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value, name } = e.target;
+      setSignupData((prev) => ({ ...prev, [name]: value }));
+    },
+    [setSignupData],
+  );
 
   const handleConfirmButton = () => {
-    if (pw === checkPw) {
+    if (signupData.pw === signupData.checkPw) {
       setPwAllow(true);
     } else {
       setPwAllow(false);
@@ -31,17 +42,15 @@ const usePw = () => {
     } else {
       setToInfo(false);
     }
-    console.log(pw, checkPw);
   };
 
   return {
-    pw,
     pwValid,
-    checkPw,
     pwAllow,
     toInfo,
-    setCheckPw,
-    handleChagnePw,
+    signupData,
+    // handleChagnePw,
+    handleSignupChange,
     handleConfirmButton,
   };
 };

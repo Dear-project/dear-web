@@ -1,11 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
-
-interface SignupInfoProps {
-  name: string;
-  birthday: string;
-}
+import { SignupInfoProps } from "src/types/Auth/auth.type";
 
 const useInfo = () => {
   const [name, setName] = useState<string>("");
