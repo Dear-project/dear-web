@@ -24,20 +24,28 @@ export const Logo = styled.div`
 `;
 export const Option = styled.div`
   height: 60%;
-  gap: 10%;
+  gap: 8%;
   display: flex;
   flex-direction: column;
   background: none;
+  align-items: center;
 `;
 export const Select = styled.div`
+  width: 230px;
+  height: 50px;
   background: none;
   font-size: 25px;
   font-family: Pretendard;
   font-weight: 500;
   color: var(--New, #0e2764);
   display: flex;
-  margin-left: 10%;
-  align-items: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  &:hover {
+    background-color: var(--New, #0e2764);
+    color: var(--White, #fff);
+  }
 `;
 export const My = styled.div`
   display: flex;
@@ -61,9 +69,9 @@ export const School = styled.div`
   font-weight: 600;
   line-height: normal;
 `;
-export const Profile = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: fill;
-  border-radius: 100%;
-`;
+// export const Profile = styled.image`
+//   width: 50px;
+//   height: 50px;
+//   object-fit: fill;
+//   border-radius: 100%;
+// `;

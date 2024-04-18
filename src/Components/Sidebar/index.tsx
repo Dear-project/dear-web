@@ -1,42 +1,107 @@
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import * as S from "./style";
+import Homelight from "src/asset/homeLight.svg";
+import Chatlight from "src/asset/chatLight.svg";
+import Findlight from "src/asset/findLight.svg";
+import Communitylight from "src/asset/communityLight.svg";
+import Home from "src/asset/home.svg";
+import Chat from "src/asset/chat.svg";
+import Find from "src/asset/find.svg";
+import Community from "src/asset/community.svg";
+import Profile from "src/asset/images.jpeg";
 
-export const index = () => {
+export const Index = () => {
+  // 선택된 아이템의 상태를 관리합니다.
+  const [selectedItem, setSelectedItem] = useState("");
+
+  // 아이템을 클릭했을 때 호출되는 함수입니다.
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
   return (
     <div>
       <S.Side>
         <S.Logo>DEAR.</S.Logo>
         <S.Option>
-          <S.Select>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="30"
-              height="30"
-              viewBox="0 0 41 40"
-              color="var(--New, #0e2764);"
-            >
-              <path
-                d="M3.35714 37.4664H13.9057V22.5564H27.0943V37.4664H37.6429V14.6643L20.5 3.16696L3.35714 14.6643V37.4664ZM0.5 40V13.3975L20.5 0L40.5 13.3975V40H24.2371V25.0899H16.7629V40H0.5Z"
-                fill="white"
-              />
-            </svg>
+          <S.Select
+            onClick={() => handleItemClick("home")}
+            style={{
+              backgroundColor:
+                selectedItem === "home" ? "#0e2764" : "transparent",
+              color: selectedItem === "home" ? "#ffffff" : "#000000",
+            }}
+          >
+            <Image
+              src={selectedItem === "home" ? Homelight : Home}
+              alt="메인"
+              width={30}
+              height={30}
+              style={{ marginLeft: "10px" }}
+            />
             메인
           </S.Select>
-          <S.Select>
-            <img src="#" alt="#" />
+          <S.Select
+            onClick={() => handleItemClick("chat")}
+            style={{
+              backgroundColor:
+                selectedItem === "chat" ? "#0e2764" : "transparent",
+              color: selectedItem === "chat" ? "#ffffff" : "#000000",
+            }}
+          >
+            <Image
+              src={selectedItem === "chat" ? Chatlight : Chat}
+              alt="채팅"
+              width={30}
+              height={30}
+              style={{ marginLeft: "10px" }}
+            />
             채팅
           </S.Select>
-          <S.Select>
-            <img src="#" alt="#" />
+          <S.Select
+            onClick={() => handleItemClick("find")}
+            style={{
+              backgroundColor:
+                selectedItem === "find" ? "#0e2764" : "transparent",
+              color: selectedItem === "find" ? "#ffffff" : "#000000",
+            }}
+          >
+            <Image
+              src={selectedItem === "find" ? Findlight : Find}
+              alt="교수찾기"
+              width={30}
+              height={30}
+              style={{ marginLeft: "10px" }}
+            />
             교수찾기
           </S.Select>
-          <S.Select>
-            <img src="#" alt="#" />
+          <S.Select
+            onClick={() => handleItemClick("community")}
+            style={{
+              backgroundColor:
+                selectedItem === "community" ? "#0e2764" : "transparent",
+              color: selectedItem === "community" ? "#ffffff" : "#000000",
+            }}
+          >
+            <Image
+              src={selectedItem === "community" ? Communitylight : Community}
+              alt="커뮤니티 광장"
+              width={30}
+              height={30}
+              style={{ marginLeft: "10px" }}
+            />
             커뮤니티 광장
           </S.Select>
         </S.Option>
         <S.My>
-          <S.Profile src="images.jpeg" alt="#" />
+          <Image
+            src={Profile}
+            alt="프로필"
+            width={45}
+            height={45}
+            style={{ borderRadius: "100%" }}
+          />
           <div>
             <S.Name>홍길동</S.Name>
             <S.School>대구소프트웨어 마이스터 고등학교</S.School>
@@ -46,4 +111,4 @@ export const index = () => {
     </div>
   );
 };
-export default index;
+export default Index;
