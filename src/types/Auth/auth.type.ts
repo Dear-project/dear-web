@@ -16,4 +16,5 @@ export interface SignupPwProps {
 export interface SignupInfoProps {
   name: string;
   birthday: string;
+  type: string;
 }

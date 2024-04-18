@@ -25,7 +25,7 @@ const SignupPw = () => {
           {hooks.pwValid === false && (
             <S.ErrorMessageWrap>비밀번호는 영문, 숫자 특수문자 포함 8글자 이상입니다.</S.ErrorMessageWrap>
           )}
-          <div>
+          <div style={{ display: "flex" }}>
             <TextField
               id="checkPw"
               name="checkPw"

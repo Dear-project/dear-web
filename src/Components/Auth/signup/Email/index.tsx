@@ -10,17 +10,20 @@ const SignUpEmail = () => {
       <S.SignUpEmailWrap>
         <S.DearLogo>DEAR.</S.DearLogo>
         <S.VerifyWrap>
-          <TextField
-            id="email"
-            type="email"
-            name="email"
-            value={hooks.signupData.email}
-            functions="email"
-            onchange={hooks.handleSignupChange}
-            labelStyle={{ top: "47%" }}
-          >
-            이메일 주소
-          </TextField>
+          <S.Verify>
+            <TextField
+              id="email"
+              type="email"
+              name="email"
+              value={hooks.signupData.email}
+              functions="email"
+              onchange={hooks.handleSignupChange}
+              labelStyle={{ top: "47%" }}
+            >
+              이메일 주소
+            </TextField>
+            <S.VerifyButton onClick={hooks.handleSendVerifyNum}>인증번호 전송</S.VerifyButton>
+          </S.Verify>
           <div style={{ display: "flex", width: "485px", marginTop: "5vh" }}>
             <TextField
               id="verifyNum"
@@ -33,12 +36,18 @@ const SignUpEmail = () => {
             >
               인증번호 6자리 입력
             </TextField>
+            <span
+              style={{ position: "absolute", left: "53%", top: "55%", cursor: "pointer" }}
+              onClick={hooks.handleReSendAuthCode}
+            >
+              재 전송
+            </span>
             <S.VerifyButton onClick={hooks.handleCheckVerifyNum}>인증번호 확인</S.VerifyButton>
           </div>
         </S.VerifyWrap>
         <S.ButtonWrap>
           <S.BackButton>이전</S.BackButton>
-          <S.NextButton onClick={hooks.handleConfirmButton}>이메일 인증하기</S.NextButton>
+          <S.NextButton onClick={hooks.onNext}>이메일 인증하기</S.NextButton>
         </S.ButtonWrap>
       </S.SignUpEmailWrap>
     </S.Main>

@@ -44,6 +44,11 @@ export const VerifyWrap = styled.div`
   align-items: center;
 `;
 
+export const Verify = styled.div`
+  display: flex;
+  width: 485px;
+`;
+
 export const Span = styled.span`
   font-family: Assistant;
 `;

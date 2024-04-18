@@ -36,6 +36,18 @@ const SignupInfo = () => {
               생년월일
             </TextField>
           </div>
+          <div>
+            <TextField
+              id="text"
+              name="type"
+              type="text"
+              functions="text"
+              value={hooks.signupData.type}
+              onchange={hooks.handleSignupData}
+            >
+              분류
+            </TextField>
+          </div>
         </S.VerifyWrap>
         <S.ButtonWrap>
           <S.BackButton>이전</S.BackButton>

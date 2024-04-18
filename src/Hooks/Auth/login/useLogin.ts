@@ -1,12 +1,9 @@
 "use client";
+import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/libs/Swal/Swal";
 import { LoginParam } from "src/types/Auth/auth.type";
-
-const Dummy = {
-  email: "chan2bo2@naver.com",
-  pw: "minzzang9!",
-};
+import config from "src/config/config.json";
 
 const useLogin = () => {
   const [emailValid, setEmailValid] = useState<boolean>();
@@ -33,12 +30,17 @@ const useLogin = () => {
     [setLoginData],
   );
 
-  const handleConfirmButton = () => {
-    if (Dummy.email === LoginData.userId && Dummy.pw === LoginData.password) {
-      showToast("success", "로그인 성공");
-    } else {
-      showToast("error", "로그인 실패");
-    }
+  const handleConfirmButton = async () => {
+    try {
+      await axios
+        .post(`${config.serverUrl}/auth`, {
+          email: LoginData.userId,
+          password: LoginData.password,
+        })
+        .then(() => {
+          showToast("success", "로그인 성공!");
+        });
+    } catch (error) {}
   };
 
   return {
