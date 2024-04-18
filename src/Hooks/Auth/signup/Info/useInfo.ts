@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { showToast } from "src/libs/Swal/Swal";
+import { showToast } from "src/Libs/Swal/Swal";
 import config from "src/config/config.json";
 import { EmailProps, InfoProps, PwProps } from "src/store/Auth/signup/signup.store";
 

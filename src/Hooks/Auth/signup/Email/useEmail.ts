@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { showToast } from "src/libs/Swal/Swal";
+import { showToast } from "src/Libs/Swal/Swal";
 import { SignupEmailProps } from "src/types/Auth/auth.type";
 import config from "src/config/config.json";
 import axios from "axios";
@@ -32,11 +32,9 @@ const useEmail = () => {
 
   const handleReSendAuthCode = async () => {
     try {
-      await axios.post(`${config.serverUrl}`)
-    } catch (error) {
-      
-    }
-  }
+      await axios.post(`${config.serverUrl}`);
+    } catch (error) {}
+  };
 
   const handleCheckVerifyNum = async () => {
     try {
