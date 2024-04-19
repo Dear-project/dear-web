@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import * as S from "./style";
 import useEmail from "src/Hooks/Auth/signup/Email/useEmail";
@@ -22,7 +24,7 @@ const SignUpEmail = () => {
             >
               이메일 주소
             </TextField>
-            <S.VerifyButton onClick={hooks.handleSendVerifyNum}>인증번호 전송</S.VerifyButton>
+            <S.VerifyButton onClick={hooks.handleSendAuthCode}>인증번호 전송</S.VerifyButton>
           </S.Verify>
           <div style={{ display: "flex", width: "485px", marginTop: "5vh" }}>
             <TextField
@@ -34,15 +36,17 @@ const SignUpEmail = () => {
               onchange={hooks.handleSignupChange}
               labelStyle={{ top: "57%" }}
             >
-              인증번호 6자리 입력
+              인증번호 6자리
             </TextField>
-            <span
-              style={{ position: "absolute", left: "53%", top: "55%", cursor: "pointer" }}
-              onClick={hooks.handleReSendAuthCode}
-            >
-              재 전송
-            </span>
-            <S.VerifyButton onClick={hooks.handleCheckVerifyNum}>인증번호 확인</S.VerifyButton>
+            {hooks.resend === true && (
+              <span
+                style={{ position: "absolute", left: "53%", top: "55%", cursor: "pointer" }}
+                onClick={hooks.handleReSendAuthCode}
+              >
+                재 전송
+              </span>
+            )}
+            <S.VerifyButton onClick={hooks.handleCheckAuth}>인증번호 확인</S.VerifyButton>
           </div>
         </S.VerifyWrap>
         <S.ButtonWrap>

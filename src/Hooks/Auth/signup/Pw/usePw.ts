@@ -2,8 +2,7 @@
 
 import React, { useCallback, useState } from "react";
 import { useRecoilState } from "recoil";
-import { PwProps } from "src/store/Auth/signup/signup.store";
-import { SignupPwProps } from "src/types/Auth/auth.type";
+import { PwProps } from "src/Store/Auth/signup/signup.store";
 
 const usePw = () => {
   const [pwValid, setPwValid] = useState<boolean>();
@@ -31,7 +30,7 @@ const usePw = () => {
     // } else {
     //   setToInfo(false);
     // }
-    console.log(signupData.pw)
+    console.log(signupData.pw);
   };
 
   return {

@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { showToast } from "src/Libs/Swal/Swal";
 import config from "src/config/config.json";
-import { EmailProps, InfoProps, PwProps } from "src/store/Auth/signup/signup.store";
+import { EmailProps, InfoProps, PwProps } from "src/Store/Auth/signup/signup.store";
 
 const useInfo = () => {
   const [signupData, setSignupData] = useRecoilState(InfoProps);

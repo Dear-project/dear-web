@@ -18,3 +18,8 @@ export interface SignupInfoProps {
   birthday: string;
   type: string;
 }
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+}

@@ -1,18 +1,19 @@
-"use client";
 import Link from "next/link";
+import React from "react";
 import Login from "src/Components/Auth/login";
 import SignUpEmail from "src/Components/Auth/signup/Email";
 import SignupInfo from "src/Components/Auth/signup/Info";
-import SignupPw from "src/Components/Auth/signup/Pw";
-import GlobalStyles from "src/style/global";
+import SignUpPw from "src/Components/Auth/signup/Pw";
 
-export default function Home() {
+const Home = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <Login />
-      {/* <SignUpEmail />
-      <SignupPw />
+    <div>
+      {/* <Login /> */}
+      <SignUpEmail />
+      {/*<SignUpPw />
       <SignupInfo /> */}
     </div>
   );
-}
+};
+
+export default Home;

@@ -29,7 +29,7 @@ const Login = () => {
           name="password"
           type="password"
           value={hooks.LoginData.password}
-          functions={hooks.handleConfirmButton}
+          functions="password"
           onchange={hooks.handleLoginChange}
           labelStyle={{ top: "49%" }}
         >
@@ -42,9 +42,7 @@ const Login = () => {
             <S.Span style={{ marginTop: "3px" }}>로그인 유지</S.Span>
           </S.KeepLoginWrap>
         </div>
-        <S.LoginButton onClick={hooks.handleConfirmButton} disabled={!hooks.isConfirm}>
-          로그인
-        </S.LoginButton>
+        <S.LoginButton onClick={hooks.handleConfirmButton}>로그인</S.LoginButton>
         <S.LoginUtilsWrap>
           <S.Span>회원가입</S.Span>
           <S.FindWrap>

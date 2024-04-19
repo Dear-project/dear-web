@@ -1,9 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/Constants/token/token.constants";
 // import tokenRepository from "src/repository/token/token.repository";
 import token from "../token/token";
 import { dearV1Axios } from "./customAxios";
-import CONFIG from "src/config/config.json";
+import config from "src/Config/config.json";
 
 //리프레쉬 작업중인지 아닌지를 구분하는 변수
 let isRefreshing = false;
@@ -32,19 +32,13 @@ const errorResponseHandler = async (error: AxiosError) => {
 
         try {
           //일단 오류 해결을 위한 코드
-          const data = await axios.post(`${CONFIG.serverUrl}/refresh`, {
+          const data = await axios.post(`${config.serverUrl}/refresh`, {
             refreshToken: usingRefreshToken,
           });
           const newAccessToken = data.data.data.accessToken;
 
-          // const { data: newAccessToken } =
-          //   await tokenRepository.getRefreshToken({
-          //     refreshToken: usingRefreshToken,
-          //   });
-          // dearV1Axios.defaults.headers.common[
-          //   REQUEST_TOKEN_KEY
-          // ] = `Bearer ${newAccessToken}`;
-          // console.log(newAccessToken);
+          dearV1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newAccessToken}`;
+          console.log(newAccessToken);
 
           token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
 
@@ -55,7 +49,7 @@ const errorResponseHandler = async (error: AxiosError) => {
         } catch (error) {
           //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
           token.clearToken();
-          window.location.href = "/login";
+          window.location.href = "/";
         }
       }
 
