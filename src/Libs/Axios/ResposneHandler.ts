@@ -32,7 +32,7 @@ const errorResponseHandler = async (error: AxiosError) => {
 
         try {
           //일단 오류 해결을 위한 코드
-          const data = await axios.post(`${config.serverUrl}/refresh`, {
+          const data = await axios.post(`${config.serverUrl}/auth/refresh`, {
             refreshToken: usingRefreshToken,
           });
           const newAccessToken = data.data.data.accessToken;

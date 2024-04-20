@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { showToast } from "src/Libs/Swal/Swal";
 import { SignupEmailProps } from "src/Types/Auth/auth.type";
 import config from "src/Config/config.json";
@@ -15,6 +15,8 @@ const useEmail = () => {
   const [verifyNum, setVerifyNum] = useState<string>("");
   const [isVerified, setIsVerified] = useState(false);
   const [resend, setResend] = useState(false);
+  const [timer, setTimer] = useState<number>(300);
+  const [timerInstance, setTimerinstane] = useState<any>(null);
 
   const handleSignupChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,11 +31,33 @@ const useEmail = () => {
     try {
       await axios.post(`${config.serverUrl}/auth/email?email=${signupData.email}`).then(() => {
         setResend(true);
+        startTimer();
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const startTimer = () => {
+    const instance = setTimeout(() => {
+      setTimer((prevTime) => prevTime - 1);
+      console.log(timer);
+    }, 1000);
+    setTimerinstane(instance);
+  };
+
+  useEffect(() => {
+    if (timer === 0) {
+      clearTimeout(timerInstance);
+      setResend(false);
+    }
+  }, [timer, timerInstance]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerInstance);
+    };
+  }, [timerInstance]);
 
   const handleReSendAuthCode = async () => {
     try {
