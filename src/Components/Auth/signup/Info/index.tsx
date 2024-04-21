@@ -21,7 +21,7 @@ const SignupInfo = ({ onShow }: { onShow: boolean }) => {
                 functions="text"
                 value={hooks.signupData.name}
                 onchange={hooks.handleSignupData}
-                labelStyle={{ top: "47%" }}
+                labelStyle={{ top: "41%" }}
               >
                 이름
               </TextField>
@@ -31,7 +31,7 @@ const SignupInfo = ({ onShow }: { onShow: boolean }) => {
                   name="birthday"
                   type="text"
                   functions="text"
-                  labelStyle={{ top: "58%" }}
+                  labelStyle={{ top: "52%" }}
                   value={hooks.signupData.birthday}
                   onchange={hooks.handleSignupData}
                 >
@@ -46,6 +46,7 @@ const SignupInfo = ({ onShow }: { onShow: boolean }) => {
                   functions="text"
                   value={hooks.signupData.type}
                   onchange={hooks.handleSignupData}
+                  labelStyle={{ top: "63%" }}
                 >
                   분류
                 </TextField>

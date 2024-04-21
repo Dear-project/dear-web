@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div>
       {/* <Login /> */}
-      <SignUpEmail />
+      {/* <SignUpEmail /> */}
       {/*<SignUpPw />
       <SignupInfo /> */}
     </div>
