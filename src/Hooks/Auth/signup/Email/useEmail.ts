@@ -17,6 +17,7 @@ const useEmail = () => {
   const [resend, setResend] = useState(false);
   const [timer, setTimer] = useState<number>(300);
   const [timerInstance, setTimerinstane] = useState<any>(null);
+  const [next, setNext] = useState(false);
 
   const handleSignupChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +80,7 @@ const useEmail = () => {
   };
 
   const onNext = () => {
-    console.log(signupData.email);
+    setNext((prev) => !prev);
   };
 
   return {
@@ -87,6 +88,7 @@ const useEmail = () => {
     verifyNum,
     signupData,
     resend,
+    next,
     setVerifyNum,
     handleSendAuthCode,
     handleSignupChange,

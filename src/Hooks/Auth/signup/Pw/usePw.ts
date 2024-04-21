@@ -9,6 +9,7 @@ const usePw = () => {
   const [pwAllow, setPwAllow] = useState<boolean>();
   const [toInfo, setToInfo] = useState<boolean>();
   const [signupData, setSignupData] = useRecoilState(PwProps);
+  const [next, setNext] = useState(false);
 
   const handleSignupChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,18 +20,7 @@ const usePw = () => {
   );
 
   const handleConfirmButton = () => {
-    // if (signupData.pw === signupData.checkPw) {
-    //   setPwAllow(true);
-    // } else {
-    //   setPwAllow(false);
-    // }
-
-    // if (pwAllow) {
-    //   setToInfo(true);
-    // } else {
-    //   setToInfo(false);
-    // }
-    console.log(signupData.pw);
+    setNext((prev) => !prev);
   };
 
   return {
@@ -38,7 +28,7 @@ const usePw = () => {
     pwAllow,
     toInfo,
     signupData,
-    // handleChagnePw,
+    next,
     handleSignupChange,
     handleConfirmButton,
   };
