@@ -37,15 +37,11 @@ export const Select = styled.div`
   font-size: 25px;
   font-family: Pretendard;
   font-weight: 500;
-  color: var(--New, #0e2764);
   display: flex;
   align-items: center;
   gap: 20px;
   border-radius: 10px;
-  &:hover {
-    background-color: var(--New, #0e2764);
-    color: var(--White, #fff);
-  }
+  border: none;
 `;
 export const My = styled.div`
   display: flex;
