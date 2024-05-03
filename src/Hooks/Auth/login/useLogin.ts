@@ -8,9 +8,6 @@ import token from "src/Libs/token/token";
 import { LoginParam, LoginResponse } from "src/Types/Auth/auth.type";
 
 const useLogin = () => {
-  const [emailValid, setEmailValid] = useState<boolean>();
-  const [pwValid, setPwValid] = useState<boolean>();
-  const [isConfirm, setIsConfirm] = useState(false);
   const [LoginData, setLoginData] = useState<LoginParam>({
     userId: "",
     password: "",
@@ -43,9 +40,6 @@ const useLogin = () => {
 
   return {
     LoginData,
-    emailValid,
-    pwValid,
-    isConfirm,
     handleLoginChange,
     handleConfirmButton,
   };

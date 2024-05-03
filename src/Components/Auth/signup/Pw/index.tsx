@@ -1,56 +1,50 @@
+"use client";
+
 import React from "react";
 import * as S from "./style";
-import usePw from "src/Hooks/Auth/signup/Pw/usePw";
 import TextField from "src/Components/common/TextField";
-import SignupInfo from "../Info";
+import usePassword from "src/Hooks/Auth/signup/usePassword";
 
-const SignupPw = ({ onShow }: { onShow: boolean }) => {
-  const { ...hooks } = usePw();
+const SignupPw = () => {
+  const { ...hooks } = usePassword();
 
   return (
     <>
-      {onShow === true && (
-        <S.Main>
-          <S.SignUpEmailWrap>
-            <S.DearLogo>DEAR.</S.DearLogo>
-            <S.VerifyWrap>
+      <S.Main>
+        <S.SignUpEmailWrap>
+          <S.DearLogo>DEAR.</S.DearLogo>
+          <S.VerifyWrap>
+            <TextField
+              id="password"
+              name="pw"
+              type="password"
+              value={hooks.passwordData.pw}
+              onchange={hooks.handleDataChange}
+              functions="password"
+              labelStyle={{ top: "47%" }}
+            >
+              비밀번호 입력
+            </TextField>
+            <div>
               <TextField
-                id="password"
-                name="pw"
+                id="checkPw"
+                name="checkPw"
                 type="password"
-                value={hooks.signupData.pw}
-                onchange={hooks.handleSignupChange}
-                functions="password"
-                labelStyle={{ top: "47%" }}
+                value={hooks.passwordData.checkPw}
+                onchange={hooks.handleDataChange}
+                functions="checkPw"
+                labelStyle={{ top: "57%" }}
               >
-                비밀번호 입력
+                비밀번호 확인
               </TextField>
-              {hooks.pwValid === false && (
-                <S.ErrorMessageWrap>비밀번호는 영문, 숫자 특수문자 포함 8글자 이상입니다.</S.ErrorMessageWrap>
-              )}
-              <div style={{ display: "flex" }}>
-                <TextField
-                  id="checkPw"
-                  name="checkPw"
-                  type="password"
-                  value={hooks.signupData.checkPw}
-                  onchange={hooks.handleSignupChange}
-                  functions="checkPw"
-                  labelStyle={{ top: "57%" }}
-                >
-                  비밀번호 확인
-                </TextField>
-              </div>
-              {hooks.pwAllow === false && <S.ErrorMessageWrap>비밀번호가 일치하지 않습니다.</S.ErrorMessageWrap>}
-            </S.VerifyWrap>
-            <S.ButtonWrap>
-              <S.BackButton>이전</S.BackButton>
-              <S.NextButton onClick={hooks.handleConfirmButton}>다음</S.NextButton>
-            </S.ButtonWrap>
-          </S.SignUpEmailWrap>
-        </S.Main>
-      )}
-      {hooks.next === true && <SignupInfo onShow={hooks.next} />}
+            </div>
+          </S.VerifyWrap>
+          <S.ButtonWrap>
+            <S.BackButton>이전</S.BackButton>
+            <S.NextButton onClick={hooks.onCheckPw}>다음 단계</S.NextButton>
+          </S.ButtonWrap>
+        </S.SignUpEmailWrap>
+      </S.Main>
     </>
   );
 };

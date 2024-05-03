@@ -3,17 +3,17 @@ export interface LoginParam {
   password: string;
 }
 
-export interface SignupEmailProps {
-  email: string;
-  verifyNum: string;
+export interface AuthCodeParams {
+  authCode: string;
 }
 
-export interface SignupPwProps {
-  pw: string;
+export interface PasswordCheck {
   checkPw: string;
 }
 
-export interface SignupInfoProps {
+export interface SignupParams {
+  email: string;
+  pw: string;
   name: string;
   birthday: string;
   type: string;

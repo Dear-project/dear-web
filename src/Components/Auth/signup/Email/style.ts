@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const Main = styled.div<{ onShow: boolean }>`
+export const Main = styled.div`
   width: 100vw;
   height: 100vh;
   background: var(--Gray100, #f4f5f9);
 
-  display: ${({ onShow }) => (onShow ? "none" : "flex")};
+  display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;

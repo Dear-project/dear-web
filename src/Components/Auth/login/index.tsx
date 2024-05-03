@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import * as S from "./style";
 import useLogin from "src/Hooks/Auth/login/useLogin";
 import TextField from "src/Components/common/TextField";
@@ -23,7 +22,6 @@ const Login = () => {
         >
           이메일
         </TextField>
-        {hooks.emailValid === false && <S.ErrorMessageWrap>이메일 형식을 지켜주세요</S.ErrorMessageWrap>}
         <TextField
           id="password"
           name="password"
@@ -35,7 +33,6 @@ const Login = () => {
         >
           비밀번호
         </TextField>
-        {hooks.pwValid === false && <S.ErrorMessageWrap>비밀번호 형식을 지켜주세요</S.ErrorMessageWrap>}
         <div style={{ width: "100%", marginLeft: "8vw" }}>
           <S.KeepLoginWrap>
             <S.KeepLoginBtn type="checkbox" />
