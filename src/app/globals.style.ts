@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
       padding: 0;
       color:black;
       font-family: "Pretendard-Medium" !important;
-      background: #F4F5F9;
     }
 `;
 export default GlobalStyle;
