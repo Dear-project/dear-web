@@ -26,7 +26,7 @@ export const Index = () => {
       <S.Side>
         <S.Logo>DEAR.</S.Logo>
         <S.Option>
-          <Link href="/Main" legacyBehavior style={{ textDecoration: "none" }}>
+          <Link href="/main" legacyBehavior style={{ textDecoration: "none" }}>
             <S.Select
               onClick={() => handleItemClick("home")}
               style={{
@@ -46,7 +46,7 @@ export const Index = () => {
             </S.Select>
           </Link>
 
-          <Link href={"/Chat"} style={{ textDecoration: "none" }}>
+          <Link href={"/chat"} style={{ textDecoration: "none" }}>
             <S.Select
               onClick={() => handleItemClick("chat")}
               style={{
@@ -65,7 +65,7 @@ export const Index = () => {
               채팅
             </S.Select>
           </Link>
-          <Link href={"/Find"} style={{ textDecoration: "none" }}>
+          <Link href={"/find"} style={{ textDecoration: "none" }}>
             <S.Select
               onClick={() => handleItemClick("find")}
               style={{
@@ -84,7 +84,7 @@ export const Index = () => {
               교수찾기
             </S.Select>
           </Link>
-          <Link href={"/Community"} style={{ textDecoration: "none" }}>
+          <Link href={"/community"} style={{ textDecoration: "none" }}>
             <S.Select
               onClick={() => handleItemClick("community")}
               style={{

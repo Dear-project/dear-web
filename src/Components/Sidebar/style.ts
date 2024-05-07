@@ -44,6 +44,8 @@ export const Select = styled.div`
   border: none;
 `;
 export const My = styled.div`
+  margin-left: 5%;
+  margin-bottom: 5%;
   display: flex;
   width: 100%;
   align-items: flex-end;
