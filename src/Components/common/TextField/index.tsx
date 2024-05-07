@@ -12,7 +12,16 @@ interface TextFieldProps {
   labelStyle?: React.CSSProperties;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ id, name, type, value, children, onchange, functions, labelStyle }) => {
+const TextField: React.FC<TextFieldProps> = ({
+  id,
+  name,
+  type,
+  value,
+  children,
+  onchange,
+  functions,
+  labelStyle,
+}) => {
   return (
     <>
       <S.TextField>

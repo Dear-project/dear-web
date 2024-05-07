@@ -1,5 +1,5 @@
 import axios from "axios";
-import config from "src/Config/config.json";
+import config from "src/config/config.json";
 import { RefreshTokenParams } from "./token.param";
 import { RefreshResponse } from "src/Types/token/token.type";
 

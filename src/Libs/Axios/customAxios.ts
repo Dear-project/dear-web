@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import config from "src/Config/config.json";
+import config from "src/config/config.json";
 import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/Constants/token/token.constants";
 import token from "../token/token";
 import ResponseHandler from "./ResposneHandler";

@@ -3,7 +3,7 @@ import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/Cons
 // import tokenRepository from "src/repository/token/token.repository";
 import token from "../token/token";
 import { dearV1Axios } from "./customAxios";
-import config from "src/Config/config.json";
+import config from "src/config/config.json";
 
 //리프레쉬 작업중인지 아닌지를 구분하는 변수
 let isRefreshing = false;
@@ -49,7 +49,7 @@ const errorResponseHandler = async (error: AxiosError) => {
         } catch (error) {
           //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
           token.clearToken();
-          window.location.href = "/";
+          window.location.href = "/login";
         }
       }
 

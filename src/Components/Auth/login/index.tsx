@@ -1,22 +1,24 @@
 "use client";
-import React, { Dispatch, SetStateAction } from "react";
+
+import React from "react";
 import * as S from "./style";
 import useLogin from "src/Hooks/Auth/login/useLogin";
 import TextField from "src/Components/common/TextField";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { ...hooks } = useLogin();
-
+  const router = useRouter();
   return (
     <S.Main>
       <S.LoginWrap>
         <S.DearLogo>DEAR.</S.DearLogo>
         <TextField
-          id="email"
+          id="userId"
           name="userId"
           type="email"
           value={hooks.LoginData.userId}
-          functions="email"
+          functions="password"
           onchange={hooks.handleLoginChange}
           labelStyle={{ top: "39%" }}
         >
@@ -27,7 +29,7 @@ const Login = () => {
           name="password"
           type="password"
           value={hooks.LoginData.password}
-          functions="password"
+          functions={hooks.handleConfirmButton}
           onchange={hooks.handleLoginChange}
           labelStyle={{ top: "49%" }}
         >
@@ -41,11 +43,11 @@ const Login = () => {
         </div>
         <S.LoginButton onClick={hooks.handleConfirmButton}>로그인</S.LoginButton>
         <S.LoginUtilsWrap>
-          <S.Span>회원가입</S.Span>
+          <S.Span onClick={() => router.push("/signup/email")}>회원가입</S.Span>
           <S.FindWrap>
-            <S.Span>아이디 찾기</S.Span>
+            <S.Span onClick={() => router.push("/auth/find-id")}>아이디 찾기</S.Span>
             <S.Line></S.Line>
-            <S.Span>비밀번호 찾기</S.Span>
+            <S.Span onClick={() => router.push("/auth/find-pw")}>비밀번호 찾기</S.Span>
           </S.FindWrap>
         </S.LoginUtilsWrap>
       </S.LoginWrap>

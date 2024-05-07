@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { EmailAtom, PasswordAtom } from "src/Store/Auth/signup/signup.store";
 import { InfoProps } from "src/Types/Auth/signup.type";
-import CONFIG from "src/Config/config.json";
+import CONFIG from "src/config/config.json";
 import { showToast } from "src/Libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 

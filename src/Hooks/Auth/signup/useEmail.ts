@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { EmailAtom } from "src/Store/Auth/signup/signup.store";
 import { ErrorStateAtom } from "src/Store/common/common.store";
 import patternCheck from "src/Util/check/patternCheck";
-import CONFIG from "src/Config/config.json";
+import CONFIG from "src/config/config.json";
 import { showToast } from "src/Libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 
