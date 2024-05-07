@@ -84,7 +84,7 @@ export const Index = () => {
               교수찾기
             </S.Select>
           </Link>
-          <Link href={"/Community"} style={{ textDecoration: "none" }}>
+          <Link href={"/community"} style={{ textDecoration: "none" }}>
             <S.Select
               onClick={() => handleItemClick("community")}
               style={{

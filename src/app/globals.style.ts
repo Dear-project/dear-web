@@ -1,12 +1,20 @@
 "use client";
+
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
-${reset}
-background-color: #f4f5f9;
-  margin: 0;
-  padding:0;
+@font-face {
+    font-family: "Pretendard-Medium";
+    src: url("../assets/font/Pretendard/Pretendard-Medium.otf");
+  }
+    ${reset}
+    * {
+      margin: 0;
+      padding: 0;
+      color:black;
+      font-family: "Pretendard-Medium" !important;
+      background: #F4F5F9;
+    }
 `;
-
 export default GlobalStyle;
