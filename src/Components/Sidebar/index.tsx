@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -12,14 +12,10 @@ import Find from "src/asset/find.svg";
 import Community from "src/asset/community.svg";
 import Profile from "src/asset/images.jpeg";
 import Link from "next/link";
-export const Index = () => {
-  // 선택된 아이템의 상태를 관리합니다.
-  const [selectedItem, setSelectedItem] = useState("");
+import useSidebar from "src/hooks/sidebar/useSidebar";
 
-  // 아이템을 클릭했을 때 호출되는 함수입니다.
-  const handleItemClick = (item: React.SetStateAction<any>) => {
-    setSelectedItem(item);
-  };
+export const Index = () => {
+  const { selectedItem, handleItemClick, userProfile } = useSidebar();
 
   return (
     <div>
@@ -113,8 +109,10 @@ export const Index = () => {
             style={{ borderRadius: "100%" }}
           />
           <div>
-            <S.Name>홍길동</S.Name>
-            <S.School>대구소프트웨어 마이스터 고등학교</S.School>
+            <S.Name>{userProfile?.name || "홍길동"}</S.Name>
+            <S.School>
+              {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
+            </S.School>
           </div>
         </S.My>
       </S.Side>
