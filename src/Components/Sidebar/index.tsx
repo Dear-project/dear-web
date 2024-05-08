@@ -11,16 +11,20 @@ import Chat from "src/asset/chat.svg";
 import Find from "src/asset/find.svg";
 import Community from "src/asset/community.svg";
 import Profile from "src/asset/images.jpeg";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import useSidebar from "src/hooks/sidebar/useSidebar";
+import Link from "next/link";
 
 export const Index = () => {
-  const { selectedItem, handleItemClick, userProfile } = useSidebar();
+  const { selectedItem, handleItemClick, userProfile, handleLogoclick } =
+    useSidebar();
+  const router = useRouter();
 
   return (
     <div>
       <S.Side>
-        <S.Logo>DEAR.</S.Logo>
+        <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
+
         <S.Option>
           <Link href="/main" legacyBehavior style={{ textDecoration: "none" }}>
             <S.Select

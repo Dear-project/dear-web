@@ -8,6 +8,10 @@ const useSidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
 
+  const handleLogoclick = () => {
+    router.push("/");
+  };
+
   const handleItemClick = (item) => {
     setSelectedItem(item);
     router.push(`/path/${item}`); // 선택한 아이템에 따라 경로 이동
@@ -28,6 +32,7 @@ const useSidebar = () => {
 
   return {
     selectedItem,
+    handleLogoclick,
     handleItemClick,
     userProfile,
     pathname, // 현재 경로 정보 반환
