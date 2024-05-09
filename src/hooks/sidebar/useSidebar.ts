@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import axios from "axios";
 
@@ -9,18 +9,21 @@ const useSidebar = () => {
   const router = useRouter();
 
   const handleLogoclick = () => {
-    router.push("/");
+    router.push("/main");
+    setSelectedItem(""); // 로고 클릭 시 선택된 버튼 초기화
+    sessionStorage.removeItem("selectedItem"); // 세션 스토리지에서 선택된 버튼 정보 제거
   };
 
-  const handleItemClick = (item) => {
+  const handleItemClick = (item: SetStateAction<string>) => {
     setSelectedItem(item);
-    router.push(`/path/${item}`); // 선택한 아이템에 따라 경로 이동
+    sessionStorage.setItem("selectedItem", item); // 선택된 버튼 정보를 세션 스토리지에 저장
+    router.push(`/path/${item}`);
   };
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get("/api/user-profile"); // URL 수정 필요
+        const response = await axios.get("/api/user-profile");
         setUserProfile(response.data);
       } catch (error) {
         console.error("Error fetching user profile:", error);
@@ -28,6 +31,12 @@ const useSidebar = () => {
     };
 
     fetchUserProfile();
+
+    // 페이지 로드 시 세션 스토리지에서 선택된 버튼 정보를 읽어와 selectedItem 상태 업데이트
+    const storedItem = sessionStorage.getItem("selectedItem");
+    if (storedItem) {
+      setSelectedItem(storedItem);
+    }
   }, []);
 
   return {
@@ -35,8 +44,8 @@ const useSidebar = () => {
     handleLogoclick,
     handleItemClick,
     userProfile,
-    pathname, // 현재 경로 정보 반환
-    router, // 라우팅 기능 제공
+    pathname,
+    router,
   };
 };
 

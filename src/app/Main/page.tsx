@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
-import Mainpage from "src/Components/Home/Category";
+import Head from "src/Components/Home/Header/index";
 import Sidebar from "src/Components/Sidebar";
-import * as S from "./style";
 
 const index = () => {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div
+      style={{ display: "flex", height: "100vh", backgroundColor: "#F4F5F9" }}
+    >
       <Sidebar />
-      <Mainpage />
+      <Head />
     </div>
   );
 };

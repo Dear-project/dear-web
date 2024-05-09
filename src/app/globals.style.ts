@@ -4,7 +4,7 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
-background-color: #f4f5f9;
+  background: var(--Gray100, #F4F5F9);
   margin: 0;
   padding:0;
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Side = styled.div`
   margin: 0;
   position: relative;
-  background: var(--Gray200, #f1f1f1);
+  background: var(--White, #fff);
   width: 250px;
   height: 100%;
   display: flex;
