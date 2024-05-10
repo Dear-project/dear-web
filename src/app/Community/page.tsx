@@ -1,5 +1,5 @@
 "use client";
-import Community from "@/Components/Community";
+import Community from "@/Components/community";
 import React from "react";
 
 const index = () => {

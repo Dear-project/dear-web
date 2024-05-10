@@ -1,10 +1,10 @@
-import PostDetail from "@/Components/community/postDetail";
+import Write from "@/Components/community/write";
 import React from "react";
 
 const Page = () => {
   return (
     <div>
-      <PostDetail />
+      <Write />
     </div>
   );
 };

@@ -6,6 +6,14 @@ export const Community = styled.div`
   display: flex;
 
   background: #f4f3f9;
+
+  & > img:nth-child(n + 2) {
+    position: fixed;
+    top: 85%;
+    left: 92%;
+
+    cursor: pointer;
+  }
 `;
 
 export const Main = styled.div`
@@ -71,27 +79,4 @@ export const PostWrap = styled.div`
   height: 100%;
 
   gap: 20px;
-`;
-
-export const WriteButton = styled.button`
-  width: 90px;
-  height: 90px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: var(--New, #0e2764);
-
-  color: var(--White, #fff);
-  font-family: Pretendard;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-
-  position: fixed;
-  top: 85%;
-  left: 92%;
-
-  cursor: pointer;
 `;

@@ -22,7 +22,7 @@ const PostDetail = () => {
         <S.Content>나는 바인드 부장이다.</S.Content>
         <Image src={PostImage} alt="게시물 이미지" style={{ width: "400px", height: "400px" }} />
         <S.Content>우리 8기 바인드 입니다.</S.Content>
-          <Comment />
+        <Comment />
       </S.Main>
     </S.PostDetail>
   );

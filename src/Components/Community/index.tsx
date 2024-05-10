@@ -2,6 +2,7 @@ import React from "react";
 import * as S from "./style";
 import Sidebar from "src/Components/Sidebar/index";
 import Image from "next/image";
+import WriteButton from "src/asset/WriteButton.svg";
 import SearchIcon from "src/asset/search.svg";
 import Post from "./post";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,7 @@ const Community = () => {
           <Post onclick={() => router.push("/post")} />
         </S.PostWrap>
       </S.Main>
-      <S.WriteButton onClick={() => router.push("/write")}>글쓰기</S.WriteButton>
+      <Image src={WriteButton} alt="글쓰기 버튼" onClick={() => router.push("/community/write")} />
     </S.Community>
   );
 };

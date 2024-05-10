@@ -6,18 +6,12 @@ import DummyPost from "src/asset/dummyPost.svg";
 import Image from "next/image";
 
 interface Post {
-  onclick: (() => void) | string;
+  onclick: () => void;
 }
 
 const Post: React.FC<Post> = ({ onclick }) => {
   return (
-    <S.Post
-      onClick={() => {
-        if (typeof onclick === "function") {
-          onclick();
-        }
-      }}
-    >
+    <S.Post onClick={onclick}>
       <Image src={DummyPost} alt="게시물 이미지" />
       <S.ContentWrap>
         <S.PostTtile>툰게더</S.PostTtile>
