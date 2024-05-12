@@ -26,13 +26,18 @@ export const Index = () => {
         <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
         <S.Option>
-          <Link href="/main" legacyBehavior style={{ textDecoration: "none" }}>
+          <Link
+            href="/main"
+            legacyBehavior
+            style={{ textDecoration: "none", outline: "none" }}
+          >
             <S.Select
               onClick={() => handleItemClick("home")}
               style={{
                 backgroundColor:
                   selectedItem === "home" ? "#0e2764" : "transparent",
                 color: selectedItem === "home" ? "#ffffff" : "#000000",
+                outline: "none",
               }}
             >
               <Image
@@ -40,7 +45,7 @@ export const Index = () => {
                 alt="메인"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "10px", outline: "none" }}
               />
               메인
             </S.Select>
@@ -53,6 +58,7 @@ export const Index = () => {
                 backgroundColor:
                   selectedItem === "chat" ? "#0e2764" : "transparent",
                 color: selectedItem === "chat" ? "#ffffff" : "#000000",
+                outline: "none",
               }}
             >
               <Image
@@ -60,7 +66,7 @@ export const Index = () => {
                 alt="채팅"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px" }}
+                style={{ marginLeft: "10px", outline: "none" }}
               />
               채팅
             </S.Select>
@@ -72,6 +78,7 @@ export const Index = () => {
                 backgroundColor:
                   selectedItem === "find" ? "#0e2764" : "transparent",
                 color: selectedItem === "find" ? "#ffffff" : "#000000",
+                outline: "none",
               }}
             >
               <Image
@@ -91,6 +98,7 @@ export const Index = () => {
                 backgroundColor:
                   selectedItem === "community" ? "#0e2764" : "transparent",
                 color: selectedItem === "community" ? "#ffffff" : "#000000",
+                outline: "none",
               }}
             >
               <Image
