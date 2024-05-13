@@ -32,81 +32,59 @@ export const Index = () => {
             style={{ textDecoration: "none", outline: "none" }}
           >
             <S.Select
+              isSelected={selectedItem === "home"}
               onClick={() => handleItemClick("home")}
-              style={{
-                backgroundColor:
-                  selectedItem === "home" ? "#0e2764" : "transparent",
-                color: selectedItem === "home" ? "#ffffff" : "#000000",
-                outline: "none",
-              }}
             >
               <Image
                 src={selectedItem === "home" ? Homelight : Home1}
                 alt="메인"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px", outline: "none" }}
               />
               메인
             </S.Select>
           </Link>
 
-          <Link href={"/chat"} style={{ textDecoration: "none" }}>
+          <Link href="/chat" style={{ textDecoration: "none" }}>
             <S.Select
+              isSelected={selectedItem === "chat"}
               onClick={() => handleItemClick("chat")}
-              style={{
-                backgroundColor:
-                  selectedItem === "chat" ? "#0e2764" : "transparent",
-                color: selectedItem === "chat" ? "#ffffff" : "#000000",
-                outline: "none",
-              }}
             >
               <Image
                 src={selectedItem === "chat" ? Chatlight : Chat}
                 alt="채팅"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px", outline: "none" }}
               />
               채팅
             </S.Select>
           </Link>
-          <Link href={"/find"} style={{ textDecoration: "none" }}>
+
+          <Link href="/find" style={{ textDecoration: "none" }}>
             <S.Select
+              isSelected={selectedItem === "find"}
               onClick={() => handleItemClick("find")}
-              style={{
-                backgroundColor:
-                  selectedItem === "find" ? "#0e2764" : "transparent",
-                color: selectedItem === "find" ? "#ffffff" : "#000000",
-                outline: "none",
-              }}
             >
               <Image
                 src={selectedItem === "find" ? Findlight : Find}
                 alt="교수찾기"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px" }}
               />
               교수찾기
             </S.Select>
           </Link>
-          <Link href={"/community"} style={{ textDecoration: "none" }}>
+
+          <Link href="/community" style={{ textDecoration: "none" }}>
             <S.Select
+              isSelected={selectedItem === "community"}
               onClick={() => handleItemClick("community")}
-              style={{
-                backgroundColor:
-                  selectedItem === "community" ? "#0e2764" : "transparent",
-                color: selectedItem === "community" ? "#ffffff" : "#000000",
-                outline: "none",
-              }}
             >
               <Image
                 src={selectedItem === "community" ? Communitylight : Community}
                 alt="커뮤니티 광장"
                 width={30}
                 height={30}
-                style={{ marginLeft: "10px" }}
               />
               커뮤니티 광장
             </S.Select>

@@ -10,6 +10,7 @@ export const Side = styled.div`
   justify-content: space-between;
   flex-direction: column;
 `;
+
 export const Logo = styled.div`
   display: flex;
   font-size: 40px;
@@ -22,6 +23,7 @@ export const Logo = styled.div`
   height: 10%;
   align-items: center;
 `;
+
 export const Option = styled.div`
   height: 60%;
   gap: 8%;
@@ -30,10 +32,12 @@ export const Option = styled.div`
   background: none;
   align-items: center;
 `;
-export const Select = styled.div`
+
+export const Select = styled.div<{ isSelected: boolean }>`
   width: 230px;
   height: 50px;
-  background: none;
+  background: ${({ isSelected }) => (isSelected ? "#0e2764" : "transparent")};
+  color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#000000")};
   font-size: 25px;
   font-family: Pretendard;
   font-weight: 500;
@@ -42,7 +46,15 @@ export const Select = styled.div`
   gap: 20px;
   border-radius: 10px;
   border: none;
+  cursor: pointer;
+  outline: none;
+
+  & > img {
+    margin-left: 10px;
+    outline: none;
+  }
 `;
+
 export const My = styled.div`
   margin-left: 5%;
   margin-bottom: 5%;
@@ -59,6 +71,7 @@ export const Name = styled.div`
   font-weight: 600;
   line-height: normal;
 `;
+
 export const School = styled.div`
   color: var(--Gray500, #aaa);
   font-family: Inter;
@@ -67,9 +80,25 @@ export const School = styled.div`
   font-weight: 600;
   line-height: normal;
 `;
+
 // export const Profile = styled.image`
 //   width: 50px;
 //   height: 50px;
 //   object-fit: fill;
 //   border-radius: 100%;
 // `;
+//<S.My>
+// <Image
+// src={Profile}
+// alt="프로필"
+// width={45}
+// height={45}
+// style={{ borderRadius: "100%" }}
+// />
+// <div>
+// <S.Name>{userProfile?.name || "홍길동"}</S.Name>
+// <S.School>
+//   {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
+// </S.School>
+// </div>
+// </S.My>
