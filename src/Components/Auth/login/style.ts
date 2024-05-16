@@ -45,6 +45,16 @@ export const DearLogo = styled.h1`
   font-weight: 800;
 `;
 
+export const ErrorState = styled.span`
+  color: rgba(255, 10, 10);
+  font-family: Assistant;
+  display: flex;
+
+  align-self: flex-start;
+
+  margin-left: 80px;
+`;
+
 export const Input = styled.input`
   width: 485px;
   height: 45px;
@@ -77,6 +87,8 @@ export const KeepLoginBtn = styled.input`
 
   border-radius: 5px;
   border: 1px solid var(--Gray600, #787878);
+
+  cursor: pointer;
 `;
 
 export const Span = styled.span`
@@ -132,17 +144,4 @@ export const Line = styled.div`
   height: 20px;
 
   background: var(--Gray600, #787878);
-`;
-
-export const ErrorMessageWrap = styled.div`
-  color: var(--red-500, #f90707);
-  font-family: Assistant;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-
-  width: 100%;
-  margin-left: 8vw;
-  margin-top: -4vh;
 `;

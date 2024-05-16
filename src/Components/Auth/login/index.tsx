@@ -18,12 +18,13 @@ const Login = () => {
           name="userId"
           type="email"
           value={hooks.LoginData.userId}
-          functions="password"
+          functions="userId"
           onchange={hooks.handleLoginChange}
-          labelStyle={{ top: "39%" }}
+          labelStyle={{ top: "36%" }}
         >
           이메일
         </TextField>
+        <S.ErrorState>{hooks.errorState.userId}</S.ErrorState>
         <TextField
           id="password"
           name="password"
@@ -35,6 +36,7 @@ const Login = () => {
         >
           비밀번호
         </TextField>
+        <S.ErrorState>{hooks.errorState.password}</S.ErrorState>
         <div style={{ width: "100%", marginLeft: "8vw" }}>
           <S.KeepLoginWrap>
             <S.KeepLoginBtn type="checkbox" />
@@ -46,7 +48,7 @@ const Login = () => {
           <S.Span onClick={() => router.push("/signup/email")}>회원가입</S.Span>
           <S.FindWrap>
             <S.Span onClick={() => router.push("/auth/find-id")}>아이디 찾기</S.Span>
-            <S.Line></S.Line>
+            <S.Line />
             <S.Span onClick={() => router.push("/auth/find-pw")}>비밀번호 찾기</S.Span>
           </S.FindWrap>
         </S.LoginUtilsWrap>

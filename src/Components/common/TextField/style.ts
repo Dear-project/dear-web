@@ -26,7 +26,7 @@ export const TextField = styled.div`
 `;
 
 export const TextFieldInput = styled.input`
-  width: 98%;
+  width: 97%;
   height: 45px;
 
   color: var(--Gray600, #787878);
@@ -37,7 +37,7 @@ export const TextFieldInput = styled.input`
 
   border: none;
   outline: none;
-  padding-left: 2%;
+  padding-left: 3%;
 
   font-size: 18px;
   font-family: Assistant;

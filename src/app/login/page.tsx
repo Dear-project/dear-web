@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Login from "src/Components/Auth/login";
 

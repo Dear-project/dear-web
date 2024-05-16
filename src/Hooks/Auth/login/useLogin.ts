@@ -23,19 +23,23 @@ const useLogin = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
       const { userId, password } = LoginData;
+      if (name === "userId") {
+        if (!patternCheck.useridCheck(userId)) {
+          setErrorState({
+            ...errorState,
+            userId: "올바른 이메일을 입력해주세요.",
+          });
+        }
+      } else {
+        if (!patternCheck.passwordCheck(password)) {
+          setErrorState({
+            ...errorState,
+            password: "비밀번호 양식을 지켜주세요.",
+          });
+        }
+      }
+
       setLoginData((prev) => ({ ...prev, [name]: value }));
-      if (!patternCheck.useridCheck(userId)) {
-        setErrorState({
-          ...errorState,
-          userId: "올바른 이메일을 입력해주세요.",
-        });
-      }
-      if (!patternCheck.passwordCheck(password)) {
-        setErrorState({
-          ...errorState,
-          password: "비밀번호 형식을 지켜주세요.",
-        });
-      }
     },
     [setLoginData],
   );
