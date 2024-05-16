@@ -3,7 +3,7 @@
 import React from "react";
 import * as S from "./style";
 import TextField from "src/Components/common/TextField";
-import usePassword from "src/Hooks/Auth/signup/usePassword";
+import usePassword from "src/hooks/Auth/signup/usePassword";
 
 const SignupPw = () => {
   const { ...hooks } = usePassword();

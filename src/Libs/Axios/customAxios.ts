@@ -1,17 +1,17 @@
 import axios, { AxiosRequestConfig } from "axios";
 import config from "src/config/config.json";
-import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/Constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
 import token from "../token/token";
 import ResponseHandler from "./ResposneHandler";
-import requestHandler from "./requestHandler"; 
-import Token from "src/Libs/token/token";
+import requestHandler from "./requestHandler";
+import Token from "src/libs/token/token";
 
 const createAxiosInstance = (config?: AxiosRequestConfig) => {
-const ACCESS_TOKEN=Token.getToken(ACCESS_TOKEN_KEY);
+  const ACCESS_TOKEN = Token.getToken(ACCESS_TOKEN_KEY);
   const baseConfig: AxiosRequestConfig = {
     headers: {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      }
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
+    },
   };
   return axios.create({
     ...baseConfig,

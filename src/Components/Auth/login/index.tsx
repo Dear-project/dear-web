@@ -2,13 +2,16 @@
 
 import React from "react";
 import * as S from "./style";
-import useLogin from "src/Hooks/Auth/login/useLogin";
-import TextField from "src/Components/common/TextField";
+import useLogin from "src/hooks/Auth/login/useLogin";
+import TextField from "src/components/common/TextField";
 import { useRouter } from "next/navigation";
+import { useRecoilState } from "recoil";
+import { ErrorStateAtom } from "src/store/common/common.store";
 
 const Login = () => {
   const { ...hooks } = useLogin();
   const router = useRouter();
+  const [, setErrorState] = useRecoilState<Record<string, string>>(ErrorStateAtom);
   return (
     <S.Main>
       <S.LoginWrap>
@@ -16,15 +19,14 @@ const Login = () => {
         <TextField
           id="userId"
           name="userId"
-          type="email"
           value={hooks.LoginData.userId}
           functions="userId"
           onchange={hooks.handleLoginChange}
-          labelStyle={{ top: "36%" }}
+          labelStyle={{ top: "37%" }}
+          type="password"
         >
           이메일
         </TextField>
-        <S.ErrorState>{hooks.errorState.userId}</S.ErrorState>
         <TextField
           id="password"
           name="password"
@@ -36,7 +38,6 @@ const Login = () => {
         >
           비밀번호
         </TextField>
-        <S.ErrorState>{hooks.errorState.password}</S.ErrorState>
         <div style={{ width: "100%", marginLeft: "8vw" }}>
           <S.KeepLoginWrap>
             <S.KeepLoginBtn type="checkbox" />
@@ -45,7 +46,14 @@ const Login = () => {
         </div>
         <S.LoginButton onClick={hooks.handleConfirmButton}>로그인</S.LoginButton>
         <S.LoginUtilsWrap>
-          <S.Span onClick={() => router.push("/signup/email")}>회원가입</S.Span>
+          <S.Span
+            onClick={() => {
+              router.push("/signup/email");
+              setErrorState({});
+            }}
+          >
+            회원가입
+          </S.Span>
           <S.FindWrap>
             <S.Span onClick={() => router.push("/auth/find-id")}>아이디 찾기</S.Span>
             <S.Line />

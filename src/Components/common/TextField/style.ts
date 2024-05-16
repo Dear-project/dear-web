@@ -46,3 +46,14 @@ export const TextFieldInput = styled.input`
     border: none;
   }
 `;
+
+export const ErrorText = styled.span`
+  color: rgba(255, 10, 10);
+  font-family: Assistant;
+
+  display: flex;
+  align-self: flex-start;
+
+  margin-left: 75px;
+  margin-top: -30px;
+`;

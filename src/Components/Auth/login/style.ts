@@ -45,16 +45,6 @@ export const DearLogo = styled.h1`
   font-weight: 800;
 `;
 
-export const ErrorState = styled.span`
-  color: rgba(255, 10, 10);
-  font-family: Assistant;
-  display: flex;
-
-  align-self: flex-start;
-
-  margin-left: 80px;
-`;
-
 export const Input = styled.input`
   width: 485px;
   height: 45px;

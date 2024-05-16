@@ -1,5 +1,7 @@
 import React from "react";
 import * as S from "./style";
+import { useRecoilState } from "recoil";
+import { ErrorStateAtom } from "src/store/common/common.store";
 
 interface TextFieldProps {
   id: string;
@@ -13,6 +15,8 @@ interface TextFieldProps {
 }
 
 const TextField: React.FC<TextFieldProps> = ({ id, name, type, value, children, onchange, functions, labelStyle }) => {
+  const [errorState] = useRecoilState<Record<string, string>>(ErrorStateAtom);
+  const error = errorState[id as keyof typeof errorState];
   return (
     <>
       <S.TextField>
@@ -36,6 +40,11 @@ const TextField: React.FC<TextFieldProps> = ({ id, name, type, value, children, 
         />
         <label style={labelStyle}>{children}</label>
       </S.TextField>
+      {typeof error === "string" && (
+        <S.ErrorText style={{ color: "#ED3B3B", fontSize: "12px" }}>
+          <div>{error}</div>
+        </S.ErrorText>
+      )}
     </>
   );
 };
