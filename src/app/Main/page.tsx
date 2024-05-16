@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Sidebar from "src/Components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 import * as S from "./style";
 
 const index = () => {

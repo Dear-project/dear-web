@@ -1,3 +1,4 @@
+import { link } from "fs";
 import styled, { keyframes } from "styled-components";
 
 export const Write = styled.div`
@@ -86,11 +87,19 @@ export const ContentInput = styled.textarea`
   }
 `;
 
-export const ButtonAnimate = keyframes`
+export const UpAnimate = keyframes`
   0% {
     opacity: 0;
   } 100% {
     opacity: 1;
+  }
+`;
+
+export const DownAnimate = keyframes`
+  0% {
+    opacity: 1;
+  } 100% {
+    opacity: 0;
   }
 `;
 
@@ -111,8 +120,14 @@ export const ButtonWrap = styled.div`
     transform: translateY(-100%);
 
     img {
-      animation: ${ButtonAnimate} 0.4s linear;
+      animation: ${UpAnimate} 0.4s linear;
       margin-bottom: 50px;
     }
   }
+`;
+
+export const Button = styled.img<{ $isclicked: string }>`
+  animation: ${({ $isclicked }) => ($isclicked === "true" ? UpAnimate : DownAnimate)} 0.4s linear;
+  width: 100px;
+  height: 100px;
 `;

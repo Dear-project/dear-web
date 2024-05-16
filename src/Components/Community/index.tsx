@@ -1,10 +1,10 @@
 import React from "react";
 import * as S from "./style";
-import Sidebar from "src/Components/Sidebar/index";
+import Sidebar from "@/components/Sidebar/index";
+import Post from "./post/index";
 import Image from "next/image";
 import WriteButton from "src/asset/WriteButton.svg";
 import SearchIcon from "src/asset/search.svg";
-import Post from "./post";
 import { useRouter } from "next/navigation";
 
 const Community = () => {

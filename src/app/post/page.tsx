@@ -1,4 +1,4 @@
-import PostDetail from "@/Components/community/postDetail";
+import PostDetail from "@/components/community/postDetail";
 import React from "react";
 
 const Page = () => {

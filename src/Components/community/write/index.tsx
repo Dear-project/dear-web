@@ -4,7 +4,7 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import useWrite from "@/hooks/community/write/useWrite";
-import Sidebar from "src/Components/Sidebar/index";
+import Sidebar from "@/components/Sidebar/index";
 import Dropdown from "src/asset/DropdownButton.svg";
 import CloseButton from "src/asset/DropdownCloseButton.svg";
 import ImageUpload from "src/asset/ImageUpload.svg";
@@ -55,7 +55,7 @@ const Write = () => {
             />
           </div>
         )}
-        <Image src={write.isClicked ? CloseButton : Dropdown} alt="" onClick={write.onClick} />
+        <Image className="button" src={write.isClicked ? CloseButton : Dropdown} alt="" onClick={write.onClick} />
       </S.ButtonWrap>
     </S.Write>
   );

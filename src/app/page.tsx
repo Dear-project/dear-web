@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import Mainpage from "src/Components/Home/Category";
-import Sidebar from "src/Components/Sidebar";
+import Mainpage from "@/components/Home/Category";
+import Sidebar from "@/components/Sidebar";
 
 export default function Home() {
   return (

@@ -1,4 +1,4 @@
-import Write from "@/Components/community/write";
+import Write from "@/components/community/write";
 import React from "react";
 
 const Page = () => {

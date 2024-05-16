@@ -1,15 +1,9 @@
 import React from "react";
 import * as S from "./style";
-import Pro from "src/Components/Home/Professor";
+import Pro from "@/components/Home/Professor";
 
 const index = () => {
-  let list = [
-    "간호학과",
-    "의예과",
-    "컴퓨터 공학 학과",
-    "치예의과",
-    "생명과학과",
-  ];
+  let list = ["간호학과", "의예과", "컴퓨터 공학 학과", "치예의과", "생명과학과"];
   return (
     <S.Main>
       <S.List>

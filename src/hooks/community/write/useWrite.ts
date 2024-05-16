@@ -11,6 +11,7 @@ const useWrite = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [image, setImage] = useState<string[]>([]);
   const [file, setFile] = useState<File[]>([]);
+  const [fileName, setFileName] = useState<string[]>([]);
   const ImageRef = useRef<HTMLInputElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
   const formData = new FormData();
@@ -54,6 +55,8 @@ const useWrite = () => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
+    const fileNames = fileArray.map((file) => file.name);
+    setFileName(fileNames);
 
     setFile(fileArray);
 
@@ -77,6 +80,7 @@ const useWrite = () => {
     FileRef,
     image,
     file,
+    fileName,
     setImage,
     handleData,
     onClick,
