@@ -87,18 +87,3 @@ export const School = styled.div`
 //   object-fit: fill;
 //   border-radius: 100%;
 // `;
-//<S.My>
-// <Image
-// src={Profile}
-// alt="프로필"
-// width={45}
-// height={45}
-// style={{ borderRadius: "100%" }}
-// />
-// <div>
-// <S.Name>{userProfile?.name || "홍길동"}</S.Name>
-// <S.School>
-//   {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
-// </S.School>
-// </div>
-// </S.My>

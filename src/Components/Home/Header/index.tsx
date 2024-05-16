@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import Image from "next/image";
+import Image31 from "public/Ellipse 31.png";
 
 const index = () => {
   const handleButtonClick = () => {
