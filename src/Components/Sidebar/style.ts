@@ -61,6 +61,11 @@ export const My = styled.div`
   display: flex;
   width: 100%;
   align-items: flex-end;
+  cursor: pointer; /* 추가: hover 시 pointer로 변경 */
+
+  &:hover {
+    text-decoration: underline; /* 추가: hover 시 밑줄 효과 */
+  }
 `;
 
 export const Name = styled.div`

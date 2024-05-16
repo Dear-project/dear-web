@@ -39,8 +39,8 @@ export const List = styled.div`
   gap: 2%;
 `;
 export const Img = styled.img`
-  width: 140px;
-  height: 100px;
+  width: 15%;
+  height: 80%;
   border-radius: var(--Large, 12px);
   background: var(--Gray400, #d1d1d1);
   margin-left: 1%;

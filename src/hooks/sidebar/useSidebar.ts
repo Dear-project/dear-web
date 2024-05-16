@@ -17,7 +17,14 @@ const useSidebar = () => {
   const handleItemClick = (item: SetStateAction<string>) => {
     setSelectedItem(item);
     sessionStorage.setItem("selectedItem", item); // 선택된 버튼 정보를 세션 스토리지에 저장
-    router.push(`/path/${item}`);
+    if (item === "profile") {
+      router.push("/profile"); // 프로필 페이지로 이동
+    } else {
+      router.push(`/path/${item}`);
+    }
+  };
+  const handleProfileClick = () => {
+    handleItemClick("profile");
   };
 
   useEffect(() => {
@@ -43,6 +50,7 @@ const useSidebar = () => {
     selectedItem,
     handleLogoclick,
     handleItemClick,
+    handleProfileClick,
     userProfile,
     pathname,
     router,

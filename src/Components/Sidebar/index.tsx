@@ -16,8 +16,13 @@ import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
 
 export const Index = () => {
-  const { selectedItem, handleItemClick, userProfile, handleLogoclick } =
-    useSidebar();
+  const {
+    selectedItem,
+    handleItemClick,
+    userProfile,
+    handleLogoclick,
+    handleProfileClick,
+  } = useSidebar();
   const router = useRouter();
 
   return (
@@ -90,7 +95,7 @@ export const Index = () => {
             </S.Select>
           </Link>
         </S.Option>
-        <S.My>
+        <S.My onClick={handleProfileClick}>
           <Image
             src={Profile}
             alt="프로필"
@@ -99,10 +104,8 @@ export const Index = () => {
             style={{ borderRadius: "100%" }}
           />
           <div>
-            <S.Name>{userProfile?.name || "홍길동"}</S.Name>
-            <S.School>
-              {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
-            </S.School>
+            <S.Name>{userProfile?.name}</S.Name>
+            <S.School>{userProfile?.school}</S.School>
           </div>
         </S.My>
       </S.Side>
