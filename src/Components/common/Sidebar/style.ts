@@ -5,7 +5,6 @@ export const Side = styled.div`
   position: relative;
   background: var(--White, #fff);
   width: 250px;
-  height: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

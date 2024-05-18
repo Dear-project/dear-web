@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import Head from "src/Components/Home/Header/index";
-import Sidebar from "src/Components/Sidebar";
+import Head from "src/Components/common/Header/index";
 import Main from "src/Components/pages/main";
 
 const index = () => {
@@ -9,7 +8,6 @@ const index = () => {
     <div
       style={{ display: "flex", height: "100vh", backgroundColor: "#F4F5F9" }}
     >
-      <Sidebar />
       <div>
         <Head />
         <Main />

@@ -1,10 +1,11 @@
 import { useState, useEffect, SetStateAction } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { UserProfile } from "src/types/profile/profile";
 import axios from "axios";
 
 const useSidebar = () => {
   const [selectedItem, setSelectedItem] = useState("");
-  const [userProfile, setUserProfile] = useState(null);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -14,7 +15,7 @@ const useSidebar = () => {
     sessionStorage.removeItem("selectedItem"); // 세션 스토리지에서 선택된 버튼 정보 제거
   };
 
-  const handleItemClick = (item: SetStateAction<string>) => {
+  const handleItemClick = (item: any) => {
     setSelectedItem(item);
     sessionStorage.setItem("selectedItem", item); // 선택된 버튼 정보를 세션 스토리지에 저장
     if (item === "profile") {
@@ -30,7 +31,7 @@ const useSidebar = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get("/api/user-profile");
+        const response = await axios.get("http://43.202.136.92:8080/profile");
         setUserProfile(response.data);
       } catch (error) {
         console.error("Error fetching user profile:", error);

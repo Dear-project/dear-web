@@ -4,9 +4,15 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
-  background: var(--Gray100, #F4F5F9);
+html{background: var(--Gray100, #F4F5F9);
+  
+}
+body{
   margin: 0;
   padding:0;
+  
+}
+  
 `;
 
 export default GlobalStyle;

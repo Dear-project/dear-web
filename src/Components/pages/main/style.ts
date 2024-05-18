@@ -10,7 +10,7 @@ export const Main = styled.div`
 `;
 
 export const Title = styled.p`
-  color: var(--Black, #000);
+  color: black;
   font-family: Pretendard;
   font-size: 1.5rem;
   font-style: normal;
@@ -32,7 +32,7 @@ export const List = styled.div`
   height: 20%;
   border-radius: var(--Large, 12px);
   border: 1px solid #e4e4e4;
-  background: var(--White, #fff);
+  background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;

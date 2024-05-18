@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Head from "src/Components/Home/Header/index";
-import Sidebar from "src/Components/Sidebar";
+import Head from "src/Components/common/Header/index";
+import Sidebar from "src/Components/common/Sidebar";
 import Main from "src/Components/pages/main";
 
 const index = () => {
