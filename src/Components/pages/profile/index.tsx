@@ -1,10 +1,10 @@
 import React from "react";
-
+import * as S from "./style";
 const index = () => {
   return (
-    <div>
-      <div>index</div>
-    </div>
+    <S.ABox>
+      <S.BBox>profile</S.BBox>
+    </S.ABox>
   );
 };
 
