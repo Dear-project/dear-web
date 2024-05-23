@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Login from "src/components/Auth/login/index";
+import SignUpEmail from "src/Components/Auth/signup/Email";
 
 const Page = () => {
   return (
     <div>
-      <Login />
+      <SignUpEmail />
     </div>
   );
 };
