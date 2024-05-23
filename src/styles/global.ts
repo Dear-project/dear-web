@@ -8,12 +8,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Pretendard-Medium";
     src: url("../assets/font/Pretendard/Pretendard-Medium.otf");
   }
-    ${reset}
+      ${reset}
     * {
       margin: 0;
       padding: 0;
       color:black;
       font-family: "Pretendard-Medium" !important;
+    }
+    a {
+      text-decoration: none;
     }
 `;
 export default GlobalStyle;
