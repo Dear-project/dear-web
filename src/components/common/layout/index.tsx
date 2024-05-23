@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "../sidbar/index";
+import Sidebar from "src/components/Sidebar/index";
 import { Container, Wrap } from "./style";
 import { usePathname, useRouter } from "next/navigation";
 

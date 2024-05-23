@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { EmailAtom } from "src/store/Auth/signup/signup.store";
+import { EmailAtom } from "src/Store/Auth/signup/signup.store";
 import { ErrorStateAtom } from "src/store/common/common.store";
 import patternCheck from "src/util/check/patternCheck";
 import CONFIG from "src/config/config.json";

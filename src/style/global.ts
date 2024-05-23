@@ -3,7 +3,7 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
-const globalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 ${reset}
 @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
 *{
@@ -13,4 +13,4 @@ ${reset}
 }
 `;
 
-export default globalStyle;
+export default GlobalStyle;
