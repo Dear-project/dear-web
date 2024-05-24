@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -14,8 +14,15 @@ import Profile from "public/svgs/Avatar.svg";
 import { useRouter } from "next/navigation";
 import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
+import Modal from "src/Components/common/ModalBtn";
+import ProfileModal from "src/Components/common/ProfileModal";
 
 export const Index = () => {
+  const [modal, setModal]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState(false);
+  const [modalBtn, setModalBtn]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState(false);
+
   const {
     selectedItem,
     handleItemClick,
@@ -27,6 +34,8 @@ export const Index = () => {
 
   return (
     <S.Side>
+      {modalBtn && <Modal setModalBtn={setModalBtn} />}
+      {modal && <ProfileModal setModal={setModal} />}
       <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
       <S.Option>
@@ -94,7 +103,12 @@ export const Index = () => {
           </S.Select>
         </Link>
       </S.Option>
-      <S.My onClick={handleProfileClick}>
+      <S.My
+        onClick={() => {
+          setModalBtn(true);
+          setModal(false);
+        }}
+      >
         <Image
           src={Profile}
           alt="프로필"
@@ -110,4 +124,5 @@ export const Index = () => {
     </S.Side>
   );
 };
+
 export default Index;
