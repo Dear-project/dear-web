@@ -4,19 +4,39 @@ import * as S from "./style";
 import Image from "next/image";
 import Photo from "public/svgs/photo.svg";
 import Close from "public/svgs/close.svg";
-
 interface ModalProps {
   setModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProfileModal: React.FC<ModalProps> = ({ setModal }) => {
+  // 프로필 사진 변경을 위한 state
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+
+  // 프로필 사진 변경 핸들러
+  const handleProfileImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files) {
+      setProfileImage(event.target.files[0]);
+    }
+  };
+
+  // 기본 프로필 사진으로 변경 핸들러
+  const handleResetProfileImage = () => {
+    setProfileImage(null);
+  };
+
+  // 수정 완료 핸들러
+  const handleSaveChanges = () => {
+    // 변경된 정보를 서버에 전송하는 등의 로직 추가
+    setModal(false);
+  };
+
   return (
     <S.layout>
       <S.Boxlayout>
         <Image
-          onClick={() => {
-            setModal(false);
-          }}
+          onClick={() => setModal(false)}
           src={Close}
           alt=""
           style={{
@@ -37,7 +57,7 @@ const ProfileModal: React.FC<ModalProps> = ({ setModal }) => {
             <div>
               <Image
                 id="profile"
-                src={Profile}
+                src={profileImage ? URL.createObjectURL(profileImage) : Profile}
                 alt="프로필"
                 width={130}
                 height={130}
@@ -53,9 +73,12 @@ const ProfileModal: React.FC<ModalProps> = ({ setModal }) => {
               type="file"
               accept="image/jpg, image/png, image/jpeg"
               id="file_upload"
+              onChange={handleProfileImageChange}
             />
           </S.ProfileImgBunddle>
-          <S.ChangeDefultImg>기본 프로필로 변경</S.ChangeDefultImg>
+          <S.ChangeDefultImg onClick={handleResetProfileImage}>
+            기본 프로필로 변경
+          </S.ChangeDefultImg>
         </S.ProfileImgBox>
         <S.ChangeInput>
           <S.InputBox>
@@ -81,17 +104,10 @@ const ProfileModal: React.FC<ModalProps> = ({ setModal }) => {
           </S.InputBox>
         </S.ChangeInput>
         <div>
-          <S.FixEnd
-            onClick={() => {
-              setModal(false);
-            }}
-          >
-            수정완료
-          </S.FixEnd>
+          <S.FixEnd onClick={handleSaveChanges}>수정완료</S.FixEnd>
         </div>
       </S.Boxlayout>
     </S.layout>
   );
 };
-
 export default ProfileModal;

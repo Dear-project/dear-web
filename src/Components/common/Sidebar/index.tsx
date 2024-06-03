@@ -1,5 +1,11 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -17,11 +23,17 @@ import Link from "next/link";
 import Modal from "src/Components/common/ModalBtn";
 import ProfileModal from "src/Components/common/ProfileModal";
 
+interface ProfileModalProps {
+  setModal: Dispatch<SetStateAction<boolean>>;
+  modalRef?: RefObject<HTMLDivElement>;
+}
+
 export const Index = () => {
-  const [modal, setModal]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(false);
   const [modalBtn, setModalBtn]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState(false);
+  const [modal, setModal]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const {
     selectedItem,
@@ -35,7 +47,7 @@ export const Index = () => {
   return (
     <S.Side>
       {modalBtn && <Modal setModalBtn={setModalBtn} />}
-      {modal && <ProfileModal setModal={setModal} />}
+      {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
       <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
       <S.Option>
@@ -106,7 +118,7 @@ export const Index = () => {
       <S.My
         onClick={() => {
           setModalBtn(true);
-          setModal(false);
+          // setModal(false);
         }}
       >
         <Image

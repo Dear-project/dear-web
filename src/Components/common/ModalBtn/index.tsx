@@ -1,12 +1,32 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useState, useRef } from "react";
 import * as S from "./style";
-//사이드바 프로필 클릭시 가장 먼저 나와서 프로필 수정과 로그아웃 버튼을 띄우는 모달
-const index = () => {
+import ProfileModal from "src/Components/common/ProfileModal";
+
+interface ModalProps {
+  setModalBtn: Dispatch<SetStateAction<boolean>>;
+}
+
+const Modal: React.FC<ModalProps> = ({ setModalBtn }) => {
+  const [modal, setModal]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
   return (
     <S.layout>
-      <div>index</div>
+      {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
+      <S.Boxlayout>
+        <S.profile
+          onClick={() => {
+            setModal(true);
+            setModalBtn(false);
+          }}
+        >
+          프로필
+        </S.profile>
+        <S.logout>로그아웃</S.logout>
+      </S.Boxlayout>
     </S.layout>
   );
 };
 
-export default index;
+export default Modal;
