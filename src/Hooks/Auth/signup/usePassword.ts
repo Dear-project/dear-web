@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import { useRecoilState } from "recoil";
-import { PasswordAtom } from "src/Stores/Auth/signup/signup.store";
+import { PasswordAtom } from "src/stores/Auth/signup/signup.store";
 import { useRouter } from "next/navigation";
-import patternCheck from "src/Utils/check/patternCheck";
-import { ErrorStateAtom } from "src/Stores/common/common.store";
+import patternCheck from "src/utils/check/patternCheck";
+import { ErrorStateAtom } from "src/stores/common/common.store";
 
 const usePassword = () => {
   const router = useRouter();

@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
-import cookieUtil from "src/Utils/cookie/cookie.util";
+import cookieUtil from "src/utils/cookie/cookie.util";
 
 class Token {
   public getToken(key: string): string | undefined {

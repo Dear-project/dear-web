@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import { useRecoilState } from "recoil";
-import { ErrorStateAtom } from "src/Stores/common/common.store";
+import { ErrorStateAtom } from "src/stores/common/common.store";
 
 interface TextFieldProps {
   id: string;

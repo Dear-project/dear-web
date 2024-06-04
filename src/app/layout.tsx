@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Layout from "@/components/common/layout";
-import StyledComponentsRegistry from "src/Lib/registry";
+import StyledComponentsRegistry from "src/libs/registry";
 import { RecoilRoot } from "recoil";
 export const metadata: Metadata = {
   title: "Dear",
