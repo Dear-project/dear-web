@@ -34,8 +34,8 @@ export const TextFieldInput = styled.input`
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 200;
-
   border: none;
+  border-bottom: 1px solid #d1d1d1;
   outline: none;
   padding-left: 3%;
 

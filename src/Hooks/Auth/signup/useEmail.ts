@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { EmailAtom } from "src/store/Auth/signup/signup.store";
-import { ErrorStateAtom } from "src/store/common/common.store";
-import patternCheck from "src/util/check/patternCheck";
+import { EmailAtom } from "src/Stores/Auth/signup/signup.store";
+import { ErrorStateAtom } from "src/Stores/common/common.store";
+import patternCheck from "src/Utils/check/patternCheck";
 import CONFIG from "src/config/config.json";
-import { showToast } from "src/libs/Swal/Swal";
+import { showToast } from "src/Lib/Swal/Swal";
 import { useRouter } from "next/navigation";
 
 const useEmail = () => {
