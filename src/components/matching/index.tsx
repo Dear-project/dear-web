@@ -17,17 +17,17 @@ const index = () => {
         </S.SearchProfessor>
       </S.SearchProfessorWrap>
       <S.Main>
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
-        <ProfessorList onclick={() => router.push("/matching/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
+        <ProfessorList onclick={() => router.push("/find/professor")} />
       </S.Main>
     </S.FindProfessorWrap>
   );

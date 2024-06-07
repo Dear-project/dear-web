@@ -89,6 +89,7 @@ export const ProfessorWrap = styled.div`
 
   img {
     margin-left: 10px;
+    height: 90%;
   }
 
   gap: 30px;

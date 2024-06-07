@@ -6,7 +6,7 @@ import useLogin from "src/hooks/Auth/login/useLogin";
 import TextField from "src/components/common/TextField";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { ErrorStateAtom } from "src/store/common/common.store";
+import { ErrorStateAtom } from "src/Store/common/common.store";
 
 const Login = () => {
   const { ...hooks } = useLogin();
@@ -23,7 +23,7 @@ const Login = () => {
           functions="userId"
           onchange={hooks.handleLoginChange}
           labelStyle={{ top: "37%" }}
-          type="password"
+          type="email"
         >
           이메일
         </TextField>
