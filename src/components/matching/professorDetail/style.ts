@@ -21,7 +21,7 @@ export const Main = styled.div`
 
   align-items: center;
 
-  gap: 100px;
+  gap: 10px;
 `;
 
 export const InfoWrap = styled.div`
@@ -61,13 +61,16 @@ export const ProfileWrap = styled.div`
   div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    gap: 10px;
+    gap: 5px;
 
     h1 {
       color: var(--Black, #000);
       font-size: 38px;
       font-weight: 700;
+
+      margin: 0;
     }
 
     span {
