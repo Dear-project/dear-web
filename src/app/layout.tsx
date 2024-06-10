@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import StyledComponentsRegistry from "@/libs/registry";
+import Layout from "@/components/common/layout";
+import StyledComponentsRegistry from "src/libs/registry";
+import { RecoilRoot } from "recoil";
 import GlobalStyle from "@/styles/global";
 export const metadata: Metadata = {
   title: "Dear",
@@ -13,6 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <StyledComponentsRegistry>
+          <Layout>{children}</Layout>
+        </StyledComponentsRegistry>
         <GlobalStyle />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
