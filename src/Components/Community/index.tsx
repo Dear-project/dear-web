@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Sidebar from "@/components/Sidebar/index";
 import Post from "./post/index";
 import Image from "next/image";
 import WriteButton from "src/asset/WriteButton.svg";
 import SearchIcon from "src/asset/search.svg";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
+import usePost from "@/hooks/community/post/usePost";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { ProfessorListPageAtom } from "@/Stores/community/community.store";
 
 const Community = () => {
   const router = useRouter();
+  const [page, setPage] = useRecoilState(ProfessorListPageAtom);
+
   return (
     <S.Community>
       <Sidebar />
@@ -18,10 +23,12 @@ const Community = () => {
           <Image src={SearchIcon} alt="검색 아이콘" />
         </S.SearchWrap>
         <S.PostWrap>
-          <Post onclick={() => router.push("/post")} />
-          <Post onclick={() => router.push("/post")} />
-          <Post onclick={() => router.push("/post")} />
-          <Post onclick={() => router.push("/post")} />
+          <Post
+            onclick={() => {
+              router.push(`/community/${page}`); //page는 임시
+            }}
+            page={page}
+          />
         </S.PostWrap>
       </S.Main>
       <Image src={WriteButton} alt="글쓰기 버튼" onClick={() => router.push("/community/write")} />

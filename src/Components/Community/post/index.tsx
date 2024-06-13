@@ -4,20 +4,29 @@ import React from "react";
 import * as S from "./style";
 import DummyPost from "src/asset/dummyPost.svg";
 import Image from "next/image";
+import usePost from "@/hooks/community/post/usePost";
 
 interface Post {
   onclick: () => void;
+  page: number;
 }
 
-const Post: React.FC<Post> = ({ onclick }) => {
+const Post = ({ onclick, page }: Post) => {
+  const communityList = usePost.getAllCommunity(page);
+
   return (
-    <S.Post onClick={onclick}>
-      <Image src={DummyPost} alt="게시물 이미지" />
-      <S.ContentWrap>
-        <S.PostTtile>툰게더</S.PostTtile>
-        <S.PostContext>툰게더를 만들고 어쩌고 저쩌고 대충 PROGRESS 화이팅...!</S.PostContext>
-      </S.ContentWrap>
-    </S.Post>
+    <>
+      {communityList?.data.map((item, idx) => (
+        <S.Post onClick={onclick}>
+          <Image src={DummyPost} alt="게시물 이미지" />
+          <S.ContentWrap>
+            <S.PostTtile>{item.title}</S.PostTtile>
+            <S.PostContext>{item.content}</S.PostContext>
+            <S.PostDate>{item.createdDateTime}</S.PostDate>
+          </S.ContentWrap>
+        </S.Post>
+      ))}
+    </>
   );
 };
 

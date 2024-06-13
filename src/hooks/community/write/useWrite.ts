@@ -1,20 +1,24 @@
+import { dearV1Axios } from "@/libs/Axios/customAxios";
 import { WriteData } from "@/types/community/write/write.types";
 import axios from "axios";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
-import CONFIG from "src/config/config.json";
-
+import { useRouter } from "next/navigation";
+import dearToast from "@/libs/Swal/Swal";
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
     title: "",
     content: "",
   });
+
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [image, setImage] = useState<string[]>([]);
   const [file, setFile] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
+  const [id, setId] = useState<number>();
   const ImageRef = useRef<HTMLInputElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
   const formData = new FormData();
+  const router = useRouter();
 
   const handleData = useCallback(
     (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
@@ -68,9 +72,22 @@ const useWrite = () => {
   };
 
   const onWrite = async () => {
+    const { title, content } = writeData;
+
     try {
-      axios.post(`${CONFIG.serverUrl}`);
-    } catch (error) {}
+      await dearV1Axios
+        .post("/community", {
+          title: title,
+          content: content,
+        })
+        .then((res) => {
+          setId(res.data.data);
+          dearToast.sucessToast("글 등록 성공");
+          router.push("/community");
+        });
+    } catch (error) {
+      dearToast.errorToast("글 등록 실패");
+    }
   };
 
   return {

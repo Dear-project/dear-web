@@ -10,7 +10,7 @@ import CloseButton from "src/asset/DropdownCloseButton.svg";
 import ImageUpload from "src/asset/ImageUpload.svg";
 import FileUpload from "src/asset/FileUpload.svg";
 import ConfirmButton from "src/asset/ConfirmButton.svg";
-import PreviewImage from "./previewImage";
+import PreviewImage from "./previewImage/index";
 
 const Write = () => {
   const { ...write } = useWrite();

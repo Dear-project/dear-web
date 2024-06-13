@@ -20,6 +20,8 @@ export interface SignupParams {
 }
 
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
+  data: {
+    accessToken: string;
+    refreshToken: string;
+  };
 }
