@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 
 export const layout = styled.div`
@@ -5,7 +6,9 @@ export const layout = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 3;
+  top: 0;
+  left: 0;
+  z-index: 1;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -149,20 +152,16 @@ export const InputBoxLast = styled.div`
   height: 80px;
 `;
 export const SpanChangeInput = styled.span`
-  font-size: 1.2rem;
+  width: 200px;
+  font-size: 1rem;
   font-weight: bold;
   color: #000;
 `;
 
-export const Input = styled.input`
-  border: none;
-  width: 400px;
-  height: 40px;
-  font-size: 24px;
-`;
 export const TextBox = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 390px;
   -webkit-box-pack: justify;
   justify-content: space-between;
 `;
@@ -195,3 +194,6 @@ export const FixEnd = styled.button`
     cursor: pointer;
   }
 `;
+
+//next Image 스타일 맥이는 법
+export const ProfileImage = styled(Image)``;

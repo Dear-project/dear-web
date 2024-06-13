@@ -4,16 +4,13 @@ export const layout = styled.div`
   width: 100%;
   height: 100vh;
   position: fixed;
-  z-index: 3;
+  /* z-index: 3; */
   display: flex;
   -webkit-box-pack: center;
-  justify-content: space-between;
-  align-items: flex-end;
   -webkit-box-align: center;
 `;
+
 export const Boxlayout = styled.div`
-  margin-left: 10%;
-  margin-bottom: 3%;
   padding-left: 1%;
   width: 150px;
   height: 70px;

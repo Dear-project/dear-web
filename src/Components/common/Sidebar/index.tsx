@@ -46,7 +46,6 @@ export const Index = () => {
 
   return (
     <S.Side>
-      {modalBtn && <Modal setModalBtn={setModalBtn} />}
       {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
       <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
@@ -115,18 +114,18 @@ export const Index = () => {
           </S.Select>
         </Link>
       </S.Option>
-      <S.My
-        onClick={() => {
-          setModalBtn(true);
-          // setModal(false);
-        }}
-      >
+      <S.My>
+        {modalBtn && <Modal setModalBtn={setModalBtn} />}
         <Image
           src={Profile}
           alt="프로필"
           width={45}
           height={45}
           style={{ borderRadius: "100%" }}
+          onClick={() => {
+            setModalBtn(true);
+            // setModal(false);
+          }}
         />
         <div>
           <S.Name>{userProfile?.name}</S.Name>
