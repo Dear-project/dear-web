@@ -1,30 +1,12 @@
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { dearV1Axios } from "src/libs/Axios/customAxios";
-import { ProfessorData } from "src/types/matching/professor.types";
+import { useProfessorQuery } from "src/queries/professor/professor.query";
 
-const useMatching = () => {
-  const [professor, setProfessor] = useState<ProfessorData[]>([]);
-  const [professorId, setProfessorId] = useState<number>();
+class UseMatching {
+  public getProfessorList = (page: number) => {
+    const [{ data: professorList }] = useProfessorQuery(page);
 
-  useEffect(() => {
-    const onLoadProfessor = async () => {
-      try {
-        await dearV1Axios.get("/professor?page=1&size=100").then((res) => {
-          setProfessor(res.data.data);
-          setProfessorId(res.data.data.professorId);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    onLoadProfessor();
-  }, []);
-
-  return {
-    professor,
+    return professorList;
   };
-};
+}
 
+const useMatching = new UseMatching();
 export default useMatching;

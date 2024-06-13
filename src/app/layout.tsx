@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import QueryClientProvider from "@/components/common/provider/query-provider";
 import Layout from "@/components/common/layout";
 import StyledComponentsRegistry from "src/libs/registry";
 export const metadata: Metadata = {
@@ -14,7 +15,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <Layout>{children}</Layout>
+          <QueryClientProvider>
+            <Layout>{children}</Layout>
+          </QueryClientProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

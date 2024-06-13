@@ -1,8 +1,12 @@
+import { Response } from "../util/resposne.type";
+
 export interface ProfessorData {
-  data: {
-    professorId: number;
-    name: string;
-    school: string;
-    major: string;
-  };
+  professorId: number;
+  name: string;
+  school: string;
+  major: string;
+}
+
+export interface ProfessorResponse extends Response {
+  data: ProfessorData[];
 }
