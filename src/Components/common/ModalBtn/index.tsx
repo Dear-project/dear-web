@@ -16,6 +16,7 @@ const Modal: React.FC<ModalProps> = ({ setModalBtn }) => {
 
   return (
     <S.layout
+
     // onClick={() => {
     //   setModalBtn(false);
     //   console.log("ddddd");

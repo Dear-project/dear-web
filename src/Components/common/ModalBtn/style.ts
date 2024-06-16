@@ -11,7 +11,9 @@ export const layout = styled.div`
 `;
 
 export const Boxlayout = styled.div`
-  padding-left: 1%;
+  position: fixed;
+  top: 85%;
+  left: 10%;
   width: 150px;
   height: 70px;
   border-radius: var(--Small, 4px);

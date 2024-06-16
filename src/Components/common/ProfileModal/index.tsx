@@ -109,7 +109,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
         formData.append("file", profileImage);
       }
 
-      const response = await fetch("http://43.202.136.92:8080", {
+      const response = await fetch("", {
         method: "POST",
         body: formData,
       });

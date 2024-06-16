@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useRef,
-  useState,
-} from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -17,41 +11,25 @@ import Chat from "src/asset/chat.svg";
 import Find from "src/asset/find.svg";
 import Community from "src/asset/community.svg";
 import Profile from "public/svgs/Avatar.svg";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
 import Modal from "src/Components/common/ModalBtn";
-import ProfileModal from "src/Components/common/ProfileModal";
-
-interface ProfileModalProps {
-  setModal: Dispatch<SetStateAction<boolean>>;
-  modalRef?: RefObject<HTMLDivElement>;
-}
 
 export const Index = () => {
-  const [modalBtn, setModalBtn]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(false);
-  const [modal, setModal]: [boolean, Dispatch<SetStateAction<boolean>>] =
-    useState(false);
+  const [modalBtn, setModalBtn] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const {
-    selectedItem,
-    handleItemClick,
-    userProfile,
-    handleLogoclick,
-    handleProfileClick,
-  } = useSidebar();
-  const router = useRouter();
+  const { selectedItem, handleItemClick, userProfile, handleLogoclick } =
+    useSidebar();
 
   return (
     <S.Side>
-      {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
       <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
       <S.Option>
         <Link
-          href="/main"
+          href="/Main"
           legacyBehavior
           style={{ textDecoration: "none", outline: "none" }}
         >
@@ -69,7 +47,7 @@ export const Index = () => {
           </S.Select>
         </Link>
 
-        <Link href="/chat" style={{ textDecoration: "none" }}>
+        <Link href="/Chat" style={{ textDecoration: "none" }}>
           <S.Select
             isSelected={selectedItem === "chat"}
             onClick={() => handleItemClick("chat")}
@@ -84,7 +62,7 @@ export const Index = () => {
           </S.Select>
         </Link>
 
-        <Link href="/find" style={{ textDecoration: "none" }}>
+        <Link href="/Find" style={{ textDecoration: "none" }}>
           <S.Select
             isSelected={selectedItem === "find"}
             onClick={() => handleItemClick("find")}
@@ -99,7 +77,7 @@ export const Index = () => {
           </S.Select>
         </Link>
 
-        <Link href="/community" style={{ textDecoration: "none" }}>
+        <Link href="/Community" style={{ textDecoration: "none" }}>
           <S.Select
             isSelected={selectedItem === "community"}
             onClick={() => handleItemClick("community")}
@@ -114,8 +92,10 @@ export const Index = () => {
           </S.Select>
         </Link>
       </S.Option>
+
       <S.My>
         {modalBtn && <Modal setModalBtn={setModalBtn} />}
+
         <Image
           src={Profile}
           alt="프로필"
@@ -123,8 +103,8 @@ export const Index = () => {
           height={45}
           style={{ borderRadius: "100%" }}
           onClick={() => {
-            setModalBtn(true);
-            // setModal(false);
+            console.log("fiqjehfopiqj");
+            setModalBtn((prev) => !prev);
           }}
         />
         <div>
