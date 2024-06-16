@@ -8,9 +8,25 @@ import { Response } from "@/types/util/response.type";
 
 export interface CommunityRepository {
   getAllCommunity(page: number): Promise<CommunityDataResponse>;
-//   postCommunity(title: string, content: string): Promise<PostCommunityResponse>;
-//   putCommunity(id: number, title: string, content: string): Promise<Response>;
-//   getCommunityById(id: number): Promise<CommunityDataByIdResponse>;
-//   postImageByCommunityById(id: number, files: File[]): Promise<Response>;
-//   getMyCommunity(page: number): Promise<CommunityPostArticlesResponse>;
+  postCommunity(params: PostCommunityParams): Promise<PostCommunityResponse>;
+  //   getCommunityById(id: number): Promise<CommunityDataByIdResponse>;
+  putCommunity(params: PutCommunityParams): Promise<void>;
+  postMultiPartCommunityById(params: PostImageParams): Promise<void>;
+  getMyCommunity(page: number): Promise<CommunityPostArticlesResponse>;
+}
+
+export interface PostCommunityParams {
+  title: string;
+  content: string;
+}
+
+export interface PutCommunityParams {
+  id: number;
+  title: string;
+  content: string
+}
+
+export interface PostImageParams {
+  id: number;
+  files: FileList;
 }

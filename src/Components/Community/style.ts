@@ -7,6 +7,8 @@ export const Community = styled.div`
 
   background: #f4f3f9;
 
+  overflow: hidden;
+
   & > img:nth-child(n + 2) {
     position: fixed;
     top: 85%;
@@ -25,6 +27,8 @@ export const Main = styled.div`
 
   justify-content: center;
   align-items: center;
+
+  overflow: scroll;
 `;
 
 export const SearchWrap = styled.div`
@@ -79,4 +83,6 @@ export const PostWrap = styled.div`
   height: 100%;
 
   gap: 20px;
+
+  overflow: scroll;
 `;

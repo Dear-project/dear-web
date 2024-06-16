@@ -12,12 +12,12 @@ interface Post {
 }
 
 const Post = ({ onclick, page }: Post) => {
-  const communityList = usePost.getAllCommunity(page);
-
+  const { ...post } = usePost();
+  const communityList = post.GetMyArticles(page);
   return (
     <>
       {communityList?.data.map((item, idx) => (
-        <S.Post onClick={onclick}>
+        <S.Post onClick={onclick} key={idx}>
           <Image src={DummyPost} alt="게시물 이미지" />
           <S.ContentWrap>
             <S.PostTtile>{item.title}</S.PostTtile>

@@ -23,13 +23,18 @@ const Write = () => {
           placeholder="제목"
           name="title"
           type="text"
-          onChange={write.handleData}
+          onChange={write.handleWriteData}
           value={write.writeData.title}
         />
         <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
           <PreviewImage previewImage={write.image ? write.image : []} onclick={() => write.setImage([])} />
         </div>
-        <S.ContentInput placeholder="내용" name="content" onChange={write.handleData} value={write.writeData.content} />
+        <S.ContentInput
+          placeholder="내용"
+          name="content"
+          onChange={write.handleWriteData}
+          value={write.writeData.content}
+        />
       </S.Main>
       <S.ButtonWrap>
         {write.isClicked === true && (

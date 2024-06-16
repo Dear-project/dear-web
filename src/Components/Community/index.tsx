@@ -9,11 +9,12 @@ import { useRouter, useParams } from "next/navigation";
 import usePost from "@/hooks/community/post/usePost";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ProfessorListPageAtom } from "@/Stores/community/community.store";
+import useWrite from "@/hooks/community/write/useWrite";
 
 const Community = () => {
   const router = useRouter();
   const [page, setPage] = useRecoilState(ProfessorListPageAtom);
-
+  const { setWrite } = usePost();
   return (
     <S.Community>
       <Sidebar />
@@ -31,7 +32,7 @@ const Community = () => {
           />
         </S.PostWrap>
       </S.Main>
-      <Image src={WriteButton} alt="글쓰기 버튼" onClick={() => router.push("/community/write")} />
+      <Image src={WriteButton} alt="글쓰기 버튼" onClick={setWrite} />
     </S.Community>
   );
 };
