@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { EmailAtom, PasswordAtom } from "src/store/Auth/signup/signup.store";
+import { EmailAtom, PasswordAtom } from "src/stores/Auth/signup/signup.store";
 import { InfoProps } from "src/Types/Auth/signup.type";
 import CONFIG from "src/config/config.json";
 import { showToast } from "src/libs/Swal/Swal";

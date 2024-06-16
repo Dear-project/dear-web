@@ -9,7 +9,7 @@ ${reset}
 *{
     margin: 0;
     padding: 0;
-    border: 0;
+    border: none;
 }
 `;
 
