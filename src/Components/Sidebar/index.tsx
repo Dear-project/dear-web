@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -11,80 +11,94 @@ import Chat from "src/asset/chat.svg";
 import Find from "src/asset/find.svg";
 import Community from "src/asset/community.svg";
 import Profile from "src/asset/images.jpeg";
-import { useRouter } from "next/navigation";
-import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
-
 export const Index = () => {
-  const { selectedItem, handleItemClick, userProfile, handleLogoclick } =
-    useSidebar();
-  const router = useRouter();
+  // 선택된 아이템의 상태를 관리합니다.
+  const [selectedItem, setSelectedItem] = useState("");
+
+  // 아이템을 클릭했을 때 호출되는 함수입니다.
+  const handleItemClick = (item: React.SetStateAction<any>) => {
+    setSelectedItem(item);
+  };
 
   return (
     <div>
       <S.Side>
-        <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
-
+        <S.Logo>DEAR.</S.Logo>
         <S.Option>
-          <Link
-            href="/main"
-            legacyBehavior
-            style={{ textDecoration: "none", outline: "none" }}
-          >
+          <Link href="/Main" legacyBehavior style={{ textDecoration: "none" }}>
             <S.Select
-              isSelected={selectedItem === "home"}
               onClick={() => handleItemClick("home")}
+              style={{
+                backgroundColor:
+                  selectedItem === "home" ? "#0e2764" : "transparent",
+                color: selectedItem === "home" ? "#ffffff" : "#000000",
+              }}
             >
               <Image
                 src={selectedItem === "home" ? Homelight : Home1}
                 alt="메인"
                 width={30}
                 height={30}
+                style={{ marginLeft: "10px" }}
               />
               메인
             </S.Select>
           </Link>
 
-          <Link href="/chat" style={{ textDecoration: "none" }}>
+          <Link href={"/Chat"} style={{ textDecoration: "none" }}>
             <S.Select
-              isSelected={selectedItem === "chat"}
               onClick={() => handleItemClick("chat")}
+              style={{
+                backgroundColor:
+                  selectedItem === "chat" ? "#0e2764" : "transparent",
+                color: selectedItem === "chat" ? "#ffffff" : "#000000",
+              }}
             >
               <Image
                 src={selectedItem === "chat" ? Chatlight : Chat}
                 alt="채팅"
                 width={30}
                 height={30}
+                style={{ marginLeft: "10px" }}
               />
               채팅
             </S.Select>
           </Link>
-
-          <Link href="/find" style={{ textDecoration: "none" }}>
+          <Link href={"/Find"} style={{ textDecoration: "none" }}>
             <S.Select
-              isSelected={selectedItem === "find"}
               onClick={() => handleItemClick("find")}
+              style={{
+                backgroundColor:
+                  selectedItem === "find" ? "#0e2764" : "transparent",
+                color: selectedItem === "find" ? "#ffffff" : "#000000",
+              }}
             >
               <Image
                 src={selectedItem === "find" ? Findlight : Find}
                 alt="교수찾기"
                 width={30}
                 height={30}
+                style={{ marginLeft: "10px" }}
               />
               교수찾기
             </S.Select>
           </Link>
-
-          <Link href="/community" style={{ textDecoration: "none" }}>
+          <Link href={"/community"} style={{ textDecoration: "none" }}>
             <S.Select
-              isSelected={selectedItem === "community"}
               onClick={() => handleItemClick("community")}
+              style={{
+                backgroundColor:
+                  selectedItem === "community" ? "#0e2764" : "transparent",
+                color: selectedItem === "community" ? "#ffffff" : "#000000",
+              }}
             >
               <Image
                 src={selectedItem === "community" ? Communitylight : Community}
                 alt="커뮤니티 광장"
                 width={30}
                 height={30}
+                style={{ marginLeft: "10px" }}
               />
               커뮤니티 광장
             </S.Select>
@@ -99,10 +113,8 @@ export const Index = () => {
             style={{ borderRadius: "100%" }}
           />
           <div>
-            <S.Name>{userProfile?.name || "홍길동"}</S.Name>
-            <S.School>
-              {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
-            </S.School>
+            <S.Name>홍길동</S.Name>
+            <S.School>대구소프트웨어 마이스터 고등학교</S.School>
           </div>
         </S.My>
       </S.Side>
