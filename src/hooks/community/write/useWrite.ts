@@ -1,14 +1,10 @@
 import { PostIdAtom } from "@/Stores/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
-import { usePostCommunity, usePostMultiPart, usePutCommunity } from "@/queries/community/community.query";
-import { PostCommunityParams } from "@/repositories/community/communityRepository";
-import communityRepositoryImpl from "@/repositories/community/communityRepositoryImpl";
-import { PostCommunityResponse } from "@/types/community/post/post.types";
+import { usePostMultiPart, usePutCommunity } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useRef, useState, ChangeEvent } from "react";
-import { useMutation } from "react-query";
 import { useRecoilValue } from "recoil";
 
 const useWrite = () => {

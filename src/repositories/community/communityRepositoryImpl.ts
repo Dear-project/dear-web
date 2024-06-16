@@ -5,7 +5,6 @@ import {
 } from "@/types/community/post/post.types";
 import { CommunityRepository, PostCommunityParams, PostImageParams, PutCommunityParams } from "./communityRepository";
 import { dearV1Axios } from "@/libs/Axios/customAxios";
-import { Response } from "@/types/util/response.type";
 
 class CommunityRepositoryImpl implements CommunityRepository {
   public async getAllCommunity(page: number): Promise<CommunityDataResponse> {

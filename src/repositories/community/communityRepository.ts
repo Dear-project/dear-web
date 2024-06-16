@@ -1,10 +1,8 @@
 import {
-  CommunityDataByIdResponse,
   CommunityDataResponse,
   CommunityPostArticlesResponse,
   PostCommunityResponse,
 } from "@/types/community/post/post.types";
-import { Response } from "@/types/util/response.type";
 
 export interface CommunityRepository {
   getAllCommunity(page: number): Promise<CommunityDataResponse>;
@@ -23,7 +21,7 @@ export interface PostCommunityParams {
 export interface PutCommunityParams {
   id: number;
   title: string;
-  content: string
+  content: string;
 }
 
 export interface PostImageParams {
