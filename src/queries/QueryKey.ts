@@ -1,3 +1,5 @@
+import { profile } from "console";
+
 export const QUERY_KEYS = Object.freeze({
   matching: {
     matching: "/matching",
@@ -9,4 +11,7 @@ export const QUERY_KEYS = Object.freeze({
     community: "community",
     getMyCommunity: "/community/my-articles",
   },
+  profile:{
+    getProfile : "/profile",
+  }
 });

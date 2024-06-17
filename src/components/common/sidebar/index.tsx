@@ -14,14 +14,15 @@ import Profile from "src/asset/Profile.svg";
 import { useRouter } from "next/navigation";
 import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
+import {useGetProfileInfo} from "../../../queries/profile/query"
 
 export const Index = () => {
-  const { selectedItem, handleItemClick, userProfile, handleLogoclick } =
+  const { selectedItem, handleItemClick, userProfile, handleLogoclick,data } =
     useSidebar();
   const router = useRouter();
 
   return (
-    <div>
+    
       <S.Side>
         <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
 
@@ -99,14 +100,13 @@ export const Index = () => {
             style={{ borderRadius: "100%" }}
           />
           <div>
-            <S.Name>{userProfile?.name || "홍길동"}</S.Name>
+            <S.Name>{data?.data.name || "홍길동"}</S.Name>
             <S.School>
-              {/* {userProfile?.school || "대구소프트웨어 마이스터 고등학교"} 오류나서 막아둠*/}
+              {data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"} 
             </S.School>
           </div>
         </S.My>
       </S.Side>
-    </div>
   );
 };
 export default Index;
