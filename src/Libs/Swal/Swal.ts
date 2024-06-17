@@ -12,9 +12,28 @@ const Toast = Swal.mixin({
   },
 });
 
-export const showToast = (icon: any, title: string) => {
-  Toast.fire({
-    icon,
-    title,
-  });
-};
+class DearToast {
+  public sucessToast(title: string) {
+    Toast.fire({
+      icon: "success",
+      title: title,
+    });
+  }
+
+  public errorToast(title: string) {
+    Toast.fire({
+      icon: "error",
+      title: title,
+    });
+  }
+
+  public infoToast(title: string) {
+    Toast.fire({
+      icon: "info",
+      title: title,
+    });
+  }
+}
+
+const dearToast = new DearToast();
+export default dearToast;
