@@ -2,8 +2,8 @@
 
 import React from "react";
 import * as S from "./style";
-import TextField from "src/Components/common/TextField";
-import useEmail from "src/hooks/Auth/signup/useEmail";
+import TextField from "src/components/common/TextField";
+import useEmail from "src/Hooks/Auth/signup/useEmail";
 
 const SignUpEmail = () => {
   const { ...hooks } = useEmail();

@@ -6,7 +6,7 @@ import useLogin from "src/hooks/Auth/login/useLogin";
 import TextField from "src/Components/common/TextField";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { ErrorStateAtom } from "src/store/common/common.store";
+import { ErrorStateAtom } from "src/Store/common/common.store";
 
 const Login = () => {
   const { ...hooks } = useLogin();

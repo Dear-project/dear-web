@@ -101,4 +101,3 @@ export const School = styled.div`
 //   {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
 // </S.School>
 // </div>
-// </S.My>

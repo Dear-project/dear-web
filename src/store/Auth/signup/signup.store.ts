@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { EmailProps, PasswordProps, InfoProps } from "src/Types/Auth/signup.type";
+import { EmailProps, PasswordProps, InfoProps } from "src/types/Auth/signup.type";
 
 export const EmailAtom = atom<EmailProps>({
   key: "EmailAtom",

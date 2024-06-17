@@ -1,5 +1,5 @@
 import React from "react";
-import SignupInfo from "src/Components/Auth/signup/Info";
+import SignupInfo from "src/components/Auth/signup/Info";
 
 const Page = () => {
   return (
