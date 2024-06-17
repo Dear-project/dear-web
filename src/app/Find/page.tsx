@@ -1,14 +1,11 @@
-"use client";
 import React from "react";
-
-// import * as S from "./style";
-
-const index = () => {
+import Find from "src/components/matching/index";
+const page = () => {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <p>hi</p>
+    <div>
+      <Find />
     </div>
   );
 };
 
-export default index;
+export default page;
