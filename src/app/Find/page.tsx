@@ -1,11 +1,11 @@
 import React from "react";
-
-const index = () => {
+import Find from "src/components/matching/index";
+const page = () => {
   return (
-    <>
-      <div>index</div>
-    </>
+    <div>
+      <Find />
+    </div>
   );
 };
 
-export default index;
+export default page;
