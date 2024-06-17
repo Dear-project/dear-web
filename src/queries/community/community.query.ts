@@ -1,7 +1,11 @@
 import { useMutation, useQueries } from "react-query";
 import { QUERY_KEYS } from "../QueryKey";
 import communityRepositoryImpl from "@/repositories/community/communityRepositoryImpl";
-import { PostCommunityParams, PostImageParams, PutCommunityParams } from "@/repositories/community/communityRepository";
+import {
+  PostCommunityParams,
+  PostImageParams,
+  PatchCommunityParams,
+} from "@/repositories/community/communityRepository";
 
 export const useAllGetCommunityQuery = (page: number) =>
   useQueries([
@@ -26,8 +30,8 @@ export const usePostCommunity = () => {
   return mutation;
 };
 
-export const usePutCommunity = () => {
-  const mutation = useMutation((params: PutCommunityParams) => communityRepositoryImpl.putCommunity(params));
+export const usePatchCommunity = () => {
+  const mutation = useMutation((params: PatchCommunityParams) => communityRepositoryImpl.patchCommunity(params));
   return mutation;
 };
 

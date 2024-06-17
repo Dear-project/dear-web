@@ -35,7 +35,9 @@ export interface CommunityDataResponse extends Response {
 }
 
 export interface PostCommunityResponse extends Response {
-  data: number;
+  data: {
+    id: number;
+  };
 }
 
 export interface CommunityDataByIdResponse extends Response {

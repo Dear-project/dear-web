@@ -3,7 +3,7 @@ import {
   CommunityPostArticlesResponse,
   PostCommunityResponse,
 } from "@/types/community/post/post.types";
-import { CommunityRepository, PostCommunityParams, PostImageParams, PutCommunityParams } from "./communityRepository";
+import { CommunityRepository, PatchCommunityParams, PostCommunityParams, PostImageParams } from "./communityRepository";
 import { dearV1Axios } from "@/libs/Axios/customAxios";
 
 class CommunityRepositoryImpl implements CommunityRepository {
@@ -22,8 +22,9 @@ class CommunityRepositoryImpl implements CommunityRepository {
     return data;
   }
 
-  public async putCommunity(params: PutCommunityParams): Promise<void> {
-    await dearV1Axios.put(`/community`, params);
+  public async patchCommunity(params: PatchCommunityParams): Promise<void> {
+    const { id, data } = params;
+    await dearV1Axios.patch(`/community/${id}`, data);
   }
 
   public async postMultiPartCommunityById(params: PostImageParams): Promise<void> {

@@ -8,7 +8,7 @@ export interface CommunityRepository {
   getAllCommunity(page: number): Promise<CommunityDataResponse>;
   postCommunity(params: PostCommunityParams): Promise<PostCommunityResponse>;
   //   getCommunityById(id: number): Promise<CommunityDataByIdResponse>;
-  putCommunity(params: PutCommunityParams): Promise<void>;
+  patchCommunity(params: PatchCommunityParams): Promise<void>;
   postMultiPartCommunityById(params: PostImageParams): Promise<void>;
   getMyCommunity(page: number): Promise<CommunityPostArticlesResponse>;
 }
@@ -18,10 +18,12 @@ export interface PostCommunityParams {
   content: string;
 }
 
-export interface PutCommunityParams {
+export interface PatchCommunityParams {
   id: number;
-  title: string;
-  content: string;
+  data: {
+    title: string;
+    content: string;
+  };
 }
 
 export interface PostImageParams {

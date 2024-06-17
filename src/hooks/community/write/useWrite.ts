@@ -1,6 +1,6 @@
 import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
-import { usePostMultiPart, usePutCommunity } from "@/queries/community/community.query";
+import { usePatchCommunity, usePostMultiPart } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
@@ -40,7 +40,7 @@ const useWrite = () => {
     ImageRef.current?.click();
   };
 
-  const putCommunityMutation = usePutCommunity();
+  const patchCommunityMutation = usePatchCommunity();
   const postPostMultiPartMutation = usePostMultiPart();
 
   const onWrite = async () => {
@@ -48,11 +48,13 @@ const useWrite = () => {
 
     const params = {
       id: id,
-      title: title,
-      content: content,
+      data: {
+        title: title,
+        content: content,
+      },
     };
 
-    putCommunityMutation.mutate(params, {
+    patchCommunityMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("글 등록 성공!");
         router.push("/community");
@@ -64,8 +66,8 @@ const useWrite = () => {
           dearToast.infoToast("제목을 입력해주세요");
         } else if (content.length < 0) {
           dearToast.infoToast("내용을 입력해주세요");
-        } else if (errorResponse.code === "ECONNABORTED") {
-          dearToast.errorToast("서버와의 통신에 문제가생겼습니다");
+        } else {
+          dearToast.errorToast((errorResponse as AxiosError).message);
         }
       },
     });

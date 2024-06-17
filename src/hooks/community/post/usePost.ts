@@ -27,7 +27,7 @@ const usePost = () => {
     };
     mutation.mutate(param, {
       onSuccess: (res) => {
-        setPostId(res.data);
+        setPostId(res.data.id);
         router.push("/community/write");
       },
       onError: (error) => {
