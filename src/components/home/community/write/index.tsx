@@ -4,7 +4,7 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import useWrite from "@/hooks/community/write/useWrite";
-import Sidebar from "@/components/Sidebar/index";
+import Sidebar from "@/components/common/sidebar/index";
 import Dropdown from "src/asset/DropdownButton.svg";
 import CloseButton from "src/asset/DropdownCloseButton.svg";
 import ImageUpload from "src/asset/ImageUpload.svg";

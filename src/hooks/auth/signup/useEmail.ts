@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { EmailAtom } from "src/stores/Auth/signup/signup.store";
-import { ErrorStateAtom } from "src/stores/common/common.store";
+import { EmailAtom } from "src/store/auth/signup/signup.store";
+import { ErrorStateAtom } from "src/store/common/common.store";
 import patternCheck from "src/utils/check/patternCheck";
 import CONFIG from "src/config/config.json";
-import { showToast } from "src/libs/Swal/Swal";
+import  DearToast  from "src/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 
 const useEmail = () => {
@@ -38,11 +38,11 @@ const useEmail = () => {
     const { email } = emailData;
     try {
       await axios.get(`${CONFIG.serverUrl}/auth/${email}/duplicate`).then(() => {
-        showToast("success", "가입 가능한 이메일입니다.");
+        DearToast.sucessToast("가입 가능한 이메일입니다.");
         setResend(false);
       });
     } catch (error) {
-      showToast("error", "사용 불가한 이메일입니다.");
+      DearToast.errorToast("사용 불가한 이메일입니다.");
     }
 
     if (resend === false) {
@@ -50,10 +50,10 @@ const useEmail = () => {
         await axios.post(`${CONFIG.serverUrl}/auth/email?email=${email}`).then(() => {
           startTimer();
           setResend(true);
-          showToast("success", "인증번호 요청 성공~!");
+          DearToast.sucessToast("인증번호 요청 성공~!");
         });
       } catch (error) {
-        showToast("error", "인증번호 요청 실패");
+       DearToast.errorToast( "인증번호 요청 실패");
       }
     } else {
       try {
@@ -61,7 +61,7 @@ const useEmail = () => {
           startTimer();
         });
       } catch (error) {
-        showToast("error", "인증번호 재전송 실패");
+        DearToast.errorToast( "인증번호 재전송 실패");
       }
     }
   };
@@ -70,11 +70,11 @@ const useEmail = () => {
     const { email, authCode } = emailData;
     try {
       await axios.get(`${CONFIG.serverUrl}/auth/email/verifications?email=${email}&authCode=${authCode}`).then(() => {
-        showToast("success", "이메일 인증 성공!");
+        DearToast.sucessToast("이메일 인증 성공!");
         router.push("/signup/password");
       });
     } catch (error) {
-      showToast("error", "이메일 인증 실패");
+      DearToast.errorToast("이메일 인증 실패");
     }
   };
 

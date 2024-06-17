@@ -2,7 +2,7 @@
 
 import React from "react";
 import * as S from "./style";
-import TextField from "src/components/common/TextField";
+import TextField from "src/components/common/textField";
 import useEmail from "src/Hooks/Auth/signup/useEmail";
 
 const SignUpEmail = () => {

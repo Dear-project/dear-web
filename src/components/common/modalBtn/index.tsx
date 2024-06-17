@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState, useRef } from "react";
 import * as S from "./style";
-import ProfileModal from "../ProfileModal";
+import ProfileModal from "../profileModal";
 
 interface ModalProps {
   setModalBtn: Dispatch<SetStateAction<boolean>>;

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import * as S from "./style";
-import Sidebar from "@/components/Sidebar/index";
+import Sidebar from "@/components/common/sidebar/index";
 import Image from "next/image";
 import Profile from "src/asset/Profile.svg";
 import PostImage from "src/asset/1712314839.016066DSC00131.jpeg";

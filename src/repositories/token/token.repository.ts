@@ -1,7 +1,7 @@
 import axios from "axios";
-import config from "src/config/config.json";
+import config from "../../config/config.json";
 import { RefreshTokenParams } from "./token.param";
-import { RefreshResponse } from "src/types/token/token.type";
+import { RefreshResponse } from "../../types/token/token.type";
 
 class TokenRepository {
   public async getRefreshToken(refreshToken: RefreshTokenParams): Promise<RefreshResponse> {

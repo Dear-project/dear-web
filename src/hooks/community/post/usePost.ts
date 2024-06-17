@@ -1,4 +1,4 @@
-import { PostIdAtom } from "@/Stores/community/community.store";
+import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
 import { useAllGetCommunityQuery, useGetMyArticles, usePostCommunity } from "@/queries/community/community.query";
 import { PostCommunityParams } from "@/repositories/community/communityRepository";

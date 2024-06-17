@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Search from "src/asset/search.svg";
-import ProfessorList from "src/components/matching/professorList/index";
+import ProfessorList from "../matching/professorList/index";
 import { useRouter } from "next/navigation";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";

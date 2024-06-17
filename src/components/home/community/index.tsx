@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import Sidebar from "@/components/Sidebar/index";
+import Sidebar from "@/components/common/sidebar/index";
 import Post from "./post/index";
 import Image from "next/image";
 import WriteButton from "src/asset/WriteButton.svg";
@@ -8,7 +8,7 @@ import SearchIcon from "src/asset/search.svg";
 import { useRouter, useParams } from "next/navigation";
 import usePost from "@/hooks/community/post/usePost";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { ProfessorListPageAtom } from "@/Stores/community/community.store";
+import { ProfessorListPageAtom } from "@/store/community/community.store";
 import useWrite from "@/hooks/community/write/useWrite";
 
 const Community = () => {

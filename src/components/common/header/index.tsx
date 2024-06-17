@@ -23,7 +23,7 @@ const index = () => {
             <S.Text1>얻는 방법</S.Text1>
           </S.Textbunddle>
           <S.ButtonWrapper>
-            <S.ButtonImage />
+            {/* <S.ButtonImage /> 알아서 고치세요 */}
             <S.ButtonText>확인하기</S.ButtonText>
             <S.Button />
           </S.ButtonWrapper>
