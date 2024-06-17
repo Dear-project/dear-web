@@ -36,4 +36,5 @@ class DearToast {
 }
 
 const dearToast = new DearToast();
+
 export default dearToast;
