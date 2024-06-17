@@ -2,8 +2,8 @@
 import React from "react";
 
 import Image from "next/image";
-import Mainpage from "@/components/Home/Category";
-import Sidebar from "@/components/Sidebar";
+import Mainpage from "@/components/home/category/index";
+import Sidebar from "@/components/common/sidebar";
 
 const Home = () => {
   return (

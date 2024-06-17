@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { EmailAtom, PasswordAtom } from "src/stores/Auth/signup/signup.store";
-import { InfoProps } from "src/Types/Auth/signup.type";
+import { EmailAtom, PasswordAtom } from "src/store/auth/signup/signup.store";
+import { InfoProps } from "@/types/auth/signup.type";
 import CONFIG from "src/config/config.json";
-import { showToast } from "src/libs/Swal/Swal";
+import  DearToast  from "src/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 
 const useInfo = () => {
@@ -36,11 +36,11 @@ const useInfo = () => {
           type: infoData.type,
         })
         .then(() => {
-          showToast("success", "회원가입 성공");
+          DearToast.sucessToast("로그인 성공")
           router.push("/login");
         });
     } catch (error) {
-      showToast("error", "회원가입 실패");
+      DearToast.errorToast("회원가입 실패");
     }
   };
 

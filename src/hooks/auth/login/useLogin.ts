@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import config from "src/config/config.json";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/Constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
 import token from "src/libs/token/token";
-import { ErrorStateAtom } from "src/Stores/common/common.store";
-import { LoginParam, LoginResponse } from "src/types/Auth/auth.type";
+import { ErrorStateAtom } from "src/store/common/common.store";
+import { LoginParam, LoginResponse } from "src/types/auth/auth.type";
 
 const useLogin = () => {
   const router = useRouter();

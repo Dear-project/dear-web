@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfessorDetail from "@/components/matching/index";
+import ProfessorDetail from "@/components/matching/professorDetail/index";
 
 const page = () => {
   return (
