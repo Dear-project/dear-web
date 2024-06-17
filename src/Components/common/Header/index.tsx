@@ -1,16 +1,17 @@
 import React from "react";
 import * as S from "./style";
 import Image from "next/image";
+import Image31 from "public/Ellipse 31.png";
 
 const index = () => {
-  const handleButtonClick = () => {
-    // 버튼 클릭 시 실행될 로직 작성
-    console.log("버튼이 클릭되었습니다.");
-    // 예를 들어, 상태 변경 로직 추가
-    setIsButtonClicked(true);
-    // 다른 컴포넌트로 이동하는 로직 추가
-    navigate("/next-page");
-  };
+  // const handleButtonClick = () => {
+  //   // 버튼 클릭 시 실행될 로직 작성
+  //   console.log("버튼이 클릭되었습니다.");
+  //   // 예를 들어, 상태 변경 로직 추가
+  //   setIsButtonClicked(true);
+  //   // 다른 컴포넌트로 이동하는 로직 추가
+  //   navigator("/next-page");
+  // };
 
   return (
     <S.Main>
@@ -24,13 +25,15 @@ const index = () => {
           <S.ButtonWrapper>
             <S.ButtonImage />
             <S.ButtonText>확인하기</S.ButtonText>
-            <S.Button onClick={handleButtonClick} />
+            <S.Button />
           </S.ButtonWrapper>
         </S.Banner>
       </div>
-      <div></div>
     </S.Main>
   );
 };
 
 export default index;
+function setIsButtonClicked(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
