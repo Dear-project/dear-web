@@ -5,6 +5,7 @@ export const Side = styled.div`
   position: relative;
   background: var(--White, #fff);
   width: 250px;
+  height: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -60,11 +61,6 @@ export const My = styled.div`
   display: flex;
   width: 100%;
   align-items: flex-end;
-  cursor: pointer; /* 추가: hover 시 pointer로 변경 */
-
-  &:hover {
-    text-decoration: underline; /* 추가: hover 시 밑줄 효과 */
-  }
 `;
 
 export const Name = styled.div`
@@ -91,3 +87,18 @@ export const School = styled.div`
 //   object-fit: fill;
 //   border-radius: 100%;
 // `;
+//<S.My>
+// <Image
+// src={Profile}
+// alt="프로필"
+// width={45}
+// height={45}
+// style={{ borderRadius: "100%" }}
+// />
+// <div>
+// <S.Name>{userProfile?.name || "홍길동"}</S.Name>
+// <S.School>
+//   {userProfile?.school || "대구소프트웨어 마이스터 고등학교"}
+// </S.School>
+// </div>
+// </S.My>
