@@ -1,13 +1,13 @@
 "use client";
+import dearToast from "@/libs/Swal/Swal";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import config from "src/config/config.json";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
-import { showToast } from "src/libs/Swal/Swal";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/Constants/token/token.constants";
 import token from "src/libs/token/token";
-import { ErrorStateAtom } from "src/stores/common/common.store";
+import { ErrorStateAtom } from "src/Stores/common/common.store";
 import { LoginParam, LoginResponse } from "src/types/Auth/auth.type";
 
 const useLogin = () => {
@@ -33,13 +33,13 @@ const useLogin = () => {
           password: LoginData.password,
         })
         .then((res) => {
-          token.setToken(ACCESS_TOKEN_KEY, res.data.accessToken);
-          token.setToken(REFRESH_TOKEN_KEY, res.data.refreshToken);
-          showToast("success", "로그인 성공");
+          token.setToken(ACCESS_TOKEN_KEY, res.data.data.accessToken);
+          token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
+          dearToast.sucessToast("로그인 성공");
           router.push("/");
         });
     } catch (e) {
-      showToast("error", "로그인 실패");
+      dearToast.errorToast("로그인 실패");
       setErrorState({
         ...errorState,
         password: "아이디 및 비밀번호를 확인해주세요.",

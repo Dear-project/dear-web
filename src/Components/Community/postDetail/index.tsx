@@ -5,7 +5,7 @@ import Sidebar from "@/components/Sidebar/index";
 import Image from "next/image";
 import Profile from "src/asset/Profile.svg";
 import PostImage from "src/asset/1712314839.016066DSC00131.jpeg";
-import Comment from "./comment";
+import Comment from "./comment/index";
 
 const PostDetail = () => {
   return (

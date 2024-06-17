@@ -1,27 +1,35 @@
+import { PostIdAtom } from "@/Stores/community/community.store";
+import dearToast from "@/libs/Swal/Swal";
+import { usePostMultiPart, usePutCommunity } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
-import axios from "axios";
-import { ChangeEvent, useCallback, useRef, useState } from "react";
-import CONFIG from "src/config/config.json";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useRef, useState, ChangeEvent } from "react";
+import { useRecoilValue } from "recoil";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
     title: "",
     content: "",
   });
+
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [image, setImage] = useState<string[]>([]);
   const [file, setFile] = useState<File[]>([]);
   const [fileName, setFileName] = useState<string[]>([]);
+  const id = useRecoilValue(PostIdAtom);
   const ImageRef = useRef<HTMLInputElement>(null);
   const FileRef = useRef<HTMLInputElement>(null);
   const formData = new FormData();
+  const router = useRouter();
 
-  const handleData = useCallback(
-    (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
+  const handleWriteData = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
       const { name, value } = e.target;
+
       setWriteData((prev) => ({ ...prev, [name]: value }));
     },
-    [setWriteData],
+    [writeData.title, writeData.content],
   );
 
   const onClick = () => {
@@ -30,6 +38,37 @@ const useWrite = () => {
 
   const handleImageClick = () => {
     ImageRef.current?.click();
+  };
+
+  const putCommunityMutation = usePutCommunity();
+  const postPostMultiPartMutation = usePostMultiPart();
+
+  const onWrite = async () => {
+    const { title, content } = writeData;
+
+    const params = {
+      id: id,
+      title: title,
+      content: content,
+    };
+
+    putCommunityMutation.mutate(params, {
+      onSuccess: () => {
+        dearToast.sucessToast("글 등록 성공!");
+        router.push("/community");
+      },
+      // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
+      onError: (error) => {
+        const errorResponse = error as AxiosError;
+        if (title.length < 0) {
+          dearToast.infoToast("제목을 입력해주세요");
+        } else if (content.length < 0) {
+          dearToast.infoToast("내용을 입력해주세요");
+        } else if (errorResponse.code === "ECONNABORTED") {
+          dearToast.errorToast("서버와의 통신에 문제가생겼습니다");
+        }
+      },
+    });
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -67,28 +106,21 @@ const useWrite = () => {
     FileRef.current?.click();
   };
 
-  const onWrite = async () => {
-    try {
-      axios.post(`${CONFIG.serverUrl}`);
-    } catch (error) {}
-  };
-
   return {
     writeData,
     isClicked,
+    file,
     ImageRef,
     FileRef,
     image,
-    file,
-    fileName,
     setImage,
-    handleData,
     onClick,
-    handleImageClick,
-    handleFileClick,
-    handleImageChange,
-    handleFileChange,
+    handleWriteData,
     onWrite,
+    handleImageChange,
+    handleImageClick,
+    handleFileChange,
+    handleFileClick,
   };
 };
 

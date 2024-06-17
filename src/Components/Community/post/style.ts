@@ -52,3 +52,12 @@ export const PostContext = styled.span`
   font-weight: 700;
   line-height: normal;
 `;
+
+export const PostDate = styled.span`
+  color: var(--Black, #d1d1d1);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
