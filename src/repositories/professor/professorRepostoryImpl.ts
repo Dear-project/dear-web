@@ -1,7 +1,7 @@
 import { ProfessorResponse } from "src/types/matching/professor.types";
 import { ProfessorRepository } from "./professorRepository";
-import { dearV1Axios } from "src/libs/Axios/customAxios";
-import { Response } from "src/types/util/resposne.type";
+import { dearV1Axios } from "@/libs/axios/customAxios";
+import { Response } from "@/types/util/response.type";
 
 class ProfessorRepositoryImpl implements ProfessorRepository {
   public async getProfessor(page: number): Promise<ProfessorResponse> {
