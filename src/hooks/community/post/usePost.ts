@@ -1,14 +1,16 @@
-import { PostIdAtom } from "@/store/community/community.store";
+import { PostIdAtom, persistUsePostIdStore, usePostIdStore } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
 import { useAllGetCommunityQuery, useGetMyArticles, usePostCommunity } from "@/queries/community/community.query";
 import { PostCommunityParams } from "@/repositories/community/communityRepository";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
+import { useState } from "react";
 
 const usePost = () => {
   const router = useRouter();
-  const [postId, setPostId] = useRecoilState(PostIdAtom);
+  const [writeId, setWritetId] = useState<number>();
+
   const mutation = usePostCommunity();
   const getAllCommunity = (page: number) => {
     const [{ data: communityList }] = useAllGetCommunityQuery(page);
@@ -20,6 +22,10 @@ const usePost = () => {
     return myArticlesData;
   };
 
+  const handlePostId = (id: number) => {
+    setPostId(id);
+  };
+
   const setWrite = () => {
     const param = {
       title: "",
@@ -27,7 +33,7 @@ const usePost = () => {
     };
     mutation.mutate(param, {
       onSuccess: (res) => {
-        setPostId(res.data.id);
+        setWritetId(res.data.id);
         router.push("/community/write");
       },
       onError: (error) => {
@@ -39,9 +45,11 @@ const usePost = () => {
 
   return {
     postId,
+    writeId,
     GetMyArticles,
     getAllCommunity,
     setWrite,
+    handlePostId,
   };
 };
 
