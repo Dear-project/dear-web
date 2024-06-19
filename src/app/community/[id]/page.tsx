@@ -1,4 +1,4 @@
-import PostDetail from "@/components/community/postDetail";
+import PostDetail from "@/components/home/community/postDetail/index";
 import React from "react";
 
 type PageParams = {
@@ -6,7 +6,6 @@ type PageParams = {
 };
 
 const Page = ({ params }: { params: PageParams }) => {
-
   return (
     <div>
       <PostDetail />

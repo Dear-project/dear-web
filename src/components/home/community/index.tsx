@@ -14,10 +14,9 @@ import useWrite from "@/hooks/community/write/useWrite";
 const Community = () => {
   const router = useRouter();
   const [page, setPage] = useRecoilState(ProfessorListPageAtom);
-  const { setWrite } = usePost();
+  const { setWrite, postId } = usePost();
   return (
     <S.Community>
-      <Sidebar />
       <S.Main>
         <S.SearchWrap>
           <S.Search placeholder="게시물 검색" />
@@ -26,7 +25,7 @@ const Community = () => {
         <S.PostWrap>
           <Post
             onclick={() => {
-              router.push(`/community/${page}`); //page는 임시
+              router.push(`/community/${postId}`); //page는 임시
             }}
             page={page}
           />

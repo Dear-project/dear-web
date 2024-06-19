@@ -17,7 +17,6 @@ const Write = () => {
 
   return (
     <S.Write>
-      <Sidebar />
       <S.Main>
         <S.TitleIinput
           placeholder="제목"
