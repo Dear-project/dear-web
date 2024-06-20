@@ -12,6 +12,7 @@ import Image from "next/image";
 import Profile from "public/svgs/Avatar.svg";
 import Photo from "public/svgs/photo.svg";
 import Close from "public/svgs/close.svg";
+import useProfileChange from "@/hooks/modal/useProfileChange";
 
 interface ProfileModalProps {
   setModal: Dispatch<SetStateAction<boolean>>;
@@ -75,8 +76,15 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
     setIsEditing(null);
   };
 
+  const { updateProfile } = useProfileChange();
+
   const handleSaveChanges = async () => {
-    await updateProfileData();
+    await updateProfile({
+      schoolAndDepartment,
+      password,
+      specialty,
+      profileImage,
+    });
     setModal(false);
   };
 
@@ -90,39 +98,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
 
   const handleResetProfileImage = () => {
     setProfileImage(null);
-  };
-
-  const updateProfileData = async () => {
-    const profileData = {
-      schoolAndDepartment,
-      password,
-      specialty,
-      profileImage, // 파일 업로드를 서버에서 처리한다고 가정합니다.
-    };
-
-    try {
-      const formData = new FormData();
-      formData.append("schoolAndDepartment", schoolAndDepartment);
-      formData.append("password", password);
-      formData.append("specialty", specialty);
-      if (profileImage) {
-        formData.append("file", profileImage);
-      }
-
-      const response = await fetch("", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update profile");
-      }
-
-      const data = await response.json();
-      console.log("Profile updated successfully", data);
-    } catch (error) {
-      console.error("Error updating profile:", error);
-    }
   };
 
   return (

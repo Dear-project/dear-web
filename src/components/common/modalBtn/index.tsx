@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState, useRef } from "react";
 import * as S from "./style";
-import ProfileModal from "../profileModal";
+import ProfileModal from "../profileModal/index";
 
 interface ModalProps {
   setModalBtn: Dispatch<SetStateAction<boolean>>;
@@ -16,7 +16,6 @@ const Modal: React.FC<ModalProps> = ({ setModalBtn }) => {
 
   return (
     <S.layout
-
     // onClick={() => {
     //   setModalBtn(false);
     //   console.log("ddddd");
