@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SignUpEmail from "src/components/Auth/signup/Email";
+import SignUpEmail from "src/components/auth/signup/Email";
 
 const Page = () => {
   return (

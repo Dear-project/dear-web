@@ -14,7 +14,7 @@ const Layout = ({ children }: Props) => {
     <>
       <RecoilRoot>
         <Container>
-          {pathname !== "/login" && <Sidebar />}
+          {pathname !== "/login" && pathname.substring(0, 7) !== "/signup" && <Sidebar />}
           <Wrap isSign={pathname == "/sign" ? false : true}>{children}</Wrap>
         </Container>
       </RecoilRoot>
