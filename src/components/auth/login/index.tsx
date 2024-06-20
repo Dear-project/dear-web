@@ -22,7 +22,6 @@ const Login = () => {
           value={hooks.LoginData.userId}
           functions="userId"
           onchange={hooks.handleLoginChange}
-          labelStyle={{ top: "37%" }}
           type="email"
         >
           이메일

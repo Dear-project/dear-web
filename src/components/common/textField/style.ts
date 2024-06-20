@@ -7,9 +7,11 @@ export const TextField = styled.div`
   border: none;
   border-bottom: 1px solid #d1d1d1;
 
+  position: relative;
+
   label {
     position: absolute;
-    left: 37%;
+    left: 5%;
     top: 40%;
 
     font-size: 1.3rem;
