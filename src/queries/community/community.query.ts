@@ -25,6 +25,15 @@ export const useGetMyArticles = (page: number) =>
     },
   ]);
 
+export const useGetCommunityById = (id: number) =>
+  useQueries([
+    {
+      queryKey: [QUERY_KEYS.community.community],
+      queryFn: () => communityRepositoryImpl.getCommunityById(id),
+      suspense: true,
+    },
+  ]);
+
 export const usePostCommunity = () => {
   const mutation = useMutation((params: PostCommunityParams) => communityRepositoryImpl.postCommunity(params));
   return mutation;

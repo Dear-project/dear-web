@@ -89,12 +89,25 @@ const useWrite = () => {
     setImage((prevImages) => [...prevImages, ...fileURLs]);
 
     fileArray.forEach((file) => formData.append("image", file));
+    console.log(formData.get("image"));
+
+    const params = {
+      id: id,
+      files: formData.get("image"),
+    };
+
+    postPostMultiPartMutation.mutate(params, {
+      onError: () => {
+        dearToast.errorToast("이미지 등록 실패");
+        setImage([]);
+      },
+    });
 
     console.log(image);
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+    const files: FileList | null = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     const fileNames = fileArray.map((file) => file.name);
     setFileName(fileNames);
@@ -102,6 +115,17 @@ const useWrite = () => {
     setFile(fileArray);
 
     fileArray.forEach((file) => formData.append("file", file));
+
+    const params = {
+      id: id,
+      files: files,
+    };
+
+    postPostMultiPartMutation.mutate(params, {
+      onError: () => {
+        dearToast.errorToast("파일 업로드 실패");
+      },
+    });
   };
 
   const handleFileClick = () => {

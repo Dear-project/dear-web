@@ -1,6 +1,11 @@
-import { PostIdAtom, persistUsePostIdStore, usePostIdStore } from "@/store/community/community.store";
+import { PostIdAtom, usePostIdStore } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
-import { useAllGetCommunityQuery, useGetMyArticles, usePostCommunity } from "@/queries/community/community.query";
+import {
+  useAllGetCommunityQuery,
+  useGetCommunityById,
+  useGetMyArticles,
+  usePostCommunity,
+} from "@/queries/community/community.query";
 import { PostCommunityParams } from "@/repositories/community/communityRepository";
 import { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
@@ -17,13 +22,14 @@ const usePost = () => {
     return communityList;
   };
 
+  const getCommunityById = (id: number) => {
+    const [{ data: communityByIdList }] = useGetCommunityById(id);
+    return communityByIdList;
+  };
+
   const GetMyArticles = (page: number) => {
     const [{ data: myArticlesData }] = useGetMyArticles(page);
     return myArticlesData;
-  };
-
-  const handlePostId = (id: number) => {
-    setPostId(id);
   };
 
   const setWrite = () => {
@@ -44,12 +50,11 @@ const usePost = () => {
   };
 
   return {
-    postId,
     writeId,
     GetMyArticles,
     getAllCommunity,
+    getCommunityById,
     setWrite,
-    handlePostId,
   };
 };
 

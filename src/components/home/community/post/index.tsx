@@ -5,20 +5,22 @@ import * as S from "./style";
 import DummyPost from "src/asset/dummyPost.svg";
 import Image from "next/image";
 import usePost from "@/hooks/community/post/usePost";
+import { useRouter } from "next/navigation";
 
 interface Post {
-  onclick: () => void;
   page: number;
 }
 
-const Post = ({ onclick, page }: Post) => {
+const Post = ({ page }: Post) => {
   const { ...post } = usePost();
-  const communityList = post.GetMyArticles(page);
+  const router = useRouter();
+  const communityList = post.getAllCommunity(page);
+  console.log(communityList);
   return (
     <>
       {communityList?.data.map((item, idx) => (
-        <div onClick={() => post.handlePostId(item.id)}>
-          <S.Post onClick={onclick} key={idx}>
+        <div onClick={() => router.push(`/community/${item.id}`)}>
+          <S.Post key={idx}>
             <Image src={DummyPost} alt="게시물 이미지" />
             <S.ContentWrap>
               <S.PostTtile>{item.title}</S.PostTtile>
