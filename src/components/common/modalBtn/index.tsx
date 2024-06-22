@@ -16,16 +16,14 @@ const Modal: React.FC<ModalProps> = ({ setModalBtn }) => {
 
   return (
     <S.layout
-    // onClick={() => {
-    //   setModalBtn(false);
-    //   console.log("ddddd");
-    // }}
+    
+    
     >
-      {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
-      <S.Boxlayout>
+      <S.Boxlayout onClick={(e) => e.stopPropagation()}>
         <S.profile onClick={handleProfileClick}>프로필</S.profile>
         <S.logout>로그아웃</S.logout>
       </S.Boxlayout>
+      {modal && <ProfileModal setModal={setModal} modalRef={modalRef} />}
     </S.layout>
   );
 };

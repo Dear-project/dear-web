@@ -101,7 +101,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
   };
 
   return (
-    <S.layout ref={modalRef}>
+    <S.layout ref={modalRef} onClick={(e) => e.stopPropagation()}>
       <S.Boxlayout>
         <Image
           onClick={() => setModal(false)}
