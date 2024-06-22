@@ -89,7 +89,6 @@ const useWrite = () => {
     setImage((prevImages) => [...prevImages, ...fileURLs]);
 
     fileArray.forEach((file) => formData.append("image", file));
-    console.log(formData.get("image"));
 
     const params = {
       id: id,
@@ -102,8 +101,6 @@ const useWrite = () => {
         setImage([]);
       },
     });
-
-    console.log(image);
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +115,7 @@ const useWrite = () => {
 
     const params = {
       id: id,
-      files: files,
+      files: formData.get("file"),
     };
 
     postPostMultiPartMutation.mutate(params, {

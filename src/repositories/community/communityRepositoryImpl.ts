@@ -9,7 +9,7 @@ import { dearV1Axios } from "@/libs/axios/customAxios";
 import axios from "axios";
 import token from "@/libs/token/token";
 import CONFIG from "../../config/config.json";
-import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY } from "@/constants/token/token.constants";
 
 class CommunityRepositoryImpl implements CommunityRepository {
   public async getAllCommunity(page: number): Promise<CommunityDataResponse> {
@@ -40,12 +40,19 @@ class CommunityRepositoryImpl implements CommunityRepository {
   public async postMultiPartCommunityById(params: PostImageParams): Promise<void> {
     const { id, files } = params;
     console.log(files);
-    await axios.post(`${CONFIG.serverUrl}/community/${id}`, files, {
-      headers: {
-        Authorization: token.getToken(ACCESS_TOKEN_KEY),
-        "Content-Type": "multipart/form-data",
+
+    await axios.post(
+      `${CONFIG.serverUrl}/community/${id}`,
+      {
+        files: files,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
   }
 }
 

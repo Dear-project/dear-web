@@ -14,7 +14,7 @@ import { useState } from "react";
 
 const usePost = () => {
   const router = useRouter();
-  const [writeId, setWritetId] = useState<number>();
+  const [writeId, setWritetId] = useRecoilState(PostIdAtom);
 
   const mutation = usePostCommunity();
   const getAllCommunity = (page: number) => {

@@ -29,5 +29,5 @@ export interface PatchCommunityParams {
 
 export interface PostImageParams {
   id: number;
-  files: FileList | File | File[] | null | string;
+  files: File[] | File | FileList | null | FormDataEntryValue;
 }
