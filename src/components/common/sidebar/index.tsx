@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useRef,
-  useState,
-} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -25,14 +19,12 @@ import ProfileModal from "@/components/common/profileModal";
 
 export const Index = () => {
   const [modalBtn, setModalBtn] = useState(false);
-  // const modalRef = useRef<HTMLDivElement>(null);
-
   const { selectedItem, userProfile, handleLogoclick } = useSidebar();
 
   return (
     <S.Side>
       {modalBtn && <Modal setModalBtn={setModalBtn} />}
-      <S.Logo onClick={handleLogoclick}>DEAR.</S.Logo>
+      <S.Logo onClick={() => handleLogoclick("main")}>DEAR.</S.Logo>
 
       <S.Option>
         <Link
