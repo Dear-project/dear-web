@@ -21,7 +21,7 @@ const Post = ({ page }: Post) => {
       {communityList?.data.map((item, idx) => (
         <div onClick={() => router.push(`/community/${item.id}`)}>
           <S.Post key={idx}>
-            <Image src={DummyPost} alt="게시물 이미지" />
+            <Image src={item.imgPath} alt="게시물 이미지" unoptimized={true} />
             <S.ContentWrap>
               <S.PostTtile>{item.title}</S.PostTtile>
               <S.PostContext>{item.content}</S.PostContext>

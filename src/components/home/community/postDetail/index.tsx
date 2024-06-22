@@ -18,25 +18,8 @@ const PostDetail = () => {
   return (
     <S.PostDetail>
       <S.Main>
-        {/* {communityData?.data.map((item, idx) => (
-          <>
-            <S.WriterInfo key={idx}>
-              <Image src={Profile} alt="프로필 이미지" />
-              <div>
-                <h1>{item.userId}</h1>
-                <span>{item.createdDateTime}</span>
-              </div>
-            </S.WriterInfo>
-            <S.Content>{item.title}</S.Content>
-            <Image src={item.imagePathList[idx]} alt="" />
-            <S.Content>{item.content}</S.Content>
-          </>
-        ))} */}
         <S.WriterInfo>
-          <Image
-            src={Profile}
-            alt=""
-          />
+          <Image src={Profile} alt="" />
           <div>
             <h1>{communityData?.data.userId}</h1>
             <span>{communityData?.data.createdDateTime}</span>

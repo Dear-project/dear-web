@@ -6,7 +6,6 @@ import {
   useGetMyArticles,
   usePostCommunity,
 } from "@/queries/community/community.query";
-import { PostCommunityParams } from "@/repositories/community/communityRepository";
 import { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
@@ -33,18 +32,14 @@ const usePost = () => {
   };
 
   const setWrite = () => {
-    const param = {
-      title: "",
-      content: "",
-    };
-    mutation.mutate(param, {
+    mutation.mutate(undefined, {
       onSuccess: (res) => {
         setWritetId(res.data.id);
         router.push("/community/write");
       },
       onError: (error) => {
         const errorResponse = error as AxiosError;
-        dearToast.errorToast((errorResponse as AxiosError).message);
+        dearToast.errorToast(errorResponse.message);
       },
     });
   };

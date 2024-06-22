@@ -57,7 +57,7 @@ const useWrite = () => {
     patchCommunityMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("글 등록 성공!");
-        router.push("/community");
+        router.back();
       },
       // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
       onError: (error) => {
