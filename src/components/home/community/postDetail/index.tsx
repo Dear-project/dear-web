@@ -26,9 +26,10 @@ const PostDetail = () => {
           </div>
         </S.WriterInfo>
         <S.Content>{communityData?.data.title}</S.Content>
-        {communityData?.data.imagePathList.map((item, idx) => (
-          <Image src={item !== undefined ? item[idx] : ""} alt="" />
-        ))}
+        {communityData?.data.imagePathList !== null && communityData?.data.imagePathList !== undefined && (
+          <Image src={communityData.data.imagePathList[0]} alt="" width={500} height={300} />
+        )}
+
         <S.Content>{communityData?.data.content}</S.Content>
         <Comment />
       </S.Main>
