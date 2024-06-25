@@ -9,9 +9,14 @@ const requestHandler = (config: AxiosRequestConfig): AxiosRequestConfig => {
     return config;
   }
 
+  let contentType = "application/json";
+  if (config.data instanceof FormData) {
+    contentType = "multipart/form-data";
+  }
+
   config.headers = {
     ...config.headers,
-    "Content-Type": "application/json",
+    "Content-Type": contentType,
     [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
   };
 
