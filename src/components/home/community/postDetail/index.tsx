@@ -6,11 +6,9 @@ import Profile from "src/asset/Profile.svg";
 import Comment from "./comment/index";
 import { useParams } from "next/navigation";
 import usePost from "@/hooks/community/post/usePost";
-import dayjs from "dayjs";
-import "dayjs/locale/ko";
+import { convertDate } from "@/utils/transform/date/convertDate";
 
 const PostDetail = () => {
-  dayjs.locale("ko");
   const { id } = useParams();
   const { getCommunityById } = usePost();
   const communityData = getCommunityById(Number(id));
@@ -25,10 +23,9 @@ const PostDetail = () => {
           ) : (
             <Image src={Profile} alt="프로필 이미지" />
           )}
-
           <div>
             <h1>{communityData?.data.userId}</h1>
-            <span>{dayjs(communityData?.data.modifiedDateTime).format("YYYY년 MM월 DD일(ddd) hh:mm")}</span>
+            <span>{convertDate(communityData?.data.modifiedDateTime!!)}</span>
           </div>
         </S.WriterInfo>
         <S.Content>{communityData?.data.title}</S.Content>

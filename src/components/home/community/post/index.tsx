@@ -2,18 +2,16 @@
 
 import React from "react";
 import * as S from "./style";
-import dayjs from "dayjs";
-import "dayjs/locale/ko";
 import Image from "next/image";
 import usePost from "@/hooks/community/post/usePost";
 import { useRouter } from "next/navigation";
+import { convertDate } from "@/utils/transform/date/convertDate";
 
 interface Post {
   page: number;
 }
 
 const Post = ({ page }: Post) => {
-  dayjs.locale("ko");
   const { ...post } = usePost();
   const router = useRouter();
   const communityList = post.getAllCommunity(page);
@@ -30,7 +28,7 @@ const Post = ({ page }: Post) => {
               <S.ContentWrap>
                 <S.PostTtile>{item.title}</S.PostTtile>
                 <S.PostContext>{item.content}</S.PostContext>
-                <S.PostDate>{dayjs(item.modifiedDateTime).format("YYYY년 MM월 DD일(ddd) hh:mm")}</S.PostDate>
+                <S.PostDate>{convertDate(item.modifiedDateTime!!)}</S.PostDate>
               </S.ContentWrap>
             </S.Post>
           </div>
