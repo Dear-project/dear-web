@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import * as S from "./style";
 import Sidebar from "@/components/common/sidebar/index";
 import Post from "./post/index";
