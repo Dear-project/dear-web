@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Community = styled.div`
-  width: 100vw;
+  width: calc(100vw - 250px);
   height: 100vh;
   display: flex;
 
   background: #f4f3f9;
 
-  overflow: hidden;
+  overflow-y: hidden;
 
   & > img:nth-child(n + 2) {
     position: fixed;
@@ -20,7 +20,7 @@ export const Community = styled.div`
 
 export const Main = styled.div`
   width: 1655px;
-  height: 1080px;
+  height: 1000px;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
 
-  overflow: scroll;
+  /* overflow-y: scroll; */
 `;
 
 export const SearchWrap = styled.div`
@@ -84,5 +84,5 @@ export const PostWrap = styled.div`
 
   gap: 20px;
 
-  overflow: scroll;
+  overflow-y: scroll;
 `;

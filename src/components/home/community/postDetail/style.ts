@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PostDetail = styled.div`
-  width: 100vw;
+  width: calc(100vw - 250px);
   height: 100vh;
 
   display: flex;
@@ -81,6 +81,12 @@ export const CommentWrap = styled.div`
   background: white;
 
   overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
 `;
 
 export const Comments = styled.div`
