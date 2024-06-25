@@ -15,8 +15,10 @@ export const Post = styled.div`
   background: white;
 
   img {
-    width: 130px;
-    height: 130px;
+    margin-right: 20px;
+
+    border: none;
+    border-radius: 20px;
   }
 
   cursor: pointer;

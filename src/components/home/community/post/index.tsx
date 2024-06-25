@@ -4,6 +4,7 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import usePost from "@/hooks/community/post/usePost";
+import DefaultPostImg from "@/asset/DefaultPostImg.svg";
 import { useRouter } from "next/navigation";
 import { convertDate } from "@/utils/transform/date/convertDate";
 
@@ -15,7 +16,7 @@ const Post = ({ page }: Post) => {
   const { ...post } = usePost();
   const router = useRouter();
   const communityList = post.getAllCommunity(page);
-  console.log(communityList);
+
   return (
     <>
       {communityList?.data !== null &&
@@ -23,7 +24,11 @@ const Post = ({ page }: Post) => {
         communityList?.data.length! > 0 &&
         communityList?.data.map((item, idx) => (
           <S.Post key={idx} onClick={() => router.push(`/community/${item.id}`)}>
-            <Image src={item.imgPath} alt="게시물 이미지" />
+            {item.imagePath && !item.imagePath.endsWith(".pdf") ? (
+              <Image src={item.imagePath} alt="게시물 이미지" width={130} height={130} />
+            ) : (
+              <Image src={DefaultPostImg} alt="게시물 이미지" width={130} height={130} />
+            )}
             <S.ContentWrap>
               <S.PostTtile>{item.title}</S.PostTtile>
               <S.PostContext>{item.content}</S.PostContext>
