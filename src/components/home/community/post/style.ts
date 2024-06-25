@@ -3,14 +3,11 @@ import styled from "styled-components";
 export const Post = styled.div`
   display: flex;
 
-  max-width: 1250px;
-  width: 1250px;
+  width: 100%;
+  max-width: 1280px;
   height: 140px;
   padding: 10px;
   align-items: flex-start;
-  gap: 25px;
-
-  flex-shrink: 0;
 
   border: none;
   border-radius: 20px;
