@@ -18,6 +18,7 @@ export interface CommunityPostById {
   imagePathList: string[];
   createdDateTime: string;
   modifiedDateTime: string;
+  profileImage: string;
 }
 
 export interface CommunityPostArticles {

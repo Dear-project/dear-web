@@ -7,9 +7,8 @@ import WriteButton from "src/asset/WriteButton.svg";
 import SearchIcon from "src/asset/search.svg";
 import { useRouter, useParams } from "next/navigation";
 import usePost from "@/hooks/community/post/usePost";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { ProfessorListPageAtom } from "@/store/community/community.store";
-import useWrite from "@/hooks/community/write/useWrite";
 
 const Community = () => {
   const router = useRouter();

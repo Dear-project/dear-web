@@ -19,17 +19,25 @@ const PostDetail = () => {
     <S.PostDetail>
       <S.Main>
         <S.WriterInfo>
-          <Image src={Profile} alt="" />
+          {communityData?.data.profileImage !== null && communityData?.data.profileImage !== undefined ? (
+            <Image src={communityData.data.profileImage} alt="프로필 이미지" />
+          ) : (
+            <Image src={Profile} alt="프로필 이미지" />
+          )}
+
           <div>
             <h1>{communityData?.data.userId}</h1>
             <span>{communityData?.data.createdDateTime}</span>
           </div>
         </S.WriterInfo>
         <S.Content>{communityData?.data.title}</S.Content>
-        {communityData?.data.imagePathList !== null && communityData?.data.imagePathList !== undefined && (
+        {communityData?.data.imagePathList !== null &&
+        communityData?.data.imagePathList !== undefined &&
+        communityData.data.imagePathList.length > 0 ? (
           <Image src={communityData.data.imagePathList[0]} alt="" width={500} height={300} />
+        ) : (
+          <></>
         )}
-
         <S.Content>{communityData?.data.content}</S.Content>
         <Comment />
       </S.Main>

@@ -8,6 +8,7 @@ const { persistAtom } = recoilPersist();
 export const ProfessorListPageAtom = atom<number>({
   key: "professorListPageAtom",
   default: 1,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const PostIdAtom = atom<number>({
