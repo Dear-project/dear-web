@@ -75,7 +75,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
 
     setIsEditing(null);
   };
-
+  
   const { updateProfile } = useProfileChange();
 
   const handleSaveChanges = async () => {
@@ -116,7 +116,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
           }}
         />
         <S.ProfileTextBox>
-          <S.ProfileFix>프로필 수정</S.ProfileFix>
+          <S.ProfileFix>프로필 </S.ProfileFix>
           <S.ProfileText>자신의 정보를 수정할 수 있습니다.</S.ProfileText>
         </S.ProfileTextBox>
         <S.ProfileImgBox>
