@@ -11,8 +11,8 @@ const Comment = () => {
         <S.Comment>
           <Image src={Profile} alt="프로필 이미지" />
           <S.CommentContentWrap>
-            <h1>신민호</h1>
-            <span>바인드 멋있네요.</span>
+            <h1>신민호</h1> {/* 댓글 작성자 */}
+            <span>바인드 멋있네요.</span> {/* 댓글 내용 */}
           </S.CommentContentWrap>
         </S.Comment>
         <S.Comment>

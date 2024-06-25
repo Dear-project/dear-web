@@ -1,18 +1,29 @@
-import { PostIdAtom } from "@/store/community/community.store";
+import { PostIdAtom, usePostIdStore } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
-import { useAllGetCommunityQuery, useGetMyArticles, usePostCommunity } from "@/queries/community/community.query";
-import { PostCommunityParams } from "@/repositories/community/communityRepository";
+import {
+  useAllGetCommunityQuery,
+  useGetCommunityById,
+  useGetMyArticles,
+  usePostCommunity,
+} from "@/queries/community/community.query";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
+import { useState } from "react";
 
 const usePost = () => {
   const router = useRouter();
-  const [postId, setPostId] = useRecoilState(PostIdAtom);
+  const [writeId, setWritetId] = useRecoilState(PostIdAtom);
+
   const mutation = usePostCommunity();
   const getAllCommunity = (page: number) => {
     const [{ data: communityList }] = useAllGetCommunityQuery(page);
     return communityList;
+  };
+
+  const getCommunityById = (id: number) => {
+    const [{ data: communityByIdList }] = useGetCommunityById(id);
+    return communityByIdList;
   };
 
   const GetMyArticles = (page: number) => {
@@ -21,26 +32,23 @@ const usePost = () => {
   };
 
   const setWrite = () => {
-    const param = {
-      title: "",
-      content: "",
-    };
-    mutation.mutate(param, {
+    mutation.mutate(undefined, {
       onSuccess: (res) => {
-        setPostId(res.data.id);
+        setWritetId(res.data.id);
         router.push("/community/write");
       },
       onError: (error) => {
         const errorResponse = error as AxiosError;
-        dearToast.errorToast((errorResponse as AxiosError).message);
+        dearToast.errorToast(errorResponse.message);
       },
     });
   };
 
   return {
-    postId,
+    writeId,
     GetMyArticles,
     getAllCommunity,
+    getCommunityById,
     setWrite,
   };
 };

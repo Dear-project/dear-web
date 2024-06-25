@@ -57,7 +57,7 @@ const useWrite = () => {
     patchCommunityMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("글 등록 성공!");
-        router.push("/community");
+        router.back();
       },
       // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
       onError: (error) => {
@@ -90,11 +90,21 @@ const useWrite = () => {
 
     fileArray.forEach((file) => formData.append("image", file));
 
-    console.log(image);
+    const params = {
+      id: id,
+      files: formData.get("image"),
+    };
+
+    postPostMultiPartMutation.mutate(params, {
+      onError: () => {
+        dearToast.errorToast("이미지 등록 실패");
+        setImage([]);
+      },
+    });
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+    const files: FileList | null = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     const fileNames = fileArray.map((file) => file.name);
     setFileName(fileNames);
@@ -102,6 +112,17 @@ const useWrite = () => {
     setFile(fileArray);
 
     fileArray.forEach((file) => formData.append("file", file));
+
+    const params = {
+      id: id,
+      files: formData.get("file"),
+    };
+
+    postPostMultiPartMutation.mutate(params, {
+      onError: () => {
+        dearToast.errorToast("파일 업로드 실패");
+      },
+    });
   };
 
   const handleFileClick = () => {
