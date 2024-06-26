@@ -1,6 +1,6 @@
 import { Response } from "@/types/util/response.type";
 
-export interface GetSchoolListRespose extends Response {
+export interface GetSchoolList {
   schoolType: string;
   link: string;
   schoolGubun: string;
@@ -10,4 +10,20 @@ export interface GetSchoolListRespose extends Response {
   totalCount: string;
   estType: string;
   seq: string;
+}
+
+export interface GetSchoolListRespose extends Response {
+  data: GetSchoolList[];
+}
+
+export interface GetMajorList {
+  lClass: string;
+  facilName: string;
+  majorSeq: string;
+  mClass: string;
+  totalCount: string;
+}
+
+export interface GetMajorListReposne extends Response {
+  data: GetMajorList[];
 }
