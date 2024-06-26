@@ -18,7 +18,7 @@ export interface PostMajorParams {
   mclass: string;
 }
 
-type ElemType = "초등학교" | "중학교" | "고등학교";
+export type ElemType = "ELEM_LIST" | "MIDD_LIST" | "HIGH_LIST" | "UNIV_LIST" | "SEET_LIST" | "ALTE_LIST";
 
 export interface GetListParams {
   gubunType: ElemType;
