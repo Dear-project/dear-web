@@ -13,9 +13,8 @@ export const Main = styled.div`
 export const Banner = styled.div`
   border-radius: 17px;
   background: var(--New, #0e2764);
-  width: 65vw;
+  width: 80%;
   height: 20vh;
-  margin-left: 15%;
   margin-top: 3%;
   display: flex;
   justify-content: space-between;
