@@ -7,7 +7,8 @@ export interface CommunityPostData {
   content: string;
   createdDateTime: string;
   modifiedDateTime: string;
-  imgPath: string;
+  imagePath: string;
+  profileImage: string;
 }
 
 export interface CommunityPostById {

@@ -11,7 +11,6 @@ import { useRecoilState } from "recoil";
 import { ProfessorListPageAtom } from "@/store/community/community.store";
 
 const Community = () => {
-  const router = useRouter();
   const [page, setPage] = useRecoilState(ProfessorListPageAtom);
   const { setWrite } = usePost();
   return (
