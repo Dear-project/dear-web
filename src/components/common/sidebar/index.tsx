@@ -1,5 +1,6 @@
-"use client";
-import React, { useRef, useState } from "react";
+
+import React from "react";
+
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -8,6 +9,7 @@ import Findlight from "src/asset/findLight.svg";
 import Communitylight from "src/asset/communityLight.svg";
 import Home1 from "src/asset/home.svg";
 import Chat from "src/asset/chat.svg";
+
 import Find from "src/asset/find.svg";
 import Community from "src/asset/community.svg";
 import Profile from "public/svgs/Avatar.svg";
@@ -96,20 +98,27 @@ export const Index = () => {
       <S.My>
         {modalBtn && <Modal setModalBtn={setModalBtn} />}
 
+
         <Image
           src={Profile}
           alt="프로필"
           width={45}
           height={45}
           style={{ borderRadius: "100%" }}
+
           onClick={() => {
             console.log("fiqjehfopiqj");
             setModalBtn((prev) => !prev);
           }}
         />
+        
+
         <div>
-          <S.Name>{userProfile?.name}</S.Name>
-          <S.School>{userProfile?.schoolName}</S.School>
+          <S.Name>{data?.data.name || "홍길동"}</S.Name>
+          <S.School>
+            {data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}
+          </S.School>
+
         </div>
       </S.My>
     </S.Side>

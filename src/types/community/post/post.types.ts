@@ -7,7 +7,8 @@ export interface CommunityPostData {
   content: string;
   createdDateTime: string;
   modifiedDateTime: string;
-  imgPath: string;
+  imagePath: string;
+  profileImage: string;
 }
 
 export interface CommunityPostById {
@@ -18,6 +19,7 @@ export interface CommunityPostById {
   imagePathList: string[];
   createdDateTime: string;
   modifiedDateTime: string;
+  profileImage: string;
 }
 
 export interface CommunityPostArticles {
@@ -41,7 +43,7 @@ export interface PostCommunityResponse extends Response {
 }
 
 export interface CommunityDataByIdResponse extends Response {
-  data: CommunityPostById[];
+  data: CommunityPostById;
 }
 
 export interface CommunityPostArticlesResponse extends Response {

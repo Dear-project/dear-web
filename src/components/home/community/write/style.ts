@@ -2,7 +2,7 @@ import { link } from "fs";
 import styled, { keyframes } from "styled-components";
 
 export const Write = styled.div`
-  width: 100vw;
+  width: calc(100vw - 250px);
   height: 100vh;
 
   display: flex;

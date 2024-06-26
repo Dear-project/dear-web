@@ -25,7 +25,8 @@
       "@constant": ["src/constant/*"],
       "@queries": ["src/queries/*"],
       "@repositories": ["src/repositories/*"],
-      "@config": ["src/config/*"]
+      "@config": ["src/config/*"],
+      "@/libs": ["src/libs/*"]
     },
     "baseUrl": "."
   },
