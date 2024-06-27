@@ -13,14 +13,14 @@ class FirstLoginRepositoryImpl implements FirstLoginRepository {
     return data;
   }
 
-  public async getSchoolList(params: GetListParams): Promise<GetSchoolListRespose> {
-    const { gubunType, keyword } = params;
+  public async getSchoolList(schoolRequest: GetListParams): Promise<GetSchoolListRespose> {
+    const { gubunType, keyword } = schoolRequest;
     const { data } = await dearV1Axios.get(`/school/list?gubunType=${gubunType}&keyword=${keyword}`);
     return data;
   }
 
-  public async getMajorList(params: GetListParams): Promise<GetSchoolListRespose> {
-    const { gubunType, keyword } = params;
+  public async getMajorList(majorRequest: GetListParams): Promise<GetSchoolListRespose> {
+    const { gubunType, keyword } = majorRequest;
     const { data } = await dearV1Axios.get(`/school/major/list?gubunType=${gubunType}&keyword=${keyword}`);
     return data;
   }
