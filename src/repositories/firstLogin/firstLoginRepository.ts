@@ -1,4 +1,5 @@
 import { GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
+import { ElemType } from "../../constants/elemType/elemType.constants";
 
 export interface FirstLoginRepository {
   postSchool(params: PostSchoolParams): Promise<void>;
@@ -17,8 +18,6 @@ export interface PostMajorParams {
   lclass: string;
   mclass: string;
 }
-
-export type ElemType = "ELEM_LIST" | "MIDD_LIST" | "HIGH_LIST" | "UNIV_LIST" | "SEET_LIST" | "ALTE_LIST";
 
 export interface GetListParams {
   gubunType: ElemType;

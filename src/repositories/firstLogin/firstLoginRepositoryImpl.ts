@@ -3,13 +3,13 @@ import { FirstLoginRepository, GetListParams, PostMajorParams, PostSchoolParams 
 import { dearV1Axios } from "@/libs/axios/customAxios";
 
 class FirstLoginRepositoryImpl implements FirstLoginRepository {
-  public async postSchool(params: PostSchoolParams): Promise<void> {
-    const { data } = await dearV1Axios.post("/school", params);
+  public async postSchool(schoolData: PostSchoolParams): Promise<void> {
+    const { data } = await dearV1Axios.post("/school", schoolData);
     return data;
   }
 
-  public async postMajor(params: PostMajorParams): Promise<void> {
-    const { data } = await dearV1Axios.post("/school/major", params);
+  public async postMajor(majorData: PostMajorParams): Promise<void> {
+    const { data } = await dearV1Axios.post("/school/major", majorData);
     return data;
   }
 
@@ -26,5 +26,4 @@ class FirstLoginRepositoryImpl implements FirstLoginRepository {
   }
 }
 
-const firstLoginRepositoryImpl = new FirstLoginRepositoryImpl();
-export default firstLoginRepositoryImpl;
+export default new FirstLoginRepositoryImpl();

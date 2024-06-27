@@ -1,0 +1,1 @@
+export type ElemType = "ELEM_LIST" | "MIDD_LIST" | "HIGH_LIST" | "UNIV_LIST" | "SEET_LIST" | "ALTE_LIST";
