@@ -18,4 +18,7 @@ export const QUERY_KEYS = Object.freeze({
     getSchoolList: "/school/list",
     getlMajorList: "/school/major/list",
   },
+  banner: {
+    getAllbanner: "/banner",
+  },
 });

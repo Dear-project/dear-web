@@ -35,6 +35,7 @@ const useLogin = () => {
         .then((res) => {
           token.setToken(ACCESS_TOKEN_KEY, res.data.data.accessToken);
           token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
+          alert("ㅁㄴㅇㄹㅁㄴㄹㅁㄴㅇㄹ");
           dearToast.sucessToast("로그인 성공");
           router.push("/");
         });

@@ -1,35 +1,33 @@
-import React from "react";
-import * as S from "./style";
+import React, { useEffect, useState } from "react";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import useBanner from "@/hooks/banner/useBanner";
 
-const index = () => {
-  // const handleButtonClick = () => {
-  //   // 버튼 클릭 시 실행될 로직 작성
-  //   console.log("버튼이 클릭되었습니다.");
-  //   // 예를 들어, 상태 변경 로직 추가
-  //   setIsButtonClicked(true);
-  //   // 다른 컴포넌트로 이동하는 로직 추가
-  //   navigator("/next-page");
-  // };
+const SimpleSlider: React.FC = () => {
+  const [page, setPage] = useState<number>(1);
+  const { getAllbanner } = useBanner();
+  const bannerList = getAllbanner();
+
+  const settings: Settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   return (
-    <S.Main>
-      <S.Banner>
-        <S.Textbunddle>
-          <S.Text>#DEAR. 사용 가이드</S.Text>
-          <S.Text1>DEAR.에서 유용한 정보</S.Text1>
-          <S.Text1>얻는 방법</S.Text1>
-        </S.Textbunddle>
-        <S.ButtonWrapper>
-          {/* <S.ButtonImage /> 알아서 고치세요 */}
-          <S.ButtonText>확인하기</S.ButtonText>
-          <S.Button />
-        </S.ButtonWrapper>
-      </S.Banner>
-    </S.Main>
+    <Slider {...settings}>
+      {bannerList?.data.map((item, idx) => (
+        <div key={item.id}>
+          <img src={item.imagePath} alt={`Banner ${item.id}`} />
+        </div>
+      ))}
+    </Slider>
   );
 };
 
-export default index;
-function setIsButtonClicked(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
+export default SimpleSlider;
