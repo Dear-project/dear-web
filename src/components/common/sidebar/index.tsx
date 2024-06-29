@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -15,51 +15,78 @@ import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
 import Logo from "@/asset/DEAR.svg";
 import { useGetProfileInfo } from "@/queries/profile/query";
+import Modal from "@/components/common/modalBtn";
 
 export const Index = () => {
+  const [modalBtn, setModalBtn] = useState(false);
   // const { selectedItem,  userProfile, handleLogoclick} =
   //   useSidebar();
   const pathname = usePathname();
-  const {data} =useGetProfileInfo();
+  const { data } = useGetProfileInfo();
 
   return (
     <S.Side>
+      {modalBtn && <Modal setModalBtn={setModalBtn} />}
       <Link href={"/"}>
-      <S.Logo>
-        <Image src={Logo} alt="로고"></Image>
-      </S.Logo>
+        <S.Logo>
+          <Image src={Logo} alt="로고"></Image>
+        </S.Logo>
       </Link>
 
       <S.Option>
-        <Link href="/"  style={{ textDecoration: "none", outline: "none" }}>
-          <S.Select isSelected={"/" == pathname ? true : false} >
-            <Image src={"/" == pathname ? Homelight : Home1} alt="메인" width={30} height={30}/>
+        <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
+          <S.Select isSelected={"/" == pathname ? true : false}>
+            <Image
+              src={"/" == pathname ? Homelight : Home1}
+              alt="메인"
+              width={30}
+              height={30}
+            />
             <span>메인</span>
           </S.Select>
         </Link>
 
         <Link href="/" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/chat" == pathname ? true : false}>
-            <Image src={"/chat" == pathname ? Chatlight : Chat} alt="채팅" width={30} height={30} />
+            <Image
+              src={"/chat" == pathname ? Chatlight : Chat}
+              alt="채팅"
+              width={30}
+              height={30}
+            />
             <span>채팅</span>
           </S.Select>
         </Link>
 
         <Link href="/find" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/find" == pathname ? true : false}>
-            <Image src={"/find" == pathname ? Findlight : Find} alt="교수찾기" width={30} height={30} />
+            <Image
+              src={"/find" == pathname ? Findlight : Find}
+              alt="교수찾기"
+              width={30}
+              height={30}
+            />
             <span>교수찾기</span>
           </S.Select>
         </Link>
 
         <Link href="/community" style={{ textDecoration: "none" }}>
-          <S.Select isSelected={"/community" == pathname ? true : false} >
-            <Image src={"/community" == pathname ? Communitylight : Community} alt="커뮤니티 광장" width={30} height={30}/>
+          <S.Select isSelected={"/community" == pathname ? true : false}>
+            <Image
+              src={"/community" == pathname ? Communitylight : Community}
+              alt="커뮤니티 광장"
+              width={30}
+              height={30}
+            />
             <span>커뮤니티 광장</span>
           </S.Select>
         </Link>
       </S.Option>
-      <S.My>
+      <S.My
+        onClick={() => {
+          setModalBtn((prev) => !prev);
+        }}
+      >
         <Image
           src={Profile}
           alt="프로필"
