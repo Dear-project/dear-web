@@ -19,8 +19,10 @@ export const Community = styled.div`
 `;
 
 export const Main = styled.div`
-  width: 1655px;
-  height: 1000px;
+
+  width: 100%;
+  height: 100%;
+
 
   display: flex;
   flex-direction: column;
@@ -28,7 +30,9 @@ export const Main = styled.div`
   justify-content: center;
   align-items: center;
 
-  /* overflow-y: scroll; */
+
+  position: relative;
+
 `;
 
 export const SearchWrap = styled.div`
@@ -85,4 +89,14 @@ export const PostWrap = styled.div`
   gap: 20px;
 
   overflow-y: scroll;
+
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  scrollbar-width: none;
+
+  overflow-x: hidden;
+
 `;
