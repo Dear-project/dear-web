@@ -68,7 +68,7 @@ export const Main = styled.main`
   gap: 20px;
 
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
 
   overflow: scroll;
 `;
@@ -111,7 +111,7 @@ export const ProfessorInfo = styled.div`
 `;
 
 export const ProfessorInfoWrap = styled.div`
-  width: 70%;
+  width: 20%;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -130,26 +130,10 @@ export const ProfessorSubAndSkills = styled.div`
 
     color: #aaaaaa;
   }
-
-  div {
-    width: 50%;
-    height: 100%;
-
-    display: flex;
-
-    span {
-      font-size: 14px;
-      font-weight: 400;
-      color: #787878;
-    }
-  }
 `;
 
 export const BestRecommand = styled.div`
-  width: 20%;
   height: 100%;
 
   display: flex;
-
-  justify-content: flex-end;
 `;

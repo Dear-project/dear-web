@@ -13,8 +13,9 @@ interface Props {
 }
 
 const index = ({ onclick, page }: Props) => {
-  const professorList = useMatching.getProfessorList(page);
-  
+  const { ...professor } = useMatching();
+  const professorList = professor.getProfessorList(page);
+
   return (
     <>
       <S.ProfessorWrap onClick={onclick}>
@@ -23,19 +24,15 @@ const index = ({ onclick, page }: Props) => {
           {professorList?.data.map((item, idx) => (
             <S.ProfessorInfo key={idx}>
               <span>{item.name}</span>
+              <S.BestRecommand>
+                <Image src={BestRecmmand} alt="" width={70} height={30} />
+              </S.BestRecommand>
               <S.ProfessorSubAndSkills>
                 <span>{item.school}</span>
-                <div>
-                  <Image src={Skillbook} alt="" />
-                  <span>{item.major}</span>
-                </div>
               </S.ProfessorSubAndSkills>
             </S.ProfessorInfo>
           ))}
         </S.ProfessorInfoWrap>
-        <S.BestRecommand>
-          <Image src={BestRecmmand} alt="" />
-        </S.BestRecommand>
       </S.ProfessorWrap>
     </>
   );
