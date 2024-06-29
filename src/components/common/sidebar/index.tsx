@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -15,8 +15,10 @@ import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
 import Logo from "@/asset/DEAR.svg";
 import { useGetProfileInfo } from "@/queries/profile/query";
+import Modal from "@/components/common/modalBtn";
 
 export const Index = () => {
+  const [modalBtn, setModalBtn] = useState(false);
   // const { selectedItem,  userProfile, handleLogoclick} =
   //   useSidebar();
   const pathname = usePathname();
@@ -24,6 +26,7 @@ export const Index = () => {
 
   return (
     <S.Side>
+      {modalBtn && <Modal setModalBtn={setModalBtn} />}
       <Link href={"/"}>
         <S.Logo>
           <Image src={Logo} alt="로고"></Image>
@@ -33,6 +36,8 @@ export const Index = () => {
       <S.Option>
         <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
           <S.Select isSelected={"/" == pathname ? true : false}>
+
+
             <Image src={"/" == pathname ? Homelight : Home1} alt="메인" width={30} height={30} />
             <span>메인</span>
           </S.Select>
@@ -40,14 +45,24 @@ export const Index = () => {
 
         <Link href="/chat" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/chat" == pathname ? true : false}>
-            <Image src={"/chat" == pathname ? Chatlight : Chat} alt="채팅" width={30} height={30} />
+            <Image
+              src={"/chat" == pathname ? Chatlight : Chat}
+              alt="채팅"
+              width={30}
+              height={30}
+            />
             <span>채팅</span>
           </S.Select>
         </Link>
 
         <Link href="/find" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/find" == pathname ? true : false}>
-            <Image src={"/find" == pathname ? Findlight : Find} alt="교수찾기" width={30} height={30} />
+            <Image
+              src={"/find" == pathname ? Findlight : Find}
+              alt="교수찾기"
+              width={30}
+              height={30}
+            />
             <span>교수찾기</span>
           </S.Select>
         </Link>
@@ -64,8 +79,21 @@ export const Index = () => {
           </S.Select>
         </Link>
       </S.Option>
-      <S.My>
-        <Image src={Profile} alt="프로필" width={45} height={45} style={{ borderRadius: "100%" }} />
+
+      <S.My
+        onClick={() => {
+          setModalBtn((prev) => !prev);
+        }}
+      >
+        <Image
+          src={Profile}
+          alt="프로필"
+          width={45}
+          height={45}
+          style={{ borderRadius: "100%" }}
+        />
+
+     
         <div>
           <S.Name>{data?.data.name || "홍길동"}</S.Name>
           <S.School>{data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}</S.School>

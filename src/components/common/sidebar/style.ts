@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Side = styled.div`
   margin: 0;
+  z-index: 1;
   position: relative;
   background: var(--White, #fff);
   min-width: 265px;
@@ -45,7 +46,6 @@ export const Option = styled.div`
 
 export const Select = styled.div<{ isSelected: boolean }>`
   background: ${({ isSelected }) => (isSelected ? "#0e2764" : "transparent")};
-  
 
   font-family: Pretendard;
   font-weight: 500;
@@ -62,7 +62,7 @@ export const Select = styled.div<{ isSelected: boolean }>`
     width: 30px;
     height: 30px;
   }
-  span{
+  span {
     font-size: 23px;
     font-weight: 700;
     color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#000000")};
