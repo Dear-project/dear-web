@@ -9,7 +9,7 @@ import {
 import { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { useState } from "react";
+import { useGetCommentById } from "@/queries/community/comment/comment.query";
 
 const usePost = () => {
   const router = useRouter();
@@ -44,12 +44,20 @@ const usePost = () => {
     });
   };
 
+  const getCommentById = (communityId: number) => {
+    const [{ data: commentList }] = useGetCommentById(communityId);
+    if (commentList !== undefined && commentList !== null && commentList.data.length > 0) {
+      return commentList;
+    }
+  };
+
   return {
     writeId,
     GetMyArticles,
     getAllCommunity,
     getCommunityById,
     setWrite,
+    getCommentById,
   };
 };
 

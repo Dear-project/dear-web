@@ -80,7 +80,7 @@ export const CommentWrap = styled.div`
 
   background: white;
 
-  overflow: scroll;
+  /* overflow: scroll; */
 
   &::-webkit-scrollbar {
     display: none;
@@ -95,6 +95,8 @@ export const Comments = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  overflow-y: scroll;
 `;
 
 export const Comment = styled.div`
@@ -103,6 +105,7 @@ export const Comment = styled.div`
 
   padding-left: 1%;
   padding-top: 1%;
+  padding-bottom: 1%;
 
   display: flex;
 

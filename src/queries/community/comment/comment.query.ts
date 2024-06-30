@@ -13,7 +13,7 @@ export const usePostSubComoment = () => {
   return mutation;
 };
 
-export const usegetCommentById = (idParams: number) =>
+export const useGetCommentById = (idParams: number) =>
   useQueries([
     {
       queryKey: [QUERY_KEYS.community.comment.comment],
