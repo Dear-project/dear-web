@@ -1,5 +1,5 @@
 import { GetListParams, PostMajorParams, PostSchoolParams } from "../../repositories/firstLogin/firstLoginRepository";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQueries, useQuery } from "react-query";
 import { AxiosError } from "axios";
 import { QUERY_KEYS } from "../QueryKey";
 import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
@@ -15,20 +15,28 @@ export const usepostMajor = (params: PostMajorParams) => {
   return mutation;
 };
 
-export const useGetList = (params: GetListParams) => {
-  const useGetSchoolList = useQuery<GetSchoolListRespose, AxiosError<GetSchoolListRespose>>({
+// export const useGetSchoolList = (params: GetListParams) =>
+//   useQueries([
+//     {
+//       queryKey: [QUERY_KEYS.school.getSchoolList],
+//       queryFn: () => firstLoginRepositoryImpl.getSchoolList(params),
+//       suspense: true,
+//     },
+//   ]);
+
+export const useGetSchoolList = (params: GetListParams) => {
+  const { data: schoolList } = useQuery({
     queryKey: [QUERY_KEYS.school.getSchoolList],
-    queryFn: async () => firstLoginRepositoryImpl.getSchoolList(params),
-    staleTime: 3600000,
-    refetchInterval: 3600000,
+    queryFn: () => firstLoginRepositoryImpl.getSchoolList(params),
   });
-
-  const useGetMajorList = useQuery<GetSchoolListRespose, AxiosError<GetSchoolListRespose>>({
-    queryKey: [QUERY_KEYS.school.getlMajorList],
-    queryFn: async () => firstLoginRepositoryImpl.getMajorList(params),
-    staleTime: 3600000,
-    refetchInterval: 3600000,
-  });
-
-  return { useGetSchoolList, useGetMajorList };
+  return { schoolList };
 };
+
+export const useGetMajorList = (params: GetListParams) =>
+  useQueries([
+    {
+      queryKey: [QUERY_KEYS.school.getlMajorList],
+      queryFn: () => firstLoginRepositoryImpl.getMajorList(params),
+      suspense: true,
+    },
+  ]);
