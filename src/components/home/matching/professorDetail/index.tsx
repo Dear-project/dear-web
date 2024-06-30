@@ -6,9 +6,11 @@ import Image from "next/image";
 import Avartar from "src/asset/Avatar.svg";
 import BestRecommandImg from "src/asset/BestRecommand.svg";
 import useMatching from "@/hooks/matching/useMatching";
+import { useParams } from "next/navigation";
 
 const index = () => {
   const { ...professor } = useMatching();
+  const { id } = useParams();
   const professorDetailList = professor.getProfessorDetail();
   const schoolInfo =
     professorDetailList?.data.schoolName +
@@ -32,7 +34,7 @@ const index = () => {
               <Image src={BestRecommandImg} alt="최다추천 이미지" width={70} height={30} />
             </div>
           </div>
-          <S.ChatButton>채팅하기</S.ChatButton>
+          <S.ChatButton onClick={() => professor.postMatching(1)}>채팅하기</S.ChatButton>
         </S.ProffesorInfoWrap>
         <S.CarrerAndReviewWrap>
           <S.CarrerWrap>

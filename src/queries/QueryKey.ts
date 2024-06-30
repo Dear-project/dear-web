@@ -1,5 +1,3 @@
-import { profile } from "console";
-
 export const QUERY_KEYS = Object.freeze({
   matching: {
     matching: "/matching",

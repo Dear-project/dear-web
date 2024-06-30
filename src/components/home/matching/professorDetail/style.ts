@@ -5,6 +5,9 @@ export const ProfessorDetailWrap = styled.div`
   width: 100%;
   height: 100vh;
 
+  max-width: 1920px;
+  max-height: 1080px;
+
   display: flex;
   flex-direction: column;
 
@@ -81,10 +84,10 @@ export const ChatButton = styled.button`
 
   background: ${theme.colors.new};
 
-  border-radius: 12px;
+  border-radius: 15px;
 
   padding: 2%;
-  margin-right: 2%;
+  margin-right: 3%;
 
   display: flex;
   font-size: 1.6rem;
