@@ -20,6 +20,7 @@ const Post = ({ page }: Post) => {
   return (
     <>
       {communityList.isFetched && communityList.isSuccess ? (
+        communityList.communityList?.data.length! > 0 &&
         communityList.communityList?.data.map((item, idx) => (
           <S.Post key={idx} onClick={() => router.push(`/community/${item.id}`)}>
             {item.imagePath && !item.imagePath.endsWith(".pdf") ? (
