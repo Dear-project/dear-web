@@ -97,6 +97,10 @@ export const Comments = styled.div`
   flex-direction: column;
 
   overflow-y: scroll;
+
+  p {
+    padding-top: 20px;
+  }
 `;
 
 export const Comment = styled.div`

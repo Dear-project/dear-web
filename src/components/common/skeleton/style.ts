@@ -57,11 +57,15 @@ export const SkeletonDiv = styled.div`
 export const SkeletonName = styled.div`
   width: 350px;
   height: 40px;
+
+  border-radius: 7px;
   ${skeletonAnimtaion};
 `;
 
 export const SkeletonContent = styled.div`
   width: 1030px;
   height: 60px;
+
+  border-radius: 10px;
   ${skeletonAnimtaion};
 `;

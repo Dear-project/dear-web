@@ -13,15 +13,19 @@ const Comment = () => {
     <S.CommentWrap>
       <S.Content style={{ fontSize: "28px", fontWeight: "600" }}>댓글</S.Content>
       <S.Comments>
-        {commentList?.data.map((comment, idx) => (
-          <S.Comment>
-            <Image src={Profile} alt="프로필 이미지" /> {/* 서버의 response가 달리지면 사용자의 프로필 표시 */}
-            <S.CommentContentWrap>
-              <h1>{comment.commentor}</h1>
-              <span>{comment.content}</span>
-            </S.CommentContentWrap>
-          </S.Comment>
-        ))}
+        {commentList?.data ? (
+          commentList?.data.map((comment, idx) => (
+            <S.Comment>
+              <Image src={Profile} alt="프로필 이미지" /> {/* 서버의 response가 달리지면 사용자의 프로필 표시 */}
+              <S.CommentContentWrap>
+                <h1>{comment.commentor}</h1>
+                <span>{comment.content}</span>
+              </S.CommentContentWrap>
+            </S.Comment>
+          ))
+        ) : (
+          <p>아직 등록된 댓글이 없어요.</p>
+        )}
       </S.Comments>
     </S.CommentWrap>
   );
