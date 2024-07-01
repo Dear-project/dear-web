@@ -17,8 +17,11 @@ const usePost = () => {
 
   const mutation = usePostCommunity();
   const getAllCommunity = (page: number) => {
-    const [{ data: communityList }] = useAllGetCommunityQuery(page);
-    return communityList;
+    const [{ data: communityList, isSuccess, isFetched }] = useAllGetCommunityQuery(page);
+    // if (communityList !== undefined && communityList !== null && communityList.data.length > 0) {
+    //   return { communityList };
+    // }
+    return { communityList, isSuccess, isFetched };
   };
 
   const getCommunityById = (id: number) => {
