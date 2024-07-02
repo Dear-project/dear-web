@@ -1,6 +1,7 @@
 import { Response } from "@/types/util/response.type";
 import { ElemType } from "@/constants/elemType/elemType.constants";
 
+
 export interface GetSchoolList {
   schoolType: string;
   link: string;

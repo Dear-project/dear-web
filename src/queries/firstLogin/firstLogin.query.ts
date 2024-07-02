@@ -5,13 +5,13 @@ import { QUERY_KEYS } from "../QueryKey";
 import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
 import { GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
 
-export const usePostSchool = (params: PostSchoolParams) => {
-  const mutation = useMutation(() => firstLoginRepositoryImpl.postSchool(params));
+export const usePostSchool = () => {
+  const mutation = useMutation((params: PostSchoolParams) => firstLoginRepositoryImpl.postSchool(params));
   return mutation;
 };
 
-export const usepostMajor = (params: PostMajorParams) => {
-  const mutation = useMutation(() => firstLoginRepositoryImpl.postMajor(params));
+export const usepostMajor = () => {
+  const mutation = useMutation((params: PostMajorParams) => firstLoginRepositoryImpl.postMajor(params));
   return mutation;
 };
 
@@ -29,7 +29,7 @@ export const useGetSchoolList = (params: GetListParams) => {
     queryKey: [QUERY_KEYS.school.getSchoolList],
     queryFn: () => firstLoginRepositoryImpl.getSchoolList(params),
   });
-  return { schoolList };
+  return schoolList;
 };
 
 export const useGetMajorList = (params: GetListParams) =>

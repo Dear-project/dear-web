@@ -5,9 +5,10 @@ import Image from "next/image";
 import DropDown from "@/asset/DropDown.svg";
 import { ElemType } from "@/constants/elemType/elemType.constants";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
+import { useFirst } from "../../../hooks/firstLogin/useFirstLogin";
 
 const SelectSchoolModal = () => {
-  const [schoolList, setSchoolList] = useState<GetSchoolListRespose[]>([]);
+  const { ...first } = useFirst();
   return (
     <S.SelectSchoolModalWrap>
       <S.Main>
@@ -34,7 +35,7 @@ const SelectSchoolModal = () => {
           </S.SchoolTypeSelectionWrap>
           <S.SchoolSelectionWrap>
             <div>
-              <input placeholder="학교를 검색하세요." name="keyword" />
+              <input placeholder="학교를 검색하세요." onChange={first.searchSchoolName} value={first.searchName} />
               <Image src={Search} alt="검색 돋보기" width={20} height={20} />
             </div>
             <S.SchoolWrap>
