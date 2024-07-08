@@ -43,21 +43,20 @@ export const SelectWrap = styled.div`
   justify-content: space-around;
 `;
 
-export const SchoolTypeSelectionWrap = styled.div`
+export const SchoolTypeSelectionWrap = styled.div<{ $isclicked: string }>`
   width: 40%;
   height: 70%;
 
-  border: 1px solid #c5d0da;
-
+  border: ${({ $isclicked }) => ($isclicked === "true" ? "none" : "1px solid #c5d0da")};
   border-radius: 16px;
-
-  border-collapse: collapse;
 
   div {
     width: 98%;
     height: 30%;
 
-    border-bottom: 1px solid #c5d0da;
+    border: ${({ $isclicked }) => ($isclicked === "true" ? "1px solid #c5d0da" : "none")};
+    border-bottom: ${({ $isclicked }) => ($isclicked === "true" ? "1px solid #c5d0da" : "none")};
+
     border-radius: 16px;
 
     display: flex;
@@ -71,13 +70,13 @@ export const SchoolTypeSelectionWrap = styled.div`
   }
 `;
 
-export const RadioButtonBox = styled.div`
+export const RadioButtonBox = styled.div<{ $isvisible: string }>`
   width: 98% !important;
   height: 70% !important;
 
   border: 1px solid #c5d0da;
 
-  display: flex;
+  display: ${({ $isvisible }) => ($isvisible === "true" ? "flex" : "none")} !important;
   flex-direction: column;
 
   div {
@@ -94,80 +93,79 @@ export const RadioButtonBox = styled.div`
 export const SchoolSelectionWrap = styled.div`
   width: 40%;
   height: 100%;
+`;
 
-  div:nth-child(1) {
-    width: 100%;
-    height: 20%;
-    border: 1px solid #c5d0da;
-    border-radius: 16px;
+export const SearchWrap = styled.div`
+  width: 100%;
+  height: 20%;
+  border: 1px solid #c5d0da;
+  border-radius: 16px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    input {
-      width: 80%;
-      height: 100%;
+  input {
+    width: 80%;
+    height: 100%;
 
-      border: none;
-      padding-left: 3%;
+    border: none;
+    padding-left: 3%;
 
-      color: ${theme.colors.gray600};
-      font-size: 17px;
+    color: ${theme.colors.gray600};
+    font-size: 17px;
 
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
     }
+  }
 
-    img {
-      cursor: pointer;
-    }
+  img {
+    cursor: pointer;
   }
 `;
 
 export const SchoolWrap = styled.div`
   width: 100%;
-  height: 80%;
+  height: 90%;
 
   display: flex;
   flex-direction: column;
 
   justify-content: space-evenly;
   padding-top: 5%;
-  padding-left: 5%;
 
   overflow-y: scroll;
 
   gap: 20px;
+`;
 
-  div {
-    width: 100%;
-    height: 20%;
+export const SchoolList = styled.div<{ $isclicked: string }>`
+  width: 90%;
+  height: 20%;
 
+  display: flex;
+  border-radius: 12px;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  border: none;
+  background: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.gray500 : "none")};
+
+  span {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    border: none !important;
-    border-radius: 0 !important;
+    align-self: flex-start;
 
-    padding-left: 2%;
+    &:nth-child(1) {
+      color: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.white : theme.colors.gray600)};
+      font-size: 18px;
+      font-weight: ${theme.fontWeight.medium};
+    }
 
-    span {
-      display: flex;
-      align-self: flex-start;
-
-      &:nth-child(1) {
-        color: ${theme.colors.gray600};
-        font-size: 18px;
-        font-weight: ${theme.fontWeight.medium};
-      }
-
-      &:nth-child(2) {
-        color: ${theme.colors.gray600};
-        font-size: 14px;
-        font-weight: ${theme.fontWeight.light};
-      }
+    &:nth-child(2) {
+      color: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.white : theme.colors.gray600)};
+      font-size: 14px;
+      font-weight: ${theme.fontWeight.light};
     }
   }
 `;
@@ -183,4 +181,6 @@ export const NextButton = styled.button`
 
   border: none;
   border-radius: 12px;
+
+  cursor: pointer;
 `;

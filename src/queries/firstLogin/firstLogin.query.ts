@@ -15,21 +15,9 @@ export const usepostMajor = () => {
   return mutation;
 };
 
-// export const useGetSchoolList = (params: GetListParams) =>
-//   useQueries([
-//     {
-//       queryKey: [QUERY_KEYS.school.getSchoolList],
-//       queryFn: () => firstLoginRepositoryImpl.getSchoolList(params),
-//       suspense: true,
-//     },
-//   ]);
-
-export const useGetSchoolList = (params: GetListParams) => {
-  const { data: schoolList } = useQuery({
-    queryKey: [QUERY_KEYS.school.getSchoolList],
-    queryFn: () => firstLoginRepositoryImpl.getSchoolList(params),
-  });
-  return schoolList;
+export const useGetSchoolList = () => {
+  const muation = useMutation((params: GetListParams) => firstLoginRepositoryImpl.getSchoolList(params));
+  return muation;
 };
 
 export const useGetMajorList = (params: GetListParams) =>
