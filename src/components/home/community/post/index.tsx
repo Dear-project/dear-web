@@ -4,7 +4,9 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import usePost from "@/hooks/community/post/usePost";
+
 import DefaultPostImg from "@/asset/DefaultPostImg.svg";
+
 import { useRouter } from "next/navigation";
 import { convertDate } from "@/utils/transform/date/convertDate";
 
@@ -16,6 +18,7 @@ const Post = ({ page }: Post) => {
   const { ...post } = usePost();
   const router = useRouter();
   const communityList = post.getAllCommunity(page);
+
 
   return (
     <>
@@ -33,6 +36,7 @@ const Post = ({ page }: Post) => {
           </S.ContentWrap>
         </S.Post>
       ))}
+
     </>
   );
 };

@@ -28,6 +28,11 @@ const usePost = () => {
     return communityByIdList;
   };
 
+  const getCommunityById = (id: number) => {
+    const [{ data: communityByIdList }] = useGetCommunityById(id);
+    return communityByIdList;
+  };
+
   const GetMyArticles = (page: number) => {
     const [{ data: myArticlesData }] = useGetMyArticles(page);
     return myArticlesData;
