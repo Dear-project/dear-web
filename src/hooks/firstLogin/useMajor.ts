@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetMajorList } from "../../queries/firstLogin/firstLogin.query";
+import { useGetMajorList, usePostMajor } from "../../queries/firstLogin/firstLogin.query";
 import { ELEM_TYPE } from "../../constants/elemType/elemType.constants";
 import { MAJOR_TYPE } from "src/constants/majorType/majorType.constants";
 import { GetMajorListReposne } from "src/types/firstLogin/firstLogin.types";
@@ -12,6 +12,7 @@ const useMajor = () => {
   const [majorList, setMajorList] = useState<GetMajorListReposne>();
 
   const getMajorListMuataion = useGetMajorList();
+  const postMajorMutation = usePostMajor();
 
   const handleSubject = (item: MAJOR_TYPE) => {
     setSubjuect(item);
@@ -34,10 +35,27 @@ const useMajor = () => {
     });
   };
 
+  const onSubmit = (req: string, lclass: string, mclass: string) => {
+    const params = {
+      majorReq: req,
+      lclass: lclass,
+      mclass: mclass,
+    };
+    postMajorMutation.mutate(params, {
+      onSuccess: () => {
+        dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
+      },
+      onError: () => {
+        dearToast.errorToast("알 수 없는 에러가 발생하였습니다.");
+      },
+    });
+  };
+
   return {
     majorList,
     handleSubject,
     searchMajorList,
+    onSubmit,
   };
 };
 

@@ -137,6 +137,7 @@ export const MajorListWrap = styled.div`
   justify-content: center;
 
   padding-left: 2%;
+  padding-top: 3%;
   column-gap: 70px;
 `;
 
