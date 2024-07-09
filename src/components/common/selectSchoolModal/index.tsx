@@ -5,16 +5,16 @@ import Image from "next/image";
 import DropDown from "@/asset/DropDown.svg";
 import { ELEM_TYPE_LIST } from "@/constants/elemType/elemType.constants";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
-import { useFirst } from "../../../hooks/firstLogin/useFirstLogin";
+import { useSchool } from "../../../hooks/firstLogin/useSchool";
 import { useGetSchoolList } from "@/queries/firstLogin/firstLogin.query";
 import convertElemListType from "@/utils/transform/elemList/convertElemListType";
 
 const SelectSchoolModal = () => {
-  const { ...first } = useFirst();
+  const { ...first } = useSchool();
 
   return (
     <>
-      {first.isNext === false ? (
+      {first.isNext === true ? (
         <S.SelectSchoolModalWrap>
           <S.Main>
             <S.SelectWrap>

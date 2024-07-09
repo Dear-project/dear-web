@@ -1,16 +1,18 @@
-import { GetListParams, PostMajorParams, PostSchoolParams } from "../../repositories/firstLogin/firstLoginRepository";
-import { useMutation, useQueries, useQuery } from "react-query";
-import { AxiosError } from "axios";
-import { QUERY_KEYS } from "../QueryKey";
+import {
+  GetListParams,
+  GetMajorListParams,
+  PostMajorParams,
+  PostSchoolParams,
+} from "../../repositories/firstLogin/firstLoginRepository";
+import { useMutation } from "react-query";
 import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
-import { GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
 
 export const usePostSchool = () => {
   const mutation = useMutation((params: PostSchoolParams) => firstLoginRepositoryImpl.postSchool(params));
   return mutation;
 };
 
-export const usepostMajor = () => {
+export const usePostMajor = () => {
   const mutation = useMutation((params: PostMajorParams) => firstLoginRepositoryImpl.postMajor(params));
   return mutation;
 };
@@ -20,11 +22,7 @@ export const useGetSchoolList = () => {
   return muation;
 };
 
-export const useGetMajorList = (params: GetListParams) =>
-  useQueries([
-    {
-      queryKey: [QUERY_KEYS.school.getlMajorList],
-      queryFn: () => firstLoginRepositoryImpl.getMajorList(params),
-      suspense: true,
-    },
-  ]);
+export const useGetMajorList = () => {
+  const mutation = useMutation((params: GetMajorListParams) => firstLoginRepositoryImpl.getMajorList(params));
+  return mutation;
+};

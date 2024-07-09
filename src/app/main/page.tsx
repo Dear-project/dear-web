@@ -4,6 +4,7 @@ import * as S from "./style";
 import Banner from "@/components/common/banner";
 import Find from "@/components/home/mainPageProfessor";
 import SelectSchoolModal from "src/components/common/selectSchoolModal/index";
+import SelectMajorModal from "@/components/common/selectMajorModal/index";
 
 const index = () => {
   return (
@@ -13,6 +14,7 @@ const index = () => {
         <Find />
       </S.Page>
       <SelectSchoolModal />
+      <SelectMajorModal />
     </>
   );
 };

@@ -6,11 +6,11 @@ import { ELEM_TYPE } from "../../constants/elemType/elemType.constants";
 import convertElemList from "@/utils/transform/elemList/convertElemListType";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 
-export const useFirst = () => {
+export const useSchool = () => {
   const [seq, setSeq] = useState<string>("");
   const [schoolName, setSchoolName] = useState<string>("");
   const [searchName, setSearchName] = useState<string>("");
-  const [gubunType, setGubunType] = useState<ELEM_TYPE>();
+  const [gubunType, setGubunType] = useState<ELEM_TYPE>("ELEM_LIST");
   const [schoolList, setSchoolList] = useState<GetSchoolListRespose>();
   const [isDropDown, setIsDropDown] = useState<boolean>(false);
   const [isNext, setIsNext] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import { GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
+import { GetMajorListReposne, GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
 import { FirstLoginRepository, GetListParams, PostMajorParams, PostSchoolParams } from "./firstLoginRepository";
 import { dearV1Axios } from "@/libs/axios/customAxios";
 
@@ -17,7 +17,7 @@ class FirstLoginRepositoryImpl implements FirstLoginRepository {
     return data;
   }
 
-  public async getMajorList(majorRequest: GetListParams): Promise<GetSchoolListRespose> {
+  public async getMajorList(majorRequest: GetListParams): Promise<GetMajorListReposne> {
     const { gubunType, keyword } = majorRequest;
     const { data } = await dearV1Axios.get(`/school/major/list?gubunType=${gubunType}&keyword=${keyword}`);
     return data;

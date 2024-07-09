@@ -1,6 +1,5 @@
 import { theme } from "src/styles/theme";
 import styled from "styled-components";
-import Checked from "@/asset/checked.svg";
 
 export const SelectSchoolModalWrap = styled.div`
   width: 100%;
