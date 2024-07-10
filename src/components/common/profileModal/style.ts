@@ -109,18 +109,7 @@ export const Label = styled.label`
 export const InputImg = styled.input`
   display: none;
 `;
-export const ChangeDefultImg = styled.div`
-  display: flex;
-  font-size: 1rem;
-  height: 30px;
-  padding: 0px 10px;
-  border-radius: 10px;
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: rgb(238, 238, 238);
-  margin: 10px 0px;
-  color: #000;
-`;
+
 export const ChangeInput = styled.div`
   display: flex;
   width: 700px;
@@ -130,7 +119,7 @@ export const ChangeInput = styled.div`
 `;
 export const InputText = styled.p`
   color: var(--Black, #000);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 `;
 export const InputBox = styled.div`
@@ -161,31 +150,57 @@ export const SpanChangeInput = styled.span`
 export const TextBox = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 390px;
+  gap: 300px;
   -webkit-box-pack: justify;
   justify-content: space-between;
 `;
 
+export const Input = styled.input`
+  color: var(--Black, #000);
+  font-size: 18px;
+  font-weight: 700;
+  width: 1000px;
+`;
 export const FixBtn = styled.button`
   width: 100px;
-  height: 50px;
+  height: 40px;
   border-radius: 10px;
   border: none;
   background: var(--Gray100, #f4f5f9);
   font-size: 18px;
   font-weight: 600;
+  column-gap: 10px;
   color: #000;
   :hover&& {
     cursor: pointer;
   }
 `;
+
+export const PasswordBox = styled.div`
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: var(--Gray100, #f4f5f9);
+  padding-left: 20px;
+  border-radius: 10px;
+`;
+
+export const PasswordInput = styled.input`
+  width: 300px;
+  height: 30px;
+  font-size: 18px;
+  background: none;
+`;
+
 export const FixEnd = styled.button`
   display: flex;
-  padding: 10px 15px;
-  border-radius: 50px;
+  padding: 10px 25px;
+  border-radius: 10px;
   background: var(--primary-900, #708fff);
   color: rgb(255, 255, 255);
-  font-size: 1.1rem;
+  font-size: 18px;
   width: min-content;
   white-space: nowrap;
   margin-top: 15px;

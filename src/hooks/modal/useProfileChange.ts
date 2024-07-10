@@ -9,32 +9,11 @@ import {
 import { dearV1Axios } from "../../libs/axios/customAxios";
 import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
 const useProfileChange = () => {
-  const [UserData, serUserData] = useState<UserProfile>({
-    id: 0,
-    email: "",
-    name: "",
-    role: "",
-    schoolName: "",
-    introduce: "",
-    img: "",
-    stsMessage: "",
-    lclass: "",
-    mclass: "",
-  });
   const [image, setImage] = useState<string[]>([]);
   const [passwordData, setPasswordData] = useState<PasswordDataType>({
     oldPassword: "",
     newPassword: "",
   });
-
-  const handleProfileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value, name } = e.target;
-      serUserData((prev) => ({ ...prev, [name]: value }));
-    },
-    [serUserData]
-  );
-
   const handlePasswordChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
@@ -55,6 +34,7 @@ const useProfileChange = () => {
 
   const postImageChange = usePostProfileImage();
   const formData = new FormData();
+
   const changeProfileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files: FileList | null = e.target.files;
     if (!files) return;
@@ -73,10 +53,12 @@ const useProfileChange = () => {
     fileArray.forEach((file) => formData.append("image", file));
 
     const params = {
-      image: formData.get("image")!,
+      image: formData.get("image"),
     };
 
-    postImageChange.mutate(params, {
+    console.log(formData.get("image"));
+
+    postImageChange.mutate(formData.get("image"), {
       onSuccess: () => {
         dearToast.sucessToast("이미지 변경에 성공하였습니다.");
       },
@@ -89,8 +71,7 @@ const useProfileChange = () => {
   return {
     passwordData,
     image,
-    UserData,
-    handleProfileChange,
+    changeProfileImage,
     handlePasswordChange,
   };
 };

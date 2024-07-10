@@ -9,10 +9,25 @@ export interface UserProfile {
   role: string;
   schoolName: string;
   introduce: string;
-  img: string;
+  imgPath: string;
   stsMessage: string;
   lclass: string;
   mclass: string;
+}
+
+export interface ProfileType {
+  data: {
+    id: number;
+    email: string;
+    name: string;
+    role: string;
+    schoolName: string;
+    introduce: string;
+    img: string;
+    stsMessage: string;
+    lclass: string;
+    mclass: string;
+  };
 }
 
 export interface PasswordDataType {
