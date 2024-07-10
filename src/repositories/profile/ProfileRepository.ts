@@ -1,6 +1,6 @@
-import { UserProfile } from "@/types/profile/profile.type";
+import { ProfileType, UserProfile } from "@/types/profile/profile.type";
 export interface ProfileRepository {
-  getProfileInfo(): Promise<UserProfile>;
+  getProfileInfo(): Promise<ProfileType>;
   postSchoolChange(changeParams: SchoolChangeParams): Promise<void>;
   postMajorChange(changeParams: MajorChangeParams): Promise<void>;
   postProfileImage(imageParams: ImageChangeParams): Promise<void>;
@@ -16,7 +16,7 @@ export interface MajorChangeParams {
 }
 
 export interface ImageChangeParams {
-  image: FormDataEntryValue;
+  image: FormDataEntryValue | string;
 }
 
 export interface PassswrodChangeParams {

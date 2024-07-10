@@ -36,9 +36,12 @@ export const Index = () => {
       <S.Option>
         <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
           <S.Select isSelected={"/" == pathname ? true : false}>
-
-
-            <Image src={"/" == pathname ? Homelight : Home1} alt="메인" width={30} height={30} />
+            <Image
+              src={"/" == pathname ? Homelight : Home1}
+              alt="메인"
+              width={30}
+              height={30}
+            />
             <span>메인</span>
           </S.Select>
         </Link>
@@ -93,10 +96,11 @@ export const Index = () => {
           style={{ borderRadius: "100%" }}
         />
 
-     
         <div>
           <S.Name>{data?.data.name || "홍길동"}</S.Name>
-          <S.School>{data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}</S.School>
+          <S.School>
+            {data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}
+          </S.School>
         </div>
       </S.My>
     </S.Side>

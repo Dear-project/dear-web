@@ -6,10 +6,10 @@ import {
   ImageChangeParams,
   PassswrodChangeParams,
 } from "./ProfileRepository";
-import { UserProfile } from "@/types/profile/profile.type";
+import { ProfileType, UserProfile } from "@/types/profile/profile.type";
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  public async getProfileInfo(): Promise<UserProfile> {
+  public async getProfileInfo(): Promise<ProfileType> {
     const { data } = await dearV1Axios.get("/profile");
     return data;
   }
