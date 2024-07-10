@@ -10,6 +10,8 @@ export const layout = styled.div`
   -webkit-box-align: center;
   margin-left: 5rem;
   margin-bottom: 1rem;
+  top: 87%;
+  left: 7%;
 `;
 export const Boxlayout = styled.div`
   margin-left: 10%;

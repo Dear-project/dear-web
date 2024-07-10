@@ -1,4 +1,25 @@
-import { ProfileType } from "@/types/profile/profile.type";
+import { UserProfile } from "@/types/profile/profile.type";
 export interface ProfileRepository {
-  getProfileInfo(): Promise<ProfileType>;
+  getProfileInfo(): Promise<UserProfile>;
+  postSchoolChange(changeParams: SchoolChangeParams): Promise<void>;
+  postMajorChange(changeParams: MajorChangeParams): Promise<void>;
+  postProfileImage(imageParams: ImageChangeParams): Promise<void>;
+  patchPassword(passwordParams: PassswrodChangeParams): Promise<void>;
+}
+
+export interface SchoolChangeParams {
+  school: string;
+}
+
+export interface MajorChangeParams {
+  major: string;
+}
+
+export interface ImageChangeParams {
+  image: FormDataEntryValue;
+}
+
+export interface PassswrodChangeParams {
+  oldPassword: string;
+  newPassword: string;
 }

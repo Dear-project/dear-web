@@ -14,6 +14,10 @@ export const QUERY_KEYS = Object.freeze({
   },
   profile: {
     getProfile: "/profile",
+    postSchoolChange: "",
+    postMajorChange: "",
+    postProfileImage: "",
+    patchPassword: "/profile/password",
   },
   school: {
     postSchool: "/school",
