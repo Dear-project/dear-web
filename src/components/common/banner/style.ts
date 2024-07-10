@@ -15,7 +15,7 @@ export const Slide = styled.div`
 
 export const StyledImageWrapper = styled.div`
   width: 100%;
-  height: 20vh;
+  height: 150px;
   position: relative;
   border-radius: 15px;
   overflow: hidden;
