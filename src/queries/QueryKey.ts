@@ -1,5 +1,3 @@
-import { profile } from "console";
-
 export const QUERY_KEYS = Object.freeze({
   matching: {
     matching: "/matching",
@@ -16,5 +14,13 @@ export const QUERY_KEYS = Object.freeze({
   },
   profile: {
     getProfile: "/profile",
+  },
+  school: {
+    postSchool: "/school",
+    getSchoolList: "/school/list",
+  },
+  major: {
+    major: "/major",
+    getMajorList: "/major/list",
   },
 });

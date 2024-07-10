@@ -4,7 +4,9 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import usePost from "@/hooks/community/post/usePost";
+
 import DefaultPostImg from "@/asset/DefaultPostImg.svg";
+
 import { useRouter } from "next/navigation";
 import { convertDate } from "@/utils/transform/date/convertDate";
 import Skeleton from "@/components/common/skeleton";
@@ -38,7 +40,6 @@ const Post = ({ page }: Post) => {
       ) : (
         <Skeleton height={130} />
       )}
-      {/*  */}
     </>
   );
 };

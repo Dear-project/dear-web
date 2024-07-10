@@ -1,19 +1,20 @@
 import styled from "styled-components";
 
 export const layout = styled.div`
-  width: 100%;
-  height: 100vh;
   position: fixed;
-  /* z-index: 3; */
+  z-index: 3;
   display: flex;
   -webkit-box-pack: center;
+  justify-content: space-between;
+  align-items: flex-end;
   -webkit-box-align: center;
+  margin-left: 5rem;
+  margin-bottom: 1rem;
 `;
-
 export const Boxlayout = styled.div`
-  position: fixed;
-  top: 85%;
-  left: 10%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  padding-left: 10%;
   width: 150px;
   height: 70px;
   border-radius: var(--Small, 4px);
