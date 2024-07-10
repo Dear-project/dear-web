@@ -9,26 +9,36 @@ import { useMutation } from "react-query";
 import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
 
 export const usePostSchool = () => {
-  const mutation = useMutation((params: PostSchoolParams) => firstLoginRepositoryImpl.postSchool(params));
+  const mutation = useMutation((registerSchoolBody: PostSchoolParams) =>
+    firstLoginRepositoryImpl.postSchool(registerSchoolBody),
+  );
   return mutation;
 };
 
 export const usePostMajor = () => {
-  const mutation = useMutation((params: PostMajorParams) => firstLoginRepositoryImpl.postMajor(params));
+  const mutation = useMutation((registerMajorBody: PostMajorParams) =>
+    firstLoginRepositoryImpl.postMajor(registerMajorBody),
+  );
   return mutation;
 };
 
 export const useGetSchoolList = () => {
-  const muation = useMutation((params: GetListParams) => firstLoginRepositoryImpl.getSchoolList(params));
+  const muation = useMutation((schoolListParams: GetListParams) =>
+    firstLoginRepositoryImpl.getSchoolList(schoolListParams),
+  );
   return muation;
 };
 
 export const useGetMajorList = () => {
-  const mutation = useMutation((params: GetMajorListParams) => firstLoginRepositoryImpl.getMajorList(params));
+  const mutation = useMutation((majorListParams: GetMajorListParams) =>
+    firstLoginRepositoryImpl.getMajorList(majorListParams),
+  );
   return mutation;
 };
 
 export const useGetMajorBySubject = () => {
-  const muation = useMutation((params: getMajorParams) => firstLoginRepositoryImpl.getMajorbySubject(params));
+  const muation = useMutation((majorBySubjectParams: getMajorParams) =>
+    firstLoginRepositoryImpl.getMajorbySubject(majorBySubjectParams),
+  );
   return muation;
 };
