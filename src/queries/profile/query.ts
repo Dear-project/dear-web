@@ -1,12 +1,15 @@
 import { useMutation, useQuery } from "react-query";
 import { AxiosError } from "axios";
-import { ProfileType } from "../../types/profile/profileModel.types";
+import { UserProfile } from "../../types/profile/profile.type";
 import ProfileRepositoryImpl from "../../repositories/profile/ProfileRepositoryImpl";
 import { QUERY_KEYS } from "../QueryKey";
-import { PassswrodChangeParams } from "src";
+import {
+  PassswrodChangeParams,
+  ImageChangeParams,
+} from "@/repositories/profile/ProfileRepository";
 
 export const useGetProfileInfo = () => {
-  const useGetprofile = useQuery<ProfileType, AxiosError<ProfileType>>({
+  const useGetprofile = useQuery<UserProfile, AxiosError<UserProfile>>({
     queryKey: [QUERY_KEYS.profile.getProfile],
     queryFn: async () => ProfileRepositoryImpl.getProfileInfo(),
     staleTime: 3600000, // 1시간
@@ -18,6 +21,13 @@ export const useGetProfileInfo = () => {
 export const usePatchPassword = () => {
   const mutation = useMutation((passwordParams: PassswrodChangeParams) =>
     ProfileRepositoryImpl.patchPassword(passwordParams)
+  );
+  return mutation;
+};
+
+export const usePostProfileImage = () => {
+  const mutation = useMutation((imageChangeParams: ImageChangeParams) =>
+    ProfileRepositoryImpl.postProfileImage(imageChangeParams)
   );
   return mutation;
 };

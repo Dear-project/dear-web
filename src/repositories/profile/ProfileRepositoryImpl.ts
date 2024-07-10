@@ -1,15 +1,15 @@
 import { dearV1Axios } from "@/libs/axios/customAxios";
 import {
-  ImageChangeParams,
-  MajorChangeParams,
-  PassswrodChangeParams,
   ProfileRepository,
   SchoolChangeParams,
+  MajorChangeParams,
+  ImageChangeParams,
+  PassswrodChangeParams,
 } from "./ProfileRepository";
-import { ProfileType } from "@/types/profile/profileModel.types";
+import { UserProfile } from "@/types/profile/profile.type";
 
 class ProfileRepositoryImpl implements ProfileRepository {
-  public async getProfileInfo(): Promise<ProfileType> {
+  public async getProfileInfo(): Promise<UserProfile> {
     const { data } = await dearV1Axios.get("/profile");
     return data;
   }
@@ -24,7 +24,8 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return;
   }
   public async postProfileImage(imageParams: ImageChangeParams): Promise<void> {
-    return;
+    const { data } = await dearV1Axios.post("/profile/image", imageParams);
+    return data;
   }
   public async patchPassword(
     passwordParams: PassswrodChangeParams

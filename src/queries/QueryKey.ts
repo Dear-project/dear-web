@@ -8,6 +8,9 @@ export const QUERY_KEYS = Object.freeze({
   community: {
     community: "community",
     getMyCommunity: "/community/my-articles",
+    comment: {
+      comment: "comment",
+    },
   },
   profile: {
     getProfile: "/profile",
@@ -18,8 +21,13 @@ export const QUERY_KEYS = Object.freeze({
   },
   school: {
     postSchool: "/school",
-    postMajor: "/school/major",
     getSchoolList: "/school/list",
-    getlMajorList: "/school/major/list",
+  },
+  major: {
+    major: "/major",
+    getMajorList: "/major/list",
+  },
+  banner: {
+    getAllbanner: "/banner",
   },
 });

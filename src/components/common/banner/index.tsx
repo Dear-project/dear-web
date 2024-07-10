@@ -1,35 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
+import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import useBanner from "@/hooks/banner/useBanner";
+import Image from "next/image";
 import * as S from "./style";
 
-const index = () => {
-  // const handleButtonClick = () => {
-  //   // 버튼 클릭 시 실행될 로직 작성
-  //   console.log("버튼이 클릭되었습니다.");
-  //   // 예를 들어, 상태 변경 로직 추가
-  //   setIsButtonClicked(true);
-  //   // 다른 컴포넌트로 이동하는 로직 추가
-  //   navigator("/next-page");
-  // };
+const SimpleSlider = () => {
+  const { getAllbanner } = useBanner();
+  const bannerList = getAllbanner();
+
+  useEffect(() => {
+    console.log(bannerList); // 데이터 확인
+  }, [bannerList]);
+
+  const settings: Settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 20000,
+  };
 
   return (
-    <S.Main>
-      <S.Banner>
-        <S.Textbunddle>
-          <S.Text>#DEAR. 사용 가이드</S.Text>
-          <S.Text1>DEAR.에서 유용한 정보</S.Text1>
-          <S.Text1>얻는 방법</S.Text1>
-        </S.Textbunddle>
-        <S.ButtonWrapper>
-          {/* <S.ButtonImage /> 알아서 고치세요 */}
-          <S.ButtonText>확인하기</S.ButtonText>
-          <S.Button />
-        </S.ButtonWrapper>
-      </S.Banner>
-    </S.Main>
+    <S.SliderContainer>
+      <Slider {...settings}>
+        {bannerList?.data.map((item) => (
+          <S.Slide key={item.id}>
+            <S.StyledImageWrapper>
+              <Image
+                src={item.imagePath}
+                alt={`Banner ${item.id}`}
+                layout="fill"
+                objectFit="fill"
+              />
+            </S.StyledImageWrapper>
+          </S.Slide>
+        ))}
+      </Slider>
+    </S.SliderContainer>
   );
 };
 
-export default index;
-function setIsButtonClicked(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
+export default SimpleSlider;

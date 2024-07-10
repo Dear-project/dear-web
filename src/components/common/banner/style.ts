@@ -1,6 +1,28 @@
 import styled from "styled-components";
-import Image from "next/image";
-import Image31 from "public/Ellipse 31.png";
+
+export const SliderContainer = styled.div`
+  width: 100%;
+  height: 20vh;
+  max-width: 900px;
+  margin: 2vw auto 0 auto;
+`;
+
+export const Slide = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledImageWrapper = styled.div`
+  width: 100%;
+  height: 150px;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  img {
+    object-fit: fill;
+  }
+`;
 
 export const Main = styled.div`
   position: relative;
@@ -52,13 +74,6 @@ export const ButtonWrapper = styled.div`
   margin-right: 8%;
   margin-top: 8%;
 `;
-
-export const ButtonImage = styled(Image).attrs({
-  src: Image31,
-  alt: "Icon",
-  width: 100,
-  height: 70,
-})``;
 
 export const ButtonText = styled.div`
   position: absolute;

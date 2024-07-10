@@ -13,92 +13,16 @@ import Profile from "public/svgs/Avatar.svg";
 import Photo from "public/svgs/photo.svg";
 import Close from "public/svgs/close.svg";
 import useProfileChange from "@/hooks/modal/useProfileChange";
+import { useGetProfileInfo } from "@/queries/profile/query";
 
 interface ProfileModalProps {
   setModal: Dispatch<SetStateAction<boolean>>;
   modalRef?: RefObject<HTMLDivElement>;
 }
 
-const processMarkdown = async (markdown: string) => {
-  const processedHtml = await remark().use(html).process(markdown);
-  return processedHtml.toString();
-};
-
-const maskPassword = (password: string) => {
-  return "*".repeat(password.length);
-};
-
-const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
-  const [isEditing, setIsEditing] = useState<
-    "school-and-department" | "password" | "specialty" | null
-  >(null);
-  const [schoolAndDepartment, setSchoolAndDepartment] =
-    useState("학교 및 학과");
-  const [password, setPassword] = useState("비밀번호");
-  const [specialty, setSpecialty] = useState("전문과목");
-
-  const [schoolAndDepartmentHtml, setSchoolAndDepartmentHtml] = useState("");
-  const [passwordHtml, setPasswordHtml] = useState("");
-  const [specialtyHtml, setSpecialtyHtml] = useState("");
-  const [profileImage, setProfileImage] = useState<File | null>(null);
-
-  useEffect(() => {
-    const updateMarkdown = async () => {
-      const schoolHtml = await processMarkdown(schoolAndDepartment);
-      setSchoolAndDepartmentHtml(schoolHtml);
-
-      const pwdHtml = maskPassword(password); // 마스킹된 비밀번호 처리
-      setPasswordHtml(pwdHtml);
-
-      const specialtyHtml = await processMarkdown(specialty);
-      setSpecialtyHtml(specialtyHtml);
-    };
-
-    updateMarkdown();
-  }, [schoolAndDepartment, password, specialty]);
-
-  const handleEditClick = (
-    type: "school-and-department" | "password" | "specialty"
-  ) => {
-    setIsEditing(type);
-  };
-
-  const handleMarkdownSave = async () => {
-    const schoolHtml = await processMarkdown(schoolAndDepartment);
-    setSchoolAndDepartmentHtml(schoolHtml);
-
-    const pwdHtml = maskPassword(password); // 마스킹된 비밀번호 처리
-    setPasswordHtml(pwdHtml);
-
-    const specialtyHtml = await processMarkdown(specialty);
-    setSpecialtyHtml(specialtyHtml);
-
-    setIsEditing(null);
-  };
-  
-  const { updateProfile } = useProfileChange();
-
-  const handleSaveChanges = async () => {
-    await updateProfile({
-      schoolAndDepartment,
-      password,
-      specialty,
-      profileImage,
-    });
-    setModal(false);
-  };
-
-  const handleProfileImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (event.target.files && event.target.files[0]) {
-      setProfileImage(event.target.files[0]);
-    }
-  };
-
-  const handleResetProfileImage = () => {
-    setProfileImage(null);
-  };
+const ProfileModal = ({ setModal, modalRef }: ProfileModalProps) => {
+  const { ...modal } = useProfileChange();
+  const { data } = useGetProfileInfo();
 
   return (
     <S.layout ref={modalRef} onClick={(e) => e.stopPropagation()}>
@@ -125,11 +49,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
             <div>
               <Image
                 id="profile"
-                src={profileImage ? URL.createObjectURL(profileImage) : Profile}
+                src={data?.img ? data.img : Profile}
                 alt="프로필"
                 width={130}
                 height={130}
-                style={{ borderRadius: "100%" }}
+                style={{ borderRadius: "50%" }}
               />
             </div>
             <S.Label htmlFor="file_upload">
@@ -139,98 +63,57 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ setModal, modalRef }) => {
             </S.Label>
             <S.InputImg
               type="file"
-              accept="image/jpg, image/png, image/jpeg"
+              accept=".jpg, .png, .jpeg"
               id="file_upload"
-              onChange={handleProfileImageChange}
+              onChange={modal.handleProfileChange}
             />
           </S.ProfileImgBunddle>
-          <S.ChangeDefultImg onClick={handleResetProfileImage}>
-            기본 프로필로 변경
-          </S.ChangeDefultImg>
         </S.ProfileImgBox>
         <S.ChangeInput>
-          <S.InputBox>
-            <S.InputText>학교 및 학과</S.InputText>
+          {/* <S.InputBox>
+            <S.InputText>학교</S.InputText>
             <S.TextBox>
-              {isEditing === "school-and-department" ? (
-                <S.TextBox>
-                  <textarea
-                    value={schoolAndDepartment}
-                    onChange={(e) => setSchoolAndDepartment(e.target.value)}
-                    style={{ border: "none", width: "200px" }}
-                  />
-                  <S.FixBtn onClick={handleMarkdownSave}>수정완료</S.FixBtn>
-                </S.TextBox>
-              ) : (
-                <S.TextBox>
-                  <S.SpanChangeInput
-                    dangerouslySetInnerHTML={{
-                      __html: schoolAndDepartmentHtml,
-                    }}
-                  />
-                  <S.FixBtn
-                    onClick={() => handleEditClick("school-and-department")}
-                  >
-                    수정하기
-                  </S.FixBtn>
-                </S.TextBox>
-              )}
+              <S.TextBox>
+                <S.FixBtn onClick={handleMarkdownSave}>수정완료</S.FixBtn>
+              </S.TextBox>
+              <S.TextBox>
+                <S.FixBtn
+                  onClick={() => handleEditClick("school-and-department")}
+                >
+                  수정하기
+                </S.FixBtn>
+              </S.TextBox>
             </S.TextBox>
           </S.InputBox>
           <S.InputBox>
-            <S.InputText>비밀번호</S.InputText>
-            <S.TextBox>
-              {isEditing === "password" ? (
-                <S.TextBox>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    style={{ border: "none", width: "200px" }}
-                  />
-                  <S.FixBtn onClick={handleMarkdownSave}>수정완료</S.FixBtn>
-                </S.TextBox>
-              ) : (
-                <S.TextBox>
-                  <S.SpanChangeInput
-                    dangerouslySetInnerHTML={{
-                      __html: passwordHtml,
-                    }}
-                  />
-                  <S.FixBtn onClick={() => handleEditClick("password")}>
-                    수정하기
-                  </S.FixBtn>
-                </S.TextBox>
-              )}
-            </S.TextBox>
-          </S.InputBox>
+            <S.InputText>
+              {data?.role === "PROFESSOR" ? "학과" : "관심 학과"}
+            </S.InputText>
+            <input type="text" value={data?.mclass} />
+            <div></div>
+          </S.InputBox> */}
           <S.InputBox>
-            <S.InputText>전문과목</S.InputText>
-            <S.TextBox>
-              {isEditing === "specialty" ? (
-                <S.TextBox>
-                  <textarea
-                    value={specialty}
-                    onChange={(e) => setSpecialty(e.target.value)}
-                    style={{ border: "none", width: "200px" }}
-                  />
-                  <S.FixBtn onClick={handleMarkdownSave}>수정완료</S.FixBtn>
-                </S.TextBox>
-              ) : (
-                <S.TextBox>
-                  <S.SpanChangeInput
-                    dangerouslySetInnerHTML={{ __html: specialtyHtml }}
-                  />
-                  <S.FixBtn onClick={() => handleEditClick("specialty")}>
-                    수정하기
-                  </S.FixBtn>
-                </S.TextBox>
-              )}
-            </S.TextBox>
+            <S.InputText>현재 비밀번호</S.InputText>
+            <input
+              type="text"
+              value={modal.passwordData.oldPassword}
+              name="oldPassword"
+              onChange={modal.handlePasswordChange}
+            />
+            <S.InputText>새 비밀번호</S.InputText>
+            <input
+              type="text"
+              value={modal.passwordData.newPassword}
+              name="newPassword"
+              onChange={modal.handlePasswordChange}
+            />
+            <div>
+              <button>비밀번호변경</button>
+            </div>
           </S.InputBox>
         </S.ChangeInput>
         <div>
-          <S.FixEnd onClick={handleSaveChanges}>수정완료</S.FixEnd>
+          {/* <S.FixEnd onClick={handleSaveChanges}>수정완료</S.FixEnd> */}
         </div>
       </S.Boxlayout>
     </S.layout>

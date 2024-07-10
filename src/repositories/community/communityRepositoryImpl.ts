@@ -39,20 +39,7 @@ class CommunityRepositoryImpl implements CommunityRepository {
 
   public async postMultiPartCommunityById(params: PostImageParams): Promise<void> {
     const { id, files } = params;
-    console.log(files);
-
-    await axios.post(
-      `${CONFIG.serverUrl}/community/${id}`,
-      {
-        files: files,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
-          "Content-Type": "multipart/form-data",
-        },
-      },
-    );
+    await dearV1Axios.post(`/community/${id}`, files);
   }
 }
 
