@@ -3,6 +3,7 @@ import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useBanner from "@/hooks/banner/useBanner";
+import * as S from "./style";
 
 const SimpleSlider: React.FC = () => {
   const [page, setPage] = useState<number>(1);
@@ -20,13 +21,15 @@ const SimpleSlider: React.FC = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {bannerList?.data.map((item, idx) => (
-        <div key={item.id}>
-          <img src={item.imagePath} alt={`Banner ${item.id}`} />
-        </div>
-      ))}
-    </Slider>
+    <S.SliderContainer>
+      <Slider {...settings}>
+        {bannerList?.data.map((item, idx) => (
+          <S.Slide key={item.id}>
+            <img src={item.imagePath} alt={`Banner ${item.id}`} />
+          </S.Slide>
+        ))}
+      </Slider>
+    </S.SliderContainer>
   );
 };
 
