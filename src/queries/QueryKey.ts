@@ -14,8 +14,10 @@ export const QUERY_KEYS = Object.freeze({
   },
   school: {
     postSchool: "/school",
-    postMajor: "/school/major",
     getSchoolList: "/school/list",
-    getlMajorList: "/school/major/list",
+  },
+  major: {
+    major: "/major",
+    getMajorList: "/major/list",
   },
 });

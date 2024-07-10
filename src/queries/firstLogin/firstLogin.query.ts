@@ -3,6 +3,7 @@ import {
   GetMajorListParams,
   PostMajorParams,
   PostSchoolParams,
+  getMajorParams,
 } from "../../repositories/firstLogin/firstLoginRepository";
 import { useMutation } from "react-query";
 import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
@@ -25,4 +26,9 @@ export const useGetSchoolList = () => {
 export const useGetMajorList = () => {
   const mutation = useMutation((params: GetMajorListParams) => firstLoginRepositoryImpl.getMajorList(params));
   return mutation;
+};
+
+export const useGetMajorBySubject = () => {
+  const muation = useMutation((params: getMajorParams) => firstLoginRepositoryImpl.getMajorbySubject(params));
+  return muation;
 };

@@ -6,7 +6,8 @@ export interface FirstLoginRepository {
   postSchool(params: PostSchoolParams): Promise<void>;
   postMajor(params: PostMajorParams): Promise<void>;
   getSchoolList(params: GetListParams): Promise<GetSchoolListRespose>;
-  getMajorList(params: GetListParams): Promise<GetMajorListReposne>;
+  getMajorList(params: GetMajorListParams): Promise<GetMajorListReposne>;
+  getMajorbySubject(params: getMajorParams): Promise<GetMajorListReposne>;
 }
 
 export interface PostSchoolParams {
@@ -15,7 +16,7 @@ export interface PostSchoolParams {
 }
 
 export interface PostMajorParams {
-  majorReq: string;
+  majorSeq: string;
   lclass: string;
   mclass: string;
 }
@@ -26,7 +27,9 @@ export interface GetListParams {
 }
 
 export interface GetMajorListParams {
-  gubunType: ELEM_TYPE;
   keyword: string;
+}
+
+export interface getMajorParams {
   subject: MAJOR_TYPE;
 }

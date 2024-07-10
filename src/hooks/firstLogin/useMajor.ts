@@ -1,18 +1,23 @@
 import { useState } from "react";
-import { useGetMajorList, usePostMajor } from "../../queries/firstLogin/firstLogin.query";
-import { ELEM_TYPE } from "../../constants/elemType/elemType.constants";
-import { MAJOR_TYPE } from "src/constants/majorType/majorType.constants";
-import { GetMajorListReposne } from "src/types/firstLogin/firstLogin.types";
-import { dearToast } from "src/libs/Swal/Swal";
+import { useGetMajorList, usePostMajor } from "@/queries/firstLogin/firstLogin.query";
+import { MAJOR_TYPE } from "@/constants/majorType/majorType.constants";
+import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
+import dearToast from "@/libs/Swal/Swal";
 import { AxiosError } from "axios";
 const useMajor = () => {
-  const [gubunType, setGubunType] = useState<ELEM_TYPE>("ELEM_LIST");
-  const [subject, setSubjuect] = useState<MAJOR_TYPE>("인문계열");
+  const [subject, setSubjuect] = useState<MAJOR_TYPE>();
   const [keyword, setKeyword] = useState<string>("");
   const [majorList, setMajorList] = useState<GetMajorListReposne>();
+  const [majorReq, setMajorSeq] = useState<string>("");
+  const [lClass, setLClass] = useState<string>("");
+  const [mClass, setMClass] = useState<string>("");
 
   const getMajorListMuataion = useGetMajorList();
   const postMajorMutation = usePostMajor();
+
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+  };
 
   const handleSubject = (item: MAJOR_TYPE) => {
     setSubjuect(item);
@@ -20,9 +25,7 @@ const useMajor = () => {
 
   const searchMajorList = () => {
     const params = {
-      gubunType: gubunType,
       keyword: keyword,
-      subject: subject,
     };
 
     getMajorListMuataion.mutate(params, {
@@ -35,12 +38,19 @@ const useMajor = () => {
     });
   };
 
-  const onSubmit = (req: string, lclass: string, mclass: string) => {
+  const handleSubmitParams = (req: string, lclass: string, mclass: string) => {
+    setMajorSeq(req);
+    setLClass(lclass);
+    setMClass(mclass);
+  };
+
+  const onSubmit = () => {
     const params = {
-      majorReq: req,
-      lclass: lclass,
-      mclass: mclass,
+      majorSeq: majorReq!,
+      lclass: lClass!,
+      mclass: mClass!,
     };
+
     postMajorMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
@@ -52,10 +62,15 @@ const useMajor = () => {
   };
 
   return {
+    setMajorList,
+    subject,
     majorList,
+    keyword,
+    handleKeyword,
     handleSubject,
     searchMajorList,
     onSubmit,
+    handleSubmitParams,
   };
 };
 

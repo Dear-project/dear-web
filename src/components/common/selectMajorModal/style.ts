@@ -108,21 +108,30 @@ export const MajorTypeWrap = styled.div`
   width: 11%;
   height: 100%;
 
-  padding-left: 2%;
-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
 
   background: ${theme.colors.gray200};
+`;
 
+export const MajorTypeList = styled.div<{ $isclicked: string }>`
+  width: 100%;
+  height: 13%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.gray500 : "transparent")};
   span {
     font-size: 1.1rem;
     font-weight: ${theme.fontWeight.semibold};
-    color: ${theme.colors.gray700};
+    color: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.white : theme.colors.gray700)};
 
     cursor: pointer;
+
+    border-bottom: 1px solid ${theme.colors.gray400};
   }
 `;
 

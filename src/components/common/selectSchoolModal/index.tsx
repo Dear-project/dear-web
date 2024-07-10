@@ -8,13 +8,15 @@ import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 import { useSchool } from "../../../hooks/firstLogin/useSchool";
 import { useGetSchoolList } from "@/queries/firstLogin/firstLogin.query";
 import convertElemListType from "@/utils/transform/elemList/convertElemListType";
+import { useGetProfileInfo } from "@/queries/profile/query";
 
 const SelectSchoolModal = () => {
   const { ...first } = useSchool();
+  const { data } = useGetProfileInfo();
 
   return (
     <>
-      {first.isNext === true ? (
+      {data?.data.schoolName === null && (
         <S.SelectSchoolModalWrap>
           <S.Main>
             <S.SelectWrap>
@@ -67,8 +69,6 @@ const SelectSchoolModal = () => {
             </div>
           </S.Main>
         </S.SelectSchoolModalWrap>
-      ) : (
-        <></>
       )}
     </>
   );
