@@ -1,5 +1,7 @@
 // types/profile.ts
 
+import { SignupParams } from "@/types/auth/auth.type";
+
 export interface UserProfile {
   id: number;
   email: string;
@@ -27,3 +29,8 @@ export interface ProfileType {
       mclass: string;
     }
 }
+
+// export interface PasswordDataType {
+//   oldPassword: string;
+
+// }

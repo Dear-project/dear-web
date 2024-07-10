@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 import config from "../../config/config.json";
 import { ProfileType, UserProfile } from "../../types/profile/profile.type";
 import { dearV1Axios } from "../../libs/axios/customAxios";
+import { usePatchPassword } from "@/queries/profile/query";
 const useProfileChange = () => {
   const [UserData, serUserData] = useState<UserProfile>({
     id: 0,
@@ -17,6 +18,7 @@ const useProfileChange = () => {
     lclass: "",
     mclass: "",
   });
+  // const [passwordData, setPasswordData] = useState<>();
 
   const handleProfileChange = useCallback(
     (
@@ -47,6 +49,16 @@ const useProfileChange = () => {
     } catch (e) {
       dearToast.errorToast("응안됨");
     }
+  };
+
+  const passwordChangeMutation = usePatchPassword();
+
+  const changePassword = () => {
+    const passwordParams = {
+      oldPassword: "",
+      newPassword: "",
+    };
+    passwordChangeMutation.mutate(passwordParams);
   };
 
   return {
