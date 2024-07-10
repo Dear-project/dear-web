@@ -14,7 +14,6 @@ const index = () => {
         <Find />
       </S.Page>
       <SelectSchoolModal />
-      <SelectMajorModal />
     </>
   );
 };

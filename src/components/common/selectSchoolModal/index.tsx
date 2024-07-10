@@ -7,6 +7,7 @@ import { ELEM_TYPE_LIST } from "@/constants/elemType/elemType.constants";
 import { useSchool } from "@/hooks/firstLogin/useSchool";
 import convertElemListType from "@/utils/transform/elemList/convertElemListType";
 import { useGetProfileInfo } from "@/queries/profile/query";
+import SelectMajorModal from "@/components/common/selectMajorModal/index";
 
 const SelectSchoolModal = () => {
   const { ...first } = useSchool();
@@ -68,6 +69,7 @@ const SelectSchoolModal = () => {
           </S.Main>
         </S.SelectSchoolModalWrap>
       )}
+      {first.isNext === true && <SelectMajorModal /> }
     </>
   );
 };
