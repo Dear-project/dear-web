@@ -1,5 +1,9 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, REQUEST_TOKEN_KEY } from "src/constants/token/token.constants";
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+  REQUEST_TOKEN_KEY,
+} from "src/constants/token/token.constants";
 // import tokenRepository from "src/repository/token/token.repository";
 import token from "../token/token";
 import { dearV1Axios } from "./customAxios";
@@ -25,20 +29,26 @@ const errorResponseHandler = async (error: AxiosError) => {
     } = error;
     const usingAccessToken = token.getToken(ACCESS_TOKEN_KEY);
     const usingRefreshToken = token.getToken(REFRESH_TOKEN_KEY);
-
-    if (usingAccessToken !== undefined && usingRefreshToken !== undefined && status === 401) {
+    if (
+      usingAccessToken !== undefined &&
+      usingRefreshToken !== undefined &&
+      status === 401
+    ) {
+      
       if (!isRefreshing) {
         isRefreshing = true;
 
         try {
+          
           //일단 오류 해결을 위한 코드
           const data = await axios.post(`${config.serverUrl}/auth/refresh`, {
             refreshToken: usingRefreshToken,
           });
-          const newAccessToken = data.data.data.accessToken;
+          const newAccessToken = data.data.accessToken;
 
-          dearV1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newAccessToken}`;
-          console.log(newAccessToken);
+          dearV1Axios.defaults.headers.common[
+            REQUEST_TOKEN_KEY
+          ] = `Bearer ${newAccessToken}`;
 
           token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
 
@@ -57,7 +67,9 @@ const errorResponseHandler = async (error: AxiosError) => {
       return new Promise((resolve, reject) => {
         addRefreshSubscriber((accessToken: string) => {
           if (originalRequest) {
-            originalRequest.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
+            originalRequest.headers![
+              REQUEST_TOKEN_KEY
+            ] = `Bearer ${accessToken}`;
             resolve(dearV1Axios(originalRequest));
           } else {
             reject("originalRequest is undefined");
