@@ -4,7 +4,6 @@ import Image from "next/image";
 import Search from "@/asset/search.svg";
 import { MAJOR_TYPE_LIST } from "@/constants/majorType/majorType.constants";
 import useMajor from "@/hooks/firstLogin/useMajor";
-import { useSchool } from "@/hooks/firstLogin/useSchool";
 import convertMajorListType from "@/utils/majorList/convertMajorListType";
 import { useGetMajorBySubject } from "@/queries/firstLogin/firstLogin.query";
 
