@@ -5,8 +5,9 @@ export const SelectMajorModalWrap = styled.div`
   width: 100%;
   height: 100vh;
 
-  position: absolute;
+  position: fixed;
   left: 0;
+  top: 0;
 
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@ export const SelectMajorModalWrap = styled.div`
   justify-content: center;
 
   background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
 `;
 
 export const Main = styled.div`

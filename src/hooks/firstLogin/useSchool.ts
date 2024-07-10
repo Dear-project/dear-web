@@ -14,7 +14,7 @@ export const useSchool = () => {
   const [schoolList, setSchoolList] = useState<GetSchoolListRespose>();
   const [isDropDown, setIsDropDown] = useState<boolean>(false);
   const [isNext, setIsNext] = useState<boolean>(false);
-  
+
   const postSchoolMuation = usePostSchool();
   const getSchoolListMuattion = useGetSchoolList();
 

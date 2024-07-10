@@ -15,6 +15,21 @@ export interface UserProfile {
   mclass: string;
 }
 
+export interface ProfileType {
+  data: {
+    id: number;
+    email: string;
+    name: string;
+    role: string;
+    schoolName: string;
+    introduce: string;
+    img: string;
+    stsMessage: string;
+    lclass: string;
+    mclass: string;
+  };
+}
+
 export interface PasswordDataType {
   newPassword: string;
   oldPassword: string;

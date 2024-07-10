@@ -4,16 +4,17 @@ import * as S from "./style";
 import Banner from "@/components/common/banner";
 import Find from "@/components/home/mainPageProfessor";
 import SelectSchoolModal from "src/components/common/selectSchoolModal/index";
-import SelectMajorModal from "@/components/common/selectMajorModal/index";
+import { useGetProfileInfo } from "@/queries/profile/query";
 
 const index = () => {
+  const { data } = useGetProfileInfo();
   return (
     <>
       <S.Page>
         <Banner />
         <Find />
       </S.Page>
-      <SelectSchoolModal />
+      <SelectSchoolModal isOpen={data?.data.schoolName === null} />
     </>
   );
 };

@@ -36,8 +36,6 @@ export const Index = () => {
       <S.Option>
         <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
           <S.Select isSelected={"/" == pathname ? true : false}>
-
-
             <Image src={"/" == pathname ? Homelight : Home1} alt="메인" width={30} height={30} />
             <span>메인</span>
           </S.Select>
@@ -45,24 +43,14 @@ export const Index = () => {
 
         <Link href="/chat" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/chat" == pathname ? true : false}>
-            <Image
-              src={"/chat" == pathname ? Chatlight : Chat}
-              alt="채팅"
-              width={30}
-              height={30}
-            />
+            <Image src={"/chat" == pathname ? Chatlight : Chat} alt="채팅" width={30} height={30} />
             <span>채팅</span>
           </S.Select>
         </Link>
 
         <Link href="/find" style={{ textDecoration: "none" }}>
           <S.Select isSelected={"/find" == pathname ? true : false}>
-            <Image
-              src={"/find" == pathname ? Findlight : Find}
-              alt="교수찾기"
-              width={30}
-              height={30}
-            />
+            <Image src={"/find" == pathname ? Findlight : Find} alt="교수찾기" width={30} height={30} />
             <span>교수찾기</span>
           </S.Select>
         </Link>
@@ -85,15 +73,8 @@ export const Index = () => {
           setModalBtn((prev) => !prev);
         }}
       >
-        <Image
-          src={Profile}
-          alt="프로필"
-          width={45}
-          height={45}
-          style={{ borderRadius: "100%" }}
-        />
+        <Image src={Profile} alt="프로필" width={45} height={45} style={{ borderRadius: "100%" }} />
 
-     
         <div>
           <S.Name>{data?.data.name || "홍길동"}</S.Name>
           <S.School>{data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}</S.School>

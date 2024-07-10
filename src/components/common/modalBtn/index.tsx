@@ -15,10 +15,7 @@ const Modal: React.FC<ModalProps> = ({ setModalBtn }) => {
   };
 
   return (
-    <S.layout
-    
-    
-    >
+    <S.layout>
       <S.Boxlayout onClick={(e) => e.stopPropagation()}>
         <S.profile onClick={handleProfileClick}>프로필</S.profile>
         <S.logout>로그아웃</S.logout>

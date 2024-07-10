@@ -9,13 +9,16 @@ import convertElemListType from "@/utils/transform/elemList/convertElemListType"
 import { useGetProfileInfo } from "@/queries/profile/query";
 import SelectMajorModal from "@/components/common/selectMajorModal/index";
 
-const SelectSchoolModal = () => {
+interface ModalProps {
+  isOpen: boolean;
+}
+
+const SelectSchoolModal = ({ isOpen }: ModalProps) => {
   const { ...first } = useSchool();
-  const { data } = useGetProfileInfo();
 
   return (
     <>
-      {data?.data.schoolName === null && (
+      {isOpen === true && (
         <S.SelectSchoolModalWrap>
           <S.Main>
             <S.SelectWrap>
@@ -69,7 +72,7 @@ const SelectSchoolModal = () => {
           </S.Main>
         </S.SelectSchoolModalWrap>
       )}
-      {first.isNext === true && <SelectMajorModal /> }
+      <SelectMajorModal isOpen={first.isNext} />
     </>
   );
 };

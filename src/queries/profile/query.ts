@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "react-query";
 import { AxiosError } from "axios";
-import { UserProfile } from "../../types/profile/profile.type";
+import { ProfileType, UserProfile } from "../../types/profile/profile.type";
 import ProfileRepositoryImpl from "../../repositories/profile/ProfileRepositoryImpl";
 import { QUERY_KEYS } from "../QueryKey";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@/repositories/profile/ProfileRepository";
 
 export const useGetProfileInfo = () => {
-  const useGetprofile = useQuery<UserProfile, AxiosError<UserProfile>>({
+  const useGetprofile = useQuery<ProfileType, AxiosError<ProfileType>>({
     queryKey: [QUERY_KEYS.profile.getProfile],
     queryFn: async () => ProfileRepositoryImpl.getProfileInfo(),
     staleTime: 3600000, // 1시간

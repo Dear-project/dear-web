@@ -2,10 +2,7 @@
 import dearToast from "../../libs/Swal/Swal";
 import React, { useCallback, useState } from "react";
 import config from "../../config/config.json";
-import {
-  PasswordDataType,
-  UserProfile,
-} from "../../types/profile/profile.type";
+import { PasswordDataType, UserProfile } from "../../types/profile/profile.type";
 import { dearV1Axios } from "../../libs/axios/customAxios";
 import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
 const useProfileChange = () => {
@@ -26,13 +23,14 @@ const useProfileChange = () => {
     oldPassword: "",
     newPassword: "",
   });
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleProfileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;
       serUserData((prev) => ({ ...prev, [name]: value }));
     },
-    [serUserData]
+    [serUserData],
   );
 
   const handlePasswordChange = useCallback(
@@ -40,7 +38,7 @@ const useProfileChange = () => {
       const { value, name } = e.target;
       setPasswordData((prev) => ({ ...prev, [name]: value }));
     },
-    [setPasswordData]
+    [setPasswordData],
   );
 
   const passwordChangeMutation = usePatchPassword();
@@ -86,12 +84,20 @@ const useProfileChange = () => {
     });
   };
 
+  const handleIsOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return {
     passwordData,
     image,
     UserData,
+    isOpen,
+    changeProfileImage,
     handleProfileChange,
     handlePasswordChange,
+    changePassword,
+    handleIsOpen,
   };
 };
 
