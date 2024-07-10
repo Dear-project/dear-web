@@ -54,6 +54,7 @@ const useMajor = () => {
     postMajorMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
+        window.location.reload();
       },
       onError: () => {
         dearToast.errorToast("알 수 없는 에러가 발생하였습니다.");
