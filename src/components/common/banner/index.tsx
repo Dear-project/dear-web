@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useBanner from "@/hooks/banner/useBanner";
+import Image from "next/image";
 import * as S from "./style";
 
-const SimpleSlider: React.FC = () => {
-  const [page, setPage] = useState<number>(1);
+const SimpleSlider = () => {
   const { getAllbanner } = useBanner();
   const bannerList = getAllbanner();
+
+  useEffect(() => {
+    console.log(bannerList); // 데이터 확인
+  }, [bannerList]);
 
   const settings: Settings = {
     dots: true,
@@ -23,9 +27,16 @@ const SimpleSlider: React.FC = () => {
   return (
     <S.SliderContainer>
       <Slider {...settings}>
-        {bannerList?.data.map((item, idx) => (
+        {bannerList?.data.map((item) => (
           <S.Slide key={item.id}>
-            <img src={item.imagePath} alt={`Banner ${item.id}`} />
+            <S.StyledImageWrapper>
+              <Image
+                src={item.imagePath}
+                alt={`Banner ${item.id}`}
+                layout="fill"
+                objectFit="contain"
+              />
+            </S.StyledImageWrapper>
           </S.Slide>
         ))}
       </Slider>
