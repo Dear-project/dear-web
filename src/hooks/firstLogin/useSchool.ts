@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from "react";
-import { useGetSchoolList, usePostSchool } from "../../queries/firstLogin/firstLogin.query";
-import { dearToast } from "@/libs/Swal/Swal";
+import { useGetSchoolList, usePostSchool } from "@/queries/firstLogin/firstLogin.query";
+import dearToast from "@/libs/Swal/Swal";
 import { AxiosError } from "axios";
-import { ELEM_TYPE } from "../../constants/elemType/elemType.constants";
+import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
 import convertElemList from "@/utils/transform/elemList/convertElemListType";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 

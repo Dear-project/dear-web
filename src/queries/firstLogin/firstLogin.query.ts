@@ -4,9 +4,9 @@ import {
   PostMajorParams,
   PostSchoolParams,
   getMajorParams,
-} from "../../repositories/firstLogin/firstLoginRepository";
+} from "@/repositories/firstLogin/firstLoginRepository";
 import { useMutation } from "react-query";
-import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
+import firstLoginRepositoryImpl from "@/repositories/firstLogin/firstLoginRepositoryImpl";
 
 export const usePostSchool = () => {
   const mutation = useMutation((registerSchoolBody: PostSchoolParams) =>

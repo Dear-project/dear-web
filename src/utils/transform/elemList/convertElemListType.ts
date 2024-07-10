@@ -1,4 +1,4 @@
-import { ELEM_TYPE } from "../../../constants/elemType/elemType.constants";
+import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
 
 class ConvertElemList {
   public convertElemListType(elemType: string): string {
@@ -24,8 +24,6 @@ class ConvertElemList {
         return "MIDD_LIST";
       case "HIGH":
         return "HIGH_LIST";
-      case "UNIV":
-        return "UNIV_LIST";
       default:
         return "ELEM_LIST";
     }

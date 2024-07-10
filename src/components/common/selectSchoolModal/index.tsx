@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import * as S from "./style";
 import Search from "@/asset/search.svg";
 import Image from "next/image";
 import DropDown from "@/asset/DropDown.svg";
 import { ELEM_TYPE_LIST } from "@/constants/elemType/elemType.constants";
-import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
-import { useSchool } from "../../../hooks/firstLogin/useSchool";
-import { useGetSchoolList } from "@/queries/firstLogin/firstLogin.query";
+import { useSchool } from "@/hooks/firstLogin/useSchool";
 import convertElemListType from "@/utils/transform/elemList/convertElemListType";
 import { useGetProfileInfo } from "@/queries/profile/query";
 

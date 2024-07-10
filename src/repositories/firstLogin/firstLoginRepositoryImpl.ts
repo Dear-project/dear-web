@@ -1,4 +1,4 @@
-import { GetMajorListReposne, GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
+import { GetMajorListReposne, GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 import {
   FirstLoginRepository,
   GetListParams,
