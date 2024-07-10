@@ -1,1 +1,2 @@
-export type ElemType = "ELEM_LIST" | "MIDD_LIST" | "HIGH_LIST" | "UNIV_LIST" | "SEET_LIST" | "ALTE_LIST";
+export type ELEM_TYPE = "ELEM_LIST" | "MIDD_LIST" | "HIGH_LIST";
+export const ELEM_TYPE_LIST = ["ELEM", "MIDD", "HIGH"];

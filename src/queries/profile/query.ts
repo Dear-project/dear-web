@@ -1,6 +1,6 @@
 import { useQuery} from "react-query";
 import { AxiosError } from "axios";
-import { ProfileType } from "../../types/profile/profileModel.types";
+import { ProfileType } from "../../types/profile/profile.type";
 import ProfileRepositoryImpl from "../../repositories/profile/ProfileRepositoryImpl";
 import { QUERY_KEYS } from "../QueryKey";
 

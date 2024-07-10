@@ -1,34 +1,44 @@
-import { GetListParams, PostMajorParams, PostSchoolParams } from "../../repositories/firstLogin/firstLoginRepository";
-import { useMutation, useQuery } from "react-query";
-import { AxiosError } from "axios";
-import { QUERY_KEYS } from "../QueryKey";
-import firstLoginRepositoryImpl from "../../repositories/firstLogin/firstLoginRepositoryImpl";
-import { GetSchoolListRespose } from "../../types/firstLogin/firstLogin.types";
+import {
+  GetListParams,
+  GetMajorListParams,
+  PostMajorParams,
+  PostSchoolParams,
+  getMajorParams,
+} from "@/repositories/firstLogin/firstLoginRepository";
+import { useMutation } from "react-query";
+import firstLoginRepositoryImpl from "@/repositories/firstLogin/firstLoginRepositoryImpl";
 
-export const usePostSchool = (params: PostSchoolParams) => {
-  const mutation = useMutation(() => firstLoginRepositoryImpl.postSchool(params));
+export const usePostSchool = () => {
+  const mutation = useMutation((registerSchoolBody: PostSchoolParams) =>
+    firstLoginRepositoryImpl.postSchool(registerSchoolBody),
+  );
   return mutation;
 };
 
-export const usepostMajor = (params: PostMajorParams) => {
-  const mutation = useMutation(() => firstLoginRepositoryImpl.postMajor(params));
+export const usePostMajor = () => {
+  const mutation = useMutation((registerMajorBody: PostMajorParams) =>
+    firstLoginRepositoryImpl.postMajor(registerMajorBody),
+  );
   return mutation;
 };
 
-export const useGetList = (params: GetListParams) => {
-  const useGetSchoolList = useQuery<GetSchoolListRespose, AxiosError<GetSchoolListRespose>>({
-    queryKey: [QUERY_KEYS.school.getSchoolList],
-    queryFn: async () => firstLoginRepositoryImpl.getSchoolList(params),
-    staleTime: 3600000,
-    refetchInterval: 3600000,
-  });
+export const useGetSchoolList = () => {
+  const muation = useMutation((schoolListParams: GetListParams) =>
+    firstLoginRepositoryImpl.getSchoolList(schoolListParams),
+  );
+  return muation;
+};
 
-  const useGetMajorList = useQuery<GetSchoolListRespose, AxiosError<GetSchoolListRespose>>({
-    queryKey: [QUERY_KEYS.school.getlMajorList],
-    queryFn: async () => firstLoginRepositoryImpl.getMajorList(params),
-    staleTime: 3600000,
-    refetchInterval: 3600000,
-  });
+export const useGetMajorList = () => {
+  const mutation = useMutation((majorListParams: GetMajorListParams) =>
+    firstLoginRepositoryImpl.getMajorList(majorListParams),
+  );
+  return mutation;
+};
 
-  return { useGetSchoolList, useGetMajorList };
+export const useGetMajorBySubject = () => {
+  const muation = useMutation((majorBySubjectParams: getMajorParams) =>
+    firstLoginRepositoryImpl.getMajorbySubject(majorBySubjectParams),
+  );
+  return muation;
 };
