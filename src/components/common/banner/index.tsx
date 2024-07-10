@@ -21,7 +21,7 @@ const SimpleSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 20000,
   };
 
   return (
@@ -34,7 +34,7 @@ const SimpleSlider = () => {
                 src={item.imagePath}
                 alt={`Banner ${item.id}`}
                 layout="fill"
-                objectFit="contain"
+                objectFit="fill"
               />
             </S.StyledImageWrapper>
           </S.Slide>

@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const SliderContainer = styled.div`
   width: 100%;
   height: 20vh;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 2vw auto 0 auto;
 `;
 
 export const Slide = styled.div`
@@ -17,9 +17,10 @@ export const StyledImageWrapper = styled.div`
   width: 100%;
   height: 20vh;
   position: relative;
-
+  border-radius: 15px;
+  overflow: hidden;
   img {
-    object-fit: contain;
+    object-fit: fill;
   }
 `;
 
