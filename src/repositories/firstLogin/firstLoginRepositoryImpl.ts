@@ -7,7 +7,7 @@ import {
   PostSchoolParams,
   getMajorParams,
 } from "./firstLoginRepository";
-import { dearV1Axios } from "@/libs/axios/customAxios";
+import dearV1Axios from "@/libs/axios/customAxios";
 
 class FirstLoginRepositoryImpl implements FirstLoginRepository {
   public async postSchool(schoolData: PostSchoolParams): Promise<void> {

@@ -6,9 +6,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import config from "src/config/config.json";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
-import token from "src/libs/token/token";
+import token from "@/libs/Token/Token";
 import { ErrorStateAtom } from "src/store/common/common.store";
 import { LoginParam, LoginResponse } from "src/types/auth/auth.type";
+import { usePostLoginMutation } from "@/queries/auth/auth.query";
 
 const useLogin = () => {
   const router = useRouter();
@@ -25,22 +26,26 @@ const useLogin = () => {
     [setLoginData],
   );
 
+  const postLoginMutation = usePostLoginMutation();
+
   const handleConfirmButton = async () => {
-    try {
-      await axios
-        .post<LoginResponse>(`${config.serverUrl}/auth`, {
-          email: LoginData.userId,
-          password: LoginData.password,
-        })
-        .then((res) => {
-          token.setToken(ACCESS_TOKEN_KEY, res.data.data.accessToken);
-          token.setToken(REFRESH_TOKEN_KEY, res.data.data.refreshToken);
+    postLoginMutation.mutate(
+      {
+        email: LoginData.userId,
+        password: LoginData.password,
+      },
+      {
+        onSuccess: (res) => {
+          token.setToken(ACCESS_TOKEN_KEY, res.data.accessToken);
+          token.setToken(REFRESH_TOKEN_KEY, res.data.refreshToken);
           dearToast.sucessToast("로그인 성공");
           router.push("/");
-        });
-    } catch (e) {
-      dearToast.errorToast((e as AxiosError).message);
-    }
+        },
+        onError: () => {
+          dearToast.errorToast("로그인 실패");
+        },
+      },
+    );
   };
 
   return {

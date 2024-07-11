@@ -1,26 +1,27 @@
-import { AxiosRequestConfig } from "axios";
-import { ACCESS_TOKEN_KEY, REQUEST_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
-import token from "../token/token";
+import { InternalAxiosRequestConfig } from "axios";
+import Token from "../Token/Token";
+import {
+  ACCESS_TOKEN_KEY,
+  REFRESH_TOKEN_KEY,
+  REQUEST_TOKEN_KEY,
+} from "../../constants/token/token.constants";
 
-const requestHandler = (config: AxiosRequestConfig): AxiosRequestConfig => {
-  if (token.getToken(REFRESH_TOKEN_KEY) === undefined) {
-    alert("세션 만료");
-    window.location.href = "/login";
-    return config;
+const requestInterceptor = (
+  config: InternalAxiosRequestConfig
+): InternalAxiosRequestConfig => {
+  if (typeof window !== "undefined") {
+    const accessToken = Token.getToken(ACCESS_TOKEN_KEY);
+    const refreshToken = Token.getToken(REFRESH_TOKEN_KEY);
+
+    if (!accessToken || !refreshToken) {
+      console.error("Access token or refresh token not found.");
+      window.location.href = "/login";
+    } else {
+      config.headers[REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
+    }
   }
-
-  let contentType = "application/json";
-  if (config.data instanceof FormData) {
-    contentType = "multipart/form-data";
-  }
-
-  config.headers = {
-    ...config.headers,
-    "Content-Type": contentType,
-    [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
-  };
 
   return config;
 };
 
-export default requestHandler;
+export default requestInterceptor;

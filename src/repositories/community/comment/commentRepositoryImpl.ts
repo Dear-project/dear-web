@@ -1,6 +1,6 @@
 import { CommentByIdResponse } from "../../../types/community/comment/comment.types";
 import { CommentParams, CommentRepository } from "./commentRepository";
-import { dearV1Axios } from "@/libs/axios/customAxios";
+import dearV1Axios from "@/libs/axios/customAxios";
 
 class CommentRepositoryImpl implements CommentRepository {
   public async postComment(commentParmas: CommentParams): Promise<void> {

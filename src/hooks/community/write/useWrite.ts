@@ -92,7 +92,7 @@ const useWrite = () => {
 
     const params = {
       id: id,
-      files: formData.get("image"),
+      files: formData,
     };
 
     postPostMultiPartMutation.mutate(params, {
@@ -115,7 +115,7 @@ const useWrite = () => {
 
     const params = {
       id: id,
-      files: formData.get("file"),
+      files: formData,
     };
 
     postPostMultiPartMutation.mutate(params, {
