@@ -14,9 +14,7 @@ const index = () => {
     <>
       <S.Page>
         <Banner />
-        {/* {data?.data.role === "PROFESSOR" ? <ProfessorMainView /> : <Find />} */}
-        <ProfessorMainView />
-        <AllowOrDenyModal />
+        {data?.data.role === "PROFESSOR" ? <ProfessorMainView /> : <Find />}
       </S.Page>
       <SelectSchoolModal isOpen={data?.data.schoolName === null} />
     </>
