@@ -5,6 +5,8 @@ import Banner from "@/components/common/banner";
 import Find from "@/components/home/mainPageProfessor";
 import SelectSchoolModal from "src/components/common/selectSchoolModal/index";
 import { useGetProfileInfo } from "@/queries/profile/query";
+import ProfessorMainView from "@/components/home/professorView/mainPage/index";
+import AllowOrDenyModal from "@/components/home/professorView/modal/allowOrDenyModal";
 
 const index = () => {
   const { data } = useGetProfileInfo();
@@ -12,7 +14,9 @@ const index = () => {
     <>
       <S.Page>
         <Banner />
-        <Find />
+        {/* {data?.data.role === "PROFESSOR" ? <ProfessorMainView /> : <Find />} */}
+        <ProfessorMainView />
+        <AllowOrDenyModal />
       </S.Page>
       <SelectSchoolModal isOpen={data?.data.schoolName === null} />
     </>
