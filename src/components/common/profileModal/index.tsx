@@ -20,7 +20,6 @@ interface ProfileModalProps {
 const ProfileModal = ({ setModal, modalRef }: ProfileModalProps) => {
   const { ...modal } = useProfileChange();
   const { data } = useGetProfileInfo();
-  const { isNext } = useSchool();
   return (
     <>
       <S.layout ref={modalRef} onClick={(e) => e.stopPropagation()}>
@@ -59,52 +58,54 @@ const ProfileModal = ({ setModal, modalRef }: ProfileModalProps) => {
                   <Image src={Photo} alt="" />
                 </div>
               </S.Label>
-              <S.InputImg
-                type="file"
-                accept=".jpg, .png, .jpeg"
-                id="file_upload"
-                onChange={modal.handleProfileChange}
-              />
+              <S.InputImg type="file" accept=".jpg, .png, .jpeg" id="file_upload" onChange={modal.changeProfileImage} />
             </S.ProfileImgBunddle>
           </S.ProfileImgBox>
           <S.ChangeInput>
             <S.InputBox>
               <S.InputText>학교</S.InputText>
-              <S.TextBox>
+              <div>
+                <span>{data?.data.schoolName}</span>
                 <S.TextBox>
                   <S.FixBtn onClick={modal.handleIsOpen}>수정하기</S.FixBtn>
                 </S.TextBox>
-              </S.TextBox>
+              </div>
             </S.InputBox>
             <S.InputBox>
               <S.InputText>{data?.data.role === "PROFESSOR" ? "학과" : "관심 학과"}</S.InputText>
-              <input type="text" value={data?.data.mclass} />
-              <div></div>
+              <div>
+                <span>{data?.data.mclass}</span>
+                <S.TextBox>
+                  <S.FixBtn onClick={modal.handleMajorOpen}>수정하기</S.FixBtn>
+                </S.TextBox>
+              </div>
             </S.InputBox>
-            <S.InputBox>
+            <S.InputBox style={{ background: "#E6E6E6" }}>
               <S.InputText>현재 비밀번호</S.InputText>
               <input
-                type="text"
+                type="password"
                 value={modal.passwordData.oldPassword}
                 name="oldPassword"
                 onChange={modal.handlePasswordChange}
+                placeholder="현재 비밀번호를 입력해주세요."
               />
               <S.InputText>새 비밀번호</S.InputText>
               <input
-                type="text"
+                type="password"
                 value={modal.passwordData.newPassword}
                 name="newPassword"
                 onChange={modal.handlePasswordChange}
+                placeholder="변경하시려는 비밀번호를 입력해주세요."
               />
-              <div>
-                <button>비밀번호변경</button>
-              </div>
             </S.InputBox>
+            <S.FixBtn style={{ background: "#0E2764", width: "20%", color: "white" }} onClick={modal.changePassword}>
+              비밀번호 변경
+            </S.FixBtn>
           </S.ChangeInput>
         </S.Boxlayout>
       </S.layout>
       <SelectSchoolModal isOpen={modal.isOpen} />
-      <SelectMajorModal isOpen={isNext} />
+      <SelectMajorModal isOpen={modal.isMajorOpen} />
     </>
   );
 };

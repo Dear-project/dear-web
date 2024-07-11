@@ -5,6 +5,8 @@ import config from "../../config/config.json";
 import { PasswordDataType, UserProfile } from "../../types/profile/profile.type";
 import { dearV1Axios } from "../../libs/axios/customAxios";
 import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
+import token from "@/libs/token/token";
+import { useRouter } from "next/navigation";
 const useProfileChange = () => {
   const [UserData, serUserData] = useState<UserProfile>({
     id: 0,
@@ -24,6 +26,8 @@ const useProfileChange = () => {
     newPassword: "",
   });
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMajorOpen, setIsMajorOpen] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleProfileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,10 +49,19 @@ const useProfileChange = () => {
 
   const changePassword = () => {
     const passwordParams = {
-      oldPassword: "",
-      newPassword: "",
+      oldPassword: passwordData.oldPassword,
+      newPassword: passwordData.newPassword,
     };
-    passwordChangeMutation.mutate(passwordParams);
+    passwordChangeMutation.mutate(passwordParams, {
+      onSuccess: () => {
+        dearToast.sucessToast("비밀번호가 성공적으로 변경되었습니다.");
+        token.clearToken();
+        router.push("/login");
+      },
+      onError: () => {
+        dearToast.errorToast("알수없는 에러가 발생하였습니다.");
+      },
+    });
   };
 
   const postImageChange = usePostProfileImage();
@@ -88,16 +101,22 @@ const useProfileChange = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const handleMajorOpen = () => {
+    setIsMajorOpen((prev) => !prev);
+  };
+
   return {
     passwordData,
     image,
     UserData,
     isOpen,
+    isMajorOpen,
     changeProfileImage,
     handleProfileChange,
     handlePasswordChange,
     changePassword,
     handleIsOpen,
+    handleMajorOpen,
   };
 };
 

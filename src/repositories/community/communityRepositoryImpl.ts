@@ -6,10 +6,6 @@ import {
 } from "@/types/community/post/post.types";
 import { CommunityRepository, PatchCommunityParams, PostImageParams } from "./communityRepository";
 import { dearV1Axios } from "@/libs/axios/customAxios";
-import axios from "axios";
-import token from "@/libs/token/token";
-import CONFIG from "../../config/config.json";
-import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 
 class CommunityRepositoryImpl implements CommunityRepository {
   public async getAllCommunity(page: number): Promise<CommunityDataResponse> {
@@ -39,7 +35,7 @@ class CommunityRepositoryImpl implements CommunityRepository {
 
   public async postMultiPartCommunityById(params: PostImageParams): Promise<void> {
     const { id, files } = params;
-    await dearV1Axios.post(`/community/${id}`, files);
+    await dearV1Axios.post(`/community/${id}`, { files: files });
   }
 }
 

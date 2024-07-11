@@ -11,7 +11,6 @@ import Community from "src/asset/community.svg";
 import Communitylight from "src/asset/communityLight.svg";
 import Profile from "src/asset/Profile.svg";
 import { usePathname } from "next/navigation";
-import useSidebar from "src/hooks/sidebar/useSidebar";
 import Link from "next/link";
 import Logo from "@/asset/DEAR.svg";
 import { useGetProfileInfo } from "@/queries/profile/query";
