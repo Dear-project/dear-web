@@ -1,8 +1,12 @@
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const ProfessorDetailWrap = styled.div`
   width: 100%;
   height: 100vh;
+
+  max-width: 1920px;
+  max-height: 1080px;
 
   display: flex;
   flex-direction: column;
@@ -11,171 +15,151 @@ export const ProfessorDetailWrap = styled.div`
 `;
 
 export const Main = styled.div`
-  width: 80%;
+  width: 90%;
   height: 100%;
 
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 60px;
+`;
+
+export const ProffesorInfoWrap = styled.div`
+  width: 80%;
+  height: 20%;
+
+  border-radius: 50px;
   background: #fff;
 
   display: flex;
-  flex-direction: column;
 
   align-items: center;
 
-  gap: 10px;
-`;
-
-export const InfoWrap = styled.div`
-  width: 90%;
-  height: 30%;
-
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-`;
-
-export const UtilityWrap = styled.div`
-  display: flex;
   justify-content: space-between;
-  width: 100%;
-  height: 75%;
-  align-items: center;
-`;
-
-export const ProfileWrap = styled.div`
-  width: 40%;
-  height: 80%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 15px;
-
-  img {
-    width: 70px;
-    height: 70px;
-
-    padding-left: 20px;
-  }
 
   div {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    gap: 20px;
 
-    gap: 5px;
+    position: relative;
 
-    h1 {
-      color: var(--Black, #000);
-      font-size: 38px;
-      font-weight: 700;
-
-      margin: 0;
+    img {
+      padding-left: 20px;
     }
 
-    span {
-      color: var(--Gray500, #aaa);
-      font-size: 23px;
-      font-weight: 600;
+    align-items: center;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      position: relative;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: ${theme.fontWeight.bold};
+      }
+      span {
+        font-size: 1.6rem;
+        font-weight: ${theme.fontWeight.semibold};
+        color: ${theme.colors.gray500};
+      }
+
+      img {
+        position: absolute;
+        left: 80%;
+
+        bottom: 80%;
+      }
     }
   }
 `;
 
-export const BestRecommandIcon = styled.div`
-  position: absolute;
-  top: 3%;
-  left: 41%;
-`;
+export const ChatButton = styled.button`
+  width: 17%;
+  height: 35%;
 
-export const ButtonWrap = styled.div`
-  width: 60%;
-  height: 80%;
+  background: ${theme.colors.new};
+
+  border-radius: 15px;
+
+  padding: 2%;
+  margin-right: 3%;
+
+  display: flex;
+  font-size: 1.6rem;
+  font-weight: ${theme.fontWeight.bold};
+  color: ${theme.colors.white};
+
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  button {
-    width: 30%;
-    height: 35%;
-
-    border-radius: var(--Large, 12px);
-    background: var(--New, #0e2764);
-
-    color: var(--White, #fff);
-    font-family: Pretendard;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
 `;
 
-export const OneLiner = styled.span`
-  color: var(--Gray500, #aaa);
-  font-family: Pretendard;
-  font-size: 25px;
-  font-weight: 500;
-
-  padding-left: 20px;
-`;
-
-export const Subject = styled.div`
-  display: flex;
-  align-items: center;
-
-  img {
-    width: 20px;
-    height: 20px;
-    background: transparent;
-
-    padding-left: 20px;
-  }
-
-  span {
-    color: var(--Gray600, #787878);
-    font-family: Pretendard;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-`;
-
-export const CareerWrap = styled.div`
-  width: 83%;
-  height: 70%;
+export const CarrerAndReviewWrap = styled.div`
+  width: 100%;
+  height: 60%;
 
   display: flex;
-  padding: 20px 38px;
-  flex-direction: column;
   align-items: flex-start;
-  gap: 30px;
+  justify-content: center;
+  justify-content: space-evenly;
+`;
+
+export const CarrerWrap = styled.div`
+  width: 34%;
+  height: 55%;
+
+  border-radius: 2.5rem;
+  background: ${theme.colors.white};
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: space-evenly;
+
+  padding-left: 1%;
+  h1 {
+    font-size: 35px;
+    font-weight: ${theme.fontWeight.extrabold};
+  }
+  div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    div {
+      width: 90%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      span {
+        font-size: 1.2rem;
+        font-weight: ${theme.fontWeight.semibold};
+        &:nth-child(2) {
+          display: flex;
+          align-self: flex-start;
+        }
+      }
+    }
+  }
+`;
+
+export const ReviewWrap = styled.div`
+  width: 35%;
+  height: 80%;
+
+  border-radius: 40px;
+  background: ${theme.colors.white};
 
   h1 {
-    color: var(--Black, #000);
-    font-family: Pretendard;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-  }
-`;
-
-export const Careers = styled.div`
-  width: 40%;
-  height: 5%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  span {
-    color: var(--Black, #000);
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+    font-size: 35px;
+    font-weight: ${theme.fontWeight.extrabold};
   }
 `;
