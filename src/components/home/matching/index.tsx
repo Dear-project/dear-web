@@ -22,7 +22,7 @@ const index = () => {
         </S.SearchProfessor>
       </S.SearchProfessorWrap>
       <S.Main>
-        <ProfessorList onclick={() => router.push(`/find/professor/${id}`)} page={page} />
+        <ProfessorList page={page} />
       </S.Main>
     </S.FindProfessorWrap>
   );

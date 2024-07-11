@@ -1,8 +1,9 @@
 import { useGetProfileInfo } from "@/queries/profile/query";
-import { useProfessorQuery } from "src/queries/professor/professor.query";
+import { useGetProfessorDetailQuery, useGetReviews, useProfessorQuery } from "src/queries/professor/professor.query";
 import { usePostMatching } from "@/queries/matching/matching.query";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import dearToast from "@/libs/Swal/Swal";
+import { useCallback } from "react";
 
 const useMatching = () => {
   const router = useRouter();
@@ -14,10 +15,12 @@ const useMatching = () => {
     }
   };
 
-  const getProfessorDetail = () => {
-    const { data: professorDetailData } = useGetProfileInfo();
-    return professorDetailData;
-  };
+  const getProfessorDetail = useCallback((id: number) => {
+    const [{ data: professorDetailData }] = useGetProfessorDetailQuery(id);
+    if (professorDetailData?.data !== undefined && professorDetailData.data !== null) {
+      return professorDetailData;
+    }
+  }, []);
 
   const postMatchingMuation = usePostMatching();
 
@@ -32,7 +35,18 @@ const useMatching = () => {
     });
   };
 
-  return { getProfessorList, getProfessorDetail, postMatching };
+  const getReviews = (page: number, targetId: number) => {
+    const params = {
+      page: page,
+      targetId: targetId,
+    };
+    const [{ data: reviews }] = useGetReviews(params);
+    if (reviews !== undefined && reviews !== null && reviews.data.length > 0) {
+      return reviews;
+    }
+  };
+
+  return { getProfessorList, getProfessorDetail, postMatching, getReviews };
 };
 
 export default useMatching;

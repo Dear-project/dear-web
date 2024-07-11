@@ -47,7 +47,8 @@ export const ProffesorInfoWrap = styled.div`
     position: relative;
 
     img {
-      padding-left: 20px;
+      margin-left: 20px;
+      border-radius: 50%;
     }
 
     align-items: center;

@@ -19,8 +19,6 @@ import Modal from "@/components/common/modalBtn";
 
 export const Index = () => {
   const [modalBtn, setModalBtn] = useState(false);
-  // const { selectedItem,  userProfile, handleLogoclick} =
-  //   useSidebar();
   const pathname = usePathname();
   const { data } = useGetProfileInfo();
 

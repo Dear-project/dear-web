@@ -90,6 +90,7 @@ export const ProfessorWrap = styled.div`
   img {
     margin-left: 10px;
     height: 90%;
+    border-radius: 12px;
   }
 
   gap: 30px;
@@ -108,6 +109,14 @@ export const ProfessorInfo = styled.div`
     font-size: 24px;
     font-weight: 700;
   }
+`;
+
+export const ProfessorInfoHeader = styled.div`
+  width: 100%;
+  height: 30%;
+
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ProfessorInfoWrap = styled.div`

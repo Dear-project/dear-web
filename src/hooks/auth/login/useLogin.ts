@@ -28,7 +28,7 @@ const useLogin = () => {
   const handleConfirmButton = async () => {
     try {
       await axios
-        .post<LoginResponse>(`/auth`, {
+        .post<LoginResponse>(`${config.serverUrl}/auth`, {
           email: LoginData.userId,
           password: LoginData.password,
         })
