@@ -30,12 +30,9 @@ const SimpleSlider = () => {
         {bannerList?.data.map((item) => (
           <S.Slide key={item.id}>
             <S.StyledImageWrapper>
-              <Image
-                src={item.imagePath}
-                alt={`Banner ${item.id}`}
-                layout="fill"
-                objectFit="fill"
-              />
+              {item.imagePath !== null && item.imagePath !== undefined && (
+                <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1200} height={200} />
+              )}
             </S.StyledImageWrapper>
           </S.Slide>
         ))}

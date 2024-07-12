@@ -75,6 +75,7 @@ export const My = styled.div`
   display: flex;
   width: 100%;
   align-items: flex-end;
+  gap: 10px;
   cursor: pointer; /* 추가: hover 시 pointer로 변경 */
 
   &:hover {

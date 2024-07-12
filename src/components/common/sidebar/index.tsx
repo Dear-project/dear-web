@@ -9,7 +9,7 @@ import Find from "src/asset/find.svg";
 import Findlight from "src/asset/findLight.svg";
 import Community from "src/asset/community.svg";
 import Communitylight from "src/asset/communityLight.svg";
-import Profile from "src/asset/Profile.svg";
+import Profile from "src/asset/Avatar.svg";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/asset/DEAR.svg";
@@ -70,7 +70,11 @@ export const Index = () => {
           setModalBtn((prev) => !prev);
         }}
       >
-        <Image src={Profile} alt="프로필" width={45} height={45} style={{ borderRadius: "100%" }} />
+        {data?.data.img !== null && data?.data.img !== undefined ? (
+          <Image src={data?.data.img} alt="프로필" width={45} height={45} />
+        ) : (
+          <Image src={Profile} alt="프로필" />
+        )}
 
         <div>
           <S.Name>{data?.data.name || "홍길동"}</S.Name>
