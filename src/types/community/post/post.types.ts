@@ -16,6 +16,7 @@ export interface CommunityPostById {
   title: string;
   content: string;
   userId: number;
+  userName: string;
   imagePathList: string[];
   createdDateTime: string;
   modifiedDateTime: string;

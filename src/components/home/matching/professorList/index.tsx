@@ -1,42 +1,45 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import ProfessorImg from "src/asset/ProfessorProfile.svg";
-import Skillbook from "src/asset/skillbook.svg";
 import BestRecmmand from "src/asset/BestRecommand.svg";
 import * as S from "../style";
-import { useProfessorQuery } from "src/queries/professor/professor.query";
 import useMatching from "src/hooks/matching/useMatching";
+import { useRouter } from "next/navigation";
 
 interface Props {
-  onclick: () => void;
   page: number;
 }
 
-const index = ({ onclick, page }: Props) => {
-  const professorList = useMatching.getProfessorList(page);
-  
+const index = ({ page }: Props) => {
+  const { ...professor } = useMatching();
+  const professorList = professor.getProfessorList(page);
+  const router = useRouter();
+
   return (
     <>
-      <S.ProfessorWrap onClick={onclick}>
-        <Image src={ProfessorImg} alt="교수 이미지" /> {/* 아마지 추가 예정 (서버 api수정 후) */}
-        <S.ProfessorInfoWrap>
-          {professorList?.data.map((item, idx) => (
+      {professorList?.data.map((item, idx) => (
+        <S.ProfessorWrap onClick={() => router.push(`/find/professor/${item.professorId}`)}>
+          <Image
+            src={item.profileImage !== null ? item.profileImage : ProfessorImg}
+            alt="교수 이미지"
+            width={140}
+            height={100}
+          />
+          <S.ProfessorInfoWrap>
             <S.ProfessorInfo key={idx}>
-              <span>{item.name}</span>
+              <S.ProfessorInfoHeader>
+                <span>{item.name}</span>
+                <S.BestRecommand>
+                  <Image src={BestRecmmand} alt="" width={70} height={30} />
+                </S.BestRecommand>
+              </S.ProfessorInfoHeader>
               <S.ProfessorSubAndSkills>
                 <span>{item.school}</span>
-                <div>
-                  <Image src={Skillbook} alt="" />
-                  <span>{item.major}</span>
-                </div>
               </S.ProfessorSubAndSkills>
             </S.ProfessorInfo>
-          ))}
-        </S.ProfessorInfoWrap>
-        <S.BestRecommand>
-          <Image src={BestRecmmand} alt="" />
-        </S.BestRecommand>
-      </S.ProfessorWrap>
+          </S.ProfessorInfoWrap>
+        </S.ProfessorWrap>
+      ))}
     </>
   );
 };

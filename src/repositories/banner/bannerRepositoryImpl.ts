@@ -1,6 +1,6 @@
 import { BannerResponse } from "../../types/banner/banner.types";
 import { BannerRepository } from "./bannerRepository";
-import { dearV1Axios } from "@/libs/axios/customAxios";
+import dearV1Axios from "@/libs/axios/customAxios";
 
 class BannerRepositoryImpl implements BannerRepository {
   public async getAllbanner(): Promise<BannerResponse> {

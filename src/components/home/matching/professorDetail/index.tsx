@@ -5,49 +5,64 @@ import * as S from "./style";
 import Image from "next/image";
 import Avartar from "src/asset/Avatar.svg";
 import BestRecommandImg from "src/asset/BestRecommand.svg";
-import Subject from "src/asset/Subject.png";
+import useMatching from "@/hooks/matching/useMatching";
+import { useParams } from "next/navigation";
 
 const index = () => {
+  const { ...professor } = useMatching();
+  const { id } = useParams();
+
+  const professorDetailList = professor.getProfessorDetail(Number(id));
+  const reviews = professor.getReviews(1, Number(id));
+  const schoolInfo = professorDetailList?.data.schoolName + " " + professorDetailList?.data.mclass;
   return (
     <S.ProfessorDetailWrap>
       <S.Main>
-        <S.InfoWrap>
-          <S.UtilityWrap>
-            <S.ProfileWrap>
-              <Image src={Avartar} alt="프로필 이미지" />
+        <S.ProffesorInfoWrap>
+          <div>
+            {professorDetailList?.data.imgPath !== null ? (
+              <Image src={professorDetailList?.data.imgPath!} alt="" width={100} height={100} />
+            ) : (
+              <Image src={Avartar} alt="교수 프로필 이미지" width={100} height={100} />
+            )}
+            <div>
+              <h1>{professorDetailList?.data.name}</h1>
+              <span>{schoolInfo}</span>
+              <Image src={BestRecommandImg} alt="최다추천 이미지" width={70} height={30} />
+            </div>
+          </div>
+          <S.ChatButton onClick={() => professor.postMatching(Number(professorDetailList?.data.professorId))}>
+            채팅하기
+          </S.ChatButton>
+        </S.ProffesorInfoWrap>
+        <S.CarrerAndReviewWrap>
+          <S.CarrerWrap>
+            <h1>경력</h1>
+            <div>
               <div>
-                <h1>이해준 교수</h1>
-                <span>영남이공대 박승철 헤어과</span>
+                <span>2021.02.02</span>
+                <span>포항 제철고등학교 졸업</span>
               </div>
-              <S.BestRecommandIcon>
-                <Image src={BestRecommandImg} alt="최다 추천" />
-              </S.BestRecommandIcon>
-            </S.ProfileWrap>
-            <S.ButtonWrap>
-              <button>채팅하기</button>
-            </S.ButtonWrap>
-          </S.UtilityWrap>
-          <S.OneLiner>헤어 봉사하는것을 좋아합니다.</S.OneLiner>
-          <S.Subject>
-            <Image src={Subject} alt="전문과목" />
-            <span>전문과목 : 수능영어, 고등진로</span>
-          </S.Subject>
-        </S.InfoWrap>
-        <S.CareerWrap>
-          <h1>경력</h1>
-          <S.Careers>
-            <span>2021.02.02</span>
-            <span>포항 제철 고등학교 졸업</span>
-          </S.Careers>
-          <S.Careers>
-            <span>2021.02.02</span>
-            <span>포항 제철 고등학교 졸업</span>
-          </S.Careers>
-          <S.Careers>
-            <span>2021.02.02</span>
-            <span>포항 제철 고등학교 졸업</span>
-          </S.Careers>
-        </S.CareerWrap>
+              <div>
+                <span>2021.02.02</span>
+                <span>포항 제철고등학교 졸업</span>
+              </div>
+              <div>
+                <span>2021.02.02</span>
+                <span>포항 제철고등학교 졸업</span>
+              </div>
+            </div>
+          </S.CarrerWrap>
+          <S.ReviewWrap>
+            <h1>후기</h1>
+            {reviews?.data.map((item, idx) => (
+              <div key={idx}>
+                {/* <span>시간</span> */}
+                <span>{item.comment}</span>
+              </div>
+            ))}
+          </S.ReviewWrap>
+        </S.CarrerAndReviewWrap>
       </S.Main>
     </S.ProfessorDetailWrap>
   );

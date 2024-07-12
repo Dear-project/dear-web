@@ -18,10 +18,7 @@ const index = () => {
         <S.Title>추천 교수</S.Title>
       </S.TitleHolder>
       <S.Main>
-        <ProfessorList
-          onclick={() => router.push(`/find/professor/${id}`)}
-          page={page}
-        />
+        <ProfessorList page={page} />
       </S.Main>
     </S.FindProfessorWrap>
   );

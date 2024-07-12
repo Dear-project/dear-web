@@ -1,40 +1,25 @@
+import CONFIG from "@/config/config.json";
 import axios, { AxiosRequestConfig } from "axios";
-import config from "src/config/config.json";
-import {
-  ACCESS_TOKEN_KEY,
-  REQUEST_TOKEN_KEY,
-} from "src/constants/token/token.constants";
-import token from "../token/token";
+import requestInterceptor from "./requestHandler";
 import ResponseHandler from "./ResposneHandler";
-import requestHandler from "./requestHandler";
-import Token from "src/libs/token/token";
+import Token from "../Token/Token";
+import { REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY } from "../../constants/token/token.constants";
 
-const createAxiosInstance = (config?: AxiosRequestConfig) => {
-  const ACCESS_TOKEN = Token.getToken(ACCESS_TOKEN_KEY);
-  const baseConfig: AxiosRequestConfig = {
-    headers: {
-      Authorization: `Bearer ${ACCESS_TOKEN}`,
-    },
-  };
-  return axios.create({
-    ...baseConfig,
-    ...config,
-  });
-};
-
-export const dearV1Axios = createAxiosInstance({
-  baseURL: config.serverUrl,
+const axiosRequestConfig: AxiosRequestConfig = {
+  baseURL: CONFIG.serverUrl,
   headers: {
-    [REQUEST_TOKEN_KEY]: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
+    [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
   },
-});
-
-export const alimoV1AxiosSetAccessToken = (newToken: string) => {
-  dearV1Axios.defaults.headers.common[REQUEST_TOKEN_KEY] = `Bearer ${newToken}`;
 };
 
-dearV1Axios.interceptors.request.use(
-  requestHandler as any,
-  (response) => response
-);
-dearV1Axios.interceptors.response.use((response) => response, ResponseHandler);
+const dearAxios = axios.create(axiosRequestConfig);
+
+dearAxios.interceptors.request.use(requestInterceptor as any, (err) => Promise.reject(err));
+
+dearAxios.interceptors.response.use((res) => res, ResponseHandler);
+
+export default dearAxios;
+
+export const setAccessToken = (token: string) => {
+  dearAxios.defaults.headers[REQUEST_TOKEN_KEY] = `Bearer ${token}`;
+};

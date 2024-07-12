@@ -140,6 +140,28 @@ export const InputBox = styled.div`
   padding: 20px 0px 10px 10px;
   border-bottom: 1px solid rgb(224, 224, 224);
   gap: 10px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-size: 1.1rem;
+    }
+  }
+
+  input {
+    color: var(--Black, #000);
+    font-size: 20px;
+    font-weight: 700;
+
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+  }
 `;
 export const InputBoxLast = styled.div`
   display: flex;

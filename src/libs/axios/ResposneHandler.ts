@@ -1,85 +1,75 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
+import Token from "../Token/Token";
+import AuthRepositoryImpl from "../../repositories/auth/authRepositoryImpl";
+import dearAxios from "./customAxios";
 import {
+  REQUEST_TOKEN_KEY,
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
-  REQUEST_TOKEN_KEY,
-} from "src/constants/token/token.constants";
-// import tokenRepository from "src/repository/token/token.repository";
-import token from "../token/token";
-import { dearV1Axios } from "./customAxios";
-import config from "src/config/config.json";
+} from "../../constants/token/token.constants";
 
-//리프레쉬 작업중인지 아닌지를 구분하는 변수
+
 let isRefreshing = false;
 let refreshSubscribers: ((accessToken: string) => void)[] = [];
 
 const onTokenRefreshed = (accessToken: string) => {
-  refreshSubscribers.map((callback) => callback(accessToken));
+  refreshSubscribers.forEach((callback) => callback(accessToken));
 };
 
 const addRefreshSubscriber = (callback: (accessToken: string) => void) => {
   refreshSubscribers.push(callback);
 };
 
-const errorResponseHandler = async (error: AxiosError) => {
+const ResponseHandler = async (error: AxiosError) => {
+  
   if (error.response) {
     const {
       config: originalRequest,
       response: { status },
     } = error;
-    const usingAccessToken = token.getToken(ACCESS_TOKEN_KEY);
-    const usingRefreshToken = token.getToken(REFRESH_TOKEN_KEY);
-    if (
-      usingAccessToken !== undefined &&
-      usingRefreshToken !== undefined &&
-      status === 401
-    ) {
+
+  const usingAccessToken = Token.getToken(ACCESS_TOKEN_KEY);
+  const usingRefreshToken = Token.getToken(REFRESH_TOKEN_KEY);
+
+  if (
+    status === 401 &&
+    usingAccessToken!== undefined &&
+    usingRefreshToken!== undefined &&
+    !isRefreshing
+  ) {
+    isRefreshing = true;
+
+    try {
+   
+      const { accessToken: newAccessToken } =
+        await AuthRepositoryImpl.refreshAccessToken({
+          refreshToken: usingRefreshToken,
+        });
+      dearAxios.defaults.headers.common[
+        REQUEST_TOKEN_KEY
+      ] = `Bearer ${newAccessToken}`;
       
-      if (!isRefreshing) {
-        isRefreshing = true;
+      Token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
 
-        try {
-          
-          //일단 오류 해결을 위한 코드
-          const data = await axios.post(`${config.serverUrl}/auth/refresh`, {
-            refreshToken: usingRefreshToken,
-          });
-          const newAccessToken = data.data.accessToken;
-
-          dearV1Axios.defaults.headers.common[
-            REQUEST_TOKEN_KEY
-          ] = `Bearer ${newAccessToken}`;
-
-          token.setToken(ACCESS_TOKEN_KEY, newAccessToken);
-
-          //리프레쉬 작업을 마침
-          isRefreshing = false;
-          //새로 받은 accessToken을 기반으로 이때까지 밀려있던 요청을 모두 처리
-          onTokenRefreshed(newAccessToken);
-        } catch (error) {
-          //리프레쉬 하다가 오류난거면 리프레쉬도 만료된 것이므로 다시 로그인
-          token.clearToken();
-          window.location.href = "/login";
-        }
-      }
-
-      //어떤 요청이 리프레쉬 작업중이라면 여기로 와서 그 후에 요청된 다른 API Promise를 refreshSubscribers에 넣어줌
-      return new Promise((resolve, reject) => {
+      isRefreshing = false;
+      onTokenRefreshed(newAccessToken);
+      
+      return new Promise((resolve) => {
         addRefreshSubscriber((accessToken: string) => {
-          if (originalRequest) {
-            originalRequest.headers![
-              REQUEST_TOKEN_KEY
-            ] = `Bearer ${accessToken}`;
-            resolve(dearV1Axios(originalRequest));
-          } else {
-            reject("originalRequest is undefined");
-          }
+          originalRequest!.headers![REQUEST_TOKEN_KEY] = `Bearer ${accessToken}`;
+          resolve(dearAxios(originalRequest!));
         });
       });
+    } catch (error) {
+      console.error("Failed to refresh access token:", error);
+      Token.clearToken();
+      window.alert("세션이 만료되었습니다.");
+      window.location.href = "/login";
     }
+  }
   }
 
   return Promise.reject(error);
 };
 
-export default errorResponseHandler;
+export default ResponseHandler;

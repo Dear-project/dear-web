@@ -1,4 +1,4 @@
-import { dearV1Axios } from "@/libs/axios/customAxios";
+import dearV1Axios from "@/libs/axios/customAxios";
 import {
   ProfileRepository,
   SchoolChangeParams,
@@ -14,9 +14,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return data;
   }
 
-  public async postSchoolChange(
-    changeParams: SchoolChangeParams
-  ): Promise<void> {
+  public async postSchoolChange(changeParams: SchoolChangeParams): Promise<void> {
     return;
   }
 
@@ -27,9 +25,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
     const { data } = await dearV1Axios.post("/profile/image", imageParams);
     return data;
   }
-  public async patchPassword(
-    passwordParams: PassswrodChangeParams
-  ): Promise<void> {
+  public async patchPassword(passwordParams: PassswrodChangeParams): Promise<void> {
     await dearV1Axios.patch("/profile/password", passwordParams);
   }
 }

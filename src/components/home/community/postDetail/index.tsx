@@ -19,12 +19,12 @@ const PostDetail = () => {
       <S.Main>
         <S.WriterInfo>
           {communityData?.data.profileImage !== null && communityData?.data.profileImage !== undefined ? (
-            <Image src={communityData.data.profileImage} alt="프로필 이미지" />
+            <Image src={communityData.data.profileImage} alt="프로필 이미지" width={100} height={100} />
           ) : (
             <Image src={Profile} alt="프로필 이미지" />
           )}
           <div>
-            <h1>{communityData?.data.userId}</h1>
+            <h1>{communityData?.data.userName}</h1>
             <span>{convertDate(communityData?.data.modifiedDateTime!!)}</span>
           </div>
         </S.WriterInfo>
