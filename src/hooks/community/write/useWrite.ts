@@ -2,10 +2,13 @@ import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
 import { usePatchCommunity, usePostMultiPart } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useRef, useState, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
+import CONFIG from "@/config/config.json";
+import token from "@/libs/Token/Token";
+import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -73,7 +76,7 @@ const useWrite = () => {
     });
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files: FileList | null = e.target.files;
     if (!files) return;
 
@@ -95,15 +98,21 @@ const useWrite = () => {
       files: formData,
     };
 
-    postPostMultiPartMutation.mutate(params, {
-      onError: () => {
-        dearToast.errorToast("이미지 등록 실패");
-        setImage([]);
+    await axios.post(
+      `${CONFIG.serverUrl}/community/${id}`,
+      {
+        files: formData.get("image"),
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
   };
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files: FileList | null = e.target.files;
     const fileArray = Array.prototype.slice.call(files);
     const fileNames = fileArray.map((file) => file.name);
@@ -118,11 +127,18 @@ const useWrite = () => {
       files: formData,
     };
 
-    postPostMultiPartMutation.mutate(params, {
-      onError: () => {
-        dearToast.errorToast("파일 업로드 실패");
+    await axios.post(
+      `${CONFIG.serverUrl}/community/${id}`,
+      {
+        files: formData.get("file"),
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
   };
 
   const handleFileClick = () => {
