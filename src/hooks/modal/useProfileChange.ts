@@ -1,9 +1,7 @@
 "use client";
 import dearToast from "../../libs/Swal/Swal";
 import React, { useCallback, useState } from "react";
-import config from "../../config/config.json";
 import { PasswordDataType, UserProfile } from "../../types/profile/profile.type";
-import dearV1Axios from "../../libs/axios/customAxios";
 import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
 import token from "../../libs/Token/Token";
 import { useRouter } from "next/navigation";
@@ -52,16 +50,18 @@ const useProfileChange = () => {
       oldPassword: passwordData.oldPassword,
       newPassword: passwordData.newPassword,
     };
-    passwordChangeMutation.mutate(passwordParams, {
-      onSuccess: () => {
-        dearToast.sucessToast("비밀번호가 성공적으로 변경되었습니다.");
-        token.clearToken();
-        router.push("/login");
-      },
-      onError: () => {
-        dearToast.errorToast("알수없는 에러가 발생하였습니다.");
-      },
-    });
+    if (passwordData.oldPassword !== passwordData.newPassword) {
+      passwordChangeMutation.mutate(passwordParams, {
+        onSuccess: () => {
+          dearToast.sucessToast("비밀번호가 성공적으로 변경되었습니다.");
+          token.clearToken();
+          router.push("/login");
+        },
+        onError: () => {
+          dearToast.errorToast("알수없는 에러가 발생하였습니다.");
+        },
+      });
+    }
   };
 
   const postImageChange = usePostProfileImage();
