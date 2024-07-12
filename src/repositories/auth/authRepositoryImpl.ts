@@ -4,9 +4,18 @@ import { LoginResponse } from "../../types/auth/auth.type";
 import { Login } from "./authRepository";
 import config from "../../config/config.json";
 
+
+const axiosInstance = axios.create({
+  baseURL: config.serverUrl,
+  withCredentials: true, // 인증 정보 포함
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
 class AuthRepositoryImpl implements AuthRepository {
   public async login(loginData: Login): Promise<LoginResponse> {
-    const { data } = await axios.post(`${config.serverUrl}/auth`, loginData);
+    const { data } = await axiosInstance.post('/auth', loginData);
     return data;
   }
   public async refreshAccessToken(refreshToken: { refreshToken: string }): Promise<NewAccessTokenResponse> {
