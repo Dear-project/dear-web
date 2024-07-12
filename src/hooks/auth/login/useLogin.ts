@@ -44,6 +44,8 @@ const useLogin = () => {
           router.push("/");
         });
     } catch (e) {
+      console.log(e);
+      
       dearToast.errorToast("로그인 실패");
       setErrorState({
         ...errorState,
