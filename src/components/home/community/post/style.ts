@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Post = styled.div`
   display: flex;
 
-
-  width: 100%;
+  width: 98%;
   max-width: 1280px;
 
   height: 140px;
