@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import useBanner from "@/hooks/banner/useBanner";
 import Image from "next/image";
 import * as S from "./style";
+import CommonBanner from "@/asset/commonBanner.svg";
 
 const SimpleSlider = () => {
   const { getAllbanner } = useBanner();
@@ -33,7 +34,7 @@ const SimpleSlider = () => {
               {item.imagePath !== null && item.imagePath !== undefined ? (
                 <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1200} height={200} />
               ) : (
-                <span>이미지가 없습니다 ㅠㅠ</span>
+                <Image src={CommonBanner} alt="기본 배너" width={1200} height={200} />
               )}
             </S.StyledImageWrapper>
           </S.Slide>

@@ -1,4 +1,3 @@
-import { link } from "fs";
 import styled, { keyframes } from "styled-components";
 
 export const Write = styled.div`
