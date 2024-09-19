@@ -15,7 +15,9 @@ const Login = () => {
   return (
     <S.Main>
       <S.LoginWrap>
+        <S.LoginBox>
         <S.DearLogo>DEAR.</S.DearLogo>
+        <S.InputBox>
         <TextField
           id="userId"
           name="userId"
@@ -37,15 +39,11 @@ const Login = () => {
         >
           비밀번호
         </TextField>
-        <div style={{ width: "100%", marginLeft: "8vw" }}>
-          <S.KeepLoginWrap>
-            <S.KeepLoginBtn type="checkbox" />
-            <S.Span style={{ marginTop: "3px" }}>로그인 유지</S.Span>
-          </S.KeepLoginWrap>
-        </div>
+        </S.InputBox>
         <S.LoginButton onClick={hooks.handleConfirmButton}>로그인</S.LoginButton>
         <S.LoginUtilsWrap>
           <S.Span
+          style={{paddingLeft:"20px"}}
             onClick={() => {
               router.push("/signup/email");
               setErrorState({});
@@ -53,12 +51,8 @@ const Login = () => {
           >
             회원가입
           </S.Span>
-          <S.FindWrap>
-            <S.Span onClick={() => router.push("/auth/find-id")}>아이디 찾기</S.Span>
-            <S.Line />
-            <S.Span onClick={() => router.push("/auth/find-pw")}>비밀번호 찾기</S.Span>
-          </S.FindWrap>
         </S.LoginUtilsWrap>
+        </S.LoginBox>
       </S.LoginWrap>
     </S.Main>
   );

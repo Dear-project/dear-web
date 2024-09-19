@@ -12,16 +12,14 @@ export const Main = styled.div`
 `;
 
 export const SignUpInfolWrap = styled.div`
-  min-width: 620px;
-  min-height: 630px;
-  width: 620px;
-  height: 630px;
+  min-width: 400px;
+  min-height: 500px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
+  padding: 30px;
   border-radius: var(--Large, 12px);
   background: var(--White, #fff);
   box-shadow: 4px 4px 8px 0px var(--Gray300, #e6e6e6);

@@ -28,7 +28,7 @@ const SignUpEmail = () => {
               </TextField>
               <S.VerifyButton onClick={hooks.onAuthCode}>인증번호 전송</S.VerifyButton>
             </S.Verify>
-            <div style={{ display: "flex", width: "485px", marginTop: "5vh" }}>
+            <S.retryVerify>
               <TextField
                 id="verifyNum"
                 type="text"
@@ -51,10 +51,10 @@ const SignUpEmail = () => {
                   </span>
                 </>
               )}
-            </div>
+            </S.retryVerify>
           </S.VerifyWrap>
           <S.ButtonWrap>
-            <S.BackButton>이전</S.BackButton>
+            <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
             <S.NextButton onClick={hooks.onCheckAuthCode}>이메일 인증하기</S.NextButton>
           </S.ButtonWrap>
         </S.SignUpEmailWrap>

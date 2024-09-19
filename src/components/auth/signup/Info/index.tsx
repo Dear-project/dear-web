@@ -24,7 +24,7 @@ const SignupInfo = () => {
           >
             이름
           </TextField>
-          <div>
+       
             <TextField
               id="text"
               name="birthday"
@@ -36,8 +36,8 @@ const SignupInfo = () => {
             >
               생년월일
             </TextField>
-          </div>
-          <div>
+  
+  
             <TextField
               id="text"
               name="type"
@@ -49,10 +49,10 @@ const SignupInfo = () => {
             >
               분류
             </TextField>
-          </div>
+  
         </S.VerifyWrap>
         <S.ButtonWrap>
-          <S.BackButton>이전</S.BackButton>
+          <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
           <S.NextButton onClick={hooks.onSignup}>완료</S.NextButton>
         </S.ButtonWrap>
       </S.SignUpInfolWrap>

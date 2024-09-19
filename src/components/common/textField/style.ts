@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const TextField = styled.div`
-  width: 485px;
+  width: 100%;
   height: 45px;
 
   border: none;
   border-bottom: 1px solid #d1d1d1;
 
   position: relative;
-
+  border-bottom: 1px solid #d1d1d1;
   label {
     position: absolute;
-    left: 5%;
-    top: 40%;
+    left: 2%;
+    top: 50%;
 
     font-size: 1.3rem;
 
@@ -23,12 +23,12 @@ export const TextField = styled.div`
 
   input:is(:focus, :valid) ~ label {
     font-size: 1rem;
-    transform: translateY(-300%);
+    transform: translateY(-250%);
   }
 `;
 
 export const TextFieldInput = styled.input`
-  width: 97%;
+  width: 100%;
   height: 45px;
 
   color: var(--Gray600, #787878);
@@ -37,7 +37,7 @@ export const TextFieldInput = styled.input`
   font-style: normal;
   font-weight: 200;
   border: none;
-  border-bottom: 1px solid #d1d1d1;
+  
   outline: none;
   padding-left: 3%;
 

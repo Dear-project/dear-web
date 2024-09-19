@@ -12,22 +12,21 @@ export const Main = styled.div`
 `;
 
 export const SignUpEmailWrap = styled.div`
-  min-width: 620px;
-  min-height: 630px;
-  width: 620px;
-  height: 630px;
-
+  width: 500px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-
+  padding: 30px;
+  gap: 20px;
+  justify-content: space-around;
   border-radius: var(--Large, 12px);
   background: var(--White, #fff);
   box-shadow: 4px 4px 8px 0px var(--Gray300, #e6e6e6);
 `;
 
 export const DearLogo = styled.h1`
+ margin-top: 50px;
   color: var(--Black, #000);
   font-family: Assistant;
   font-size: 4rem;
@@ -105,8 +104,8 @@ export const VerifyButton = styled.button`
 `;
 
 export const ButtonWrap = styled.div`
-  width: 485px;
-  height: 45px;
+  width: 100%;
+  height: 50px;
 
   display: flex;
   align-items: center;

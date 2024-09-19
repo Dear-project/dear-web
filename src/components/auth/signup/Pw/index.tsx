@@ -25,7 +25,6 @@ const SignupPw = () => {
             >
               비밀번호 입력
             </TextField>
-            <div>
               <TextField
                 id="checkPw"
                 name="checkPw"
@@ -37,10 +36,10 @@ const SignupPw = () => {
               >
                 비밀번호 확인
               </TextField>
-            </div>
+            
           </S.VerifyWrap>
           <S.ButtonWrap>
-            <S.BackButton>이전</S.BackButton>
+            <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
             <S.NextButton onClick={hooks.onCheckPw}>다음 단계</S.NextButton>
           </S.ButtonWrap>
         </S.SignUpEmailWrap>

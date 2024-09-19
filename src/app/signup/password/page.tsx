@@ -1,11 +1,10 @@
 import React from "react";
-import SignupPw from "src/components/Auth/signup/Pw";
+import SignupPw from "src/components/auth/signup/Pw";
 
 const Page = () => {
   return (
-    <div>
-      <SignupPw />
-    </div>
+    <SignupPw />
+    
   );
 };
 

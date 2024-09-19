@@ -14,7 +14,7 @@ interface TextFieldProps {
   labelStyle?: React.CSSProperties;
 }
 
-const TextField: React.FC<TextFieldProps> = ({ id, name, type, value, children, onchange, functions, labelStyle }) => {
+const TextField = ({ id, name, type, value, children, onchange, functions, labelStyle }:TextFieldProps) => {
   const [errorState] = useRecoilState<Record<string, string>>(ErrorStateAtom);
   const error = errorState[id as keyof typeof errorState];
   return (
