@@ -2,7 +2,7 @@ import CONFIG from "@/config/config.json";
 import axios, { AxiosRequestConfig } from "axios";
 import requestInterceptor from "./requestHandler";
 import ResponseHandler from "./ResposneHandler";
-import Token from "../Token/Token";
+import Token from "../token/tokens";
 import { REQUEST_TOKEN_KEY, ACCESS_TOKEN_KEY } from "../../constants/token/token.constants";
 
 const axiosRequestConfig: AxiosRequestConfig = {

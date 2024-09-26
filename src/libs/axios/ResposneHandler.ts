@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import Token from "../Token/Token";
+import Token from "../token/tokens";
 import AuthRepositoryImpl from "../../repositories/auth/authRepositoryImpl";
 import dearAxios from "./customAxios";
 import {

@@ -1,5 +1,5 @@
 import { InternalAxiosRequestConfig } from "axios";
-import Token from "../Token/Token";
+import Token from "../token/tokens";
 import {
   ACCESS_TOKEN_KEY,
   REFRESH_TOKEN_KEY,
