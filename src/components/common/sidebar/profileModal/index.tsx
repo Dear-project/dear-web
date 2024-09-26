@@ -10,22 +10,27 @@ import useProfileChange from "@/hooks/modal/useProfileChange";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import SelectSchoolModal from "@/components/common/selectSchoolModal/index";
 import SelectMajorModal from "@/components/common/selectMajorModal/index";
-import { useSchool } from "@/hooks/firstLogin/useSchool";
+import Modal from "@/components/common/modal/index";
 
 interface ProfileModalProps {
-  setModal: Dispatch<SetStateAction<boolean>>;
-  modalRef?: RefObject<HTMLDivElement>;
+  isOpen:boolean;
+  close:()=>void;
+  handleProfileClick:()=>void;
 }
 
-const ProfileModal = ({ setModal, modalRef }: ProfileModalProps) => {
+const ProfileModal = ({
+  isOpen,
+  close , 
+  handleProfileClick
+}: ProfileModalProps) => {
   const { ...modal } = useProfileChange();
   const { data } = useGetProfileInfo();
   return (
-    <>
-      <S.layout ref={modalRef} onClick={(e) => e.stopPropagation()}>
+    <Modal isOpen={isOpen} close={close}>
+     
         <S.Boxlayout>
           <Image
-            onClick={() => setModal(false)}
+            onClick={handleProfileClick}
             src={Close}
             alt=""
             style={{
@@ -103,10 +108,7 @@ const ProfileModal = ({ setModal, modalRef }: ProfileModalProps) => {
             </S.FixBtn>
           </S.ChangeInput>
         </S.Boxlayout>
-      </S.layout>
-      <SelectSchoolModal isOpen={modal.isOpen} />
-      <SelectMajorModal isOpen={modal.isMajorOpen} />
-    </>
+    </Modal>
   );
 };
 

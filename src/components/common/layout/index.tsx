@@ -15,7 +15,10 @@ const Layout = ({ children }: Props) => {
       <RecoilRoot>
         <Container>
           {pathname !== "/login" && pathname.substring(0, 7) !== "/signup" && <Sidebar />}
-          <Wrap isSign={pathname == "/sign" ? false : true}>{children}</Wrap>
+          <Wrap isSign={pathname == "/sign" ? false : true}>
+            {children}
+          <div id="modal"></div>
+          </Wrap>
         </Container>
       </RecoilRoot>
     </>

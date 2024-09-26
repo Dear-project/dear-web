@@ -10,15 +10,12 @@ export const layout = styled.div`
   -webkit-box-align: center;
   margin-left: 5rem;
   margin-bottom: 1rem;
-  top: 87%;
-  left: 7%;
+  bottom: 2rem;
+  left: 5rem;
 `;
 export const Boxlayout = styled.div`
-  margin-left: 10%;
-  margin-bottom: 3%;
-  padding-left: 10%;
-  width: 150px;
-  height: 70px;
+  width: 10rem;
+  height: 5rem;
   border-radius: var(--Small, 4px);
   background: #fff;
   box-shadow: 0px 6px 18px 0px rgba(0, 0, 0, 0.08);
@@ -26,16 +23,24 @@ export const Boxlayout = styled.div`
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-around;
+
 `;
 export const profile = styled.button`
+  width: 100%;
+  height: 50%;
   border: none;
   background-color: #fff;
   font-size: 16px;
   color: #000;
+  cursor: pointer;
+  border-bottom: 1px solid lightgray;
 `;
 export const logout = styled.button`
+  width: 100%;
+  height: 50%;
   border: none;
   background-color: #fff;
   font-size: 16px;
   color: #f90707;
+  cursor: pointer;
 `;

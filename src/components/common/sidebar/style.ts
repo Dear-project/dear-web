@@ -5,6 +5,7 @@ export const Side = styled.div`
   z-index: 1;
   position: relative;
   background: var(--White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   min-width: 265px;
   display: flex;
   justify-content: space-between;

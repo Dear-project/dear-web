@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import * as S from "./style";
 import Homelight from "src/asset/homeLight.svg";
@@ -14,16 +14,28 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Logo from "@/asset/DEAR.svg";
 import { useGetProfileInfo } from "@/queries/profile/query";
-import Modal from "@/components/common/modalBtn";
+import SideBarModal from "./sidebarModal/index";
+import ProfileModal from "./profileModal/index";
+import UseSidebar from "@/hooks/sidebar/useSidebar";
 
-export const Index = () => {
-  const [modalBtn, setModalBtn] = useState(false);
+export const SideBar = () => {
+ const {...sidebar} = UseSidebar();
   const pathname = usePathname();
   const { data } = useGetProfileInfo();
 
   return (
     <S.Side>
-      {modalBtn && <Modal setModalBtn={setModalBtn} />}
+      <ProfileModal
+       isOpen={sidebar.isOpenProfile}
+       close={sidebar.PrfoileClose}
+       handleProfileClick={sidebar.handleProfileClick}
+      />
+      <SideBarModal 
+         isOpen={sidebar.modalBtn}
+         close={sidebar.closeModal}
+         customStyle={{background:"none"}}
+         handleProfileClick={sidebar.handleProfileClick}
+      />
       <Link href={"/"}>
         <S.Logo>
           <Image src={Logo} alt="로고"></Image>
@@ -67,7 +79,7 @@ export const Index = () => {
 
       <S.My
         onClick={() => {
-          setModalBtn((prev) => !prev);
+          sidebar.setModalBtn(true);
         }}
       >
         {data?.data.img !== null && data?.data.img !== undefined ? (
@@ -84,4 +96,4 @@ export const Index = () => {
     </S.Side>
   );
 };
-export default Index;
+export default SideBar;
