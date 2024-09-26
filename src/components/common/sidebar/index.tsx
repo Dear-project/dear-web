@@ -17,12 +17,15 @@ import { useGetProfileInfo } from "@/queries/profile/query";
 import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
 import UseSidebar from "@/hooks/sidebar/useSidebar";
+import { useRecoilState } from "recoil";
+import { ProfileId } from "@/store/profile/profile.store";
 
 export const SideBar = () => {
  const {...sidebar} = UseSidebar();
   const pathname = usePathname();
   const { data } = useGetProfileInfo();
-
+  const [, setProfileId] = useRecoilState(ProfileId);
+  setProfileId(data?.data.id!)
   return (
     <S.Side>
       <ProfileModal

@@ -1,8 +1,12 @@
+import * as S from "./style";
+import ChatSideBar from "./chatSidebar/index";
+
 const Chat =()=>{
 
     return(
         <>
-            <div>아직 개발중입니다</div>
+        <ChatSideBar/>
+        
         </>
     )
 }
