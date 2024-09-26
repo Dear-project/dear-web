@@ -3,7 +3,7 @@ import dearToast from "../../libs/Swal/Swal";
 import React, { useCallback, useState } from "react";
 import { PasswordDataType, UserProfile } from "../../types/profile/profile.type";
 import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
-import token from "../../libs/Token/Token";
+import token from "../../libs/token/tokens";
 import { useRouter } from "next/navigation";
 const useProfileChange = () => {
   const [UserData, serUserData] = useState<UserProfile>({
