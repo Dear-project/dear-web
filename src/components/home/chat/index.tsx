@@ -1,8 +1,10 @@
 import * as S from "./style";
 import ChatSideBar from "./chatSidebar/index";
 
-const Chat =()=>{
 
+const Chat =()=>{
+    
+    
     return(
         <>
         <ChatSideBar/>

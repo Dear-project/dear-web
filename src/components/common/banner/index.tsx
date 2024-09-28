@@ -11,13 +11,8 @@ const SimpleSlider = () => {
   const { getAllbanner } = useBanner();
   const bannerList = getAllbanner();
 
-  useEffect(() => {
-    console.log(bannerList); // 데이터 확인
-  }, [bannerList]);
-
   const settings: Settings = {
     dots: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -32,9 +27,9 @@ const SimpleSlider = () => {
           <S.Slide key={item.id}>
             <S.StyledImageWrapper>
               {item.imagePath !== null && item.imagePath !== undefined ? (
-                <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1200} height={200} />
+                <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1000} height={200} />
               ) : (
-                <Image src={CommonBanner} alt="기본 배너" width={1200} height={200} />
+                <Image src={CommonBanner} alt="기본 배너" width={1000} height={200} />
               )}
             </S.StyledImageWrapper>
           </S.Slide>

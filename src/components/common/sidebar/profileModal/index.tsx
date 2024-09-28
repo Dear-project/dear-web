@@ -28,7 +28,7 @@ const ProfileModal = ({
   return (
     <Modal isOpen={isOpen} close={close}>
      
-        <S.Boxlayout>
+        <S.Boxlayout onClick={(e) => e.stopPropagation()}>
           <Image
             onClick={handleProfileClick}
             src={Close}
