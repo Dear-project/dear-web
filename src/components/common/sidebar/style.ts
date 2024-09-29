@@ -151,6 +151,10 @@ img{
   @media (max-width: 1264px) {
     justify-content: center; 
     gap: 0;
+    img{
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
 
