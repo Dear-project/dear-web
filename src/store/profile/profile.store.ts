@@ -5,7 +5,12 @@ export const ProfileId = atom<number>({
   default: 0,
 });
 
-export const IsFirst = atom<boolean>({
+interface IsFirstType {
+  isSchool: boolean;
+  isMajor: boolean;
+}
+
+export const IsFirst = atom<IsFirstType>({
   key: "isFirst",
-  default: false,
+  default: { isSchool: false, isMajor: false },
 });

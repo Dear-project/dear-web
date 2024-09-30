@@ -27,10 +27,12 @@ export const SideBar = () => {
   const [, setProfileId] = useRecoilState(ProfileId);
   const [isFirst, setIsFirst] = useRecoilState(IsFirst);
   setProfileId(data?.data.id!);
-  if (data?.data.schoolName === null || data?.data.mclass === null) {
-    setIsFirst(true);
-  } else {
-    setIsFirst(false);
+  if (data?.data.mclass === null) {
+    setIsFirst((prev) => ({ ...prev, isMajor: true }));
+  }
+
+  if (data?.data.schoolName === null) {
+    setIsFirst((prev) => ({ ...prev, isSchool: true }));
   }
 
   console.log(isFirst);

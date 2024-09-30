@@ -45,7 +45,6 @@ const SelectMajorModal = ({ isOpen, onClose }: ModalProps) => {
                         };
                         searchMajorBySubjectMutation.mutate(parmas, {
                           onSuccess: (data) => {
-                            console.log(data);
                             major.setMajorList(data);
                           },
                         });

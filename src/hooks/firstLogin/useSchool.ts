@@ -15,9 +15,6 @@ interface InfoType {
 
 export const useSchool = () => {
   const [seq, setSeq] = useState<string>("");
-  const [schoolName, setSchoolName] = useState<string>("");
-  const [link, setLink] = useState();
-
   const [info, setInfo] = useState<InfoType>({
     seq: "",
     schoolName: "",

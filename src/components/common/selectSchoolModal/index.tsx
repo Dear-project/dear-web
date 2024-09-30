@@ -18,12 +18,12 @@ const SelectSchoolModal = () => {
   console.log(isFirst);
 
   const onClose = () => {
-    setIsFirst((prev) => !prev);
+    setIsFirst((prev) => ({ ...prev, isSchool: false, isMajor: true }));
   };
 
   return (
     <>
-      <Modal isOpen={isFirst} close={() => setIsFirst(false)}>
+      <Modal isOpen={isFirst.isSchool} close={onClose}>
         <S.SelectSchoolModalWrap>
           <S.Main>
             <S.SelectWrap>
@@ -77,7 +77,7 @@ const SelectSchoolModal = () => {
           </S.Main>
         </S.SelectSchoolModalWrap>
       </Modal>
-      <SelectMajorModal isOpen={first.isNext} onClose={onClose} />
+      <SelectMajorModal isOpen={isFirst.isMajor} onClose={onClose} />
     </>
   );
 };
