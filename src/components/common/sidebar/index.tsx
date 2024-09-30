@@ -18,36 +18,43 @@ import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
 import UseSidebar from "@/hooks/sidebar/useSidebar";
 import { useRecoilState } from "recoil";
-import { ProfileId } from "@/store/profile/profile.store";
-import { useMediaQuery } from 'react-responsive';
+import { IsFirst, ProfileId } from "@/store/profile/profile.store";
+import { useMediaQuery } from "react-responsive";
 
 export const SideBar = () => {
-  const {...sidebar} = UseSidebar();
+  const { ...sidebar } = UseSidebar();
   const { data } = useGetProfileInfo();
   const [, setProfileId] = useRecoilState(ProfileId);
+  const [isFirst, setIsFirst] = useRecoilState(IsFirst);
   setProfileId(data?.data.id!);
+  if (data?.data.schoolName === null || data?.data.mclass === null) {
+    setIsFirst(true);
+  } else {
+    setIsFirst(false);
+  }
 
-  const isSmallScreen = useMediaQuery({ query: '(max-width: 1264px)' });
+  console.log(isFirst);
 
-  
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 1264px)" });
+
   const logoSrc = isSmallScreen && sidebar.isSidebarOpen ? Logo2 : Logo;
 
   return (
-    <S.Side isSidebarOpen={sidebar.isSidebarOpen}>      
+    <S.Side isSidebarOpen={sidebar.isSidebarOpen}>
       <ProfileModal
-       isOpen={sidebar.isOpenProfile}
-       close={sidebar.PrfoileClose}
-       handleProfileClick={sidebar.handleProfileClick}
+        isOpen={sidebar.isOpenProfile}
+        close={sidebar.PrfoileClose}
+        handleProfileClick={sidebar.handleProfileClick}
       />
-      <SideBarModal 
-         isOpen={sidebar.modalBtn}
-         close={sidebar.closeModal}
-         customStyle={{background:"none"}}
-         handleProfileClick={sidebar.handleProfileClick}
+      <SideBarModal
+        isOpen={sidebar.modalBtn}
+        close={sidebar.closeModal}
+        customStyle={{ background: "none" }}
+        handleProfileClick={sidebar.handleProfileClick}
       />
       <Link href={"/"}>
         <S.Logo isSidebarOpen={sidebar.isSidebarOpen}>
-           <Image src={logoSrc} alt="로고" />
+          <Image src={logoSrc} alt="로고" />
         </S.Logo>
       </Link>
 
@@ -78,7 +85,8 @@ export const SideBar = () => {
             <Image
               src={"/community" == sidebar.pathname ? Communitylight : Community}
               alt="커뮤니티 광장"
-              width={30} height={30}
+              width={30}
+              height={30}
             />
             <span>커뮤니티 광장</span>
           </S.Select>
@@ -92,11 +100,7 @@ export const SideBar = () => {
             sidebar.setModalBtn(true);
           }}
         >
-          {data?.data.img ? (
-            <Image src={data?.data.img} alt="프로필" />
-          ) : (
-            <Image src={Profile} alt="프로필" />
-          )}
+          {data?.data.img ? <Image src={data?.data.img} alt="프로필" /> : <Image src={Profile} alt="프로필" />}
 
           {sidebar.isSidebarOpen && (
             <S.Detail>

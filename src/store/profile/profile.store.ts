@@ -1,6 +1,11 @@
-import {atom} from "recoil";
+import { atom } from "recoil";
 
 export const ProfileId = atom<number>({
-key: "profileId",
-default:0,
-})
+  key: "profileId",
+  default: 0,
+});
+
+export const IsFirst = atom<boolean>({
+  key: "isFirst",
+  default: false,
+});

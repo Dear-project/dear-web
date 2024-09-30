@@ -1,29 +1,19 @@
 import { ModalProps } from "./type";
 import styled, { CSSObject } from "styled-components";
 import { Portal } from "../modalPortal";
-const Modal = ({width,
-    height,
-    zIndex,
-    isOpen,
-    close,
-    children,
-    customStyle,}:ModalProps)=>{
-        return(
-            <Portal>
-            {
-                isOpen && (
-                    
-                    <Background onClick={close} customStyle={customStyle}>
-                        {children}
-                    </Background>
-                    
-                ) 
-            }
-            </Portal>
-        )
-}
+const Modal = ({ width, height, zIndex, isOpen, close, children, customStyle }: ModalProps) => {
+  return (
+    <Portal>
+      {isOpen && (
+        <Background onClick={close} customStyle={customStyle}>
+          {children}
+        </Background>
+      )}
+    </Portal>
+  );
+};
 export default Modal;
- const Background = styled.div<{ customStyle?: CSSObject }>`
+const Background = styled.div<{ customStyle?: CSSObject }>`
   width: 100%;
   min-height: 100%;
   position: fixed;
@@ -38,7 +28,7 @@ export default Modal;
   overflow: auto;
   ${({ customStyle }) => customStyle}
 `;
- const ModalHeaderWrap = styled.div`
+const ModalHeaderWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,7 +36,7 @@ export default Modal;
   height: 53px;
   border-bottom: 1px solid rgb(221, 221, 221);
 `;
- const Title = styled.h1`
+const Title = styled.h1`
   font-size: 17px;
   font-weight: bold;
 `;

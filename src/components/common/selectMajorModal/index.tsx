@@ -6,17 +6,19 @@ import { MAJOR_TYPE_LIST } from "@/constants/majorType/majorType.constants";
 import useMajor from "@/hooks/firstLogin/useMajor";
 import convertMajorListType from "@/utils/majorList/convertMajorListType";
 import { useGetMajorBySubject } from "@/queries/firstLogin/firstLogin.query";
+import Modal from "../modal";
 
 interface ModalProps {
   isOpen: boolean;
+  onClose: () => void;
 }
 
-const SelectMajorModal = ({ isOpen }: ModalProps) => {
+const SelectMajorModal = ({ isOpen, onClose }: ModalProps) => {
   const { ...major } = useMajor();
   const searchMajorBySubjectMutation = useGetMajorBySubject();
   return (
     <>
-      {isOpen === true && (
+      <Modal isOpen={isOpen} close={onClose}>
         <S.SelectMajorModalWrap>
           <S.Main>
             <S.Header>
@@ -74,7 +76,7 @@ const SelectMajorModal = ({ isOpen }: ModalProps) => {
             <S.NextButton onClick={major.onSubmit}>완료</S.NextButton>
           </S.Main>
         </S.SelectMajorModalWrap>
-      )}
+      </Modal>
     </>
   );
 };
