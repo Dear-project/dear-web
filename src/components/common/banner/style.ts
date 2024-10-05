@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
 export const SliderContainer = styled.div`
-  width: 100%;
-  height: 20vh;
-  max-width: 1000px;
-  margin: 2vw auto 0 auto;
+  width: 1000px;
+  overflow: hidden;
+  height:200px;
+  .slick-dots {
+    .slick-active {
+      button::before {
+        color: #c1c1c1;
+      }
+    }
+    button::before {
+      color: #e9e9e9;
+    }
+  }
 `;
 
 export const Slide = styled.div`
@@ -61,7 +70,6 @@ export const Text = styled.div`
 
 export const Text1 = styled.div`
   color: #fff;
-  font-family: Assistant;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 800;

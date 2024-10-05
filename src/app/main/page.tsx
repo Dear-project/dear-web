@@ -7,17 +7,23 @@ import SelectSchoolModal from "src/components/common/selectSchoolModal/index";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import ProfessorMainView from "@/components/home/professorView/mainPage/index";
 import AllowOrDenyModal from "@/components/home/professorView/modal/allowOrDenyModal";
-
+import Matching from "@/components/home/main/matching/index";
+import Community from "@/components/home/main/community/index";
 const index = () => {
   const { data } = useGetProfileInfo();
   return (
-    <>
-      <S.Page>
-        <Banner />
-        {/* {data?.data.role === "PROFESSOR" ? <ProfessorMainView /> : <Find />} */}
-      </S.Page>
-      {/* <SelectSchoolModal isOpen={data?.data.schoolName === null} /> */}
-    </>
+    <S.Page>
+      <S.MainView>
+        <S.MainBox>
+          <Matching/>
+          <Community/>
+        </S.MainBox>
+        <Banner />    
+      </S.MainView>
+      <S.SidePage>
+        
+      </S.SidePage>
+    </S.Page>
   );
 };
 

@@ -11,8 +11,13 @@ const SimpleSlider = () => {
   const { getAllbanner } = useBanner();
   const bannerList = getAllbanner();
 
+  useEffect(() => {
+    console.log(bannerList); // 데이터 확인
+  }, [bannerList]);
+
   const settings: Settings = {
     dots: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,

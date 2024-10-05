@@ -1,5 +1,5 @@
 import React from "react";
-import Find from "src/components/home/matching/index";
+import Find from "@/components/home/main/matching/index";
 const page = () => {
   return (
     <div>

@@ -17,6 +17,8 @@ declare module "styled-components" {
       primary800: string;
       primary500: string;
       primary050: string;
+      lightRed: string;
+      lightBlue: string;
       new: string;
       black: string;
     };
