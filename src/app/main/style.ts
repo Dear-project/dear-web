@@ -5,22 +5,28 @@ padding: 100px 10px;
 gap: 50px;
 width: 100%;
 height: 100%;
+ @media (max-width: 1264px) {
+    flex-direction: column; 
+  }
 `
 export const SidePage = styled.div`
-  width: 24rem;
+  width: 100%;
   height: 100vh;
+  background-color: aqua;
+    @media (max-width: 1264px) {
+    height: auto; 
+  }
 `;
 export const MainView  = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 width: 100%;
-height: 100%;
+height: auto;
 `
 export const MainBox = styled.div`
 display: flex;
 width: 100%;
-padding: 10px 50px;
 align-items: center;
 justify-content: space-around;
 `
