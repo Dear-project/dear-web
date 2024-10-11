@@ -153,23 +153,23 @@ export const MyPostWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  overflow-y: auto;
 `;
 
 export const MyPost = styled.div`
   display: flex;
-  width: 80%;
+  width: 100%;
   height: 70%;
   padding: 15px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
+
+  overflow-y: auto;
 `;
 
 export const PostWrap = styled.div`
-  width: 100%;
+  width: 80%;
   height: 50%;
 
   display: flex;

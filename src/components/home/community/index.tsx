@@ -46,7 +46,6 @@ const Community = () => {
           <S.TitleWrap style={{ height: "15%" }}>
             <h1>내가 쓴 글</h1>
           </S.TitleWrap>
-
           <S.MyPost>
             {myArticles?.data.map((myArticles) => (
               <S.PostWrap key={myArticles.id}>
