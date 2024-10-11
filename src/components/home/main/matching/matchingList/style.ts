@@ -51,6 +51,9 @@ padding: 10px 5px;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
+div{
+    cursor: pointer;
+}
 .blueButton{
 display: flex;
 height: 25px;

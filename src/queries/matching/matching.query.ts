@@ -19,3 +19,11 @@ export const useGetMatching = (pageRequest:pageRequest)=>{
   })
   
 }
+ export const useMatchingAccept = ()=>{
+  const mutation = useMutation((subjectId:number) => matchingRepositoryImpl.matchingAccept(subjectId));
+  return mutation;
+}
+export const usematchingReject = ()=>{
+  const mutation = useMutation((subjectId: number) => matchingRepositoryImpl.matchingReject(subjectId));
+  return mutation;
+}

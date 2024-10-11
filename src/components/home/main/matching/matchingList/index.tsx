@@ -2,24 +2,44 @@ import * as S from "./style";
 import Image from "next/image";
 import NullImg from "@/asset/img/null_Img/null_img.svg";
 import { MatchingData } from "@/types/matching/matching.type";
+import {  usematchingReject, useMatchingAccept } from "@/queries/matching/matching.query";
+import dearToast from "@/libs/Swal/Swal";
+
 interface MatchingProps {
     data: MatchingData;
 }
 
 const MatchingList = ({ data }: MatchingProps)=>{
+
+    const matchingAccept = useMatchingAccept();
+    const matchingReject = usematchingReject();
+    const accepteButton = ()=>{
+        matchingAccept.mutate(data.id,{
+            onSuccess: ()=>{
+                dearToast.sucessToast('수락성공');
+            }
+        })
+    }
+    const rejectButton = ()=>{
+        matchingReject.mutate(data.id,{
+            onSuccess:()=>{
+                dearToast.sucessToast('거절성공')
+            }
+        })
+    }
 return(
     <S.Matching>
         <S.TitleBox>
-    <Image src={NullImg} alt="" />
+    <img src={data.userProfileImage=== null ? NullImg: data.userProfileImage} alt="이미지 오류" />
     <S.TitleDetail>
-        <p>{data.id}</p>
-        <span>대구소프트웨어마이스터고등학교</span>
-        <span>임베디드소프트웨어학과</span>  
+        <p>{data.userName}</p>
+        <span>{data.schoolName}</span>
+        <span>{data.majorName}</span>  
     </S.TitleDetail>
     </S.TitleBox>
     <S.ApproveBox>
-            <div className="blueButton">수락하기</div>
-            <div className="redButton">거절하기</div>
+            <div className="blueButton" onClick={()=>accepteButton()}>수락하기</div>
+            <div className="redButton" onClick={()=>rejectButton()}>거절하기</div>
         </S.ApproveBox>
     </S.Matching>
 )

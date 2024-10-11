@@ -16,13 +16,21 @@ const SimpleSlider = () => {
   }, [bannerList]);
 
   const settings: Settings = {
-    dots: true,
+    dots: true, 
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 20000,
+    appendDots: (dots) => (
+      <S.CustomDots>
+        {dots}
+      </S.CustomDots>
+    ),
+    customPaging: (i) => (
+      <S.Dot />
+    ),
   };
 
   return (
