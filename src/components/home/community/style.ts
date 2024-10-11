@@ -9,7 +9,7 @@ export const CommunityWrap = styled.div`
   overflow-y: auto;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* 세로로 배치 */
+    flex-direction: column;
   }
 `;
 
@@ -22,8 +22,8 @@ export const Main = styled.div`
   align-items: flex-start;
 
   @media (max-width: 768px) {
-    flex-direction: column; /* 세로로 배치 */
-    align-items: center; /* 중앙 정렬 */
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -40,7 +40,7 @@ export const Community = styled.div`
   gap: 10px;
 
   @media (max-width: 768px) {
-    width: 100%; /* 너비를 100%로 설정 */
+    width: 100%;
   }
 `;
 
@@ -105,6 +105,10 @@ export const CommunityPost = styled.div`
   border: 1px solid ${theme.colors.gray600};
   border-radius: 16px;
   background: inherit;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const Title = styled.h1`
