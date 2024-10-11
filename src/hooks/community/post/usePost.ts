@@ -7,7 +7,7 @@ import {
   usePostCommunity,
 } from "@/queries/community/community.query";
 import { AxiosError } from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { useGetCommentById } from "@/queries/community/comment/comment.query";
 
@@ -16,20 +16,6 @@ const usePost = () => {
   const [writeId, setWritetId] = useRecoilState(PostIdAtom);
 
   const mutation = usePostCommunity();
-  const getAllCommunity = (page: number) => {
-    const [{ data: communityList, isSuccess, isFetched }] = useAllGetCommunityQuery(page);
-    return { communityList, isSuccess, isFetched };
-  };
-
-  const getCommunityById = (id: number) => {
-    const [{ data: communityByIdList }] = useGetCommunityById(id);
-    return communityByIdList;
-  };
-
-  const GetMyArticles = (page: number) => {
-    const [{ data: myArticlesData }] = useGetMyArticles(page);
-    return myArticlesData;
-  };
 
   const setWrite = () => {
     mutation.mutate(undefined, {
@@ -53,9 +39,7 @@ const usePost = () => {
 
   return {
     writeId,
-    GetMyArticles,
-    getAllCommunity,
-    getCommunityById,
+
     setWrite,
     getCommentById,
   };
