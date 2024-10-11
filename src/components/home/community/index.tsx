@@ -4,7 +4,7 @@ import Image from "next/image";
 import Avartar from "@/asset/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
 import { useAllGetCommunityQuery, useGetMyArticles } from "@/queries/community/community.query";
-import { convertDate } from "@/utils/transform/date/convertDate";
+import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 
 const Community = () => {
   const { data: communityList } = useAllGetCommunityQuery(1);
@@ -22,7 +22,7 @@ const Community = () => {
             {communityList?.data.map((community) => (
               <S.CommunityPost key={community.id}>
                 <S.Title>{community.title}</S.Title>
-                <S.TimeStamp>{convertDate(community.modifiedDateTime)}</S.TimeStamp>
+                <S.TimeStamp>{convertDescriptionDate(community.modifiedDateTime)}</S.TimeStamp>
                 <S.Description>{community.content.substring(0, 13)}</S.Description>
                 <S.PostInfo>
                   <Image
@@ -32,7 +32,7 @@ const Community = () => {
                     height={30}
                   />
                   <span>{community.userName}</span>
-                  <span style={{ fontSize: "15px" }}>{community.createdDateTime}</span>
+                  <span style={{ fontSize: "15px" }}>{convertCreatedDate(community.createdDateTime)}</span>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Image src={ChatIcon} alt="댓글" />
                     <span style={{ fontSize: "12px" }}>{community.comment}</span>
@@ -50,7 +50,7 @@ const Community = () => {
             {myArticles?.data.map((myArticles) => (
               <S.PostWrap key={myArticles.id}>
                 <h1>{myArticles.title}</h1>
-                <S.TimeStamp>{myArticles.modifiedDateTime}</S.TimeStamp>
+                <S.TimeStamp>{convertDescriptionDate(myArticles.modifiedDateTime)}</S.TimeStamp>
                 <S.Description>{myArticles.content.substring(0, 13)}</S.Description>
                 <S.PostInfo>
                   <Image
@@ -60,7 +60,7 @@ const Community = () => {
                     height={35}
                   />
                   <span>{myArticles.userName}</span>
-                  <span style={{ fontSize: "15px" }}>{convertDate(myArticles.createdDateTime)}</span>
+                  <span style={{ fontSize: "15px" }}>{convertCreatedDate(myArticles.createdDateTime)}</span>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <Image src={ChatIcon} alt="댓글" />
                     <span style={{ fontSize: "12px" }}>{myArticles.comment}</span>

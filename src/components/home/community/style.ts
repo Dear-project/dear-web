@@ -3,36 +3,45 @@ import styled from "styled-components";
 
 export const CommunityWrap = styled.div`
   height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* 세로로 배치 */
+  }
 `;
 
 export const Main = styled.div`
   width: 90%;
   height: 70%;
-
   padding: 49px 0px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* 세로로 배치 */
+    align-items: center; /* 중앙 정렬 */
+  }
 `;
 
 export const Community = styled.div`
   width: 55%;
   height: 100%;
-
   background: ${theme.colors.white};
   border: none;
   border-radius: 20px;
-
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+  }
 `;
 
 export const TitleWrap = styled.div`
@@ -139,20 +148,21 @@ export const PostInfo = styled.div`
     font-weight: ${theme.fontWeight.medium};
   }
 `;
-
 export const MyPostWrap = styled.div`
   width: 40%;
   height: 60%;
-
   background-color: white;
-
   border: none;
   border-radius: 20px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 추가 */
+  }
 `;
 
 export const MyPost = styled.div`

@@ -18,7 +18,7 @@ export const useGetMyArticles = (
   page: number,
   options?: UseQueryOptions<CommunityPostArticlesResponse, AxiosError, CommunityPostArticlesResponse, string>,
 ): UseQueryResult<CommunityPostArticlesResponse, AxiosError> =>
-  useQuery(QUERY_KEYS.community.getMyCommunity, () => communityRepositoryImpl.getMyCommunity(page), { ...options });
+  useQuery(QUERY_KEYS.community.getMyCommunity, () => communityRepositoryImpl.getMyCommunity(page), { ...options});
 
 export const useGetCommunityById = (
   id: number,
