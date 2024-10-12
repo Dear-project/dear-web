@@ -4,9 +4,9 @@ import * as S from "./style";
 import Image from "next/image";
 import Profile from "src/asset/Profile.svg";
 import { useParams } from "next/navigation";
-import usePost from "@/hooks/community/post/usePost";
 import { convertPostDetailDate } from "@/utils/transform/date/convertDate";
 import { useGetCommunityById } from "@/queries/community/community.query";
+import Comment from "../comment";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -35,12 +35,7 @@ const PostDetail = () => {
           ))}
         </S.ContentWrap>
       </S.PostWrap>
-      <S.CommentWrap>
-        <S.CommentWrapTitle>댓글</S.CommentWrapTitle>
-        <S.CommentContentWrap>
-          <S.Comment></S.Comment>
-        </S.CommentContentWrap>
-      </S.CommentWrap>
+      <Comment id={+id} />
     </S.PostDetail>
   );
 };

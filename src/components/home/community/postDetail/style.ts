@@ -111,9 +111,57 @@ export const CommentContentWrap = styled.div`
 
 export const Comment = styled.div`
   width: calc(100% - 44px);
-  height: calc(20% - 36px);
+  height: calc(20% - 20px);
 
-  padding: 18px 22px;
+  padding: 10px 22px;
 
-  border: 1px solid #000;
+  display: flex;
+
+  div {
+    display: flex;
+
+    width: 80%;
+    height: 100%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      gap: 5px;
+
+      h1 {
+        color: ${theme.colors.black};
+        font-size: 16px;
+        font-weight: ${theme.fontWeight.semibold};
+      }
+
+      span {
+        color: ${theme.colors.gray700};
+        font-size: 15px;
+        font-weight: ${theme.fontWeight.medium};
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        width: 70%;
+
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          color: ${theme.colors.gray600};
+          font-size: 11px;
+          font-weight: ${theme.fontWeight.medium};
+        }
+      }
+    }
+  }
+
+  img {
+    scale: 0.7;
+  }
+
+  justify-content: flex-end;
+  gap: 30px;
 `;
