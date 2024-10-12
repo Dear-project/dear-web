@@ -10,3 +10,8 @@ export const convertCreatedDate = (date: string) => {
   dayjs.locale("ko");
   return dayjs(date).format("YYYY.MM.DD.")
 }
+
+export const convertPostDetailDate = (date: string) => {
+  dayjs.locale("ko");
+  return dayjs(date).format("YYYY년 MM월 DD일(ddd) HH:MM");
+}

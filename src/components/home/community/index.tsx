@@ -3,44 +3,24 @@ import * as S from "./style";
 import Image from "next/image";
 import Avartar from "@/asset/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
-import { useAllGetCommunityQuery, useGetMyArticles } from "@/queries/community/community.query";
+import { useGetMyArticles } from "@/queries/community/community.query";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
+import { useRouter } from "next/navigation";
+import Post from "./post";
 
 const Community = () => {
-  const { data: communityList } = useAllGetCommunityQuery(1);
+  
   const { data: myArticles } = useGetMyArticles(1);
-
+  const router = useRouter();
   return (
     <S.CommunityWrap>
       <S.Main>
         <S.Community>
           <S.TitleWrap style={{ width: "90%" }}>
             <h1>커뮤니티</h1>
-            <button>커뮤니티 작성</button>
+            <button onClick={() => router.push("/community/write")}>커뮤니티 작성</button>
           </S.TitleWrap>
-          <S.CommunityPostWrap>
-            {communityList?.data.map((community) => (
-              <S.CommunityPost key={community.id}>
-                <S.Title>{community.title}</S.Title>
-                <S.TimeStamp>{convertDescriptionDate(community.modifiedDateTime)}</S.TimeStamp>
-                <S.Description>{community.content.substring(0, 13)}</S.Description>
-                <S.PostInfo>
-                  <Image
-                    src={community.profileImage ? community.profileImage : Avartar}
-                    alt="프로필사진"
-                    width={30}
-                    height={30}
-                  />
-                  <span>{community.userName}</span>
-                  <span style={{ fontSize: "15px" }}>{convertCreatedDate(community.createdDateTime)}</span>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <Image src={ChatIcon} alt="댓글" />
-                    <span style={{ fontSize: "12px" }}>{community.comment}</span>
-                  </div>
-                </S.PostInfo>
-              </S.CommunityPost>
-            ))}
-          </S.CommunityPostWrap>
+          <Post />
         </S.Community>
         <S.MyPostWrap>
           <S.TitleWrap style={{ height: "15%" }}>

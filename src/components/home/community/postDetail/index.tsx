@@ -3,42 +3,44 @@ import React, { useEffect } from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Profile from "src/asset/Profile.svg";
-import Comment from "./comment/index";
 import { useParams } from "next/navigation";
 import usePost from "@/hooks/community/post/usePost";
-import { convertDate } from "@/utils/transform/date/convertDate";
+import { convertPostDetailDate } from "@/utils/transform/date/convertDate";
+import { useGetCommunityById } from "@/queries/community/community.query";
 
 const PostDetail = () => {
   const { id } = useParams();
-  const { getCommunityById } = usePost();
-  const communityData = getCommunityById(Number(id));
-  console.log(communityData);
+  const { data: communityData } = useGetCommunityById(+id);
 
   return (
     <S.PostDetail>
-      <S.Main>
+      <S.PostWrap>
         <S.WriterInfo>
-          {communityData?.data.profileImage !== null && communityData?.data.profileImage !== undefined ? (
-            <Image src={communityData.data.profileImage} alt="프로필 이미지" width={100} height={100} />
-          ) : (
-            <Image src={Profile} alt="프로필 이미지" />
-          )}
+          <Image
+            src={communityData?.data.profileImage ? communityData.data.profileImage : Profile}
+            alt="프로필 이미지"
+            width={60}
+            height={60}
+          />
           <div>
             <h1>{communityData?.data.userName}</h1>
-            <span>{convertDate(communityData?.data.modifiedDateTime!!)}</span>
+            <span>{convertPostDetailDate(communityData?.data.modifiedDateTime!)}</span>
           </div>
         </S.WriterInfo>
-        <S.Content>{communityData?.data.title}</S.Content>
-        {communityData?.data.imagePathList !== null &&
-        communityData?.data.imagePathList !== undefined &&
-        communityData.data.imagePathList.length > 0 ? (
-          <Image src={communityData.data.imagePathList[0]} alt="" width={550} height={380} />
-        ) : (
-          <></>
-        )}
-        <S.Content>{communityData?.data.content}</S.Content>
-        <Comment />
-      </S.Main>
+        <S.ContentWrap>
+          <h1>{communityData?.data.title}</h1>
+          <span>{communityData?.data.content}</span>
+          {communityData?.data.imagePathList?.map((img, idx) => (
+            <Image key={idx} src={img} alt="게시물 이미지" width={400} height={400} />
+          ))}
+        </S.ContentWrap>
+      </S.PostWrap>
+      <S.CommentWrap>
+        <S.CommentWrapTitle>댓글</S.CommentWrapTitle>
+        <S.CommentContentWrap>
+          <S.Comment></S.Comment>
+        </S.CommentContentWrap>
+      </S.CommentWrap>
     </S.PostDetail>
   );
 };

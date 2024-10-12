@@ -151,6 +151,10 @@ export const PostInfo = styled.div`
     font-size: 17px;
     font-weight: ${theme.fontWeight.medium};
   }
+
+  img {
+    border-radius: 50%;
+  }
 `;
 export const MyPostWrap = styled.div`
   width: 40%;
