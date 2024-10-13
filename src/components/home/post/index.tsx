@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../style";
+import * as S from "../community/style";
 import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
