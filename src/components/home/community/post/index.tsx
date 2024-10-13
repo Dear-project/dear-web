@@ -1,46 +1,40 @@
-"use client";
-
 import React from "react";
-import * as S from "./style";
+import * as S from "../style";
+import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import Image from "next/image";
-import usePost from "@/hooks/community/post/usePost";
-
-import DefaultPostImg from "@/asset/DefaultPostImg.svg";
-
 import { useRouter } from "next/navigation";
-import { convertDate } from "@/utils/transform/date/convertDate";
-import Skeleton from "@/components/common/skeleton";
+import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
+import ChatIcon from "@/asset/chatIcon.svg";
+import Avartar from "@/asset/Avatar.svg";
 
-interface Post {
-  page: number;
-}
-
-const Post = ({ page }: Post) => {
-  const { ...post } = usePost();
+const Post = () => {
   const router = useRouter();
-  const communityList = post.getAllCommunity(page);
+  const { data: communityList } = useAllGetCommunityQuery(1);
   return (
-    <>
-      {communityList.isFetched && communityList.isSuccess ? (
-        communityList.communityList?.data.length! > 0 &&
-        communityList.communityList?.data.map((item, idx) => (
-          <S.Post key={idx} onClick={() => router.push(`/community/${item.id}`)}>
-            {item.imagePath && !item.imagePath.endsWith(".pdf") ? (
-              <Image src={item.imagePath} alt="게시물 이미지" width={130} height={130} />
-            ) : (
-              <Image src={DefaultPostImg} alt="게시물 이미지" width={130} height={130} />
-            )}
-            <S.ContentWrap>
-              <S.PostTtile>{item.title}</S.PostTtile>
-              <S.PostContext>{item.content}</S.PostContext>
-              <S.PostDate>{convertDate(item.modifiedDateTime!!)}</S.PostDate>
-            </S.ContentWrap>
-          </S.Post>
-        ))
-      ) : (
-        <Skeleton height={130} />
-      )}
-    </>
+    <S.CommunityPostWrap>
+      {Array.isArray(communityList?.data) &&
+        communityList?.data.map((community) => (
+          <S.CommunityPost key={community.id} onClick={() => router.push(`/community/${community.id}`)}>
+            <S.Title>{community.title}</S.Title>
+            <S.TimeStamp>{convertDescriptionDate(community.modifiedDateTime)}</S.TimeStamp>
+            <S.Description>{community.content.substring(0, 13)}</S.Description>
+            <S.PostInfo>
+              <Image
+                src={community.profileImage ? community.profileImage : Avartar}
+                alt="프로필사진"
+                width={30}
+                height={30}
+              />
+              <span>{community.userName}</span>
+              <span style={{ fontSize: "15px" }}>{convertCreatedDate(community.createdDateTime)}</span>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Image src={ChatIcon} alt="댓글" />
+                <span style={{ fontSize: "12px" }}>{community.comment}</span>
+              </div>
+            </S.PostInfo>
+          </S.CommunityPost>
+        ))}
+    </S.CommunityPostWrap>
   );
 };
 

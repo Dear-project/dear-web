@@ -1,31 +1,57 @@
-import React, { Suspense, useState } from "react";
+import React from "react";
 import * as S from "./style";
-import Sidebar from "@/components/common/sidebar/index";
-import Post from "./post/index";
 import Image from "next/image";
-import WriteButton from "src/asset/WriteButton.svg";
-import SearchIcon from "src/asset/search.svg";
-import { useRouter, useParams } from "next/navigation";
-import usePost from "@/hooks/community/post/usePost";
-import { useRecoilState } from "recoil";
-import { ProfessorListPageAtom } from "@/store/community/community.store";
+import Avartar from "@/asset/Avatar.svg";
+import ChatIcon from "@/asset/chatIcon.svg";
+import { useGetMyArticles } from "@/queries/community/community.query";
+import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
+import { useRouter } from "next/navigation";
+import Post from "./post";
 
 const Community = () => {
-  const [page, setPage] = useRecoilState(ProfessorListPageAtom);
-  const { setWrite } = usePost();
+  
+  const { data: myArticles } = useGetMyArticles(1);
+  const router = useRouter();
   return (
-    <S.Community>
+    <S.CommunityWrap>
       <S.Main>
-        <S.SearchWrap>
-          <S.Search placeholder="게시물 검색" />
-          <Image src={SearchIcon} alt="검색 아이콘" />
-        </S.SearchWrap>
-        <S.PostWrap>
-          <Post page={page} />
-        </S.PostWrap>
+        <S.Community>
+          <S.TitleWrap style={{ width: "90%" }}>
+            <h1>커뮤니티</h1>
+            <button onClick={() => router.push("/community/write")}>커뮤니티 작성</button>
+          </S.TitleWrap>
+          <Post />
+        </S.Community>
+        <S.MyPostWrap>
+          <S.TitleWrap style={{ height: "15%" }}>
+            <h1>내가 쓴 글</h1>
+          </S.TitleWrap>
+          <S.MyPost>
+            {myArticles?.data.map((myArticles) => (
+              <S.PostWrap key={myArticles.id}>
+                <h1>{myArticles.title}</h1>
+                <S.TimeStamp>{convertDescriptionDate(myArticles.modifiedDateTime)}</S.TimeStamp>
+                <S.Description>{myArticles.content.substring(0, 13)}</S.Description>
+                <S.PostInfo>
+                  <Image
+                    src={myArticles.profileImage ? myArticles.profileImage : Avartar}
+                    alt="프로필 이미지"
+                    width={35}
+                    height={35}
+                  />
+                  <span>{myArticles.userName}</span>
+                  <span style={{ fontSize: "15px" }}>{convertCreatedDate(myArticles.createdDateTime)}</span>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <Image src={ChatIcon} alt="댓글" />
+                    <span style={{ fontSize: "12px" }}>{myArticles.comment}</span>
+                  </div>
+                </S.PostInfo>
+              </S.PostWrap>
+            ))}
+          </S.MyPost>
+        </S.MyPostWrap>
       </S.Main>
-      <Image src={WriteButton} alt="글쓰기 버튼" onClick={setWrite} />
-    </S.Community>
+    </S.CommunityWrap>
   );
 };
 
