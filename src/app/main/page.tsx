@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import * as S from "./style";
-import Banner from "@/components/common/banner";
+import Banner from "@/components/home/banner";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import Matching from "@/components/home/main/matching/index";
 import Community from "@/components/home/main/community/index";
