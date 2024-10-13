@@ -6,10 +6,9 @@ import ChatIcon from "@/asset/chatIcon.svg";
 import { useGetMyArticles } from "@/queries/community/community.query";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import { useRouter } from "next/navigation";
-import Post from "./post";
+import Post from "../post";
 
 const Community = () => {
-  
   const { data: myArticles } = useGetMyArticles(1);
   const router = useRouter();
   return (
