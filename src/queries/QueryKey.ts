@@ -33,6 +33,7 @@ export const QUERY_KEYS = Object.freeze({
     getAllbanner: "/banner",
   },
   chat:{
-    getChatMy:"chat/get",
+    getChatMy:"/chat/get",
+    getChaySerach:"/chat/search"
   }
 });

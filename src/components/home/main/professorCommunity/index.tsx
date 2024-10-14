@@ -1,18 +1,19 @@
+import React from "react";
 import * as S from "./style";
 import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import CommunityPost from "../../communityPost";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 
-const Community =()=>{
+const ProfessorCommunity = ()=>{
     const { data: communityList } = useAllGetCommunityQuery(1);
 
 return(
-    <S.CommunityBox>
-        <S.CommunityHeader>
-        <span>오늘의 글을 확인해 보세요.</span>        
-        </S.CommunityHeader>
-        <S.CommunityContents>
-            {communityList?.data ? communityList?.data.slice(0,1).map((community)=>(
+    <S.MainBox>
+        <S.CommunityMainHeader>
+            <span>교수커뮤니티</span>
+        </S.CommunityMainHeader>
+        <S.CommunityMainContents>
+            {communityList?.data ? communityList?.data.slice(0,3).map((community)=>(
                 <CommunityPost
                 id={community.id}
                 title={community.title}
@@ -22,11 +23,11 @@ return(
                 userName={community.userName}
                 createdDateTime={convertCreatedDate(community.createdDateTime)}
                 comment={community.comment}
-                customStyle={{width:"90%", height:'40%'}}
+                customStyle={{width:"30%", height:'90%'}}
                 />
-            )) : "null"}
-        </S.CommunityContents>
-    </S.CommunityBox>
+            ))  : <span>내용이 없습니다</span>}
+        </S.CommunityMainContents>
+    </S.MainBox>
 )
 }
-export default Community;
+export default ProfessorCommunity;

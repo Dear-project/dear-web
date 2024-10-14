@@ -23,3 +23,8 @@ font-style: normal;
 font-weight: 800;
 }
 `
+export const CommunityContents = styled.div`
+display: flex;
+width: 100%;
+height: 100%;
+`

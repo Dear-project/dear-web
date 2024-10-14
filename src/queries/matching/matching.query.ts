@@ -20,10 +20,10 @@ export const useGetMatching = (pageRequest:pageRequest)=>{
   
 }
  export const useMatchingAccept = ()=>{
-  const mutation = useMutation((subjectId:number) => matchingRepositoryImpl.matchingAccept(subjectId));
+  const mutation = useMutation((subjectId:string) => matchingRepositoryImpl.matchingAccept(subjectId));
   return mutation;
 }
 export const usematchingReject = ()=>{
-  const mutation = useMutation((subjectId: number) => matchingRepositoryImpl.matchingReject(subjectId));
+  const mutation = useMutation((subjectId: string) => matchingRepositoryImpl.matchingReject(subjectId));
   return mutation;
 }
