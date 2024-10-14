@@ -5,7 +5,7 @@ import { EmailAtom } from "src/store/auth/signup/signup.store";
 import { ErrorStateAtom } from "src/store/common/common.store";
 import patternCheck from "src/utils/check/patternCheck";
 import CONFIG from "src/config/config.json";
-import  DearToast  from "src/libs/Swal/Swal";
+import DearToast from "src/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 
 const useEmail = () => {
@@ -13,7 +13,7 @@ const useEmail = () => {
   const [emailData, setEmailData] = useRecoilState(EmailAtom);
   const [errorState, setErrorState] = useRecoilState<Record<string, string>>(ErrorStateAtom);
   const [resend, setResend] = useState(false);
-  const [timeReamining, setTimeRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(0);
   const [timeActive, setTimeActive] = useState<boolean>();
 
   const handleDataChange = useCallback(
@@ -52,7 +52,7 @@ const useEmail = () => {
           DearToast.sucessToast("인증번호 요청 성공");
         });
       } catch (error) {
-       DearToast.errorToast( "인증번호 요청 실패");
+        DearToast.errorToast("인증번호 요청 실패");
       }
     } else {
       try {
@@ -60,7 +60,7 @@ const useEmail = () => {
           startTimer();
         });
       } catch (error) {
-        DearToast.errorToast( "인증번호 재전송 실패");
+        DearToast.errorToast("인증번호 재전송 실패");
       }
     }
   };
@@ -85,18 +85,19 @@ const useEmail = () => {
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (timeActive && timeReamining > 0) {
+    if (timeActive && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining((prevTime) => prevTime - 1);
       }, 1000);
-    } else if (timeReamining === 0) {
+    } else if (timeRemaining === 0) {
       setTimeActive(false);
     }
-
     return () => clearInterval(interval);
-  }, [timeActive, timeReamining]);
+  }, [timeActive, timeRemaining]);
 
-  const formmatedTime = new Date(timeReamining * 1000).toString().substr(5, 14);
+  const minutes = Math.floor(timeRemaining / 60);
+  const seconds = timeRemaining % 60;
+  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   return {
     emailData,
@@ -105,7 +106,7 @@ const useEmail = () => {
     onCheckData,
     onAuthCode,
     onCheckAuthCode,
-    formmatedTime,
+    formattedTime,
   };
 };
 

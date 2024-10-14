@@ -42,9 +42,9 @@ const SignUpEmail = () => {
               </TextField>
               {hooks.resend === true && (
                 <>
-                  <span>{hooks.formmatedTime}</span>
+                  <span style={{ position: "absolute", left: "75%", top: "54%" }}>{hooks.formattedTime}</span>
                   <span
-                    style={{ position: "absolute", left: "53%", top: "55%", cursor: "pointer" }}
+                    style={{ position: "absolute", left: "90%", top: "54%", cursor: "pointer" }}
                     onClick={hooks.onAuthCode}
                   >
                     재 전송
@@ -54,7 +54,7 @@ const SignUpEmail = () => {
             </S.retryVerify>
           </S.VerifyWrap>
           <S.ButtonWrap>
-            <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
+            <S.BackButton onClick={() => window.history.back()}>이전</S.BackButton>
             <S.NextButton onClick={hooks.onCheckAuthCode}>이메일 인증하기</S.NextButton>
           </S.ButtonWrap>
         </S.SignUpEmailWrap>

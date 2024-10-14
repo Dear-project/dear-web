@@ -21,9 +21,9 @@ export const SignUpEmailWrap = styled.div`
   align-items: center;
   @media screen and (min-width: 48em) {
     .login-container {
-        padding: 48px;
+      padding: 48px;
     }
-    }
+  }
   padding: 30px;
   border-radius: var(--Large, 12px);
   background: var(--White, #fff);
@@ -38,26 +38,26 @@ export const DearLogo = styled.h1`
   font-weight: 800;
 `;
 
-export const SignBox = styled.div`
-
-`
+export const SignBox = styled.div``;
 export const VerifyWrap = styled.div`
- display: flex;
-flex-direction: column;
-align-items: center;
-gap: 30px;
-padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
 `;
 
 export const Verify = styled.div`
   display: flex;
   width: 485px;
-  
 `;
 export const retryVerify = styled.div`
-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
 
-`
+  position: relative;
+`;
 
 export const Span = styled.span`
   font-family: Assistant;
@@ -95,13 +95,14 @@ export const EmailVerifyWrap = styled.div`
 `;
 
 export const VerifyButton = styled.button`
-  width: 180px;
+  width: 160px;
   height: 45px;
 
   display: flex;
   align-items: center;
   align-self: center;
   justify-content: center;
+  z-index: 1;
 
   gap: 10px;
 
