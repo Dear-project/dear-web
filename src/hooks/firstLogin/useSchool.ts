@@ -6,9 +6,21 @@ import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
 import convertElemList from "@/utils/transform/elemList/convertElemListType";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 
+interface InfoType {
+  seq: string;
+  schoolName: string;
+  link: string;
+  adres: string;
+}
+
 export const useSchool = () => {
   const [seq, setSeq] = useState<string>("");
-  const [schoolName, setSchoolName] = useState<string>("");
+  const [info, setInfo] = useState<InfoType>({
+    seq: "",
+    schoolName: "",
+    link: "",
+    adres: "",
+  });
   const [searchName, setSearchName] = useState<string>("");
   const [gubunType, setGubunType] = useState<ELEM_TYPE>("ELEM_LIST");
   const [schoolList, setSchoolList] = useState<GetSchoolListRespose>();
@@ -45,17 +57,17 @@ export const useSchool = () => {
     });
   };
 
-  const handlePostSchoolParams = (seq: string, schoolName: string) => {
-    setSeq(seq);
-    setSchoolName(schoolName);
+  const handlePostSchoolParams = (seq: string, schoolName: string, link: string, adres: string) => {
+    setInfo({
+      seq,
+      schoolName,
+      link,
+      adres,
+    });
   };
 
   const onSubmitSchool = () => {
-    const params = {
-      seq: seq,
-      schoolName: schoolName,
-    };
-    postSchoolMuation.mutate(params, {
+    postSchoolMuation.mutate(info, {
       onSuccess: () => {
         dearToast.sucessToast("학교 등록이 되었습니다.");
         setIsNext(true);

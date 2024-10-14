@@ -9,16 +9,13 @@ import ProfessorCommunity from "@/components/home/main/professorCommunity";
 const index = () => {
   const { data } = useGetProfileInfo();
   return (
-    <S.Page>
-      <S.MainView>
-        <ProfessorCommunity/>
-        <Banner /> 
-        <S.MainBox>
-          <Matching/>
-          <Community/>
-        </S.MainBox>   
-      </S.MainView>
-    </S.Page>
+    <>
+      <S.Page>
+        <Banner />
+        {data?.data.role === "PROFESSOR" ? <ProfessorMainView /> : <Find />}
+      </S.Page>
+      <SelectSchoolModal />
+    </>
   );
 };
 
