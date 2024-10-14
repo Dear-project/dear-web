@@ -106,7 +106,11 @@ export const CommentContentWrap = styled.div`
   width: 100%;
   height: 95%;
 
-  border: 1px solid #000;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+
+  overflow-y: auto;
 `;
 
 export const Comment = styled.div`
@@ -116,12 +120,14 @@ export const Comment = styled.div`
   padding: 10px 22px;
 
   display: flex;
+  gap: 30px;
 
   div {
     display: flex;
 
-    width: 80%;
+    width: 100%;
     height: 100%;
+    justify-content: space-between;
 
     div {
       display: flex;
@@ -144,7 +150,7 @@ export const Comment = styled.div`
       div {
         display: flex;
         flex-direction: row;
-        width: 70%;
+        width: 60%;
 
         justify-content: space-between;
         align-items: center;
@@ -161,7 +167,88 @@ export const Comment = styled.div`
   img {
     scale: 0.7;
   }
+`;
 
-  justify-content: flex-end;
+export const ReComment = styled.div`
+  width: calc(100% - 44px);
+  height: calc(20% - 20px);
+
+  padding: 10px 22px;
+
+  display: flex;
   gap: 30px;
+
+  div {
+    display: flex;
+
+    width: 80%;
+    height: 100%;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      gap: 5px;
+
+      h1 {
+        color: ${theme.colors.black};
+        font-size: 16px;
+        font-weight: ${theme.fontWeight.semibold};
+      }
+
+      span {
+        color: ${theme.colors.gray700};
+        font-size: 15px;
+        font-weight: ${theme.fontWeight.medium};
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          color: ${theme.colors.gray600};
+          font-size: 11px;
+          font-weight: ${theme.fontWeight.medium};
+        }
+      }
+    }
+  }
+
+  img {
+    scale: 0.7;
+  }
+`;
+
+export const CommentInputWrap = styled.div`
+  width: calc(100% - 60px);
+  height: calc(10% - 20px);
+
+  padding: 10px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    border: none;
+
+    color: ${theme.colors.black};
+    font-size: 16px;
+    font-weight: ${theme.fontWeight.semibold};
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: ${theme.colors.gray500};
+      font-size: 16px;
+    }
+  }
 `;
