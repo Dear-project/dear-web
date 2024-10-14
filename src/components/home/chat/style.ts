@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
 
-export const chatContainer = styled.div`
+export const ChatContainer = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  gap: 20px;
 `;
+export const ChatRoomContainer = styled.div`
+display: flex;
+width: 100%;
+height: 100%;
+`
 
-export const chatRoom = styled.div`
+export const ChatRoom = styled.div`
   flex-grow: 1;
   background-color: #fff;
   display: flex;
@@ -18,7 +22,7 @@ export const chatRoom = styled.div`
   border-radius: 8px;
 `;
 
-export const chatPlaceholder = styled.div`
+export const ChatPlaceholder = styled.div`
   flex-grow: 1;
   display: flex;
   justify-content: center;

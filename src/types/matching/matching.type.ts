@@ -1,7 +1,7 @@
 
 export interface MatchingData{
-    id: number,
-    userId: number,
+    id: string,
+    userId: string,
     professorId: number,
     matchingType: string,
     userName:string,

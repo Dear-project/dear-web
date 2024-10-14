@@ -3,7 +3,7 @@
 import React from "react";
 import * as S from "./style";
 import TextField from "src/components/common/textField";
-import useEmail from "src/Hooks/Auth/signup/useEmail";
+import useEmail from "src/hooks/auth/signup/useEmail";
 
 const SignUpEmail = () => {
   const { ...hooks } = useEmail();

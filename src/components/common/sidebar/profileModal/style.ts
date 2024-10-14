@@ -16,8 +16,8 @@ export const layout = styled.div`
   align-items: center;
 `;
 export const Boxlayout = styled.div`
-  width: 880px;
-  height: 680px;
+  width: 80%;
+  height: 80%;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;

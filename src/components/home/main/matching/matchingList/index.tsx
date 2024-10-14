@@ -13,15 +13,16 @@ const MatchingList = ({ data }: MatchingProps)=>{
 
     const matchingAccept = useMatchingAccept();
     const matchingReject = usematchingReject();
+    const userId = data.userId.toString();
     const accepteButton = ()=>{
-        matchingAccept.mutate(data.id,{
+        matchingAccept.mutate(userId,{
             onSuccess: ()=>{
                 dearToast.sucessToast('수락성공');
             }
         })
     }
     const rejectButton = ()=>{
-        matchingReject.mutate(data.id,{
+        matchingReject.mutate(userId,{
             onSuccess:()=>{
                 dearToast.sucessToast('거절성공')
             }
