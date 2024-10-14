@@ -16,37 +16,32 @@ const SimpleSlider = () => {
   }, [bannerList]);
 
   const settings: Settings = {
-    dots: true, 
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 20000,
-    appendDots: (dots) => (
-      <S.CustomDots>
-        {dots}
-      </S.CustomDots>
-    ),
-    customPaging: (i) => (
-      <S.Dot />
-    ),
+    appendDots: (dots) => <S.CustomDots>{dots}</S.CustomDots>,
+    customPaging: (i) => <S.Dot />,
   };
 
   return (
     <S.SliderContainer>
       <Slider {...settings}>
-        {bannerList?.data.map((item) => (
-          <S.Slide key={item.id}>
-            <S.StyledImageWrapper>
-              {item.imagePath !== null && item.imagePath !== undefined ? (
-                <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1000} height={200} />
-              ) : (
-                <Image src={CommonBanner} alt="기본 배너" width={1000} height={200} />
-              )}
-            </S.StyledImageWrapper>
-          </S.Slide>
-        ))}
+        {Array.isArray(bannerList?.data) &&
+          bannerList?.data.map((item) => (
+            <S.Slide key={item.id}>
+              <S.StyledImageWrapper>
+                {item.imagePath !== null && item.imagePath !== undefined ? (
+                  <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1000} height={200} />
+                ) : (
+                  <Image src={CommonBanner} alt="기본 배너" width={1000} height={200} />
+                )}
+              </S.StyledImageWrapper>
+            </S.Slide>
+          ))}
       </Slider>
     </S.SliderContainer>
   );
