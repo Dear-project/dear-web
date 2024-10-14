@@ -28,7 +28,6 @@ export const SideBar = () => {
   setProfileId(data?.data.id!);
 
   const isSmallScreen = useMediaQuery({ query: '(max-width: 1264px)' });
-  console.log(sidebar.isSidebarOpen);
   
   
   const logoSrc = isSmallScreen ? Logo2 : Logo;

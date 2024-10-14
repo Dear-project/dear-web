@@ -3,7 +3,7 @@
 import React from "react";
 import * as S from "./style";
 import TextField from "src/components/common/textField";
-import useInfo from "src/hooks/Auth/signup/useInfo";
+import useInfo from "src/hooks/auth/signup/useInfo";
 
 const SignupInfo = () => {
   const { ...hooks } = useInfo();
