@@ -38,7 +38,6 @@ const useEmail = () => {
     const { email } = emailData;
     try {
       await axios.get(`${CONFIG.serverUrl}/auth/${email}/duplicate`).then(() => {
-        DearToast.sucessToast("가입 가능한 이메일입니다.");
         setResend(false);
       });
     } catch (error) {
@@ -50,7 +49,7 @@ const useEmail = () => {
         await axios.post(`${CONFIG.serverUrl}/auth/email?email=${email}`).then(() => {
           startTimer();
           setResend(true);
-          DearToast.sucessToast("인증번호 요청 성공~!");
+          DearToast.sucessToast("인증번호 요청 성공");
         });
       } catch (error) {
        DearToast.errorToast( "인증번호 요청 실패");

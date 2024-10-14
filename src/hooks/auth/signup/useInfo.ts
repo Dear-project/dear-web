@@ -17,7 +17,7 @@ const useInfo = () => {
   const email = useRecoilValue(EmailAtom);
   const password = useRecoilValue(PasswordAtom);
 
-  const hanldeDataChnage = useCallback(
+  const hanldeDataChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
       setInfoData((prev) => ({ ...prev, [name]: value }));
@@ -46,7 +46,7 @@ const useInfo = () => {
 
   return {
     infoData,
-    hanldeDataChnage,
+    hanldeDataChange,
     onSignup,
   };
 };

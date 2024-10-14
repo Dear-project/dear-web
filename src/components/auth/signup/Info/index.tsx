@@ -3,7 +3,7 @@
 import React from "react";
 import * as S from "./style";
 import TextField from "src/components/common/textField";
-import useInfo from "src/hooks/Auth/signup/useInfo";
+import useInfo from "src/hooks/auth/signup/useInfo";
 
 const SignupInfo = () => {
   const { ...hooks } = useInfo();
@@ -19,7 +19,7 @@ const SignupInfo = () => {
             type="text"
             functions="text"
             value={hooks.infoData.name}
-            onchange={hooks.hanldeDataChnage}
+            onchange={hooks.hanldeDataChange}
             labelStyle={{ top: "41%" }}
           >
             이름
@@ -32,24 +32,10 @@ const SignupInfo = () => {
               functions="text"
               labelStyle={{ top: "52%" }}
               value={hooks.infoData.birthday}
-              onchange={hooks.hanldeDataChnage}
+              onchange={hooks.hanldeDataChange}
             >
               생년월일
-            </TextField>
-  
-  
-            <TextField
-              id="text"
-              name="type"
-              type="text"
-              functions="text"
-              value={hooks.infoData.type}
-              onchange={hooks.hanldeDataChnage}
-              labelStyle={{ top: "63%" }}
-            >
-              분류
-            </TextField>
-  
+            </TextField>  
         </S.VerifyWrap>
         <S.ButtonWrap>
           <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
