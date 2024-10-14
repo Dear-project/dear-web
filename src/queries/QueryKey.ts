@@ -8,7 +8,7 @@ export const QUERY_KEYS = Object.freeze({
     getProfessor: "/profile",
   },
   community: {
-    community: "community",
+    community: "/community",
     getMyCommunity: "/community/my-articles",
     comment: {
       comment: "comment",

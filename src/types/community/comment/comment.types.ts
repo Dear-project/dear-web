@@ -4,13 +4,13 @@ export interface CommentById {
   commentId: number;
   content: string;
   commentor: string;
-  subComments: [
-    {
-      commentId: number;
-      content: string;
-      commentor: string;
-    },
-  ];
+  subComment: SubComment[];
+}
+
+interface SubComment {
+  commentId: number;
+  content: string;
+  commentor: string;
 }
 
 export interface CommentByIdResponse extends Response {
