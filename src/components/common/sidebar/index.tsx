@@ -42,7 +42,7 @@ export const SideBar = () => {
   const logoSrc = isSmallScreen && sidebar.isSidebarOpen ? Logo2 : Logo;
 
   return (
-    <S.Side isSidebarOpen={sidebar.isSidebarOpen}>
+    <S.Side $isSidebarOpen={sidebar.isSidebarOpen}>
       <ProfileModal
         isOpen={sidebar.isOpenProfile}
         close={sidebar.PrfoileClose}
@@ -55,35 +55,35 @@ export const SideBar = () => {
         handleProfileClick={sidebar.handleProfileClick}
       />
       <Link href={"/"}>
-        <S.Logo isSidebarOpen={sidebar.isSidebarOpen}>
+        <S.Logo $isSidebarOpen={sidebar.isSidebarOpen}>
           <Image src={logoSrc} alt="로고" />
         </S.Logo>
       </Link>
 
-      <S.Option isSidebarOpen={sidebar.isSidebarOpen}>
+      <S.Option $isSidebarOpen={sidebar.isSidebarOpen}>
         <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
-          <S.Select isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/" == sidebar.pathname}>
+          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/" == sidebar.pathname}>
             <Image src={"/" == sidebar.pathname ? Homelight : Home1} alt="메인" width={30} height={30} />
             <span>메인</span>
           </S.Select>
         </Link>
 
         <Link href="/chat" style={{ textDecoration: "none" }}>
-          <S.Select isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/chat" == sidebar.pathname}>
+          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/chat" == sidebar.pathname}>
             <Image src={"/chat" == sidebar.pathname ? Chatlight : Chat} alt="채팅" width={30} height={30} />
             <span>채팅</span>
           </S.Select>
         </Link>
 
         <Link href="/find" style={{ textDecoration: "none" }}>
-          <S.Select isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/find" == sidebar.pathname}>
+          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/find" == sidebar.pathname}>
             <Image src={"/find" == sidebar.pathname ? Findlight : Shcool} alt="교수찾기" width={30} height={30} />
             <span>교수찾기</span>
           </S.Select>
         </Link>
 
         <Link href="/community" style={{ textDecoration: "none" }}>
-          <S.Select isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/community" == sidebar.pathname}>
+          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/community" == sidebar.pathname}>
             <Image
               src={"/community" == sidebar.pathname ? Communitylight : Community}
               alt="커뮤니티 광장"
@@ -95,9 +95,9 @@ export const SideBar = () => {
         </Link>
       </S.Option>
 
-      <S.Profile isSidebarOpen={sidebar.isSidebarOpen}>
+      <S.Profile $isSidebarOpen={sidebar.isSidebarOpen}>
         <S.My
-          isSidebarOpen={sidebar.isSidebarOpen}
+          $isSidebarOpen={sidebar.isSidebarOpen}
           onClick={() => {
             sidebar.setModalBtn(true);
           }}
