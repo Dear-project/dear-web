@@ -9,16 +9,19 @@ import {
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { useGetCommentById } from "@/queries/community/comment/comment.query";
+import { useGetCommentById, usePostComment } from "@/queries/community/comment/comment.query";
+import React, { useState } from "react";
 
 const usePost = () => {
   const router = useRouter();
   const [writeId, setWritetId] = useRecoilState(PostIdAtom);
+  const [comment, setComment] = useState<string>("");
 
-  const mutation = usePostCommunity();
+  const postCommunitymutation = usePostCommunity();
+  const postCommentMutation = usePostComment();
 
   const setWrite = () => {
-    mutation.mutate(undefined, {
+    postCommunitymutation.mutate(undefined, {
       onSuccess: (res) => {
         setWritetId(res.data.id);
         router.push("/community/write");
@@ -30,18 +33,33 @@ const usePost = () => {
     });
   };
 
-  const getCommentById = (communityId: number) => {
-    const [{ data: commentList }] = useGetCommentById(communityId);
-    if (commentList !== undefined && commentList !== null && commentList.data.length > 0) {
-      return commentList;
-    }
+  const handleComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const postComment = (content: string, id: number) => {
+    postCommentMutation.mutate(
+      {
+        content,
+        id,
+      },
+      {
+        onSuccess: () => {
+          dearToast.sucessToast("댓글이 등록되었습니다.");
+        },
+        onError: (error) => {
+          dearToast.errorToast((error as AxiosError).message);
+        },
+      },
+    );
   };
 
   return {
     writeId,
-
+    comment,
     setWrite,
-    getCommentById,
+    handleComment,
+    postComment,
   };
 };
 

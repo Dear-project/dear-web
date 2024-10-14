@@ -35,7 +35,7 @@ const PostDetail = () => {
           ))}
         </S.ContentWrap>
       </S.PostWrap>
-      <Comment id={+id} />
+      <Comment communityId={+id} />
     </S.PostDetail>
   );
 };
