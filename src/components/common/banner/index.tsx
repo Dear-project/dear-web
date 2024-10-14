@@ -35,9 +35,9 @@ const SimpleSlider = () => {
             <S.Slide key={item.id}>
               <S.StyledImageWrapper>
                 {item.imagePath !== null && item.imagePath !== undefined ? (
-                  <Image src={item.imagePath} alt={`Banner ${item.id}`} width={1000} height={200} />
+                  <Image src={item.url} alt={`Banner ${item.id}`} />
                 ) : (
-                  <Image src={CommonBanner} alt="기본 배너" width={1000} height={200} />
+                  <Image src={CommonBanner} alt="기본 배너" width={100} height={200} />
                 )}
               </S.StyledImageWrapper>
             </S.Slide>

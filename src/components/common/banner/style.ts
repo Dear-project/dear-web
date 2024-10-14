@@ -16,12 +16,15 @@ export const Slide = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledImageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  position: relative;
+  /* position: relative; */
   border-radius: 15px;
   overflow: hidden;
 
