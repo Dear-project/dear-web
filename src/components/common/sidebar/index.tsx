@@ -30,7 +30,7 @@ export const SideBar = () => {
   if (data?.data.mclass === null) {
     setIsFirst((prev) => ({ ...prev, isMajor: true }));
   }
-
+  
   if (data?.data.schoolName === null) {
     setIsFirst((prev) => ({ ...prev, isSchool: true }));
   }

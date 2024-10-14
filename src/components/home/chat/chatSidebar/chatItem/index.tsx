@@ -4,15 +4,15 @@ import Image from "next/image";
 import { ChatData } from "@/types/chat/chat.type";
 
 interface ChatItemProps {
-  chatData?: ChatData[]; 
+  chatData?: ChatData[];
+  setSelectedChat: (chat: ChatData) => void; 
 }
 
-const ChatItem = ({ chatData }: ChatItemProps) => { 
-
+const ChatItem = ({ chatData, setSelectedChat }: ChatItemProps) => {
   return (
     <S.chatList>
-      {chatData?.map((chat: ChatData) => ( 
-        <S.chatItem key={chat.data.id}>
+      {chatData?.map((chat: ChatData) => (
+        <S.chatItem key={chat.data.id} onClick={() => setSelectedChat(chat)}> {/* Handle click */}
           <Image src={Profile} alt="프로필" />
           <S.chatDetail>
             <S.chatTitle>

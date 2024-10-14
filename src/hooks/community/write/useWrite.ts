@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useRef, useState, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import CONFIG from "@/config/config.json";
-import token from "@/libs/Token/Token";
+import token from "@/libs/token/tokens";
 import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 
 const useWrite = () => {

@@ -16,6 +16,8 @@ export const theme: DefaultTheme = {
     primary800: "#020202",
     primary500: "#FECE23",
     primary050: "#FFFAE8",
+    lightRed: "#FFE0E0",
+    lightBlue: "#EBEFFF",
     new: "#0E2764",
     black: "#000000",
   },

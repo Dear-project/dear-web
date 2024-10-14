@@ -7,5 +7,6 @@ import dearAxios from "@/libs/axios/customAxios";
         const {data} = await dearAxios.get('chat/get',{params:userId});
         return data
     }
+   
  }
  export default new ChatRepositoryImpl

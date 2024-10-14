@@ -1,10 +1,28 @@
-import { matcingRepository } from "./matchingRepository";
-import dearV1Axios  from "@/libs/axios/customAxios";
+import { MatcingRepository, pageRequest } from "./matchingRepository";
+import dearAxios  from "@/libs/axios/customAxios";
+import { MatchingResponse } from "@/types/matching/matching.type";
 
-class MatchingRepositoryImpl implements matcingRepository {
+interface matchingProps { 
+  subjectId:number,
+}
+
+class MatchingRepositoryImpl implements MatcingRepository {
   public async postMatching(subjectId: number): Promise<void> {
-    await dearV1Axios.post("/matching", subjectId);
+    await dearAxios.post('/matching', subjectId);
   }
+  
+  public async getMatchingList(pageRequest:pageRequest):Promise<MatchingResponse> {
+    const {data} = await dearAxios.get('/matching', {params:pageRequest})
+    return data
+  }
+  public async matchingAccept(subjectId: number):Promise<void>{
+    console.log(subjectId);
+    
+    await dearAxios.post('/matching/accept', subjectId);
+  }
+  public async matchingReject(subjectId: number):Promise<void>{
+    await dearAxios.post('/matching/reject', subjectId);
+    }
 }
 
 export default new MatchingRepositoryImpl();

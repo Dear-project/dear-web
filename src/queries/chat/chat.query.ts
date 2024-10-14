@@ -8,7 +8,7 @@ export const useGetChat = (userId: number) => {
   return useQuery<ChatGetResponse, AxiosError>({
     queryKey: [QUERY_KEYS.chat.getChatMy],
     queryFn: () => chatRepositoryImpl.getChat(userId),
-    cacheTime: 5 * 60 * 1000, // 5분 동안 캐시 보관
-    refetchInterval: 3600000, // 1시간마다 refetch
+    cacheTime: 5 * 60 * 1000, 
+    refetchInterval: 3600000, 
   });
 };

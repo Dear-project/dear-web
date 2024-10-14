@@ -3,10 +3,12 @@ import { Response } from "@/types/util/response.type";
 export interface CommunityPostData {
   id: number;
   userId: number;
+  userName: string;
   title: string;
   content: string;
   createdDateTime: string;
   modifiedDateTime: string;
+  comment: number;
   imagePath: string;
   profileImage: string;
 }
@@ -26,11 +28,14 @@ export interface CommunityPostById {
 export interface CommunityPostArticles {
   id: number;
   userId: number;
+  userName: string;
   title: string;
   content: string;
   createdDateTime: string;
   modifiedDateTime: string;
+  comment: number;
   imagePath: string;
+  profileImage: string;
 }
 
 export interface CommunityDataResponse extends Response {

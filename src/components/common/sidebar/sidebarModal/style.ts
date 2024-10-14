@@ -12,6 +12,10 @@ export const layout = styled.div`
   margin-bottom: 1rem;
   bottom: 2rem;
   left: 5rem;
+    @media (max-width: 1264px) {
+      left: 0;
+      margin-left: 4.5rem;
+  }
 `;
 export const Boxlayout = styled.div`
   width: 10rem;

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import * as S from "./style";
 
-import ProfessorList from "../matching/professorList/index";
+import ProfessorList from "../main/matching/professorList/index";
 import { useRouter } from "next/navigation";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
