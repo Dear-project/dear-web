@@ -182,10 +182,9 @@ export const SpanChangeInput = styled.span`
 
 export const TextBox = styled.div`
   display: flex;
+  width: 700px;
   flex-direction: row;
-  gap: 390px;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: center !important;
 `;
 
 export const FixBtn = styled.button`

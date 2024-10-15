@@ -5,6 +5,7 @@ export interface ProfileRepository {
   postMajorChange(changeParams: MajorChangeParams): Promise<void>;
   postProfileImage(imageParams: ImageChangeParams): Promise<void>;
   patchPassword(passwordParams: PassswrodChangeParams): Promise<void>;
+  postEditSchoolAndMajor(editSchoolAndMajorParams: EditSchoolAndMajorParams): Promise<void>;
 }
 
 export interface SchoolChangeParams {
@@ -22,4 +23,11 @@ export interface ImageChangeParams {
 export interface PassswrodChangeParams {
   oldPassword: string;
   newPassword: string;
+}
+
+export interface EditSchoolAndMajorParams {
+  school: string;
+  major: string;
+  stsMessage: "";
+  introduce: "";
 }

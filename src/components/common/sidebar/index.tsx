@@ -111,7 +111,6 @@ export const SideBar = () => {
             width={sidebar.isOpenProfile ? 65 : 50}
             height={sidebar.isOpenProfile ? 65 : 50}
           />
-
           {sidebar.isSidebarOpen && (
             <S.Detail>
               <S.Name>{data?.data.name || "홍길동"}</S.Name>

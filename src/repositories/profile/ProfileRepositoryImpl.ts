@@ -5,6 +5,7 @@ import {
   MajorChangeParams,
   ImageChangeParams,
   PassswrodChangeParams,
+  EditSchoolAndMajorParams,
 } from "./ProfileRepository";
 import { ProfileType, UserProfile } from "@/types/profile/profile.type";
 
@@ -31,6 +32,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
   public async patchPassword(passwordParams: PassswrodChangeParams): Promise<void> {
     await dearV1Axios.patch("/profile/password", passwordParams);
+  }
+  public async postEditSchoolAndMajor(editSchoolAndMajorParams: EditSchoolAndMajorParams): Promise<void> {
+    const { data } = await dearV1Axios.post("/profile", editSchoolAndMajorParams);
+    return data;
   }
 }
 

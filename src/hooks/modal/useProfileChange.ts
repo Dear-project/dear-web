@@ -2,9 +2,10 @@
 import dearToast from "../../libs/Swal/Swal";
 import React, { useCallback, useState } from "react";
 import { PasswordDataType, UserProfile } from "../../types/profile/profile.type";
-import { usePatchPassword, usePostProfileImage } from "@/queries/profile/query";
+import { usePatchPassword, usePostEditSchoolAndMajor, usePostProfileImage } from "@/queries/profile/query";
 import token from "../../libs/token/tokens";
 import { useRouter } from "next/navigation";
+import { EditSchoolAndMajorParams } from "@/repositories/profile/ProfileRepository";
 const useProfileChange = () => {
   const [UserData, serUserData] = useState<UserProfile>({
     id: 0,
@@ -97,12 +98,19 @@ const useProfileChange = () => {
     });
   };
 
-  const handleIsOpen = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleMajorOpen = () => {
-    setIsMajorOpen((prev) => !prev);
+  const postEditSchoolAndMajor = usePostEditSchoolAndMajor();
+  const handleChangeSchoolAndMajor = () => {
+    postEditSchoolAndMajor.mutate(
+      { school: UserData.schoolName, major: UserData.mclass, introduce: "", stsMessage: "" },
+      {
+        onSuccess: () => {
+          dearToast.sucessToast("정보 변경에 성공하였습니다.");
+        },
+        onError: () => {
+          dearToast.errorToast("알 수 없는 오류가 발생하였습니다.");
+        },
+      },
+    );
   };
 
   return {
@@ -115,8 +123,7 @@ const useProfileChange = () => {
     handleProfileChange,
     handlePasswordChange,
     changePassword,
-    handleIsOpen,
-    handleMajorOpen,
+    handleChangeSchoolAndMajor,
   };
 };
 

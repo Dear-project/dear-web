@@ -3,7 +3,11 @@ import { AxiosError } from "axios";
 import { ProfileType } from "../../types/profile/profile.type";
 import ProfileRepositoryImpl from "../../repositories/profile/ProfileRepositoryImpl";
 import { QUERY_KEYS } from "../QueryKey";
-import { PassswrodChangeParams, ImageChangeParams } from "@/repositories/profile/ProfileRepository";
+import {
+  PassswrodChangeParams,
+  ImageChangeParams,
+  EditSchoolAndMajorParams,
+} from "@/repositories/profile/ProfileRepository";
 
 export const useGetProfileInfo = () => {
   const useGetprofile = useQuery<ProfileType, AxiosError<ProfileType>>({
@@ -25,6 +29,13 @@ export const usePatchPassword = () => {
 export const usePostProfileImage = () => {
   const mutation = useMutation((imageChangeParams: ImageChangeParams) =>
     ProfileRepositoryImpl.postProfileImage(imageChangeParams),
+  );
+  return mutation;
+};
+
+export const usePostEditSchoolAndMajor = () => {
+  const mutation = useMutation((editSchoolAndMajorParams: EditSchoolAndMajorParams) =>
+    ProfileRepositoryImpl.postEditSchoolAndMajor(editSchoolAndMajorParams),
   );
   return mutation;
 };
