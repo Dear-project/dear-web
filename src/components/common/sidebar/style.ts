@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
-import Logo1 from "@/asset/LogoSmall.svg";
 
-export const Side = styled.div<{ isSidebarOpen: boolean }>`
+export const Side = styled.div<{ $isSidebarOpen: boolean }>`
   transition: all 0.3s ease-in-out;
 
-  width: ${({ isSidebarOpen }) => (isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
+  width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
   
   @media (min-width: 1264px) and (max-width: 1919px) {
-    width: ${({ isSidebarOpen }) => (isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
+    width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
   }
 
   @media (max-width: 1264px) {
@@ -28,9 +27,9 @@ export const Side = styled.div<{ isSidebarOpen: boolean }>`
   }
 `;
 
-export const Logo = styled.div<{ isSidebarOpen: boolean }>`
+export const Logo = styled.div<{ $isSidebarOpen: boolean }>`
   transition: all 0.3s ease-in-out; 
-  height: ${({ isSidebarOpen }) => (isSidebarOpen ? "200px" : "100px")};
+  height: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "200px" : "100px")};
   display: flex;
   width: 100%;
   font-style: normal;
@@ -39,7 +38,7 @@ export const Logo = styled.div<{ isSidebarOpen: boolean }>`
   align-items: center;
 
   img {
-    width: ${({ isSidebarOpen }) => (isSidebarOpen ? "130px" : "100%")};
+    width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "130px" : "100%")};
     height: 200px;
     transition: all 0.3s ease-in-out; 
   }
@@ -53,7 +52,7 @@ export const Logo = styled.div<{ isSidebarOpen: boolean }>`
   }
 `;
 
-export const Option = styled.div<{ isSidebarOpen: boolean }>`
+export const Option = styled.div<{ $isSidebarOpen: boolean }>`
   transition: all 0.3s ease-in-out; /* 메뉴 옵션 변화에 트랜지션 적용 */
 
   width: 100%;
@@ -67,8 +66,8 @@ export const Option = styled.div<{ isSidebarOpen: boolean }>`
   a {
     display: flex;
     align-items: center;
-    justify-content: ${({ isSidebarOpen }) => (isSidebarOpen ? "start" : "center")};
-    gap: ${({ isSidebarOpen }) => (isSidebarOpen ? "15px" : "0")};
+    justify-content: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "start" : "center")};
+    gap: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "15px" : "0")};
     width: 90%;
     height: 53px;
     border-radius: 12px;
@@ -76,7 +75,7 @@ export const Option = styled.div<{ isSidebarOpen: boolean }>`
   }
 `;
 
-export const Select = styled.div<{ isSelected: boolean; isSidebarOpen: boolean }>`
+export const Select = styled.div<{ isSelected: boolean; $isSidebarOpen: boolean }>`
   transition: all 0.3s ease-in-out; /* 선택된 항목 변화에 트랜지션 적용 */
 
   background: ${({ isSelected }) => (isSelected ? "#0e2764" : "transparent")};
@@ -84,14 +83,14 @@ export const Select = styled.div<{ isSelected: boolean; isSidebarOpen: boolean }
   font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: ${({isSidebarOpen})=>(isSidebarOpen ? "start" : "center")};
+  justify-content: ${({$isSidebarOpen})=>($isSidebarOpen ? "start" : "center")};
   gap: 15px;
   width: 100%;
   height: 53px;
   border-radius: 12px;
 
   & > img {
-    margin-left: ${({ isSidebarOpen }) => (isSidebarOpen ? "30px" : "0")}; 
+    margin-left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "30px" : "0")}; 
     display: flex;
     width: 30px;
     height: 30px;
@@ -99,7 +98,7 @@ export const Select = styled.div<{ isSelected: boolean; isSidebarOpen: boolean }
   }
 
   span {
-    display: ${({ isSidebarOpen }) => (isSidebarOpen ? "block" : "none")}; 
+    display: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "block" : "none")}; 
     font-size: 23px;
     font-weight: 700;
     color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#000000")};
@@ -120,13 +119,13 @@ export const Select = styled.div<{ isSelected: boolean; isSidebarOpen: boolean }
   }
 `;
 
-export const Profile = styled.div<{ isSidebarOpen: boolean }>`
+export const Profile = styled.div<{ $isSidebarOpen: boolean }>`
   display: flex;
   align-items: center;
   height: 5rem;
   padding: 10px;
   transition: all 0.3s ease-in-out;
-  justify-content: ${({ isSidebarOpen }) => (isSidebarOpen ? "flex-start" : "center")};
+  justify-content: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "flex-start" : "center")};
   @media (max-width: 1264px) {
     padding: 0;
     justify-content: center;
@@ -134,15 +133,15 @@ export const Profile = styled.div<{ isSidebarOpen: boolean }>`
   
 `;
 
-export const My = styled.div<{isSidebarOpen: boolean}>`
+export const My = styled.div<{$isSidebarOpen: boolean}>`
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
   transition: all 0.3s ease-in-out; 
 img{
-  width: ${({isSidebarOpen})=> (isSidebarOpen? 45 : 30)};
-  height: ${({isSidebarOpen})=> (isSidebarOpen? 45 : 30)};
+  width: ${({$isSidebarOpen})=> ($isSidebarOpen? 45 : 30)};
+  height: ${({$isSidebarOpen})=> ($isSidebarOpen? 45 : 30)};
 }
   &:hover {
     text-decoration: underline;

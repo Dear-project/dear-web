@@ -8,7 +8,7 @@ export const QUERY_KEYS = Object.freeze({
     getProfessor: "/profile",
   },
   community: {
-    community: "community",
+    community: "/community",
     getMyCommunity: "/community/my-articles",
     comment: {
       comment: "comment",
@@ -33,6 +33,7 @@ export const QUERY_KEYS = Object.freeze({
     getAllbanner: "/banner",
   },
   chat:{
-    getChatMy:"chat/get",
+    getChatMy:"/chat/get",
+    getChaySerach:"/chat/search"
   }
 });

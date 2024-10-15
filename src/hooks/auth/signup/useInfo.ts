@@ -34,7 +34,7 @@ const useInfo = () => {
           password: password.pw,
           name: infoData.name,
           birthDay: infoData.birthday,
-          type: infoData.type,
+          userRole: infoData.type,
         })
         .then(() => {
           DearToast.sucessToast("로그인 성공");

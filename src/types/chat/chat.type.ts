@@ -13,6 +13,12 @@ export interface ChatData {
     }
     
 }
+export interface ChatSearchProps {
+    userId:number,
+    word:string
+}
+
+
 export interface ChatGetResponse {
     data : ChatData[];
 }

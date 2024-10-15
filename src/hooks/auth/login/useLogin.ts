@@ -17,7 +17,7 @@ const useLogin = () => {
     userId: "",
     password: "",
   });
-  const [errorState, setErrorState] = useRecoilState<Record<string, string>>(ErrorStateAtom);
+
   const handleLoginChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = e.target;

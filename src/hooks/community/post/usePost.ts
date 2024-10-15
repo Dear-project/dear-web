@@ -7,32 +7,21 @@ import {
   usePostCommunity,
 } from "@/queries/community/community.query";
 import { AxiosError } from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { useGetCommentById } from "@/queries/community/comment/comment.query";
+import { useGetCommentById, usePostComment } from "@/queries/community/comment/comment.query";
+import React, { useState } from "react";
 
 const usePost = () => {
   const router = useRouter();
   const [writeId, setWritetId] = useRecoilState(PostIdAtom);
+  const [comment, setComment] = useState<string>("");
 
-  const mutation = usePostCommunity();
-  const getAllCommunity = (page: number) => {
-    const [{ data: communityList, isSuccess, isFetched }] = useAllGetCommunityQuery(page);
-    return { communityList, isSuccess, isFetched };
-  };
-
-  const getCommunityById = (id: number) => {
-    const [{ data: communityByIdList }] = useGetCommunityById(id);
-    return communityByIdList;
-  };
-
-  const GetMyArticles = (page: number) => {
-    const [{ data: myArticlesData }] = useGetMyArticles(page);
-    return myArticlesData;
-  };
+  const postCommunitymutation = usePostCommunity();
+  const postCommentMutation = usePostComment();
 
   const setWrite = () => {
-    mutation.mutate(undefined, {
+    postCommunitymutation.mutate(undefined, {
       onSuccess: (res) => {
         setWritetId(res.data.id);
         router.push("/community/write");
@@ -44,20 +33,33 @@ const usePost = () => {
     });
   };
 
-  const getCommentById = (communityId: number) => {
-    const [{ data: commentList }] = useGetCommentById(communityId);
-    if (commentList !== undefined && commentList !== null && commentList.data.length > 0) {
-      return commentList;
-    }
+  const handleComment = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value);
+  };
+
+  const postComment = (content: string, id: number) => {
+    postCommentMutation.mutate(
+      {
+        content,
+        id,
+      },
+      {
+        onSuccess: () => {
+          dearToast.sucessToast("댓글이 등록되었습니다.");
+        },
+        onError: (error) => {
+          dearToast.errorToast((error as AxiosError).message);
+        },
+      },
+    );
   };
 
   return {
     writeId,
-    GetMyArticles,
-    getAllCommunity,
-    getCommunityById,
+    comment,
     setWrite,
-    getCommentById,
+    handleComment,
+    postComment,
   };
 };
 

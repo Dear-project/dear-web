@@ -5,7 +5,7 @@ export const SelectSchoolModalWrap = styled.div`
   width: 100%;
   height: 100vh;
 
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
 
@@ -15,7 +15,7 @@ export const SelectSchoolModalWrap = styled.div`
   justify-content: center;
 
   background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 5;
 `;
 
 export const Main = styled.div`
@@ -166,7 +166,7 @@ export const SchoolList = styled.div<{ $isclicked: string }>`
     &:nth-child(2) {
       color: ${({ $isclicked }) => ($isclicked === "true" ? theme.colors.white : theme.colors.gray600)};
       font-size: 14px;
-      font-weight: ${theme.fontWeight.light};
+      font-weight: ${theme.fontWeight.normal};
     }
   }
 `;
@@ -177,7 +177,7 @@ export const NextButton = styled.button`
 
   background: ${theme.colors.new};
   color: ${theme.colors.white};
-  font-weight: ${theme.fontWeight.semiBold};
+  font-weight: ${theme.fontWeight.semibold};
   font-size: 20px;
 
   border: none;

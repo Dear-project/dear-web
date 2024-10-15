@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SliderContainer = styled.div`
-  width: 80%; 
+  width: 80%;
   max-width: 1000px;
   height: 200px;
   overflow: hidden;
@@ -16,12 +16,15 @@ export const Slide = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledImageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  position: relative;
+  /* position: relative; */
   border-radius: 15px;
   overflow: hidden;
 
@@ -35,15 +38,13 @@ export const CustomDots = styled.ul`
   justify-content: center;
   padding: 10px 0;
   list-style: none;
-  
 
   li {
     list-style: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0 6px;
-  padding: 0;
-
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 6px;
+    padding: 0;
   }
 
   li button {

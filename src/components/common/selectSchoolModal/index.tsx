@@ -8,17 +8,22 @@ import { useSchool } from "@/hooks/firstLogin/useSchool";
 import convertElemListType from "@/utils/transform/elemList/convertElemListType";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import SelectMajorModal from "@/components/common/selectMajorModal/index";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IsFirst } from "@/store/profile/profile.store";
+import Modal from "../modal";
 
-interface ModalProps {
-  isOpen: boolean;
-}
-
-const SelectSchoolModal = ({ isOpen }: ModalProps) => {
+const SelectSchoolModal = () => {
   const { ...first } = useSchool();
+  const [isFirst, setIsFirst] = useRecoilState(IsFirst);
+  console.log(isFirst);
+
+  const onClose = () => {
+    setIsFirst((prev) => ({ ...prev, isSchool: false, isMajor: true }));
+  };
 
   return (
     <>
-      {isOpen === true && (
+      <Modal isOpen={isFirst.isSchool} close={onClose}>
         <S.SelectSchoolModalWrap>
           <S.Main>
             <S.SelectWrap>
@@ -53,7 +58,7 @@ const SelectSchoolModal = ({ isOpen }: ModalProps) => {
                         $isclicked={item.seq === first.seq ? "true" : "false"}
                         key={idx}
                         onClick={() => {
-                          first.handlePostSchoolParams(item.seq, item.schoolName);
+                          first.handlePostSchoolParams(item.seq, item.schoolName, item.link, item.adres);
                         }}
                       >
                         <span>{item.schoolName}</span>
@@ -71,8 +76,8 @@ const SelectSchoolModal = ({ isOpen }: ModalProps) => {
             </div>
           </S.Main>
         </S.SelectSchoolModalWrap>
-      )}
-      <SelectMajorModal isOpen={first.isNext} />
+      </Modal>
+      <SelectMajorModal isOpen={isFirst.isMajor} onClose={onClose} />
     </>
   );
 };

@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Page = styled.div`
   display: flex;
-  padding: 100px 10px;
+  padding: 70px 0;
   gap: 50px;
-  width: 100%;
   height: 100%;
+  overflow-y: scroll;
  
   @media (max-width: 1264px) {
     flex-direction: column;
@@ -15,23 +15,14 @@ export const Page = styled.div`
   }
 `;
 
-export const SidePage = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: aqua;
-
-  @media (max-width: 1264px) {
-    height: auto;
-    background-color: lightblue; 
-  }
-`;
 
 export const MainView = styled.div`
   display: flex;
+  
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 1000px;
 `;
 
 export const MainBox = styled.div`

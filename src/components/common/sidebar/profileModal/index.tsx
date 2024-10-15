@@ -1,16 +1,12 @@
 import * as S from "./style";
-import { remark } from "remark";
-import html from "remark-html";
-import { Dispatch, RefObject, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import Profile from "public/svgs/Avatar.svg";
 import Photo from "public/svgs/photo.svg";
 import Close from "public/svgs/close.svg";
 import useProfileChange from "@/hooks/modal/useProfileChange";
 import { useGetProfileInfo } from "@/queries/profile/query";
-import SelectSchoolModal from "@/components/common/selectSchoolModal/index";
-import SelectMajorModal from "@/components/common/selectMajorModal/index";
 import Modal from "@/components/common/modal/index";
+import SelectMajorModal from "../../selectMajorModal";
 
 interface ProfileModalProps {
   isOpen:boolean;
@@ -27,7 +23,6 @@ const ProfileModal = ({
   const { data } = useGetProfileInfo();
   return (
     <Modal isOpen={isOpen} close={close}>
-     
         <S.Boxlayout onClick={(e) => e.stopPropagation()}>
           <Image
             onClick={handleProfileClick}

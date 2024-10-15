@@ -1,96 +1,202 @@
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
-export const Community = styled.div`
-  width: calc(100vw - 250px);
+export const CommunityWrap = styled.div`
   height: 100vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
 
-  background: #f4f3f9;
-
-  overflow-y: hidden;
-
-  & > img:nth-child(n + 2) {
-    position: fixed;
-    top: 85%;
-    left: 92%;
-
-    cursor: pointer;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
 export const Main = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 70%;
+  padding: 49px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const Community = styled.div`
+  width: 55%;
+  height: 100%;
+  background: ${theme.colors.white};
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+export const TitleWrap = styled.div`
+  width: 85%;
+  height: 10%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    color: ${theme.colors.black};
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: ${theme.fontWeight.extrabold};
+  }
+
+  button {
+    width: 155px;
+    height: 35px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: ${theme.colors.new};
+    color: ${theme.colors.white};
+    font-size: 13px;
+    font-weight: ${theme.fontWeight.semibold};
+    cursor: pointer;
+  }
+
+  img {
+    width: 14px;
+    height: 14px;
+  }
+`;
+
+export const CommunityPostWrap = styled.div`
+  width: 90%;
+  height: 650px;
   display: flex;
   flex-direction: column;
 
-  justify-content: center;
+  gap: 17px;
+
   align-items: center;
 
-  position: relative;
+  overflow-y: auto;
 `;
 
-export const SearchWrap = styled.div`
-  width: 600px;
-  height: 50px;
-
-  margin-bottom: 20px;
-
-  background: white;
-  border: none;
-  border-radius: 20px;
+export const CommunityPost = styled.div`
+  width: 95%;
+  height: 25%;
+  padding: 15px;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid ${theme.colors.gray600};
+  border-radius: 16px;
+  background: inherit;
 
-  margin-top: 10px;
-
-  img {
-    width: 25px;
-    height: 25px;
-    margin-right: 20px;
+  @media (max-width: 768px) {
+    width: 90%;
   }
 `;
 
-export const Search = styled.input`
-  width: 95%;
-  height: 100%;
-
+export const Title = styled.h1`
+  color: ${theme.colors.black};
+  text-align: center;
   font-size: 20px;
+  font-style: normal;
+  font-weight: ${theme.fontWeight.semibold};
+`;
 
-  padding-left: 15px;
+export const TimeStamp = styled.span`
+  color: ${theme.colors.gray600};
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+`;
+
+export const Description = styled.div`
+  color: ${theme.colors.black};
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: ${theme.fontWeight.medium};
+  white-space: break-spaces;
+`;
+
+export const PostInfo = styled.div`
+  display: flex;
+  width: 212px;
+  height: 45px;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-top: 8%;
+
+  span {
+    color: ${theme.colors.gray600};
+    text-align: center;
+    font-size: 17px;
+    font-weight: ${theme.fontWeight.medium};
+  }
+
+  img {
+    border-radius: 50%;
+  }
+`;
+export const MyPostWrap = styled.div`
+  width: 40%;
+  height: 60%;
+  background-color: white;
   border: none;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 
-  &::placeholder {
-    font-weight: 600;
-    font-size: 20px;
-    color: #d1d1d1;
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 추가 */
   }
+`;
 
-  &:focus {
-    outline: none;
-  }
+export const MyPost = styled.div`
+  display: flex;
+  width: 100%;
+  height: 70%;
+  padding: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  overflow-y: auto;
 `;
 
 export const PostWrap = styled.div`
+  width: 80%;
+  height: 50%;
+
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 
-  width: calc(100% - 265px);
-  height: 100%;
+  padding: 15px;
+  gap: 10px;
 
-  gap: 20px;
-
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  scrollbar-width: none;
-
-  overflow-x: hidden;
+  border: 1px solid #000;
+  border-radius: 16px;
 `;

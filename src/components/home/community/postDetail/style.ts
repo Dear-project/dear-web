@@ -1,148 +1,254 @@
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const PostDetail = styled.div`
-  width: calc(100vw - 250px);
+  width: 100%;
   height: 100vh;
 
   display: flex;
-  background: #f4f3f9;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 70px 0px 0px 0px;
 `;
 
-export const Main = styled.div`
-  width: 1250px;
-  height: 95%;
-  background: white;
+export const PostWrap = styled.div`
+  width: 50%;
+  height: 85%;
 
-  margin: 0 auto;
-
+  background: ${theme.colors.white};
   border: none;
-  border-radius: 30px 30px 0px 0px;
+  border-radius: 20px;
 
   display: flex;
   flex-direction: column;
-  align-self: center;
-
-  justify-content: space-evenly;
-
-  padding-left: 40px;
 `;
 
 export const WriterInfo = styled.div`
-  width: 100%;
-  height: 60px;
+  width: calc(100% - 100px);
+  height: calc(10% - 72px);
 
+  padding: 36px 50px;
   display: flex;
-
-  background: transparent;
+  gap: 10px;
   align-items: center;
 
   img {
-    width: 60px;
-    height: 60px;
-    margin-right: 1vw;
+    border-radius: 50%;
   }
 
   div {
     display: flex;
     flex-direction: column;
-
+    justify-content: flex-start;
     gap: 10px;
+
+    h1 {
+      color: ${theme.colors.black};
+      font-size: 23px;
+      font-weight: ${theme.fontWeight.bold};
+    }
+    span {
+      columns: ${theme.colors.gray600};
+      font-size: 16px;
+      font-weight: 700;
+    }
   }
+`;
+
+export const ContentWrap = styled.div`
+  width: calc(100% - 100px);
+  height: calc(90% - 72px);
+
+  padding: 36px 50px;
 
   h1 {
-    color: var(--Black, #000);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    color: ${theme.colors.black};
+    font-size: 33px;
+    font-weight: ${theme.fontWeight.bold};
   }
 
   span {
-    color: var(--Gray600, #787878);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    color: ${theme.colors.black};
+    font-size: 28px;
+    font-weight: ${theme.fontWeight.normal};
   }
-`;
 
-export const Content = styled.h1`
-  color: var(--Black, #000);
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  img {
+    border: none;
+    border-radius: 30px;
+  }
 `;
 
 export const CommentWrap = styled.div`
-  width: 100%;
-  height: 30%;
+  width: 30%;
+  height: 50%;
 
-  background: white;
-
-  /* overflow: scroll; */
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  scrollbar-width: none;
-`;
-
-export const Comments = styled.div`
-  width: 95%;
-  height: 100%;
+  background: ${theme.colors.white};
 
   display: flex;
   flex-direction: column;
 
-  overflow-y: scroll;
-
-  p {
-    padding-top: 20px;
-  }
-`;
-
-export const Comment = styled.div`
-  width: 99%;
-  height: 34%;
-
-  padding-left: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-
-  display: flex;
+  padding: 29px 30px;
 
   gap: 10px;
 
   border: none;
-  border-bottom: 1px solid #d1d1d1;
+  border-radius: 20px;
+`;
 
-  img {
-    width: 45px;
-    height: 45px;
-  }
+export const CommentWrapTitle = styled.h1`
+  color: ${theme.colors.black};
+  font-size: 33px;
+  font-weight: ${theme.fontWeight.extrabold};
 `;
 
 export const CommentContentWrap = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: 95%;
 
-  h1 {
-    color: var(--Black, #000);
-    font-family: Pretendard;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+
+  overflow-y: auto;
+`;
+
+export const Comment = styled.div`
+  width: calc(100% - 44px);
+  height: calc(20% - 20px);
+
+  padding: 10px 22px;
+
+  display: flex;
+  gap: 30px;
+
+  div {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      gap: 5px;
+
+      h1 {
+        color: ${theme.colors.black};
+        font-size: 16px;
+        font-weight: ${theme.fontWeight.semibold};
+      }
+
+      span {
+        color: ${theme.colors.gray700};
+        font-size: 15px;
+        font-weight: ${theme.fontWeight.medium};
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          color: ${theme.colors.gray600};
+          font-size: 11px;
+          font-weight: ${theme.fontWeight.medium};
+        }
+      }
+    }
   }
 
-  span {
-    color: var(--Black, #000);
-    font-family: Pretendard;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+  img {
+    scale: 0.7;
+  }
+`;
+
+export const ReComment = styled.div`
+  width: calc(100% - 44px);
+  height: calc(20% - 20px);
+
+  padding: 10px 22px;
+
+  display: flex;
+  gap: 30px;
+
+  div {
+    display: flex;
+
+    width: 80%;
+    height: 100%;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      gap: 5px;
+
+      h1 {
+        color: ${theme.colors.black};
+        font-size: 16px;
+        font-weight: ${theme.fontWeight.semibold};
+      }
+
+      span {
+        color: ${theme.colors.gray700};
+        font-size: 15px;
+        font-weight: ${theme.fontWeight.medium};
+      }
+
+      div {
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          color: ${theme.colors.gray600};
+          font-size: 11px;
+          font-weight: ${theme.fontWeight.medium};
+        }
+      }
+    }
+  }
+
+  img {
+    scale: 0.7;
+  }
+`;
+
+export const CommentInputWrap = styled.div`
+  width: calc(100% - 60px);
+  height: calc(10% - 20px);
+
+  padding: 10px 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    border: none;
+
+    color: ${theme.colors.black};
+    font-size: 16px;
+    font-weight: ${theme.fontWeight.semibold};
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: ${theme.colors.gray500};
+      font-size: 16px;
+    }
   }
 `;
