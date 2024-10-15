@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 
 export const TextField = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ export const TextFieldInput = styled.input`
   font-style: normal;
   font-weight: 200;
   border: none;
-  
+
   outline: none;
   padding-left: 3%;
 
@@ -71,3 +71,11 @@ export const ErrorText = styled.span`
   margin-left: 75px;
   margin-top: -30px;
 `;
+
+export const DateLabelStyle: CSSObject = {
+  position: "absolute",
+  top: "50%",
+  left: "2%",
+  transform: "translateY(-250%)",
+  fontSize: "1rem",
+};

@@ -24,21 +24,20 @@ const SignupInfo = () => {
           >
             이름
           </TextField>
-       
-            <TextField
-              id="text"
-              name="birthday"
-              type="text"
-              functions="text"
-              labelStyle={{ top: "52%" }}
-              value={hooks.infoData.birthday}
-              onchange={hooks.hanldeDataChange}
-            >
-              생년월일
-            </TextField>  
+          <TextField
+            id="date"
+            name="birthday"
+            type="date"
+            functions="date"
+            labelStyle={{ top: "52%" }}
+            value={hooks.infoData.birthday}
+            onchange={hooks.hanldeDataChange}
+          >
+            생년월일
+          </TextField>
         </S.VerifyWrap>
         <S.ButtonWrap>
-          <S.BackButton onClick={()=>window.history.back()}>이전</S.BackButton>
+          <S.BackButton onClick={() => window.history.back()}>이전</S.BackButton>
           <S.NextButton onClick={hooks.onSignup}>완료</S.NextButton>
         </S.ButtonWrap>
       </S.SignUpInfolWrap>
