@@ -11,19 +11,14 @@ export const Main = styled.div`
   align-self: center;
 `;
 
-export const SignUpEmailWrap = styled.div`
+export const SignUpInfolWrap = styled.div`
   min-width: 400px;
   min-height: 500px;
-  height: 500px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  @media screen and (min-width: 48em) {
-    .login-container {
-      padding: 48px;
-    }
-  }
   padding: 30px;
   border-radius: var(--Large, 12px);
   background: var(--White, #fff);
@@ -38,29 +33,15 @@ export const DearLogo = styled.h1`
   font-weight: 800;
 `;
 
-export const SignBox = styled.div``;
 export const VerifyWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  padding: 10px;
-`;
-
-export const Verify = styled.div`
-  display: flex;
-  width: 485px;
-`;
-export const retryVerify = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
+
+  justify-content: center;
   align-items: center;
 
-  position: relative;
-`;
-
-export const Span = styled.span`
-  font-family: Assistant;
+  gap: 60px;
 `;
 
 export const Input = styled.input`
@@ -87,22 +68,14 @@ export const Input = styled.input`
   }
 `;
 
-export const EmailVerifyWrap = styled.div`
-  width: 80%;
-  display: flex;
-  align-items: center;
-  margin-top: 1vh;
-`;
-
 export const VerifyButton = styled.button`
-  width: 160px;
+  width: 180px;
   height: 45px;
 
   display: flex;
   align-items: center;
   align-self: center;
   justify-content: center;
-  z-index: 1;
 
   gap: 10px;
 
@@ -118,7 +91,7 @@ export const VerifyButton = styled.button`
 `;
 
 export const ButtonWrap = styled.div`
-  width: 100%;
+  width: 485px;
   height: 45px;
 
   display: flex;
@@ -166,17 +139,8 @@ export const NextButton = styled.button`
   &:focus {
     outline: none;
   }
-`;
 
-export const ErrorMessageWrap = styled.div`
-  color: var(--red-500, #f90707);
-  font-family: Assistant;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-
-  width: 100%;
-  margin-left: 16vw;
-  margin-top: 1vh;
+  &:disabled {
+    background: var(--Primary800, #ebefff);
+  }
 `;
