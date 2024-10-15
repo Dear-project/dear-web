@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as S from "./style";
@@ -18,24 +19,27 @@ import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
 import UseSidebar from "@/hooks/sidebar/useSidebar";
 import { useRecoilState } from "recoil";
-import { IsFirst, ProfileId } from "@/store/profile/profile.store";
+import { IsLocation, ProfileId,ProfessorCheck, IsFirst} from "@/store/profile/profile.store";
 import { useMediaQuery } from "react-responsive";
+import { ModalCheck } from "@/store/profile/profile.store";
 
 export const SideBar = () => {
   const { ...sidebar } = UseSidebar();
   const { data } = useGetProfileInfo();
+  const [isFirst,setFirst] = useRecoilState(IsFirst);
   const [, setProfileId] = useRecoilState(ProfileId);
-  const [isFirst, setIsFirst] = useRecoilState(IsFirst);
+  const [, setProfessorCheck] = useRecoilState(ProfessorCheck);
   setProfileId(data?.data.id!);
-  if (data?.data.mclass === null) {
-    setIsFirst((prev) => ({ ...prev, isMajor: true }));
+
+  if(data?.data.role === "PROFESSOR"){
+    setProfessorCheck(true);
+  }
+  if (data?.data.schoolName === null) {
+    setFirst(true);
+  }else if(data?.data.mclass === null){
+   setFirst(true);
   }
   
-  if (data?.data.schoolName === null) {
-    setIsFirst((prev) => ({ ...prev, isSchool: true }));
-  }
-
-  console.log(isFirst);
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1264px)" });
 

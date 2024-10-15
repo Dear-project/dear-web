@@ -1,83 +1,126 @@
-import React from "react";
+import React,{useState} from "react";
 import * as S from "./style";
-import Search from "@/asset/search.svg";
 import Image from "next/image";
 import DropDown from "@/asset/DropDown.svg";
-import { ELEM_TYPE_LIST } from "@/constants/elemType/elemType.constants";
-import { useSchool } from "@/hooks/firstLogin/useSchool";
-import convertElemListType from "@/utils/transform/elemList/convertElemListType";
+import { ELEM_TYPE_LIST ,ELEM_TYPE} from "@/constants/elemType/elemType.constants";
+import { useRecoilState } from "recoil";
+import { ProfessorCheck,IsFirst } from "@/store/profile/profile.store";
+import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
+import Search from "@/asset/img/Search.svg";
+import CustomRadio from "../raido";
 import { useGetProfileInfo } from "@/queries/profile/query";
-import SelectMajorModal from "@/components/common/selectMajorModal/index";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { IsFirst } from "@/store/profile/profile.store";
-import Modal from "../modal";
 
-const SelectSchoolModal = () => {
-  const { ...first } = useSchool();
-  const [isFirst, setIsFirst] = useRecoilState(IsFirst);
-  console.log(isFirst);
+interface SelectSchoolModalProps {
+  isDropDown: boolean;
+  setIsDropDown: (value: boolean) => void;
+  handleGubunType: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchName: string;
+  schoolList: GetSchoolListRespose | undefined;
+  searchSchoolName: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  searchSchool: () => void;
+  seq: string;
+  handlePostSchoolParams: (seq: string, schoolName: string, link: string, adres: string) => void;
+  onSubmitSchool: () => void;
+}
 
-  const onClose = () => {
-    setIsFirst((prev) => ({ ...prev, isSchool: false, isMajor: true }));
+const SelectSchoolModal = ({
+  isDropDown,
+  setIsDropDown,
+  handleGubunType,
+  searchName,
+  schoolList,
+  searchSchoolName,
+  searchSchool,
+  seq,
+  handlePostSchoolParams,
+  onSubmitSchool,
+}: SelectSchoolModalProps) => {
+ 
+  const [selectedValue, setSelectedValue] = useState<ELEM_TYPE>();
+  const [isProfessorCheck, ] = useRecoilState(ProfessorCheck);
+  const [selectedSchoolSeq, setSelectedSchoolSeq] = useState<string | null>(null);
+  const conditionalElemTypeList: ELEM_TYPE[] = isProfessorCheck
+  ? [...ELEM_TYPE_LIST, "UNIV_LIST"] as ELEM_TYPE[] 
+  : ELEM_TYPE_LIST;
+  
+  const handleChange = (value: ELEM_TYPE) => {
+    setSelectedValue(value);
+    handleGubunType({ target: { value } } as React.ChangeEvent<HTMLInputElement>); // 값 변경
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      searchSchool(); 
+    }
+  };
+  const handleSchool = (seq: string, schoolName: string, link: string, adres: string) => {
+    setSelectedSchoolSeq(seq); 
+    handlePostSchoolParams(seq, schoolName, link, adres);
   };
 
   return (
     <>
-      <Modal isOpen={isFirst.isSchool} close={onClose}>
-        <S.SelectSchoolModalWrap>
-          <S.Main>
-            <S.SelectWrap>
-              <S.SchoolTypeSelectionWrap $isclicked={first.isDropDown ? "false" : "true"}>
-                <div style={{ justifyContent: "space-between" }}>
-                  <span>학교구분 선택하기</span>
-                  <Image
-                    src={DropDown}
-                    alt="드롭다운 버튼 이미지"
-                    style={{ padding: "5%", cursor: "pointer" }}
-                    onClick={() => first.setIsDropDown((prev) => !prev)}
-                  />
-                </div>
-                <S.RadioButtonBox $isvisible={first.isDropDown ? "true" : "false"}>
-                  {ELEM_TYPE_LIST.map((item, idx) => (
-                    <div key={idx}>
-                      <input type="radio" value={item} onChange={first.handleGubunType} name="gubunType" />
-                      <label>{convertElemListType.convertElemListType(item)}</label>
-                    </div>
-                  ))}
-                </S.RadioButtonBox>
-              </S.SchoolTypeSelectionWrap>
-              <S.SchoolSelectionWrap>
-                <S.SearchWrap>
-                  <input placeholder="학교를 검색하세요." onChange={first.searchSchoolName} value={first.searchName} />
-                  <Image src={Search} alt="검색 돋보기" width={20} height={20} onClick={first.searchSchool} />
-                </S.SearchWrap>
-                <S.SchoolWrap>
-                  {first.schoolList?.data ? (
-                    first.schoolList?.data.map((item, idx) => (
-                      <S.SchoolList
-                        $isclicked={item.seq === first.seq ? "true" : "false"}
-                        key={idx}
-                        onClick={() => {
-                          first.handlePostSchoolParams(item.seq, item.schoolName, item.link, item.adres);
-                        }}
-                      >
-                        <span>{item.schoolName}</span>
-                        <span>{item.adres}</span>
-                      </S.SchoolList>
-                    ))
-                  ) : (
-                    <p>학교를 찾지 못하였습니다.</p>
-                  )}
-                </S.SchoolWrap>
-              </S.SchoolSelectionWrap>
-            </S.SelectWrap>
-            <div style={{ display: "flex", width: "80%", height: "10%", justifyContent: "flex-end" }}>
-              <S.NextButton onClick={first.onSubmitSchool}>다음</S.NextButton>
-            </div>
-          </S.Main>
-        </S.SelectSchoolModalWrap>
-      </Modal>
-      <SelectMajorModal isOpen={isFirst.isMajor} onClose={onClose} />
+      <S.SelectWrap>
+        <S.SchoolTypeSelectionWrap $isclicked={isDropDown ? "false" : "true"}  >
+          <div style={{ justifyContent: "space-between" }} onClick={() => setIsDropDown(!isDropDown)}>
+            <span>학교구분 선택하기</span>
+            <Image
+              src={DropDown}
+              alt="드롭다운 버튼 이미지"
+              style={{ padding: "5%", cursor: "pointer" }}
+             
+            />
+          </div>
+          <S.RadioButtonBox $isvisible={isDropDown ? "true" : "false"}>
+          {conditionalElemTypeList.map((item, idx) => {
+              return (
+                <CustomRadio
+                key={idx}
+                value={item}
+                selected={selectedValue === item}
+                onChange={handleChange}
+              />
+              );
+            })}
+          </S.RadioButtonBox>
+        </S.SchoolTypeSelectionWrap>
+
+        <S.SchoolSelectionWrap>
+          <S.SearchWrap>
+            <input
+              placeholder="학교를 검색하세요."
+              onChange={searchSchoolName}
+              value={searchName}
+              onKeyDown={handleKeyDown}
+            />
+            <Image src={Search} alt="검색 돋보기" width={20} height={20} onClick={searchSchool} />
+          </S.SearchWrap>
+
+          <S.SchoolWrap>
+            {schoolList?.data ? (
+              schoolList.data.map((item, idx) => 
+               (
+                  <S.SchoolList
+                  $isclicked={item.seq === selectedSchoolSeq ? "true" : "false"}
+                  key={idx}
+                  onClick={() => handleSchool(item.seq, item.schoolName, item.link, item.adres)}
+                >
+                  <span>{item.schoolName}</span>
+                  <span>{item.adres}</span>
+                </S.SchoolList>
+               
+               )
+               
+              )
+            ) : (
+              <p>학교를 선택해주세요.</p>
+            )}
+          </S.SchoolWrap>
+        </S.SchoolSelectionWrap>
+      </S.SelectWrap>
+      <div style={{ display: "flex", width: "80%", height: "10%", justifyContent: "flex-end" }}>
+        <S.NextButton onClick={onSubmitSchool}>다음</S.NextButton>
+      </div>
     </>
   );
 };

@@ -1,38 +1,6 @@
 import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
-export const SelectSchoolModalWrap = styled.div`
-  width: 100%;
-  height: 100vh;
-
-  position: absolute;
-  left: 0;
-  top: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 5;
-`;
-
-export const Main = styled.div`
-  width: 60%;
-  height: 60%;
-
-  border: none;
-  border-radius: 20px;
-
-  background: #fff;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-around;
-`;
 
 export const SelectWrap = styled.div`
   width: 90%;
@@ -46,14 +14,12 @@ export const SelectWrap = styled.div`
 
 export const SchoolTypeSelectionWrap = styled.div<{ $isclicked: string }>`
   width: 40%;
-  height: 70%;
-
+  height: 100%;
   border: ${({ $isclicked }) => ($isclicked === "true" ? "none" : "1px solid #c5d0da")};
   border-radius: 16px;
 
   div {
-    width: 98%;
-    height: 30%;
+    height: 15%;
 
     border: ${({ $isclicked }) => ($isclicked === "true" ? "1px solid #c5d0da" : "none")};
     border-bottom: ${({ $isclicked }) => ($isclicked === "true" ? "1px solid #c5d0da" : "none")};
@@ -69,6 +35,10 @@ export const SchoolTypeSelectionWrap = styled.div<{ $isclicked: string }>`
 
     padding-left: 2%;
   }
+  img {
+    transition: transform 0.3s ease;
+    transform: ${({ $isclicked }) => ($isclicked === "true" ? "rotate(180deg)" : "rotate(0deg)")};
+  }
 `;
 
 export const RadioButtonBox = styled.div<{ $isvisible: string }>`
@@ -80,15 +50,6 @@ export const RadioButtonBox = styled.div<{ $isvisible: string }>`
   display: ${({ $isvisible }) => ($isvisible === "true" ? "flex" : "none")} !important;
   flex-direction: column;
 
-  div {
-    border: none !important;
-    display: flex;
-    gap: 10px;
-    input[type="radio"] {
-      width: 25px;
-      height: 25px;
-    }
-  }
 `;
 
 export const SchoolSelectionWrap = styled.div`
@@ -98,7 +59,7 @@ export const SchoolSelectionWrap = styled.div`
 
 export const SearchWrap = styled.div`
   width: 100%;
-  height: 20%;
+  height: 15%;
   border: 1px solid #c5d0da;
   border-radius: 16px;
 
@@ -129,7 +90,7 @@ export const SearchWrap = styled.div`
 export const SchoolWrap = styled.div`
   width: 100%;
   height: 90%;
-
+text-align: center;
   display: flex;
   flex-direction: column;
 
@@ -144,7 +105,7 @@ export const SchoolWrap = styled.div`
 export const SchoolList = styled.div<{ $isclicked: string }>`
   width: 90%;
   height: 20%;
-
+  cursor: pointer;
   display: flex;
   border-radius: 12px;
   flex-direction: column;

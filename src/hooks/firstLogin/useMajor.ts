@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useCallback } from "react";
 import { useGetMajorList, usePostMajor } from "@/queries/firstLogin/firstLogin.query";
 import { MAJOR_TYPE } from "@/constants/majorType/majorType.constants";
 import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
@@ -11,14 +11,16 @@ const useMajor = () => {
   const [majorReq, setMajorSeq] = useState<string>("");
   const [lClass, setLClass] = useState<string>("");
   const [mClass, setMClass] = useState<string>("");
-
+  const [isOpen, setIsOpen] = useState(false); 
   const getMajorListMuataion = useGetMajorList();
   const postMajorMutation = usePostMajor();
 
   const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-
+  const closeModal = useCallback(() => {
+    setIsOpen(false);
+  }, []);
   const handleSubject = (item: MAJOR_TYPE) => {
     setSubjuect(item);
   };
@@ -54,7 +56,8 @@ const useMajor = () => {
     postMajorMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
-        window.location.reload();
+        setIsOpen(false);
+
       },
       onError: () => {
         dearToast.errorToast("알 수 없는 에러가 발생하였습니다.");
@@ -63,6 +66,9 @@ const useMajor = () => {
   };
 
   return {
+    setIsOpen,
+    closeModal,
+    isOpen,
     setMajorList,
     subject,
     majorList,

@@ -13,7 +13,7 @@ interface InfoType {
   adres: string;
 }
 
-export const useSchool = () => {
+const useSchool = () => {
   const [seq, setSeq] = useState<string>("");
   const [info, setInfo] = useState<InfoType>({
     seq: "",
@@ -93,3 +93,5 @@ export const useSchool = () => {
     onSubmitSchool,
   };
 };
+
+export default useSchool

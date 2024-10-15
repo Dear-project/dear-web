@@ -5,12 +5,24 @@ export const ProfileId = atom<number>({
   default: 0,
 });
 
-interface IsFirstType {
-  isSchool: boolean;
-  isMajor: boolean;
-}
-
-export const IsFirst = atom<IsFirstType>({
+export const IsFirst = atom<boolean>({
   key: "isFirst",
-  default: { isSchool: false, isMajor: false },
+  default: false,
+})
+
+export const IsLocation = atom<string>({
+  key: "isLocation",
+  default: "first",
 });
+
+
+export const ProfessorCheck = atom<boolean>({
+  key: "isProfessorCheck",
+  default:false,
+})
+
+
+export const ModalCheck = atom<boolean>({
+  key: "isModalCheck",
+  default: false
+})

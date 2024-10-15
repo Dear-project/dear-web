@@ -8,9 +8,7 @@ import SelectSchoolModal from "@/components/common/selectSchoolModal";
 
 const Home = () => {
   return (
-    <div>
       <Mainpage />      
-    </div>
   );
 };
 
