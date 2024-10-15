@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as S from "./style";
@@ -19,28 +19,26 @@ import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
 import UseSidebar from "@/hooks/sidebar/useSidebar";
 import { useRecoilState } from "recoil";
-import { ProfileAtom, ProfileId,ProfessorCheck, IsFirst} from "@/store/profile/profile.store";
+import { ProfileAtom, ProfileId, ProfessorCheck, IsFirst } from "@/store/profile/profile.store";
 import { useMediaQuery } from "react-responsive";
-
 
 export const SideBar = () => {
   const { ...sidebar } = UseSidebar();
   const { data } = useGetProfileInfo();
-  const [isFirst,setFirst] = useRecoilState(IsFirst);
+  const [isFirst, setFirst] = useRecoilState(IsFirst);
   const [, setProfileId] = useRecoilState(ProfileId);
   const [, setProfessorCheck] = useRecoilState(ProfessorCheck);
   const [, setProfileAtom] = useRecoilState(ProfileAtom);
   setProfileId(data?.data.id!);
   setProfileAtom(data?.data);
-  if(data?.data.role === "PROFESSOR"){
+  if (data?.data.role === "PROFESSOR") {
     setProfessorCheck(true);
   }
   if (data?.data.schoolName === null) {
     setFirst(true);
-  }else if(data?.data.mclass === null){
-   setFirst(true);
+  } else if (data?.data.mclass === null) {
+    setFirst(true);
   }
-  
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1264px)" });
 
@@ -107,7 +105,12 @@ export const SideBar = () => {
             sidebar.setModalBtn(true);
           }}
         >
-          {data?.data.img ? <Image src={data?.data.img} alt="프로필" /> : <Image src={Profile} alt="프로필" />}
+          <Image
+            src={data?.data.imgPath !== null ? data?.data.imgPath : Profile}
+            alt="프로필"
+            width={sidebar.isOpenProfile ? 65 : 50}
+            height={sidebar.isOpenProfile ? 65 : 50}
+          />
 
           {sidebar.isSidebarOpen && (
             <S.Detail>

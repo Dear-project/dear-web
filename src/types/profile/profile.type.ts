@@ -9,7 +9,7 @@ export interface UserProfile {
   role: string;
   schoolName: string;
   introduce: string;
-  img: string;
+  imgPath: string;
   stsMessage: string;
   lclass: string;
   mclass: string;
@@ -23,7 +23,7 @@ export interface ProfileType {
     role: string;
     schoolName: string;
     introduce: string;
-    img: string;
+    imgPath: string;
     stsMessage: string;
     lclass: string;
     mclass: string;

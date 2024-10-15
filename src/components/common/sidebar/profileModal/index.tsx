@@ -42,7 +42,7 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
             <div>
               <Image
                 id="profile"
-                src={data?.data.img ? data?.data.img : Profile}
+                src={data?.data.imgPath ? data?.data.imgPath : Profile}
                 alt="프로필"
                 width={130}
                 height={130}
@@ -73,32 +73,6 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
               <span>{data?.data.mclass}</span>
               <S.TextBox>
                 <S.FixBtn onClick={modal.handleMajorOpen}>수정하기</S.FixBtn>
-              </S.TextBox>
-            </div>
-          </S.InputBox>
-          <S.InputBox>
-            <S.InputText>상태메시지</S.InputText>
-            <div>
-              <input
-                value={data?.data.stsMessage !== null ? data?.data.stsMessage : modal.UserData.stsMessage}
-                name="stsMessage"
-                onChange={modal.handleProfileChange}
-              />
-              <S.TextBox>
-                <S.FixBtn>{data?.data.stsMessage !== null ? "수정하기" : "등록하기"}</S.FixBtn>
-              </S.TextBox>
-            </div>
-          </S.InputBox>
-          <S.InputBox>
-            <S.InputText>소개</S.InputText>
-            <div>
-              <input
-                value={data?.data.introduce !== null ? data?.data.introduce : modal.UserData.introduce}
-                name="stsMessage"
-                onChange={modal.handleProfileChange}
-              />
-              <S.TextBox>
-                <S.FixBtn>{data?.data.introduce !== null ? "수정하기" : "등록하기"}</S.FixBtn>
               </S.TextBox>
             </div>
           </S.InputBox>

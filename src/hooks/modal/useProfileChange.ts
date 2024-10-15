@@ -13,7 +13,7 @@ const useProfileChange = () => {
     role: "",
     schoolName: "",
     introduce: "",
-    img: "",
+    imgPath: "",
     stsMessage: "",
     lclass: "",
     mclass: "",
