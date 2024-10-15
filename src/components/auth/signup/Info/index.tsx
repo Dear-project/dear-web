@@ -35,6 +35,7 @@ const SignupInfo = () => {
           >
             생년월일
           </TextField>
+          
         </S.VerifyWrap>
         <S.ButtonWrap>
           <S.BackButton onClick={() => window.history.back()}>이전</S.BackButton>

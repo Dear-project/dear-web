@@ -8,7 +8,7 @@ import { useGetMajorBySubject } from "@/queries/firstLogin/firstLogin.query";
 import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
 
 interface SelectMajorModalProps {
-  subject: string | undefined;
+  subject: string | "인문계열" | undefined;
   keyword: string;
   majorList: GetMajorListReposne | undefined;
   handleKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,7 +27,7 @@ const SelectMajorModal = ({
   setMajorList,
   handleSubmitParams,
   onSubmit,
-}:SelectMajorModalProps) => {
+}: SelectMajorModalProps) => {
   const searchMajorBySubjectMutation = useGetMajorBySubject();
 
   return (
@@ -35,19 +35,8 @@ const SelectMajorModal = ({
       <S.Header>
         <S.Title>관심 학과 선택</S.Title>
         <S.SearchWrap>
-          <input
-            type="text"
-            placeholder="학과를 입력해주세요"
-            value={keyword}
-            onChange={handleKeyword}
-          />
-          <Image
-            src={Search}
-            alt="돋보기"
-            width={20}
-            height={20}
-            onClick={searchMajorList}
-          />
+          <input type="text" placeholder="학과를 입력해주세요" value={keyword} onChange={handleKeyword} />
+          <Image src={Search} alt="돋보기" width={20} height={20} onClick={searchMajorList} />
         </S.SearchWrap>
       </S.Header>
       <S.MajorBoxWrap>
