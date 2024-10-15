@@ -21,6 +21,7 @@ const useInfo = () => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
       setInfoData((prev) => ({ ...prev, [name]: value }));
+      console.log(value);
     },
     [setInfoData],
   );
