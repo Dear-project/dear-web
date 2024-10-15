@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState}from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Search from "@/asset/search.svg";
@@ -28,12 +28,14 @@ const SelectMajorModal = ({
   handleSubmitParams,
   onSubmit,
 }: SelectMajorModalProps) => {
+  const [selectedMajor, setSelectedMajor] = useState<string | null>(null);
   const searchMajorBySubjectMutation = useGetMajorBySubject();
+
 
   return (
     <>
       <S.Header>
-        <S.Title>관심 학과 선택</S.Title>
+        <S.Title>자신의 학과 선택</S.Title>
         <S.SearchWrap>
           <input type="text" placeholder="학과를 입력해주세요" value={keyword} onChange={handleKeyword} />
           <Image src={Search} alt="돋보기" width={20} height={20} onClick={searchMajorList} />
@@ -63,8 +65,9 @@ const SelectMajorModal = ({
             {majorList?.data.map((item, idx) => (
               <S.Major
                 key={idx}
+                $isSelected={selectedMajor === item.majorSeq} 
                 onClick={() => {
-                  console.log(item.majorSeq, item.lClass, item.mClass);
+                  setSelectedMajor(item.majorSeq);
                   handleSubmitParams(item.majorSeq, item.lClass, item.mClass);
                 }}
               >

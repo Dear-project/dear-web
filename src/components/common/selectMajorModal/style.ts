@@ -66,7 +66,9 @@ export const SearchWrap = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
+  img{
+      cursor: pointer;
+    }
   input {
     width: 88%;
     height: 100%;
@@ -74,7 +76,7 @@ export const SearchWrap = styled.div`
     padding-left: 2%;
 
     border-radius: 16px;
-    font-weight: ${theme.fontWeight.noraml};
+    font-weight: ${theme.fontWeight.normal};
     font-size: 1.1rem;
     color: ${theme.colors.black};
 
@@ -121,7 +123,6 @@ export const MajorTypeWrap = styled.div`
 export const MajorTypeList = styled.div<{ $isclicked: string }>`
   width: 100%;
   height: 13%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,11 +153,11 @@ export const MajorListWrap = styled.div`
   column-gap: 70px;
 `;
 
-export const Major = styled.div`
+export const Major = styled.div<{ $isSelected: boolean }>`
   width: 18%;
   height: 15%;
-
-  background: ${theme.colors.gray300};
+  cursor: pointer;
+  background: ${({ $isSelected }) => ($isSelected ? theme.colors.new : theme.colors.gray300)};
   border-radius: 12px;
 
   display: flex;
@@ -166,7 +167,7 @@ export const Major = styled.div`
   span {
     font-size: 1.1rem;
     font-weight: ${theme.fontWeight.bold};
-    color: ${theme.colors.black};
+    color: ${({ $isSelected }) => ($isSelected ? theme.colors.white : theme.colors.black)};
   }
 `;
 
@@ -176,7 +177,7 @@ export const NextButton = styled.button`
 
   background: ${theme.colors.new};
   color: ${theme.colors.white};
-  font-weight: ${theme.fontWeight.semiBold};
+  font-weight: ${theme.fontWeight.semibold};
   font-size: 20px;
 
   border: none;

@@ -20,15 +20,19 @@ const SelectModal = ({isOpen,sectionLocation}:SelectModalProps)=>{
       select.setSection("second");
     }
   }, [sectionLocation, select.setSection]);
-  
+    let isOpened = isOpen;
+    
     const selectComponents: ReactNode[] = [
         <SelectSchoolModal {...select}  />,
         <SelectMajorModal {...select} />,
       ];
+      const Close = ()=>{
+        select.isClose
+      }
       
     return(
         <>
-        <Modal isOpen={isOpen} close={select.closeModal}>
+        <Modal isOpen={isOpen} close={Close}>
           <S.SelectMajorModalWrap>
             <S.Main>
             {selectComponents.map((component, idx) => {
