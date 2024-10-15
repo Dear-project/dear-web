@@ -16,7 +16,7 @@ export interface MajorChangeParams {
 }
 
 export interface ImageChangeParams {
-  image: FormDataEntryValue;
+  file: FormDataEntryValue;
 }
 
 export interface PassswrodChangeParams {

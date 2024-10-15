@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-
 export const Side = styled.div<{ $isSidebarOpen: boolean }>`
   transition: all 0.3s ease-in-out;
 
   width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
-  
+
   @media (min-width: 1264px) and (max-width: 1919px) {
     width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "280px" : "72px")}; /* 상태에 따른 크기 변경 */
   }
@@ -23,12 +22,11 @@ export const Side = styled.div<{ $isSidebarOpen: boolean }>`
   justify-content: space-between;
   flex-direction: column;
   span {
-
   }
 `;
 
 export const Logo = styled.div<{ $isSidebarOpen: boolean }>`
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
   height: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "200px" : "100px")};
   display: flex;
   width: 100%;
@@ -40,13 +38,13 @@ export const Logo = styled.div<{ $isSidebarOpen: boolean }>`
   img {
     width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "130px" : "100%")};
     height: 200px;
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out;
   }
-  
+
   @media (max-width: 1264px) {
-    height: 200px; 
+    height: 200px;
     img {
-      width: 65px; 
+      width: 65px;
       height: 65px;
     }
   }
@@ -83,22 +81,22 @@ export const Select = styled.div<{ isSelected: boolean; $isSidebarOpen: boolean 
   font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: ${({$isSidebarOpen})=>($isSidebarOpen ? "start" : "center")};
+  justify-content: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "start" : "center")};
   gap: 15px;
   width: 100%;
   height: 53px;
   border-radius: 12px;
 
   & > img {
-    margin-left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "30px" : "0")}; 
+    margin-left: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "30px" : "0")};
     display: flex;
     width: 30px;
     height: 30px;
-    transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out;
   }
 
   span {
-    display: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "block" : "none")}; 
+    display: ${({ $isSidebarOpen }) => ($isSidebarOpen ? "block" : "none")};
     font-size: 23px;
     font-weight: 700;
     color: ${({ isSelected }) => (isSelected ? "#ffffff" : "#000000")};
@@ -110,11 +108,11 @@ export const Select = styled.div<{ isSelected: boolean; $isSidebarOpen: boolean 
     justify-content: center;
 
     & > img {
-      margin-left: 0; 
+      margin-left: 0;
     }
 
     span {
-      display: none; 
+      display: none;
     }
   }
 `;
@@ -130,27 +128,29 @@ export const Profile = styled.div<{ $isSidebarOpen: boolean }>`
     padding: 0;
     justify-content: center;
   }
-  
 `;
 
-export const My = styled.div<{$isSidebarOpen: boolean}>`
+export const My = styled.div<{ $isSidebarOpen: boolean }>`
   display: flex;
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out; 
-img{
-  width: ${({$isSidebarOpen})=> ($isSidebarOpen? 45 : 30)};
-  height: ${({$isSidebarOpen})=> ($isSidebarOpen? 45 : 30)};
-}
+  transition: all 0.3s ease-in-out;
+  img {
+    width: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 45 : 30)};
+    height: ${({ $isSidebarOpen }) => ($isSidebarOpen ? 45 : 30)};
+
+    border-radius: 50%;
+    border: none;
+  }
   &:hover {
     text-decoration: underline;
   }
 
   @media (max-width: 1264px) {
-    justify-content: center; 
+    justify-content: center;
     gap: 0;
-    img{
+    img {
       width: 40px;
       height: 40px;
     }
@@ -163,10 +163,10 @@ export const Detail = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 
   @media (max-width: 1264px) {
-    display: none; 
+    display: none;
   }
 `;
 

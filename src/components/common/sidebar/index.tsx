@@ -19,9 +19,9 @@ import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
 import UseSidebar from "@/hooks/sidebar/useSidebar";
 import { useRecoilState } from "recoil";
-import { IsLocation, ProfileId,ProfessorCheck, IsFirst} from "@/store/profile/profile.store";
+import { ProfileAtom, ProfileId,ProfessorCheck, IsFirst} from "@/store/profile/profile.store";
 import { useMediaQuery } from "react-responsive";
-import { ModalCheck } from "@/store/profile/profile.store";
+
 
 export const SideBar = () => {
   const { ...sidebar } = UseSidebar();
@@ -29,8 +29,9 @@ export const SideBar = () => {
   const [isFirst,setFirst] = useRecoilState(IsFirst);
   const [, setProfileId] = useRecoilState(ProfileId);
   const [, setProfessorCheck] = useRecoilState(ProfessorCheck);
+  const [, setProfileAtom] = useRecoilState(ProfileAtom);
   setProfileId(data?.data.id!);
-
+  setProfileAtom(data?.data);
   if(data?.data.role === "PROFESSOR"){
     setProfessorCheck(true);
   }

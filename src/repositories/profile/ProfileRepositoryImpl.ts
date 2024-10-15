@@ -22,7 +22,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
     return;
   }
   public async postProfileImage(imageParams: ImageChangeParams): Promise<void> {
-    const { data } = await dearV1Axios.post("/profile/image", imageParams);
+    const { data } = await dearV1Axios.post("/profile/image", imageParams, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return data;
   }
   public async patchPassword(passwordParams: PassswrodChangeParams): Promise<void> {

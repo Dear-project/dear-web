@@ -84,7 +84,7 @@ const useProfileChange = () => {
     fileArray.forEach((file) => formData.append("image", file));
 
     const params = {
-      image: formData.get("image")!,
+      file: formData.get("image")!,
     };
 
     postImageChange.mutate(params, {

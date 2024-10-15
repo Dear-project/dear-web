@@ -1,3 +1,4 @@
+import { UserProfile } from "@/types/profile/profile.type";
 import { atom } from "recoil";
 
 export const ProfileId = atom<number>({
@@ -26,3 +27,8 @@ export const ModalCheck = atom<boolean>({
   key: "isModalCheck",
   default: false
 })
+
+export const ProfileAtom = atom<UserProfile | undefined>({
+  key: "isProfileData",
+  default: undefined,
+});

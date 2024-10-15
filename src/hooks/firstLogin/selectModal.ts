@@ -14,9 +14,14 @@ interface InfoType {
   link: string;
   adres: string;
 }
+
 const useSelectModal = () => {
   //위치 첫번쨰인지 아닌지 확인하는 상태
-  const [section, setSection] = useState("first");
+  const [isClose,setCloseCheck] = useState(false);
+    
+
+  //위치 첫번쨰인지 아닌지 확인하는 상태
+  const [section, setSection] = useState<string>("first");
 
   //학과선택
   const [subject, setSubjuect] = useState<MAJOR_TYPE>("HUMANITIES");
@@ -115,6 +120,7 @@ const useSelectModal = () => {
     getMajorListMuataion.mutate(params, {
       onSuccess: (data) => {
         setMajorList(data);
+        setCloseCheck(true)
       },
       onError: (error) => {
         dearToast.errorToast((error as AxiosError).message);
@@ -159,6 +165,7 @@ const useSelectModal = () => {
   };
 
   return {
+    isClose,
     setSection,
     section,
     setIsOpen,

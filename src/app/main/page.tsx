@@ -1,5 +1,5 @@
 "use client";
-import React,{useCallback,useState} from "react";
+import React from "react";
 import * as S from "./style";
 import Banner from "@/components/home/banner";
 import ProfessorCommunity from "@/components/home/main/professorCommunity";
@@ -8,12 +8,15 @@ import Community from "@/components/home/main/community/index";
 import { useRecoilState } from "recoil";
 import { IsFirst } from "@/store/profile/profile.store";
 import SelectModal from "@/components/common/selectModal";
+import { ProfileAtom } from "@/store/profile/profile.store";
 
 const index = () => {
   const [isFirst, setIsFirst] = useRecoilState(IsFirst);
-  const closeModal = useCallback(() => {
-      setIsFirst(false);
-    }, []);
+  const [isProfileAtom, setProfileAtom] = useRecoilState(ProfileAtom);
+  let sectionLocation = "first"
+  if(isProfileAtom?.mclass === null && isProfileAtom.schoolName !== null) {
+    sectionLocation="second"
+  }
 
     
   return (
@@ -30,10 +33,8 @@ const index = () => {
       </S.Page>
       <SelectModal
       isOpen={isFirst}
-      close={closeModal}
+      sectionLocation={sectionLocation}
       />
-      {/* <SelectMajorModal/>
-      <SelectSchoolModal /> */}
     </>
   );
 };
