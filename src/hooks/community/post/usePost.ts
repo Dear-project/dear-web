@@ -1,7 +1,7 @@
 import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
 import { usePostCommunity } from "@/queries/community/community.query";
-import { AxiosError } from "axios";
+import { Axios, AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import {
@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 const usePost = () => {
   const router = useRouter();
@@ -35,8 +36,7 @@ const usePost = () => {
         router.push("/community/write");
       },
       onError: (error) => {
-        const errorResponse = error as AxiosError;
-        dearToast.errorToast(errorResponse.message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -62,7 +62,7 @@ const usePost = () => {
           queryClient.invalidateQueries("comment");
         },
         onError: (error) => {
-          dearToast.errorToast((error as AxiosError).message);
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         },
       },
     );
@@ -81,7 +81,7 @@ const usePost = () => {
           queryClient.invalidateQueries("comment");
         },
         onError: (error) => {
-          dearToast.errorToast((error as AxiosError).message);
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         },
       },
     );
@@ -103,6 +103,9 @@ const usePost = () => {
             dearToast.sucessToast("댓글 삭제 성공");
             queryClient.invalidateQueries("comment");
           },
+          onError: (error) => {
+            dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          },
         });
       }
     });
@@ -123,6 +126,9 @@ const usePost = () => {
           onSuccess: () => {
             dearToast.sucessToast("댓글 삭제 성공");
             queryClient.invalidateQueries("comment");
+          },
+          onError: (error) => {
+            ErrorTransform((error as AxiosError).status!);
           },
         });
       }
