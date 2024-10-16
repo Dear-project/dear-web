@@ -7,6 +7,7 @@ import { MAJOR_TYPE } from "@/constants/majorType/majorType.constants";
 import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
 import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 interface InfoType {
   seq: string;
@@ -75,7 +76,7 @@ const useSelectModal = () => {
         setSchoolList(data);
       },
       onError: (error) => {
-        console.log((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -96,7 +97,7 @@ const useSelectModal = () => {
         setSection("second");
       },
       onError: (error) => {
-        dearToast.errorToast((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -123,7 +124,7 @@ const useSelectModal = () => {
         setCloseCheck(true);
       },
       onError: (error) => {
-        dearToast.errorToast((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -158,8 +159,8 @@ const useSelectModal = () => {
         dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
         closeModal();
       },
-      onError: () => {
-        dearToast.errorToast("알 수 없는 에러가 발생하였습니다.");
+      onError: (error) => {
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { EmailAtom } from "src/store/auth/signup/signup.store";
@@ -7,6 +7,7 @@ import patternCheck from "src/utils/check/patternCheck";
 import CONFIG from "src/config/config.json";
 import DearToast from "src/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 const useEmail = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const useEmail = () => {
         setResend(false);
       });
     } catch (error) {
-      DearToast.errorToast("사용 불가한 이메일입니다.");
+      DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
     }
 
     if (resend === false) {
@@ -52,7 +53,7 @@ const useEmail = () => {
           DearToast.sucessToast("인증번호 요청 성공");
         });
       } catch (error) {
-        DearToast.errorToast("인증번호 요청 실패");
+        DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       }
     } else {
       try {
@@ -60,7 +61,7 @@ const useEmail = () => {
           startTimer();
         });
       } catch (error) {
-        DearToast.errorToast("인증번호 재전송 실패");
+        DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       }
     }
   };
@@ -73,7 +74,7 @@ const useEmail = () => {
         router.push("/signup/password");
       });
     } catch (error) {
-      DearToast.errorToast("이메일 인증 실패");
+      DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
     }
   };
 

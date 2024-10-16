@@ -9,6 +9,7 @@ import { useRecoilValue } from "recoil";
 import CONFIG from "@/config/config.json";
 import token from "@/libs/token/tokens";
 import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -70,7 +71,7 @@ const useWrite = () => {
         } else if (content.length < 0) {
           dearToast.infoToast("내용을 입력해주세요");
         } else {
-          dearToast.errorToast((errorResponse as AxiosError).message);
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         }
       },
     });
