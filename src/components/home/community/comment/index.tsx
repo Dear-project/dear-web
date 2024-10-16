@@ -10,8 +10,7 @@ import ReplyComment from "../replyComment";
 
 const Comment = ({ communityId }: { communityId: number }) => {
   const { data: commentList } = useGetCommentById(communityId);
-  const { isOpen, comment, replyComent, handleComment, postComment, handleReplyComment, handleReplyCommentInputOpen } =
-    usePost();
+  const { isOpen, comment, handleComment, handleReplyCommentIsOpen,postComment, deleteComment } = usePost();
 
   return (
     <S.CommentWrap>
@@ -28,13 +27,13 @@ const Comment = ({ communityId }: { communityId: number }) => {
                     <span>{comment.content}</span>
                     <div>
                       <span>2024.10.08. 오후 17:25</span>
-                      <span onClick={handleReplyCommentInputOpen}>답글 달기</span>
+                      <span onClick={() => handleReplyCommentIsOpen(comment.commentId)}>답글 달기</span>
                     </div>
                   </div>
-                  <Image src={MoreImg} alt="더보기 " />
+                  <Image src={MoreImg} alt="더보기 " onClick={() => deleteComment(comment.commentId)} />
                 </div>
               </S.Comment>
-              <ReplyComment id={comment.commentId} isOpen={isOpen} subComment={comment.subComments}/>
+              <ReplyComment id={comment.commentId} isOpen={isOpen} subComment={comment.subComments} />
             </>
           ))}
       </S.CommentContentWrap>

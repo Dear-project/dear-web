@@ -108,7 +108,6 @@ export const CommentContentWrap = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 
   overflow-y: auto;
 

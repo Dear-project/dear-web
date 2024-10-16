@@ -1,29 +1,32 @@
 import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
-import {
-  useAllGetCommunityQuery,
-  useGetCommunityById,
-  useGetMyArticles,
-  usePostCommunity,
-} from "@/queries/community/community.query";
+import { usePostCommunity } from "@/queries/community/community.query";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { useGetCommentById, usePostComment, usePostSubComoment } from "@/queries/community/comment/comment.query";
+import {
+  useDeleteComoment,
+  useDeleteSubComoment,
+  usePostComment,
+  usePostSubComoment,
+} from "@/queries/community/comment/comment.query";
 import React, { useState } from "react";
 import { useQueryClient } from "react-query";
-import { QUERY_KEYS } from "@/queries/QueryKey";
-import { CommentById } from "@/types/community/comment/comment.types";
+import Swal from "sweetalert2";
 
 const usePost = () => {
   const router = useRouter();
   const [writeId, setWritetId] = useRecoilState(PostIdAtom);
   const [comment, setComment] = useState<string>("");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<number | null>(null);
   const [replyComent, setReplyComment] = useState<string>("");
 
   const postCommunitymutation = usePostCommunity();
   const postCommentMutation = usePostComment();
+
+  const handleReplyCommentIsOpen = (commentId: number) => {
+    setIsOpen(isOpen === commentId ? null : commentId);
+  };
 
   const setWrite = () => {
     postCommunitymutation.mutate(undefined, {
@@ -40,10 +43,6 @@ const usePost = () => {
 
   const handleComment = (e: React.ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
-  };
-
-  const handleReplyCommentInputOpen = () => {
-    setIsOpen((prev) => !prev);
   };
 
   const handleReplyComment = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,6 +87,48 @@ const usePost = () => {
     );
   };
 
+  const deleteCommentMutation = useDeleteComoment();
+  const deleteComment = (id: number) => {
+    Swal.fire({
+      title: "정말 댓글을 삭제하시겠습니끼?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCommentMutation.mutate(id, {
+          onSuccess: () => {
+            dearToast.sucessToast("댓글 삭제 성공");
+            queryClient.invalidateQueries("comment");
+          },
+        });
+      }
+    });
+  };
+
+  const deleteReplyCommentMutation = useDeleteSubComoment();
+  const deleteReplyComment = (id: number) => {
+    Swal.fire({
+      title: "정말 댓글을 삭제하시겠습니끼?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteReplyCommentMutation.mutate(id, {
+          onSuccess: () => {
+            dearToast.sucessToast("댓글 삭제 성공");
+            queryClient.invalidateQueries("comment");
+          },
+        });
+      }
+    });
+  };
+
   return {
     writeId,
     comment,
@@ -96,9 +137,11 @@ const usePost = () => {
     setWrite,
     handleComment,
     postComment,
-    handleReplyCommentInputOpen,
     handleReplyComment,
     postReplyComment,
+    deleteComment,
+    deleteReplyComment,
+    handleReplyCommentIsOpen,
   };
 };
 

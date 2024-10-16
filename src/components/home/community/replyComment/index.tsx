@@ -9,15 +9,15 @@ import { SubComment } from "@/types/community/comment/comment.types";
 
 interface ReplyComment {
   id: number;
-  isOpen: boolean;
+  isOpen: number | null;
   subComment: SubComment[];
 }
 
 const ReplyComment = ({ id, isOpen, subComment }: ReplyComment) => {
-  const { replyComent, handleReplyComment, postReplyComment } = usePost();
+  const { replyComent, handleReplyComment, postReplyComment, deleteReplyComment } = usePost();
   return (
     <>
-      {isOpen && (
+      {isOpen === id && (
         <div
           style={{
             display: "flex",
@@ -43,7 +43,7 @@ const ReplyComment = ({ id, isOpen, subComment }: ReplyComment) => {
                 <span>2024.10.08. 오후 17:25</span>
               </div>
             </div>
-            <Image src={MoreImg} alt="더보기 " />
+            <Image src={MoreImg} alt="더보기" onClick={() => deleteReplyComment(subComment.commentId)} />
           </div>
         </S.ReComment>
       ))}
