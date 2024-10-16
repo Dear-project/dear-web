@@ -34,7 +34,7 @@ const Comment = ({ communityId }: { communityId: number }) => {
                   <Image src={MoreImg} alt="더보기 " />
                 </div>
               </S.Comment>
-              <ReplyComment id={comment.commentId} content={""} isOpen={isOpen} />
+              <ReplyComment id={comment.commentId} isOpen={isOpen} subComment={comment.subComments}/>
             </>
           ))}
       </S.CommentContentWrap>

@@ -9,7 +9,7 @@ import {
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { useGetCommentById, usePostComment } from "@/queries/community/comment/comment.query";
+import { useGetCommentById, usePostComment, usePostSubComoment } from "@/queries/community/comment/comment.query";
 import React, { useState } from "react";
 import { useQueryClient } from "react-query";
 import { QUERY_KEYS } from "@/queries/QueryKey";
@@ -69,6 +69,25 @@ const usePost = () => {
     );
   };
 
+  const postReplyCommentMutation = usePostSubComoment();
+  const postReplyComment = (id: number, content: string) => {
+    postReplyCommentMutation.mutate(
+      {
+        id,
+        content,
+      },
+      {
+        onSuccess: () => {
+          dearToast.sucessToast("대댓글이 등록되었습니다.");
+          queryClient.invalidateQueries("comment");
+        },
+        onError: (error) => {
+          dearToast.errorToast((error as AxiosError).message);
+        },
+      },
+    );
+  };
+
   return {
     writeId,
     comment,
@@ -79,6 +98,7 @@ const usePost = () => {
     postComment,
     handleReplyCommentInputOpen,
     handleReplyComment,
+    postReplyComment,
   };
 };
 

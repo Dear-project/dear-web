@@ -5,15 +5,16 @@ import MoreImg from "@/asset/MoreImg.svg";
 import Profile from "@/asset/Profile.svg";
 import usePost from "@/hooks/community/post/usePost";
 import Send from "@/asset/send.svg";
+import { SubComment } from "@/types/community/comment/comment.types";
 
 interface ReplyComment {
   id: number;
-  content: string;
   isOpen: boolean;
+  subComment: SubComment[];
 }
 
-const ReplyComment = ({ id, content, isOpen }: ReplyComment) => {
-  const { replyComent, handleReplyComment } = usePost();
+const ReplyComment = ({ id, isOpen, subComment }: ReplyComment) => {
+  const { replyComent, handleReplyComment, postReplyComment } = usePost();
   return (
     <>
       {isOpen && (
@@ -28,24 +29,24 @@ const ReplyComment = ({ id, content, isOpen }: ReplyComment) => {
           }}
         >
           <input value={replyComent} onChange={handleReplyComment} placeholder="대댓글을 입력해주세요." />
-          <Image src={Send} alt="보내기" width={24} height={24} />
+          <Image src={Send} alt="보내기" width={24} height={24} onClick={() => postReplyComment(id, replyComent)} />
         </div>
       )}
-
-      <S.ReComment>
-        <div>
-          <Image src={Profile} alt="프로필 이미지" width={50} height={50} />
-          <div>
-            <h1>김가영</h1>
-            <span>히히히히</span>
+      {subComment.map((subComment) => (
+        <S.ReComment>
+          <div key={subComment.commentId}>
+            <Image src={Profile} alt="프로필 이미지" width={50} height={50} />
             <div>
-              <span>2024.10.08. 오후 17:25</span>
-              <span>답글 달기</span>
+              <h1>{subComment.commentor}</h1>
+              <span>{subComment.content}</span>
+              <div>
+                <span>2024.10.08. 오후 17:25</span>
+              </div>
             </div>
+            <Image src={MoreImg} alt="더보기 " />
           </div>
-          <Image src={MoreImg} alt="더보기 " />
-        </div>
-      </S.ReComment>
+        </S.ReComment>
+      ))}
     </>
   );
 };
