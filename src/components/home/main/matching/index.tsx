@@ -9,7 +9,7 @@ import { useGetMatching } from "@/queries/matching/matching.query";
 const Matching = () => {
   const pageRequest={
     page:1,
-    size:3,
+    size:100,
   }
     const {data} = useGetMatching(pageRequest);
 

@@ -26,7 +26,7 @@ const ProfessorCommunity = () => {
                 userName={community.userName}
                 createdDateTime={convertCreatedDate(community.createdDateTime)}
                 comment={community.comment}
-                customStyle={{ width: "30%", height: "90%" }}
+                customStyle={{ width: "30%",height:"70%"}}
               />    
             ))
         ) : (

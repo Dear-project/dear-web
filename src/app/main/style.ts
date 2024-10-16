@@ -22,7 +22,8 @@ export const MainView = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 1000px;
+  /* height: 100%; */
+  gap: 20px;
 `;
 
 export const MainBox = styled.div`

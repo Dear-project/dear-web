@@ -13,16 +13,16 @@ const MatchingList = ({ data }: MatchingProps)=>{
 
     const matchingAccept = useMatchingAccept();
     const matchingReject = usematchingReject();
-    const userId = data.userId.toString();
+
     const accepteButton = ()=>{
-        matchingAccept.mutate(userId,{
+        matchingAccept.mutate(data.userId,{
             onSuccess: ()=>{
                 dearToast.sucessToast('수락성공');
             }
         })
     }
     const rejectButton = ()=>{
-        matchingReject.mutate(userId,{
+        matchingReject.mutate(data.userId,{
             onSuccess:()=>{
                 dearToast.sucessToast('거절성공')
             }
@@ -31,7 +31,7 @@ const MatchingList = ({ data }: MatchingProps)=>{
 return(
     <S.Matching>
         <S.TitleBox>
-    <img src={data.userProfileImage=== null ? NullImg: data.userProfileImage} alt="이미지 오류" />
+    <Image src={data.userProfileImage=== null ? NullImg: data.userProfileImage} alt="이미지 오류" />
     <S.TitleDetail>
         <p>{data.userName}</p>
         <span>{data.schoolName}</span>

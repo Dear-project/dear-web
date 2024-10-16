@@ -43,8 +43,8 @@ export const Description = styled.div`
 
 export const PostInfo = styled.div`
   display: flex;
-  width: 212px;
-  height: 45px;
+  width: 90%;
+  height: 3rem;
   justify-content: space-evenly;
   align-items: center;
 

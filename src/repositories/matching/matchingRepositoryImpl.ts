@@ -15,12 +15,12 @@ class MatchingRepositoryImpl implements MatcingRepository {
     const {data} = await dearAxios.get('/matching', {params:pageRequest})
     return data
   }
-  public async matchingAccept(subjectId: string):Promise<void>{
+  public async matchingAccept(subjectId: number):Promise<void>{
     
     
-    await dearAxios.post('/matching/accept', subjectId);
+    await dearAxios.post('/matching/accept', { subjectId: subjectId });
   }
-  public async matchingReject(subjectId: string):Promise<void>{
+  public async matchingReject(subjectId: number):Promise<void>{
     
     await dearAxios.post('/matching/reject', subjectId);
     }
