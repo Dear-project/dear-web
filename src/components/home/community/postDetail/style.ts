@@ -107,10 +107,21 @@ export const CommentContentWrap = styled.div`
   height: 95%;
 
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-around;
 
   overflow-y: auto;
+
+  input {
+    width: calc(100% - 44px);
+    height: calc(20% - 20px);
+
+    padding: 10px 22px;
+
+    display: flex;
+    gap: 30px;
+    justify-content: right;
+  }
 `;
 
 export const Comment = styled.div`
@@ -177,6 +188,7 @@ export const ReComment = styled.div`
 
   display: flex;
   gap: 30px;
+  justify-content: flex-end;
 
   div {
     display: flex;
