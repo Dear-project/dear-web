@@ -25,11 +25,20 @@ export const Main = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
+  .groomy {
+    position: absolute;
+    top: 80%;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
 `;
 
 export const Community = styled.div`
   width: 55%;
-  height: 90%;
+  height: 80%;
   background: ${theme.colors.white};
   border: none;
   border-radius: 20px;
@@ -82,7 +91,7 @@ export const TitleWrap = styled.div`
 
 export const CommunityPostWrap = styled.div`
   width: 90%;
-  height: 650px;
+  height: 85%;
   display: flex;
   flex-direction: column;
 
@@ -171,6 +180,11 @@ export const SubCommunityWrap = styled.div`
   flex-direction: column;
 
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 추가 */
+  }
 `;
 
 export const MyPostWrap = styled.div`

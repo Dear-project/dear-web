@@ -5,6 +5,7 @@ import Avartar from "@/asset/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
 import ProfessorImg from "@/asset/img/professorImg.svg";
 import Bookmark from "@/asset/img/bookmark.svg";
+import Groomy from "@/asset/img/ProfessorGroomy.svg";
 import { useGetMyArticles } from "@/queries/community/community.query";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import Post from "../post";
@@ -82,6 +83,7 @@ const Community = () => {
             </S.Professor>
           </S.ProfessorsWrap>
         </S.SubCommunityWrap>
+        <Image src={Groomy} alt="귀여운놈" className="groomy" />
       </S.Main>
     </S.CommunityWrap>
   );
