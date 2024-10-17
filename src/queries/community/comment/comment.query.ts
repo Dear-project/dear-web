@@ -17,9 +17,9 @@ export const usePostSubComoment = () => {
 
 export const useGetCommentById = (
   idParams: number,
-  options?: UseQueryOptions<CommentByIdResponse, AxiosError, CommentByIdResponse, string>,
+  options?: UseQueryOptions<CommentByIdResponse, AxiosError, CommentByIdResponse, (string | number)[]>,
 ): UseQueryResult<CommentByIdResponse, AxiosError> =>
-  useQuery(QUERY_KEYS.community.comment.comment, () => commentRepositoryImpl.getCommentById(idParams), {
+  useQuery(QUERY_KEYS.community.comment.getComment(idParams), () => commentRepositoryImpl.getCommentById(idParams), {
     staleTime: 1000 * 60 * 60,
     cacheTime: 1000 * 60 * 60,
     ...options,
