@@ -86,14 +86,14 @@ export const SideBar = () => {
         </Link>
 
         <Link href="/community" style={{ textDecoration: "none" }}>
-          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/community" == sidebar.pathname}>
+          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={sidebar.pathname.startsWith("/community")}>
             <Image
-              src={"/community" == sidebar.pathname ? Communitylight : Community}
+              src={sidebar.pathname.startsWith("/community") ? Communitylight : Community}
               alt="커뮤니티 광장"
               width={30}
               height={30}
             />
-            <span>커뮤니티 광장</span>
+            <span>교수 커뮤니티</span>
           </S.Select>
         </Link>
       </S.Option>

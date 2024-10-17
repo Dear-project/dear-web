@@ -4,7 +4,7 @@ import dearV1Axios from "@/libs/axios/customAxios";
 
 class ProfessorRepositoryImpl implements ProfessorRepository {
   public async getProfessor(page: number): Promise<ProfessorResponse> {
-    const { data } = await dearV1Axios.get(`/professor?page=${page}&size=10`);
+    const { data } = await dearV1Axios.get(`/professor?page=${page}&size=100`);
     return data;
   }
   public async getProfessorDetail(id: number): Promise<ProfessorDetailData> {
