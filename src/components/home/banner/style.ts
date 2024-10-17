@@ -8,7 +8,6 @@ export const BannerContainer = styled.div`
   position: relative;
   overflow: hidden;
   display: flex;
-
   .slick-initialized {
     width: 100%;
   }

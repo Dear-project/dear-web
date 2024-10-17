@@ -10,32 +10,10 @@ const Chat = () => {
   const [messages, setMessages] = useState<any[]>([]); 
   const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (selectedChat) {
-      const stompClient = new Client({
-        brokerURL: "ws://localhost:8080/ws", 
-        reconnectDelay: 5000, 
-      });
+  if(selectedChat !== null){
 
-      stompClient.onConnect = () => {
-        stompClient.subscribe(`/topic/chat/${selectedChat.data.id}`, (message) => {
-          const newMessage = JSON.parse(message.body);
-          setMessages((prevMessages) => [...prevMessages, newMessage]);
+  }
 
-          
-          queryClient.setQueryData(["chatMessages", selectedChat.data.id], (old: any) => {
-            return [...(old || []), newMessage];
-          });
-        });
-      };
-
-      stompClient.activate(); 
-
-      return () => {
-        stompClient.deactivate(); 
-      };
-    }
-  }, [selectedChat, queryClient]);
 
   return (
     <S.ChatContainer>
