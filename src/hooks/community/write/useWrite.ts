@@ -10,6 +10,7 @@ import CONFIG from "@/config/config.json";
 import token from "@/libs/token/tokens";
 import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
+import { PostImageParams } from "@/repositories/community/communityRepository";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -65,7 +66,6 @@ const useWrite = () => {
       },
       // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
       onError: (error) => {
-        const errorResponse = error as AxiosError;
         if (title.length < 0) {
           dearToast.infoToast("제목을 입력해주세요");
         } else if (content.length < 0) {
@@ -92,22 +92,19 @@ const useWrite = () => {
 
     setImage((prevImages) => [...prevImages, ...fileURLs]);
 
-    fileArray.forEach((file) => formData.append("image", file));
+    // FormData 생성
+    const formData = new FormData();
+    fileArray.forEach((file) => formData.append("files", file)); // 키를 'files'로 설정
 
-    const params = {
-      id: id,
-      files: formData,
-    };
-
-    await axios.post(
-      `${CONFIG.serverUrl}/community/${id}`,
+    // 요청 보내기
+    postPostMultiPartMutation.mutate(
       {
-        files: formData.get("image"),
+        id: id,
+        files: formData.get("files")!,
       },
       {
-        headers: {
-          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
-          "Content-Type": "multipart/form-data",
+        onSuccess: () => {
+          // 성공 시 처리
         },
       },
     );

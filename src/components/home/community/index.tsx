@@ -7,17 +7,18 @@ import { useGetMyArticles } from "@/queries/community/community.query";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import { useRouter } from "next/navigation";
 import Post from "../post";
+import usePost from "@/hooks/community/post/usePost";
 
 const Community = () => {
   const { data: myArticles } = useGetMyArticles(1);
-  const router = useRouter();
+  const { setWrite } = usePost();
   return (
     <S.CommunityWrap>
       <S.Main>
         <S.Community>
           <S.TitleWrap style={{ width: "90%" }}>
             <h1>커뮤니티</h1>
-            <button onClick={() => router.push("/community/write")}>커뮤니티 작성</button>
+            <button onClick={setWrite}>커뮤니티 작성</button>
           </S.TitleWrap>
           <Post />
         </S.Community>

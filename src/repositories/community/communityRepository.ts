@@ -14,7 +14,6 @@ export interface CommunityRepository {
   getMyCommunity(page: number): Promise<CommunityPostArticlesResponse>;
 }
 
-
 export interface PatchCommunityParams {
   id: number;
   data: {
@@ -25,5 +24,5 @@ export interface PatchCommunityParams {
 
 export interface PostImageParams {
   id: number;
-  files:FormData;
+  files: FormDataEntryValue; // File[]로 변경
 }
