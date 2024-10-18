@@ -14,7 +14,7 @@ class CommunityRepositoryImpl implements CommunityRepository {
   }
 
   public async getMyCommunity(page: number): Promise<CommunityPostArticlesResponse> {
-    const { data } = await dearV1Axios.get(`/community?page=${page}&size=10`);
+    const { data } = await dearV1Axios.get(`/community/my-articles?page=${page}&size=100`);
     return data;
   }
 

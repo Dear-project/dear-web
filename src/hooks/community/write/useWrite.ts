@@ -3,7 +3,7 @@ import dearToast from "@/libs/Swal/Swal";
 import { usePatchCommunity, usePostMultiPart } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useCallback, useRef, useState, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import CONFIG from "@/config/config.json";
@@ -11,6 +11,7 @@ import token from "@/libs/token/tokens";
 import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 import { PostImageParams } from "@/repositories/community/communityRepository";
+import { useLocation } from "react-router-dom";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -18,6 +19,7 @@ const useWrite = () => {
     content: "",
   });
 
+  const pathname = usePathname();
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [image, setImage] = useState<string[]>([]);
   const [file, setFile] = useState<File[]>([]);

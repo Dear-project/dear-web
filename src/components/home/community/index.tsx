@@ -11,10 +11,13 @@ import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/da
 import Post from "../post";
 import usePost from "@/hooks/community/post/usePost";
 import { useProfessorQuery } from "@/queries/professor/professor.query";
+import { useRecoilValue } from "recoil";
+import { ProfessorCheck } from "@/store/profile/profile.store";
 
 const Community = () => {
   const { data: myArticles } = useGetMyArticles(1);
   const { data: professorList } = useProfessorQuery(1);
+  const isProfessor = useRecoilValue(ProfessorCheck);
   const { setWrite } = usePost();
   return (
     <S.CommunityWrap>
@@ -55,33 +58,35 @@ const Community = () => {
               ))}
             </S.MyPost>
           </S.MyPostWrap>
-          <S.ProfessorsWrap>
-            <S.TitleWrap style={{ height: "20%" }}>
-              <h1>교수 목록</h1>
-            </S.TitleWrap>
-            <S.Professor>
-              {Array.isArray(professorList?.data) &&
-                professorList?.data.map((professor) => (
-                  <S.ProfessorWrap key={professor.professorId}>
-                    <div>
-                      <Image
-                        src={professor.profileImage ? professor.profileImage : ProfessorImg}
-                        alt="프로필"
-                        width={75}
-                        height={75}
-                      />
+          {isProfessor && (
+            <S.ProfessorsWrap>
+              <S.TitleWrap style={{ height: "20%" }}>
+                <h1>교수 목록</h1>
+              </S.TitleWrap>
+              <S.Professor>
+                {Array.isArray(professorList?.data) &&
+                  professorList?.data.map((professor) => (
+                    <S.ProfessorWrap key={professor.professorId}>
                       <div>
-                        <h1>{professor.name}</h1>
-                        <span>
-                          {professor.school}&nbsp;{professor.major}
-                        </span>
+                        <Image
+                          src={professor.profileImage ? professor.profileImage : ProfessorImg}
+                          alt="프로필"
+                          width={75}
+                          height={75}
+                        />
+                        <div>
+                          <h1>{professor.name}</h1>
+                          <span>
+                            {professor.school}&nbsp;{professor.major}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <Image src={Bookmark} alt="북마크" />
-                  </S.ProfessorWrap>
-                ))}
-            </S.Professor>
-          </S.ProfessorsWrap>
+                      <Image src={Bookmark} alt="북마크" />
+                    </S.ProfessorWrap>
+                  ))}
+              </S.Professor>
+            </S.ProfessorsWrap>
+          )}
         </S.SubCommunityWrap>
         <Image src={Groomy} alt="귀여운놈" className="groomy" />
       </S.Main>
