@@ -6,7 +6,7 @@ export const CommunityWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  position: relative;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -21,6 +21,9 @@ export const Main = styled.div`
   justify-content: space-between;
   align-items: flex-start;
 
+  overflow-y: auto;
+  position: relative;
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -28,7 +31,17 @@ export const Main = styled.div`
 
   .groomy {
     position: absolute;
-    top: 80%;
+    top: 58%;
+    left: 75%;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .professor-groomy {
+    position: absolute;
+    left: 80%;
 
     @media (max-width: 768px) {
       display: none;

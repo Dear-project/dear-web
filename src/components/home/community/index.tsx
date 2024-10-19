@@ -5,7 +5,8 @@ import Avartar from "@/asset/img/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
 import ProfessorImg from "@/asset/img/professorImg.svg";
 import Bookmark from "@/asset/img/bookmark.svg";
-import Groomy from "@/asset/img/ProfessorGroomy.svg";
+import ProfessorGroomy from "@/asset/img/ProfessorGroomy.svg";
+import Groomy from "@/asset/img/WriteGroomy.svg";
 import { useGetMyArticles } from "@/queries/community/community.query";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import Post from "../post";
@@ -13,11 +14,13 @@ import usePost from "@/hooks/community/post/usePost";
 import { useProfessorQuery } from "@/queries/professor/professor.query";
 import { useRecoilValue } from "recoil";
 import { ProfessorCheck } from "@/store/profile/profile.store";
+import { usePathname } from "next/navigation";
 
 const Community = () => {
   const { data: myArticles } = useGetMyArticles(1);
   const { data: professorList } = useProfessorQuery(1);
   const isProfessor = useRecoilValue(ProfessorCheck);
+  const pathname = usePathname();
   const { setWrite } = usePost();
   return (
     <S.CommunityWrap>
@@ -58,7 +61,7 @@ const Community = () => {
               ))}
             </S.MyPost>
           </S.MyPostWrap>
-          {isProfessor && (
+          {isProfessor && pathname === "/community/professor" && (
             <S.ProfessorsWrap>
               <S.TitleWrap style={{ height: "20%" }}>
                 <h1>교수 목록</h1>
@@ -88,7 +91,11 @@ const Community = () => {
             </S.ProfessorsWrap>
           )}
         </S.SubCommunityWrap>
-        <Image src={Groomy} alt="귀여운놈" className="groomy" />
+        {isProfessor && pathname === "/community/professor" ? (
+          <Image src={ProfessorGroomy} alt="귀여운놈" className="professor-groomy" />
+        ) : (
+          <Image src={Groomy} alt="귀여운놈" className="groomy" />
+        )}
       </S.Main>
     </S.CommunityWrap>
   );
