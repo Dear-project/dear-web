@@ -20,9 +20,9 @@ const Matching = () => {
         <IoIosArrowForward size={25}></IoIosArrowForward>
       </S.Header>
       <S.Content>
-        {data?.data.map((item,index)=>(
+        {Array.isArray(data?.data) ? data?.data.map((item,index)=>(
         <MatchingList key={index} data={item} /> 
-        ))}
+        )): (<span style={{textAlign:"center"}}>내용이 없습니다.</span>)}
       </S.Content>
     </S.MatchingBox>
   );

@@ -30,7 +30,10 @@ const ProfessorCommunity = () => {
               />    
             ))
         ) : (
-          <span>내용이 없습니다</span>
+          
+            <p >내용이 없습니다.</p>
+          
+          
         )}
       </S.CommunityMainContents>
     </S.MainBox>
