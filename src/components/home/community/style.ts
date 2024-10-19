@@ -291,6 +291,7 @@ export const ProfessorWrap = styled.div`
     div {
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
       gap: 5px;
 
       h1 {
