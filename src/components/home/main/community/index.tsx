@@ -28,7 +28,7 @@ const Community = () => {
                   customStyle={{ width: "90%", height: "40%" }}
                 />
               ))
-          : "null"}
+          :<span >내용이 없습니다.</span>}
       </S.CommunityContents>
     </S.CommunityBox>
   );
