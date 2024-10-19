@@ -3,7 +3,7 @@
 import React from "react";
 import * as S from "./style";
 import Image from "next/image";
-import Avartar from "src/asset/Avatar.svg";
+import Avartar from "@/asset/img/Avatar.svg";
 import BestRecommandImg from "src/asset/BestRecommand.svg";
 import useMatching from "@/hooks/matching/useMatching";
 import { useParams } from "next/navigation";

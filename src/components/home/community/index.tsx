@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import Image from "next/image";
-import Avartar from "@/asset/Avatar.svg";
+import Avartar from "@/asset/img/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
 import ProfessorImg from "@/asset/img/professorImg.svg";
 import Bookmark from "@/asset/img/bookmark.svg";

@@ -1,5 +1,5 @@
 import * as S from "./style";
-import Profile from "src/asset/Avatar.svg";
+import Profile from "@/asset/img/Avatar.svg";
 import Image from "next/image";
 import { ChatData } from "@/types/chat/chat.type";
 
