@@ -4,7 +4,7 @@ export const MatchingBox = styled.div`
 background-color: #fff;
 display: flex;
 min-width: 10rem;
-height: 380px;
+height: 320px;
 padding: 19px 0px;
 flex-direction: column;
 align-items: center;

@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import * as S from "./style";
+import Slider from "react-slick";
 import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import CommunityPost from "../../communityPost";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
@@ -6,15 +8,28 @@ import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/da
 const Community = () => {
   const { data: communityList } = useAllGetCommunityQuery(1);
 
+  const communitySetting = useMemo(
+    () => ({
+      arrows: false,
+      infinite: true,
+      speed: 1500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      pauseOnHover: true,
+    }),
+    []
+  );
   return (
     <S.CommunityBox>
       <S.CommunityHeader>
         <span>오늘의 글을 확인해 보세요.</span>
       </S.CommunityHeader>
       <S.CommunityContents>
+      <Slider {...communitySetting}>
         {Array.isArray(communityList?.data)
           ? communityList?.data
-              .slice(0, 1)
               .map((community) => (
                 <CommunityPost
                   id={community.id}
@@ -29,6 +44,7 @@ const Community = () => {
                 />
               ))
           :<span >내용이 없습니다.</span>}
+          </Slider>
       </S.CommunityContents>
     </S.CommunityBox>
   );

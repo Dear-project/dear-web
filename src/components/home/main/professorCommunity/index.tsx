@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import CommunityPost from "../../communityPost";
@@ -6,6 +6,24 @@ import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/da
 
 const ProfessorCommunity = () => {
   const { data: communityList } = useAllGetCommunityQuery(1);
+  const [visiblePosts, setVisiblePosts] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth <= 738){
+        setVisiblePosts(1);
+      }
+      else if (window.innerWidth <= 1264) {
+        setVisiblePosts(2);
+      } else {
+        setVisiblePosts(3);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <S.MainBox>
@@ -15,9 +33,10 @@ const ProfessorCommunity = () => {
       <S.CommunityMainContents>
         {Array.isArray(communityList?.data) ? (
           communityList?.data
-            .slice(0, 3)
+            .slice(0, visiblePosts) 
             .map((community) => (
               <CommunityPost
+                key={community.id}
                 id={community.id}
                 title={community.title}
                 modifiedDateTime={convertDescriptionDate(community.modifiedDateTime)}
@@ -26,17 +45,15 @@ const ProfessorCommunity = () => {
                 userName={community.userName}
                 createdDateTime={convertCreatedDate(community.createdDateTime)}
                 comment={community.comment}
-                customStyle={{ width: "30%",height:"70%"}}
-              />    
+                customStyle={{ width: visiblePosts===1 ? "90%" : "30%" , height: "80%" }}
+              />
             ))
         ) : (
-          
-            <p >내용이 없습니다.</p>
-          
-          
+          <p>내용이 없습니다.</p>
         )}
       </S.CommunityMainContents>
     </S.MainBox>
   );
 };
+
 export default ProfessorCommunity;

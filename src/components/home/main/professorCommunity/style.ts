@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MainBox = styled.div`
 display: flex;
 width: 90%;
-height: 25%;
+height: 27%;
 padding: 19px 0px;
 flex-direction: column;
 align-items: center;

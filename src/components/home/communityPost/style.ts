@@ -10,7 +10,7 @@ export const CommunityPost = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  border: 1px solid ${theme.colors.gray600};
+  border: 1px solid ${theme.colors.gray400};
   border-radius: 16px;
   background: inherit;
 
@@ -43,10 +43,10 @@ export const Description = styled.div`
 
 export const PostInfo = styled.div`
   display: flex;
-  width: 90%;
+  width: 100%;
   height: 3rem;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
 
   margin-top: 8%;
 

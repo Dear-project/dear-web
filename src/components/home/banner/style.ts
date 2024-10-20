@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
 export const BannerContainer = styled.div`
-  width: 1000px;
+  width: 90%;
   height: 110px;
+  border-radius: 17px;
   background-color: ${({ theme }) => theme.backgroundColor3};
   position: relative;
   overflow: hidden;
@@ -14,7 +15,7 @@ export const BannerContainer = styled.div`
   }
 
   .slick-slide {
-    width: 800px !important;
+    width: 100%;
   }
 
   .slick-track {
