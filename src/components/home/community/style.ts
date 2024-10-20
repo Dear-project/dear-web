@@ -41,7 +41,7 @@ export const Main = styled.div`
 
   .professor-groomy {
     position: absolute;
-    left: 80%;
+    top: 75%;
 
     @media (max-width: 768px) {
       display: none;
