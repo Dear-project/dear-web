@@ -19,7 +19,7 @@ export const SelectMajorModalWrap = styled.div`
 `;
 
 export const Main = styled.div`
-  width: 60%;
+  width: 70%;
   height: 60%;
 
   border: none;
@@ -97,6 +97,7 @@ export const MajorBoxWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+ 
 `;
 
 export const MajorWrap = styled.div`
@@ -107,6 +108,7 @@ export const MajorWrap = styled.div`
 
   border: 1px solid ${theme.colors.gray200};
 `;
+
 
 export const MajorTypeWrap = styled.div`
   width: 11%;
@@ -138,19 +140,22 @@ export const MajorTypeList = styled.div<{ $isclicked: string }>`
   }
 `;
 
+export const MajorListBox = styled.div`
+display: flex;
+width: 100%;
+height: 100%;
+ overflow: hidden;
+ overflow-y: scroll;
+`
 export const MajorListWrap = styled.div`
-  width: 82%;
-  height: 98%;
-
+  width: 100%;
+  height: 150%;
+  gap: 30px;
   display: flex;
   flex-wrap: wrap;
 
   align-items: flex-start;
-  justify-content: center;
-
-  padding-left: 2%;
-  padding-top: 3%;
-  column-gap: 70px;
+  justify-content: center;  
 `;
 
 export const Major = styled.div<{ $isSelected: boolean }>`

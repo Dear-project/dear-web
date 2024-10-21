@@ -61,6 +61,7 @@ const SelectMajorModal = ({
               </S.MajorTypeList>
             ))}
           </S.MajorTypeWrap>
+          <S.MajorListBox>
           <S.MajorListWrap>
             {majorList?.data.map((item, idx) => (
               <S.Major
@@ -75,6 +76,7 @@ const SelectMajorModal = ({
               </S.Major>
             ))}
           </S.MajorListWrap>
+          </S.MajorListBox>
         </S.MajorWrap>
       </S.MajorBoxWrap>
       <S.NextButton onClick={onSubmit}>완료</S.NextButton>
