@@ -16,6 +16,7 @@ const useEmail = () => {
   const [resend, setResend] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [timeActive, setTimeActive] = useState<boolean>();
+  const [loading, setLoading] = useState(false); 
 
   const handleDataChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +37,7 @@ const useEmail = () => {
   };
 
   const onAuthCode = async () => {
+    setLoading(true);
     const { email } = emailData;
     try {
       await axios.get(`${CONFIG.serverUrl}/auth/${email}/duplicate`).then(() => {
@@ -50,7 +52,11 @@ const useEmail = () => {
         await axios.post(`${CONFIG.serverUrl}/auth/email?email=${email}`).then(() => {
           startTimer();
           setResend(true);
-          DearToast.sucessToast("인증번호 요청 성공");
+          setTimeout(() => {
+            DearToast.sucessToast("인증번호 요청 성공");
+          }, 1000);
+        
+        
         });
       } catch (error) {
         DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
@@ -64,6 +70,7 @@ const useEmail = () => {
         DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       }
     }
+    setLoading(false); 
   };
 
   const onCheckAuthCode = async () => {
@@ -101,6 +108,7 @@ const useEmail = () => {
   const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   return {
+    loading,
     emailData,
     resend,
     handleDataChange,

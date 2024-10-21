@@ -13,7 +13,7 @@ export const theme: DefaultTheme = {
 
     white: "#FFFFFF",
     primary900: "#020202",
-    primary800: "#020202",
+    primary800: "#EBEFFF",
     primary500: "#FECE23",
     primary050: "#FFFAE8",
     lightRed: "#FFE0E0",
