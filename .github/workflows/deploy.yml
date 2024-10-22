@@ -2,13 +2,46 @@ name: dear Web
 
 on:
   push:
-    branches:
-      - main
+    branches: "main"
 
-env:
-  S3_BUCKET_NAME: dear-web
-  CODE_DEPLOY_APPLICATION_NAME: dear-web
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dear-web-group
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' 
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js application
+        run: npm run build
+
+      - name: Make config directory and create config.json
+        run: |
+          mkdir -p ./src/config
+          echo "${{ secrets.CONFIG }}" > ./src/config/config.json
+
+          - name: Deploy with SSH
+          if: github.ref == 'refs/heads/main'
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }} # EC2 인스턴스 퍼블릭 DNS 또는 퍼블릭 IP
+            username: ec2-user
+            key: ${{ secrets.PRIVATE_KEY }} # pem 키
+            port: ${{ secrets.PORT }}
+
+    env:
+      S3_BUCKET_NAME: dear-web
+      CODE_DEPLOY_APPLICATION_NAME: dear-web
+      CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dear-web-group
 
 # jobs:
 #   build:
