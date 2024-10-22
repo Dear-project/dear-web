@@ -30,11 +30,11 @@ const ProfessorDetail = () => {
           <div>
             <div>
               <h4>대학명</h4>
-              <span>{professorData?.data.schoolName}</span>
+              <span>{professorData?.data.schoolName ? professorData.data.schoolName : "학교 정보 없음"}</span>
             </div>
             <div>
               <h4>학과</h4>
-              <span>{professorData?.data.mclass}</span>
+              <span>{professorData?.data.mclass ? professorData?.data.mclass : "학과 정보 없음"}</span>
             </div>
             <div>
               <h4>이메일</h4>

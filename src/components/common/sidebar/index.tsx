@@ -81,11 +81,13 @@ export const SideBar = () => {
         <Link href={professorCheck ? "/community/professor" : "/find"} style={{ textDecoration: "none" }}>
           <S.Select
             $isSidebarOpen={sidebar.isSidebarOpen}
-            isSelected={"/find" == sidebar.pathname || sidebar.pathname.startsWith("/community/professor")}
+            isSelected={sidebar.pathname.startsWith("/find") || sidebar.pathname.startsWith("/community/professor")}
           >
             <Image
               src={
-                sidebar.pathname.startsWith("/community/professor") || "/find" === sidebar.pathname ? Findlight : Shcool
+                sidebar.pathname.startsWith("/find") || sidebar.pathname.startsWith("/community/professor")
+                  ? Findlight
+                  : Shcool
               }
               alt="교수찾기"
               width={30}
