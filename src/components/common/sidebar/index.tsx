@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as S from "./style";
-import Homelight from "@/asset/img/sidebar/HomeLight.svg";
+import Homelight from "@/asset/img/sidebar/homeLight.svg";
 import Home from "@/asset/img/sidebar/home.svg";
 import Chat from "@/asset/img/sidebar/chat.svg";
 import Chatlight from "@/asset/img/sidebar/chatLight.svg";
