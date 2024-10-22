@@ -5,8 +5,8 @@ import BannerItem from "./BannerItem/index";
 import useBanner from "@/hooks/banner/useBanner";
 
 const Banner = () => {
-  const { getAllbanner } = useBanner();
-  const bannerList = getAllbanner();
+  const { getAllBanner } = useBanner();
+  const bannerList = getAllBanner();
 
   const bannerSetting = useMemo(
     () => ({
