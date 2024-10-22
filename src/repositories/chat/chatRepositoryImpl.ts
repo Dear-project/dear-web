@@ -5,8 +5,12 @@ import dearAxios from "@/libs/axios/customAxios";
 
  class ChatRepositoryImpl implements ChatRepository {
     public async getChat(userId:number):Promise<ChatGetResponse> {
-        const {data} = await dearAxios.get('chat/get',{params:userId});
-        return data
+        console.log(userId);
+        const { data } = await dearAxios.get(`chat/get`, {
+            params: { userId: userId }, 
+          });
+          
+          return data;
     }
     public async chatSearch({userId, word}:ChatSearchProps):Promise<ChatGetResponse>{
         const {data} = await dearAxios.get(`/chat/search?userId=${userId}&word=${word}`);

@@ -16,9 +16,13 @@ const Matching = () => {
         <span>매칭요청이 왔어요</span>
       </S.Header>
       <S.Content>
-        {data?.data.length===null ? data?.data.map((item,index)=>(
-        <MatchingList key={index} data={item} /> 
-        )): (<span style={{textAlign:"center"}}>내용이 없습니다.</span>)}
+      {Array.isArray(data?.data) && data?.data.length > 0 ? (
+          data?.data.map((item, index) => (
+            <MatchingList key={index} data={item} />
+          ))
+        ) : (
+          <span style={{ textAlign: "center" }}>내용이 없습니다.</span>
+        )}
       </S.Content>
     </S.MatchingBox>
   );

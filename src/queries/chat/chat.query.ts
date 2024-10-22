@@ -5,7 +5,7 @@ import { ChatGetResponse, ChatSearchProps} from "@/types/chat/chat.type";
 import { AxiosError } from "axios";
 
 
-export const useGetChat = (userId: number) => {
+export const useGetChat = (userId: number) => {  
   return useQuery<ChatGetResponse, AxiosError>({
     queryKey: [QUERY_KEYS.chat.getChatMy],
     queryFn: () => chatRepositoryImpl.getChat(userId),

@@ -6,8 +6,10 @@ import { ProfileId } from "@/store/profile/profile.store";
 
 const useChat=()=>{
     const [chatSearch, setCatSearch] = useState("");
-    const [profileId] = useRecoilState(ProfileId);
-    const { data: allChats } = useGetChat(profileId);
+    const [profileId,] = useRecoilState(ProfileId);
+    console.log(profileId);
+    const userId =profileId
+    const { data: allChats } = useGetChat(userId);
     
 
     let roomData = allChats;

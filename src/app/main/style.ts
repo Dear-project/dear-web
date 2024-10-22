@@ -29,6 +29,7 @@ export const MainView = styled.div`
 export const MainBox = styled.div`
   display: flex;
   width: 100%;
+  height: 300px;
   align-items: center;
   justify-content: space-around;
 
