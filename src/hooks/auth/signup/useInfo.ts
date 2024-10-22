@@ -1,3 +1,4 @@
+"use client";
 import axios, { AxiosError } from "axios";
 import React, { useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
