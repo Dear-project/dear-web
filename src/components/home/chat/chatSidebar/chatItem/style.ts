@@ -2,22 +2,25 @@ import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
 
-export const chatItem = styled.div`
-display: flex;
-width: 281px;
-height: 67px;
-justify-content: space-around;
-align-items: center;
-img{
-    width: 50px;
-    height: 50px;
-}
+export const chatItem = styled.div<{ isSelected: boolean }>`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: ${({ isSelected }) => (isSelected ? "#f0f0f0" : "#fff")}; // 선택된 경우 배경색 변경
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 8px;
 
-`
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
 export const chatDetail = styled.div`
     display: flex;  
     flex-direction: column;
     height: 100%;
+    width: 200px;
     justify-content: space-evenly;
     img{
     width: 40px;
@@ -43,6 +46,7 @@ gap: 5px;
 `
 export const timeDetail = styled.div`
     display: flex;
+
     height: 100%;
     
     span{

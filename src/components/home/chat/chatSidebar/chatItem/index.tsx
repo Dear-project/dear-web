@@ -5,18 +5,29 @@ import Image from "next/image";
 import { ChatData } from "@/types/chat/chat.type";
 
 interface ChatItemProps {
-  chat: ChatData;  
-  setSelectedChat: (chat: ChatData) => void; 
+  chat: ChatData;
+  setSelectedChat: (chat: ChatData | null) => void; 
+  isSelected: boolean; 
 }
 
-const ChatItem = ({ chat, setSelectedChat }: ChatItemProps) => {
+const ChatItem = ({ chat, setSelectedChat ,isSelected}: ChatItemProps) => {
+  const handleClick = () => {
+    if (isSelected) {
+      setSelectedChat(null);
+    } else {
+      setSelectedChat(chat); 
+    }
+  };
   return (
-    <S.chatItem onClick={() => setSelectedChat(chat)}> {/* Handle click */}
-      <Image src={Profile} alt="프로필" width={50} height={50}/>
+    <S.chatItem 
+    onClick={handleClick} 
+    isSelected={isSelected} 
+  >
+      <Image src={Profile} alt="프로필" width={35} height={35}/>
       <S.chatDetail>
         <S.chatTitle>
           <span>{chat.chatName}</span>
-          <p>박승철 헤어디자인과</p> {/* 예시 데이터 */}
+          <p>박승철 헤어디자인과</p>
         </S.chatTitle>
         <S.content>
           <span>{chat.lastMessage}</span>

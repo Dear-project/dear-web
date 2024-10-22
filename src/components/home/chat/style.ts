@@ -8,7 +8,8 @@ export const ChatContainer = styled.div`
 `;
 export const ChatRoomContainer = styled.div`
 display: flex;
-width: 100%;
+width: calc(100% - 20%);
+min-width: 400px;
 height: 100%;
 `
 

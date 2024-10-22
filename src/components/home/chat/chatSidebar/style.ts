@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const sideChatList = styled.div`
 display: flex;
 flex-direction: column;
-width: 300px;
+min-width: 300px;
+width: 20%;
 height: 100%;
 background-color: white;
 border-left: 2px solid #E8EAED;

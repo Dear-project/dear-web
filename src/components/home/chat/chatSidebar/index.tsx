@@ -9,13 +9,12 @@ import * as S from "./style";
 
 interface ChatSideBarProps {
   setSelectedChat: (chat: ChatData | null) => void;
+  selectedChat: ChatData | null;
 }
 
-const ChatSideBar = ({ setSelectedChat }: ChatSideBarProps) => {
+const ChatSideBar = ({ setSelectedChat,selectedChat }: ChatSideBarProps) => {
   const { roomData, setCatSearch, chatSearch, searchButton } = useChat();
   const [profileId] = useRecoilState(ProfileId);
-
-  console.log(roomData);
 
   return (
     <S.sideChatList>
@@ -30,7 +29,11 @@ const ChatSideBar = ({ setSelectedChat }: ChatSideBarProps) => {
 
       <S.chatList>
         {Array.isArray(roomData) ? (
-          roomData?.map((chat: ChatData) => <ChatItem key={chat.id} chat={chat} setSelectedChat={setSelectedChat} />)
+          roomData?.map((chat: ChatData) => <ChatItem 
+          key={chat.id} 
+          chat={chat} 
+          setSelectedChat={setSelectedChat}  
+          isSelected={selectedChat?.id === chat.id} />)
         ) : (
           <span>채팅방이 없습니다.</span>
         )}

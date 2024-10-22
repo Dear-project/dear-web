@@ -50,7 +50,7 @@ const Chat = () => {
 
   return (
     <S.ChatContainer>
-      <ChatSideBar setSelectedChat={setSelectedChat} />
+      <ChatSideBar setSelectedChat={setSelectedChat} selectedChat={selectedChat} />
       <S.ChatRoomContainer>
         {selectedChat ? (
           <S.ChatRoom>
