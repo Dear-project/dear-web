@@ -15,6 +15,7 @@ interface SelectModalProps {
 
 const SelectModal = ({isOpen,sectionLocation}:SelectModalProps)=>{   
   const {section, ...select}= useSelectModal();
+  
   useEffect(() => {
     if (sectionLocation === "second") {
       select.setSection("second");

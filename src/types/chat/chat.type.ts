@@ -1,24 +1,19 @@
-
 export interface ChatData {
-    data:{
-        id: string,
-        adminId: number,
-        chatName: string,
-        createdAt: string,
-        joinedUserId: number,
-        lastMessage: string,
-        lastMessageTimeStamp: string,
-        notReadCnt: 0,
-        chatStatus: "ALIVE" | "DELETE"
-    }
-    
+  id: string;
+  adminId: number;
+  chatName: string;
+  createdAt: string;
+  joinedUserId: number;
+  lastMessage: string;
+  lastMessageTimeStamp: string;
+  notReadCnt: 0;
+  chatStatus: "ALIVE" | "DELETE";
 }
 export interface ChatSearchProps {
-    userId:number,
-    word:string
+  userId: number;
+  word: string;
 }
 
-
 export interface ChatGetResponse {
-    data : ChatData[];
+  data: ChatData[];
 }

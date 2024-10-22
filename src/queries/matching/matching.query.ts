@@ -14,8 +14,10 @@ export const useGetMatching = (pageRequest:pageRequest)=>{
   return useQuery<MatchingResponse, AxiosError>({
     queryKey: [QUERY_KEYS.matching.matching],
     queryFn : ()=>matchingRepositoryImpl.getMatchingList(pageRequest),
+    staleTime: 60 * 10000, 
     cacheTime: 5 * 60 * 1000, 
     refetchInterval: 3600000, 
+    refetchOnWindowFocus: true, 
   })
   
 }

@@ -157,6 +157,7 @@ const useSelectModal = () => {
     postMajorMutation.mutate(params, {
       onSuccess: () => {
         dearToast.sucessToast("관심 학과 등록에 성공하였습니다");
+        window.location.reload();
         closeModal();
       },
       onError: (error) => {

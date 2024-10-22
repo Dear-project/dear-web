@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const sideChatList = styled.div`
 display: flex;
 flex-direction: column;
-width: 300px;
+min-width: 300px;
+width: 20%;
 height: 100%;
 background-color: white;
 border-left: 2px solid #E8EAED;
@@ -29,4 +30,12 @@ height: 35px;
 border-radius: 12px;
 background: #0E2764;
 cursor: pointer;
+`
+
+export const chatList  = styled.div`
+display: flex;
+flex-direction: column;
+height: 100%;
+padding: 10px;
+gap: 10px;
 `
