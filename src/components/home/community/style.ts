@@ -167,7 +167,7 @@ export const Description = styled.div`
 export const PostInfo = styled.div`
   display: flex;
   width: 212px;
-  height: 45px;
+  height: auto;
   justify-content: space-evenly;
   align-items: center;
 

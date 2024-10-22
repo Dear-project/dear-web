@@ -15,6 +15,7 @@ import { useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 import { ProfessorCheck } from "@/store/profile/profile.store";
+import { usePostProfessorCommunity } from "@/queries/community/professor/professorCommunity.query";
 
 const usePost = () => {
   const router = useRouter();
@@ -24,6 +25,7 @@ const usePost = () => {
   const [replyComent, setReplyComment] = useState<string>("");
 
   const postCommunitymutation = usePostCommunity();
+  const postProfessorCommunityMutation = usePostProfessorCommunity();
   const postCommentMutation = usePostComment();
 
   const isProfessor = useRecoilValue(ProfessorCheck);
@@ -38,16 +40,29 @@ const usePost = () => {
     if (isRequesting) return; // 요청 중이면 아무 것도 하지 않음
     setIsRequesting(true);
 
-    postCommunitymutation.mutate(undefined, {
-      onSuccess: (res) => {
-        setWritetId(res.data.id);
-        router.push(isProfessor ? "/community/professor/write" : "/community/write");
-      },
-      onError: (error) => {
-        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
-        setIsRequesting(false); // 오류 발생 시 상태 초기화
-      },
-    });
+    if (!isProfessor) {
+      postCommunitymutation.mutate(undefined, {
+        onSuccess: (res) => {
+          setWritetId(res.data.id);
+          router.push("/community/write");
+        },
+        onError: (error) => {
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          setIsRequesting(false); // 오류 발생 시 상태 초기화
+        },
+      });
+    } else {
+      postProfessorCommunityMutation.mutate(undefined, {
+        onSuccess: (res) => {
+          setWritetId(res.data.id);
+          router.push("/community/professor/write");
+        },
+        onError: (error) => {
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          setIsRequesting(false);
+        },
+      });
+    }
   };
 
   useEffect(() => {

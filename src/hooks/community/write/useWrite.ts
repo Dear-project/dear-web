@@ -12,6 +12,11 @@ import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 import { PostImageParams } from "@/repositories/community/communityRepository";
 import { useLocation } from "react-router-dom";
+import { ProfessorCheck } from "@/store/profile/profile.store";
+import {
+  usePatchProfessorCommunity,
+  usePostProfessorMultiPart,
+} from "@/queries/community/professor/professorCommunity.query";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -29,6 +34,7 @@ const useWrite = () => {
   const FileRef = useRef<HTMLInputElement>(null);
   const formData = new FormData();
   const router = useRouter();
+  const isProfessor = useRecoilValue(ProfessorCheck);
 
   const handleWriteData = useCallback(
     (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -48,7 +54,9 @@ const useWrite = () => {
   };
 
   const patchCommunityMutation = usePatchCommunity();
+  const patchProfessorCommunityMutation = usePatchProfessorCommunity();
   const postPostMultiPartMutation = usePostMultiPart();
+  const postPostProfessorMultipartMutation = usePostProfessorMultiPart();
 
   const onWrite = async () => {
     const { title, content } = writeData;
@@ -61,22 +69,41 @@ const useWrite = () => {
       },
     };
 
-    patchCommunityMutation.mutate(params, {
-      onSuccess: () => {
-        dearToast.sucessToast("글 등록 성공!");
-        router.back();
-      },
-      // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
-      onError: (error) => {
-        if (title.length < 0) {
-          dearToast.infoToast("제목을 입력해주세요");
-        } else if (content.length < 0) {
-          dearToast.infoToast("내용을 입력해주세요");
-        } else {
-          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
-        }
-      },
-    });
+    if (!isProfessor) {
+      patchCommunityMutation.mutate(params, {
+        onSuccess: () => {
+          dearToast.sucessToast("글 등록 성공!");
+          router.back();
+        },
+        // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
+        onError: (error) => {
+          if (title.length < 0) {
+            dearToast.infoToast("제목을 입력해주세요");
+          } else if (content.length < 0) {
+            dearToast.infoToast("내용을 입력해주세요");
+          } else {
+            dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          }
+        },
+      });
+    } else {
+      patchProfessorCommunityMutation.mutate(params, {
+        onSuccess: () => {
+          dearToast.sucessToast("글 등록 성공!");
+          router.back();
+        },
+        // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
+        onError: (error) => {
+          if (title.length < 0) {
+            dearToast.infoToast("제목을 입력해주세요");
+          } else if (content.length < 0) {
+            dearToast.infoToast("내용을 입력해주세요");
+          } else {
+            dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          }
+        },
+      });
+    }
   };
 
   const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -98,51 +125,24 @@ const useWrite = () => {
     const formData = new FormData();
     fileArray.forEach((file) => formData.append("files", file)); // 키를 'files'로 설정
 
-    // 요청 보내기
-    postPostMultiPartMutation.mutate(
-      {
+    if (!isProfessor) {
+      postPostMultiPartMutation.mutate(
+        {
+          id: id,
+          files: formData.get("files")!,
+        },
+        {
+          onSuccess: () => {
+            // 성공 시 처리
+          },
+        },
+      );
+    } else {
+      postPostProfessorMultipartMutation.mutate({
         id: id,
         files: formData.get("files")!,
-      },
-      {
-        onSuccess: () => {
-          // 성공 시 처리
-        },
-      },
-    );
-  };
-
-  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files: FileList | null = e.target.files;
-    const fileArray = Array.prototype.slice.call(files);
-    const fileNames = fileArray.map((file) => file.name);
-    setFileName(fileNames);
-
-    setFile(fileArray);
-
-    fileArray.forEach((file) => formData.append("file", file));
-
-    const params = {
-      id: id,
-      files: formData,
-    };
-
-    await axios.post(
-      `${CONFIG.serverUrl}/community/${id}`,
-      {
-        files: formData.get("file"),
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
-          "Content-Type": "multipart/form-data",
-        },
-      },
-    );
-  };
-
-  const handleFileClick = () => {
-    FileRef.current?.click();
+      });
+    }
   };
 
   return {
@@ -158,8 +158,6 @@ const useWrite = () => {
     onWrite,
     handleImageChange,
     handleImageClick,
-    handleFileChange,
-    handleFileClick,
   };
 };
 
