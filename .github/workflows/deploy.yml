@@ -20,26 +20,23 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-      
+
       - name: Create config directory and config.json
         run: |
           mkdir -p ./src/config
-          echo "{\"server\": \"${{ secrets.CONFIG }}\"}" > ./src/config/config.json
-      
+          echo '${{ secrets.CONFIG }}' > ./src/config/config.json
+
       - name: Build Next.js application
         run: yarn run build
 
-      - name: deploy
-        run: |
-
-          - name: Deploy with SSH
-          if: github.ref == 'refs/heads/main'
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }} # EC2 인스턴스 퍼블릭 DNS 또는 퍼블릭 IP
-            username: ec2-user
-            key: ${{ secrets.PRIVATE_KEY }} # pem 키
-            port: ${{ secrets.PORT }}
+      - name: Deploy with SSH
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} # EC2 인스턴스 퍼블릭 DNS 또는 퍼블릭 IP
+          username: ec2-user
+          key: ${{ secrets.PRIVATE_KEY }} # pem 키
+          port: ${{ secrets.PORT }}
 
     env:
       S3_BUCKET_NAME: dear-web
