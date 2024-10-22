@@ -1,5 +1,5 @@
 import React from "react";
-import SignupPw from "src/components/auth/signup/Pw";
+import SignupPw from "@/components/auth/signup/Pw";
 
 const Page = () => {
   return (

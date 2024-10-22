@@ -1,8 +1,8 @@
 import React from "react";
 import * as S from "./style";
 import { useRecoilState } from "recoil";
-import { ErrorStateAtom } from "src/store/common/common.store";
-import { CSSObject } from "styled-components";
+import { ErrorStateAtom } from "@/store/common/common.store";
+
 
 interface TextFieldProps {
   id: string;

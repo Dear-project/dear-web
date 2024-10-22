@@ -2,13 +2,13 @@
 import axios, { AxiosError } from "axios";
 import React, { useCallback, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { EmailAtom, PasswordAtom } from "src/store/auth/signup/signup.store";
-import { InfoProps } from "@/types/Auth/sign.type";
-import CONFIG from "src/config/config.json";
-import DearToast from "src/libs/Swal/Swal";
+import { EmailAtom, PasswordAtom } from "@/store/auth/signup/signup.store";
+import { InfoProps } from "@/types/auth/sign.type";
+import CONFIG from "@/config/config.json";
+import DearToast from "@/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
-import { InfoAtom } from "src/store/auth/signup/signup.store";
+import { InfoAtom } from "@/store/auth/signup/signup.store";
 
 const useInfo = () => {
   const router = useRouter();

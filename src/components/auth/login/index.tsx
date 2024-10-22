@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import * as S from "./style";
-import useLogin from "src/hooks/auth/login/useLogin";
-import TextField from "src/components/common/textField";
+import useLogin from "@/hooks/auth/login/useLogin";
+import TextField from "@/components/common/textField";
 import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
-import { ErrorStateAtom } from "src/store/common/common.store";
+import { ErrorStateAtom } from "@/store/common/common.store";
 
 const Login = () => {
   const { ...hooks } = useLogin();

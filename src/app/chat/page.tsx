@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Chat from "src/components/home/chat/index"
+import Chat from "@/components/home/chat/index"
 
 
 const index = () => {

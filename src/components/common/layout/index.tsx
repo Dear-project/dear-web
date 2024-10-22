@@ -1,5 +1,5 @@
 "use client";
-import Sidebar from "src/components/common/sidebar/index";
+import Sidebar from "@/components/common/sidebar/index";
 import { Container, Wrap } from "./style";
 import { usePathname, useRouter } from "next/navigation";
 import { RecoilRoot } from "recoil";

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import * as S from "./style";
 import Image from "next/image";
-import Profile from "src/asset/Profile.svg";
+import Profile from "@/asset/Profile.svg";
 import { useParams } from "next/navigation";
 import { convertPostDetailDate } from "@/utils/transform/date/convertDate";
 import { useGetCommunityById } from "@/queries/community/community.query";

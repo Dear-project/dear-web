@@ -1,5 +1,5 @@
 import { UseQueryOptions, UseQueryResult, useQueries, useQuery } from "react-query";
-import professorRepositoryImpl from "src/repositories/professor/professorRepostoryImpl";
+import professorRepositoryImpl from "@/repositories/professor/professorRepostoryImpl";
 import { QUERY_KEYS } from "../QueryKey";
 import { reviewRequestParams } from "@/repositories/professor/professorRepository";
 import { ProfessorDetailData, ProfessorResponse } from "@/types/matching/professor.types";

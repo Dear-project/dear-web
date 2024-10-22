@@ -1,4 +1,4 @@
-import { ProfessorDetailData, ProfessorResponse, ReviewResposne } from "src/types/matching/professor.types";
+import { ProfessorDetailData, ProfessorResponse, ReviewResposne } from "@/types/matching/professor.types";
 import { ProfessorRepository, reviewRequestParams } from "./professorRepository";
 import dearV1Axios from "@/libs/axios/customAxios";
 
