@@ -1,7 +1,7 @@
 import { Response } from "@/types/util/response.type";
 
 export interface ProfessorData {
-  professorId: number;
+  userId: number;
   name: string;
   school: string;
   major: string;

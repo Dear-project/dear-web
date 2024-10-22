@@ -290,6 +290,8 @@ export const ProfessorWrap = styled.div`
   display: flex;
   justify-content: space-between;
 
+  cursor: pointer;
+
   div {
     display: flex;
     gap: 15px;

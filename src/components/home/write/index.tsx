@@ -4,7 +4,7 @@ import React from "react";
 import * as S from "./style";
 import Image from "next/image";
 import useWrite from "@/hooks/community/write/useWrite";
-import ImageUpload from "src/asset/img/ImageUpload.svg";
+import ImageUpload from "@/asset/img/ImageUpload.svg";
 import WriteGroomy from "@/asset/img/WriteGroomy.svg";
 
 const Write = () => {

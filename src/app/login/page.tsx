@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Login from "src/components/auth/login/index";
+import Login from "@/components/auth/login/index";
 
 const Page = () => {
   return (

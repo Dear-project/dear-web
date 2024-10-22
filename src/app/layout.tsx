@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import QueryClientProvider from "@/components/common/provider/query-provider";
 import Layout from "@/components/common/layout";
-import StyledComponentsRegistry from "src/libs/registry";
+import StyledComponentsRegistry from "@/libs/registry";
 import { RecoilRoot } from "recoil";
 
 export const metadata: Metadata = {

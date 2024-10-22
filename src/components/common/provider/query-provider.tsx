@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from "react";
 import { QueryClient, QueryClientProvider as DeerQueryClientProvider } from "react-query";
-import GlobalStyle from "src/styles/global";
+import GlobalStyle from "@/styles/global";
 
 interface Props {
   children: ReactNode;

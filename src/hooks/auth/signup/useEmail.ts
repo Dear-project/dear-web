@@ -1,11 +1,11 @@
 import axios, { AxiosError } from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { EmailAtom } from "src/store/auth/signup/signup.store";
-import { ErrorStateAtom } from "src/store/common/common.store";
-import patternCheck from "src/utils/check/patternCheck";
-import CONFIG from "src/config/config.json";
-import DearToast from "src/libs/Swal/Swal";
+import { EmailAtom } from "@/store/auth/signup/signup.store";
+import { ErrorStateAtom } from "@/store/common/common.store";
+import patternCheck from "@/utils/check/patternCheck";
+import CONFIG from "@/config/config.json";
+import DearToast from "@/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 

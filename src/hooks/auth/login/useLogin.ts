@@ -3,12 +3,9 @@ import dearToast from "@/libs/Swal/Swal";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import config from "src/config/config.json";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "src/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@/constants/token/token.constants";
 import token from "@/libs/token/tokens";
-import { ErrorStateAtom } from "src/store/common/common.store";
-import { LoginParam, LoginResponse } from "src/types/auth/auth.type";
+import { LoginParam, LoginResponse } from "@/types/auth/auth.type";
 import { usePostLoginMutation } from "@/queries/auth/auth.query";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 

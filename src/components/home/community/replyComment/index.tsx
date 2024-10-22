@@ -33,7 +33,7 @@ const ReplyComment = ({ id, isOpen, subComment }: ReplyComment) => {
         </div>
       )}
       {subComment.map((subComment) => (
-        <S.ReComment>
+        <S.ReComment key={subComment.commentId}>
           <div key={subComment.commentId}>
             <Image src={Profile} alt="프로필 이미지" width={50} height={50} />
             <div>

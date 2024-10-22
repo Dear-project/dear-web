@@ -15,6 +15,7 @@ import { useProfessorQuery } from "@/queries/professor/professor.query";
 import { useRecoilValue } from "recoil";
 import { ProfessorCheck } from "@/store/profile/profile.store";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Community = () => {
   const { data: myArticles } = useGetMyArticles(1);
@@ -22,6 +23,8 @@ const Community = () => {
   const isProfessor = useRecoilValue(ProfessorCheck);
   const pathname = usePathname();
   const { setWrite } = usePost();
+  const router = useRouter();
+
   return (
     <S.CommunityWrap>
       <S.Main>
@@ -69,8 +72,8 @@ const Community = () => {
               <S.Professor>
                 {Array.isArray(professorList?.data) &&
                   professorList?.data.map((professor) => (
-                    <S.ProfessorWrap key={professor.professorId}>
-                      <div>
+                    <S.ProfessorWrap key={professor.userId}>
+                      <div onClick={() => router.push(`/find/professor/${professor.userId}`)}>
                         <Image
                           src={professor.profileImage ? professor.profileImage : ProfessorImg}
                           alt="프로필"
@@ -80,11 +83,11 @@ const Community = () => {
                         <div>
                           <h1>{professor.name}</h1>
                           <span>
-                            {professor.school}&nbsp;{professor.major}
+                            {professor.school}
+                            {professor.major}
                           </span>
                         </div>
                       </div>
-                      <Image src={Bookmark} alt="북마크" />
                     </S.ProfessorWrap>
                   ))}
               </S.Professor>

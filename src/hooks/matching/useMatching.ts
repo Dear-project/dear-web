@@ -1,5 +1,5 @@
 import { useGetProfileInfo } from "@/queries/profile/query";
-import { useGetProfessorDetailQuery, useGetReviews, useProfessorQuery } from "src/queries/professor/professor.query";
+import { useGetProfessorDetailQuery, useGetReviews, useProfessorQuery } from "@/queries/professor/professor.query";
 import { usePostMatching } from "@/queries/matching/matching.query";
 import { useParams, useRouter } from "next/navigation";
 import dearToast from "@/libs/Swal/Swal";
@@ -9,8 +9,10 @@ import { AxiosError } from "axios";
 
 const useMatching = () => {
   const router = useRouter();
+
   const getProfessorList = (page: number) => {
-    const [{ data: professorList }] = useProfessorQuery(page);
+    const professorListQuery = useProfessorQuery(page);
+    const professorList = professorListQuery.data;
 
     if (professorList !== undefined && professorList !== null && professorList.data.length > 0) {
       return professorList;
@@ -18,7 +20,9 @@ const useMatching = () => {
   };
 
   const getProfessorDetail = useCallback((id: number) => {
-    const [{ data: professorDetailData }] = useGetProfessorDetailQuery(id);
+    const professorDetailQuery = useGetProfessorDetailQuery(id);
+    const professorDetailData = professorDetailQuery.data;
+
     if (professorDetailData?.data !== undefined && professorDetailData.data !== null) {
       return professorDetailData;
     }
@@ -37,16 +41,29 @@ const useMatching = () => {
     });
   };
 
-  const getReviews = (page: number, targetId: number) => {
-    const params = {
-      page: page,
-      targetId: targetId,
-    };
-    const [{ data: reviews }] = useGetReviews(params);
-    if (reviews !== undefined && reviews !== null && reviews.data.length > 0) {
-      return reviews;
-    }
+const getReviews = (page: number, targetId: number) => {
+  const params = {
+    page: page,
+    targetId: targetId,
   };
+  const reviewsQuery = useGetReviews(params);
+
+  
+  const reviews = reviewsQuery[0];
+
+  
+  if (reviews.isLoading || reviews.isError) {
+    return null; 
+  }
+
+  const reviewData = reviews.data;
+
+  if (reviewData && reviewData.data && reviewData.data.length > 0) {
+    return reviewData;
+  }
+
+  return null; 
+};
 
   return { getProfessorList, getProfessorDetail, postMatching, getReviews };
 };

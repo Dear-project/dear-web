@@ -1,6 +1,6 @@
 
 import React from "react";
-import SignUpEmail from "src/components/auth/signup/Email";
+import SignUpEmail from "@/components/auth/signup/Email";
 
 const Page = () => {
   return (

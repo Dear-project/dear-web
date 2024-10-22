@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
-import useInfo from "src/hooks/auth/signup/useInfo";
+import useInfo from "@/hooks/auth/signup/useInfo";
 import student from "@/asset/img/signup/student.svg";
 import professor from "@/asset/img/signup/professor.svg";
 

@@ -5,7 +5,7 @@ export const QUERY_KEYS = Object.freeze({
   professor: {
     professor: "/professor",
     review: "/review",
-    getProfessor: "/profile",
+    getProfessor: (id: number) => ["/profile", id],
   },
   community: {
     community: "/community",

@@ -2,8 +2,8 @@
 
 import React from "react";
 import * as S from "./style";
-import TextField from "src/components/common/textField";
-import usePassword from "src/hooks/auth/signup/usePassword";
+import TextField from "@/components/common/textField";
+import usePassword from "@/hooks/auth/signup/usePassword";
 
 const SignupPw = () => {
   const { ...hooks } = usePassword();

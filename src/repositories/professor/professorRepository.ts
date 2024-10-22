@@ -1,4 +1,4 @@
-import { ProfessorResponse, ProfessorDetailData, ReviewResposne } from "src/types/matching/professor.types";
+import { ProfessorResponse, ProfessorDetailData, ReviewResposne } from "@/types/matching/professor.types";
 
 export interface ProfessorRepository {
   getProfessor(page: number): Promise<ProfessorResponse>;

@@ -1,28 +1,24 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { useGetChat, useChatSearch} from "@/queries/chat/chat.query";
+import { useGetChat } from "@/queries/chat/chat.query";
 import { ProfileId } from "@/store/profile/profile.store";
+import { useChatSearch } from "@/queries/chat/chat.query"; 
+
+const useChat = () => {
+  const [chatSearch, setChatSearch] = useState("");
+  const [profileId] = useRecoilState(ProfileId);
+  const { data: allChats } = useGetChat(profileId);
+  
+  const { data: searchChat } = useChatSearch({ userId: profileId, word: chatSearch }); // useChatSearch 호출
+  
+  const roomData = chatSearch ? searchChat : allChats;
 
 
-const useChat=()=>{
-    const [chatSearch, setCatSearch] = useState("");
-    const [profileId,] = useRecoilState(ProfileId);
-    console.log(profileId);
-    const userId =profileId
-    const { data: allChats } = useGetChat(userId);
-    
+  return {
+    roomData,
+    chatSearch,
+    setChatSearch,
+  };
+};
 
-    let roomData = allChats;
-    const searchButton =()=>{
-        const {data:searchChat} = useChatSearch({userId:profileId,word:chatSearch})
-        roomData = searchChat;
-    }
-
-    return{
-        roomData,
-        chatSearch,
-        setCatSearch,
-        searchButton,
-    }
-}
 export default useChat;

@@ -1,6 +1,6 @@
 import { GetMajorListReposne, GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
 import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
-import { MAJOR_TYPE } from "src/constants/majorType/majorType.constants";
+import { MAJOR_TYPE } from "@/constants/majorType/majorType.constants";
 
 export interface FirstLoginRepository {
   postSchool(params: PostSchoolParams): Promise<void>;

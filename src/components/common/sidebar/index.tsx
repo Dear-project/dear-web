@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as S from "./style";
-import Homelight from "@/asset/img/sidebar/HomeLight.svg";
+import Homelight from "@/asset/img/sidebar/homeLight.svg";
 import Home from "@/asset/img/sidebar/home.svg";
 import Chat from "@/asset/img/sidebar/chat.svg";
 import Chatlight from "@/asset/img/sidebar/chatLight.svg";
@@ -81,11 +81,13 @@ export const SideBar = () => {
         <Link href={professorCheck ? "/community/professor" : "/find"} style={{ textDecoration: "none" }}>
           <S.Select
             $isSidebarOpen={sidebar.isSidebarOpen}
-            isSelected={"/find" == sidebar.pathname || sidebar.pathname.startsWith("/community/professor")}
+            isSelected={sidebar.pathname.startsWith("/find") || sidebar.pathname.startsWith("/community/professor")}
           >
             <Image
               src={
-                sidebar.pathname.startsWith("/community/professor") || "/find" === sidebar.pathname ? Findlight : Shcool
+                sidebar.pathname.startsWith("/find") || sidebar.pathname.startsWith("/community/professor")
+                  ? Findlight
+                  : Shcool
               }
               alt="교수찾기"
               width={30}
