@@ -19,10 +19,10 @@ jobs:
           node-version: '18' 
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Build Next.js application
-        run: npm run build
+        run: yarn run build
 
       - name: Make config directory and create config.json
         run: |
