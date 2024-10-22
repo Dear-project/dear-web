@@ -20,14 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
+      
+      - name: Create config directory and config.json
+        run: |
+          mkdir -p ./src/config
+          echo "{\"server\": \"${{ secrets.CONFIG }}\"}" > ./src/config/config.json
+      
       - name: Build Next.js application
         run: yarn run build
 
-      - name: Make config directory and create config.json
+      - name: deploy
         run: |
-          mkdir -p ./src/config
-          echo "${{ secrets.CONFIG }}" > ./src/config/config.json
 
           - name: Deploy with SSH
           if: github.ref == 'refs/heads/main'
