@@ -1,8 +1,8 @@
-import { ChatGetResponse,ChatSearchProps } from "../../types/chat/chat.type";
+import { ChatData, ChatGetResponse,ChatSearchProps } from "../../types/chat/chat.type";
 
 
 export interface ChatRepository {
-    getChat(userId: number): Promise<ChatGetResponse>;
-    chatSearch({userId, word}:ChatSearchProps):Promise<ChatGetResponse>
+    getChat(userId: number): Promise<ChatData[]>;
+    chatSearch({userId, word}:ChatSearchProps):Promise<ChatData[]>
   }
 

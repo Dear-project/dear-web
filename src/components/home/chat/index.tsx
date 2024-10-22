@@ -1,24 +1,23 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQueryClient } from "react-query";
 import ChatSideBar from "./chatSidebar/index";
 import * as S from "./style";
 import { ChatData } from "@/types/chat/chat.type";
-import { Client } from "@stomp/stompjs"; 
-import CONFIG from "@/config/config.json"
+import { Client } from "@stomp/stompjs";
+import CONFIG from "@/config/config.json";
 import token from "@/libs/token/tokens";
-import { ACCESS_TOKEN_KEY  } from "@/constants/token/token.constants";
+import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
 
 const Chat = () => {
   const [selectedChat, setSelectedChat] = useState<ChatData | null>(null);
-  const [messages, setMessages] = useState<any[]>([]); 
+  const [messages, setMessages] = useState<any[]>([]);
   const queryClient = useQueryClient();
   const client = useRef<Client | null>(null);
-  const roomId = selectedChat ? selectedChat.data.id : null; 
-  const accessToken = token.getToken(ACCESS_TOKEN_KEY); 
+  const roomId = selectedChat ? selectedChat.id : null;
+  const accessToken = token.getToken(ACCESS_TOKEN_KEY);
 
   useEffect(() => {
     if (roomId) {
-
       client.current = new Client({
         brokerURL: `${CONFIG.SOCKET_URL}/stomp/chat`,
         connectHeaders: {
@@ -55,10 +54,10 @@ const Chat = () => {
       <S.ChatRoomContainer>
         {selectedChat ? (
           <S.ChatRoom>
-            <h2>{selectedChat.data.chatName}</h2>
+            <h2>{selectedChat.chatName}</h2>
             <div>
               {messages.map((msg, index) => (
-                <p key={index}>{msg.content}</p> 
+                <p key={index}>{msg.content}</p>
               ))}
             </div>
           </S.ChatRoom>

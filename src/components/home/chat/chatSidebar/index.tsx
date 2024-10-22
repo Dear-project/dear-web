@@ -8,14 +8,14 @@ import useChat from "@/hooks/chat/useChat";
 import * as S from "./style";
 
 interface ChatSideBarProps {
-  setSelectedChat: (chat: ChatData | null) => void; 
+  setSelectedChat: (chat: ChatData | null) => void;
 }
 
-const ChatSideBar = ({ setSelectedChat }: ChatSideBarProps) => { 
+const ChatSideBar = ({ setSelectedChat }: ChatSideBarProps) => {
   const { roomData, setCatSearch, chatSearch, searchButton } = useChat();
   const [profileId] = useRecoilState(ProfileId);
-  
-  console.log(roomData); 
+
+  console.log(roomData);
 
   return (
     <S.sideChatList>
@@ -28,15 +28,12 @@ const ChatSideBar = ({ setSelectedChat }: ChatSideBarProps) => {
         </S.search>
       </S.sideHeader>
 
-      
       <S.chatList>
-        {Array.isArray(roomData?.data) ? roomData?.data.map((chat: ChatData) => (
-          <ChatItem
-            key={chat.id} 
-            chat={chat}   
-            setSelectedChat={setSelectedChat}
-          />
-        )) : <span>채팅방이 없습니다.</span>}
+        {Array.isArray(roomData) ? (
+          roomData?.map((chat: ChatData) => <ChatItem key={chat.id} chat={chat} setSelectedChat={setSelectedChat} />)
+        ) : (
+          <span>채팅방이 없습니다.</span>
+        )}
       </S.chatList>
     </S.sideChatList>
   );
