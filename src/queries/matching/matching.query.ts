@@ -23,7 +23,7 @@ export const useGetMatching = (pageRequest:pageRequest)=>{
   const mutation = useMutation((subjectId:number) => matchingRepositoryImpl.matchingAccept(subjectId));
   return mutation;
 }
-export const usematchingReject = ()=>{
+export const useMatchingReject = ()=>{
   const mutation = useMutation((subjectId: number) => matchingRepositoryImpl.matchingReject(subjectId));
   return mutation;
 }

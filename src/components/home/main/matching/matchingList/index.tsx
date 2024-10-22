@@ -2,7 +2,7 @@ import * as S from "./style";
 import Image from "next/image";
 import NullImg from "@/asset/img/null_Img/null_img.svg";
 import { MatchingData } from "@/types/matching/matching.type";
-import {  usematchingReject, useMatchingAccept } from "@/queries/matching/matching.query";
+import {  useMatchingReject, useMatchingAccept } from "@/queries/matching/matching.query";
 import dearToast from "@/libs/Swal/Swal";
 
 interface MatchingProps {
@@ -12,7 +12,7 @@ interface MatchingProps {
 const MatchingList = ({ data }: MatchingProps)=>{
 
     const matchingAccept = useMatchingAccept();
-    const matchingReject = usematchingReject();
+    const matchingReject = useMatchingReject();
 
     const accepteButton = ()=>{
         matchingAccept.mutate(data.userId,{

@@ -23,8 +23,8 @@ const SelectModal = ({isOpen,sectionLocation}:SelectModalProps)=>{
     let isOpened = isOpen;
     
     const selectComponents: ReactNode[] = [
-        <SelectSchoolModal {...select}  />,
-        <SelectMajorModal {...select} />,
+      <SelectSchoolModal {...select} key="selectSchool" />, 
+      <SelectMajorModal {...select} key="selectMajor" /> 
       ];
       const Close = ()=>{
         select.isClose

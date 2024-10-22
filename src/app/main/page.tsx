@@ -10,7 +10,7 @@ import { IsFirst } from "@/store/profile/profile.store";
 import SelectModal from "@/components/common/selectModal";
 import { ProfileAtom } from "@/store/profile/profile.store";
 
-const index = () => {
+const Page = () => {
   const [isFirst, setIsFirst] = useRecoilState(IsFirst);
   const [isProfileAtom, setProfileAtom] = useRecoilState(ProfileAtom);
   let sectionLocation = "first"
@@ -39,4 +39,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Page;

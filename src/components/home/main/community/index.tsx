@@ -63,6 +63,7 @@ const Community = () => {
           ? communityList?.data
               .map((community) => (
                 <CommunityPost
+                key={community.id}
                   id={community.id}
                   title={community.title}
                   modifiedDateTime={convertDescriptionDate(community.modifiedDateTime)}

@@ -20,12 +20,12 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/components/*": ["src/components/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@constant": ["src/constant/*"],
-      "@queries":["src/queries/*"],
-      "@repositories" :["src/repositories/*"],
-      "@config" : ["src/config/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@constant": ["./src/constant/*"],
+      "@queries":["./src/queries/*"],
+      "@repositories" :["./src/repositories/*"],
+      "@config" : ["./src/config/*"],
     
     },
     "baseUrl": "."
