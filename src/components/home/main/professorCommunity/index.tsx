@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useMemo } from "react";
 import * as S from "./style";
 import Slider from "react-slick";
-import { useAllGetCommunityQuery } from "@/queries/community/community.query";
 import CommunityPost from "../../communityPost";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
+import { useAllGetProfessorCommunityQuery } from "@/queries/community/professor/professorCommunity.query";
 
 const ProfessorCommunity = () => {
-  const { data: communityList } = useAllGetCommunityQuery(1);
+  const { data: communityList } = useAllGetProfessorCommunityQuery(1);
   const [visiblePosts, setVisiblePosts] = useState(3);
 
   useEffect(() => {

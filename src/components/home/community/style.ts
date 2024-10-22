@@ -114,6 +114,8 @@ export const CommunityPostWrap = styled.div`
 
   overflow-y: auto;
 
+  cursor: pointer;
+
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -220,7 +222,7 @@ export const MyPostWrap = styled.div`
 export const MyPost = styled.div`
   display: flex;
   width: 100%;
-  height: 70%;
+  height: 40%;
   padding: 15px;
   flex-direction: column;
   justify-content: center;
@@ -228,6 +230,8 @@ export const MyPost = styled.div`
   gap: 10px;
 
   overflow-y: auto;
+
+  cursor: pointer;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
