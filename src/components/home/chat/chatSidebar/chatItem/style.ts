@@ -10,7 +10,9 @@ export const chatItem = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
   border-radius: 8px;
   margin-bottom: 8px;
-
+img{
+    border-radius: 50%;
+}
   &:hover {
     background-color: #f5f5f5;
   }
@@ -23,10 +25,7 @@ export const chatDetail = styled.div`
     width: 200px;
     margin-left: 10px;
     justify-content: space-evenly;
-    img{
-    width: 40px;
-    height: 40px;
-    }
+
    
 `
 export const chatTitle = styled.div`

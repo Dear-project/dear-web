@@ -1,8 +1,14 @@
 'use Client'
 import * as S from "./style";
-import Profile from "@/asset/img/Avatar.svg";
+import Profile from "@/asset/img/AvaerImg.svg";
 import Image from "next/image";
 import { ChatData } from "@/types/chat/chat.type";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+import { chatProfile } from "@/store/chat/chat.store";
+import { useRecoilState } from "recoil";
+
+dayjs.locale('ko'); 
 
 interface ChatItemProps {
   chat: ChatData;
@@ -11,6 +17,9 @@ interface ChatItemProps {
 }
 
 const ChatItem = ({ chat, setSelectedChat ,isSelected}: ChatItemProps) => {
+  
+  const [profileImg,setprofileImg] = useRecoilState(chatProfile);
+  setprofileImg(chat.roomImage);
   const handleClick = () => {
     if (isSelected) {
       setSelectedChat(null);
@@ -18,12 +27,13 @@ const ChatItem = ({ chat, setSelectedChat ,isSelected}: ChatItemProps) => {
       setSelectedChat(chat); 
     }
   };
+
   return (
     <S.chatItem 
     onClick={handleClick} 
     isSelected={isSelected} 
   >
-      <Image src={Profile} alt="프로필" width={35} height={35}/>
+      <Image src={chat.roomImage || Profile} alt="프로필" width={35} height={35}/>
       <S.chatDetail>
         <S.chatTitle>
           <span>{chat.chatName}</span>
@@ -34,7 +44,7 @@ const ChatItem = ({ chat, setSelectedChat ,isSelected}: ChatItemProps) => {
         </S.content>
       </S.chatDetail>
       <S.timeDetail>
-        <span>{new Date(chat.lastMessageTimeStamp).toLocaleTimeString()}</span>
+        <span>{dayjs(chat.lastMessageTimeStamp).format('A h시 mm분')}</span>
       </S.timeDetail>
     </S.chatItem>
   );

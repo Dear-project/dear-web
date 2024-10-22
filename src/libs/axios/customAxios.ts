@@ -11,6 +11,7 @@ const axiosRequestConfig: AxiosRequestConfig = {
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${Token.getToken(ACCESS_TOKEN_KEY)}`,
   },
+  
 };
 
 const dearAxios = axios.create(axiosRequestConfig);
