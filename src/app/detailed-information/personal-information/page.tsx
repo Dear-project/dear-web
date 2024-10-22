@@ -14,7 +14,7 @@ import {
 } from "./style";
 
 const PersonalInformation = () => {
-  const router = useRouter();
+  const navigate = useRouter();
   return (
     <>
       <InformationContainer>
