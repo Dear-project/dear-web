@@ -16,11 +16,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   public async postSchoolChange(changeParams: SchoolChangeParams): Promise<void> {
-    return;
+    await dearV1Axios.post("/school", changeParams);
   }
 
   public async postMajorChange(changeParams: MajorChangeParams): Promise<void> {
-    return;
+    await dearV1Axios.post("/major", changeParams);
   }
   public async postProfileImage(imageParams: ImageChangeParams): Promise<void> {
     const { data } = await dearV1Axios.post("/profile/image", imageParams, {

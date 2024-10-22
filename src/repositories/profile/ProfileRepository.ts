@@ -9,11 +9,16 @@ export interface ProfileRepository {
 }
 
 export interface SchoolChangeParams {
-  school: string;
+  seq: string;
+  schoolName: string;
+  link: string;
+  adres: string;
 }
 
 export interface MajorChangeParams {
-  major: string;
+  majorSeq: string;
+  lclass: string;
+  mclass: string;
 }
 
 export interface ImageChangeParams {

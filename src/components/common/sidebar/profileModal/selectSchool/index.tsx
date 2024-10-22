@@ -10,6 +10,7 @@ import useSelectModal from "@/hooks/firstLogin/selectModal";
 import { useRecoilState } from "recoil";
 import { ChangeSchoolAtom, ProfessorCheck } from "@/store/profile/profile.store";
 import CustomRadio from "@/components/common/raido";
+import { SchoolChangeParams } from "@/repositories/profile/ProfileRepository";
 
 const SelectSchool = () => {
   const { ...select } = useSelectModal();
@@ -19,7 +20,7 @@ const SelectSchool = () => {
     ? ([...ELEM_TYPE_LIST, "UNIV_LIST"] as ELEM_TYPE[])
     : ELEM_TYPE_LIST;
   const [selectedSchoolSeq, setSelectedSchoolSeq] = useState<string | null>(null);
-  const [, setEditSchool] = useRecoilState<string>(ChangeSchoolAtom);
+  const [, setEditSchool] = useRecoilState<SchoolChangeParams>(ChangeSchoolAtom);
 
   const handleChange = (value: ELEM_TYPE) => {
     setSelectedValue(value);
@@ -34,7 +35,7 @@ const SelectSchool = () => {
 
   const handleSchool = (seq: string, schoolName: string, link: string, adres: string) => {
     setSelectedSchoolSeq(seq);
-    setEditSchool(schoolName);
+    setEditSchool({seq, schoolName, link, adres});
     select.handlePostSchoolParams(seq, schoolName, link, adres);
   };
 

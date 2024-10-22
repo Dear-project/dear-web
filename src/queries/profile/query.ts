@@ -7,6 +7,8 @@ import {
   PassswrodChangeParams,
   ImageChangeParams,
   EditSchoolAndMajorParams,
+  SchoolChangeParams,
+  MajorChangeParams,
 } from "@/repositories/profile/ProfileRepository";
 
 export const useGetProfileInfo = () => {
@@ -17,6 +19,20 @@ export const useGetProfileInfo = () => {
     refetchInterval: 3600000, // 1시간
   });
   return useGetprofile;
+};
+
+export const usePostSchool = () => {
+  const mutation = useMutation((changeParams: SchoolChangeParams) =>
+    ProfileRepositoryImpl.postSchoolChange(changeParams),
+  );
+  return mutation;
+};
+
+export const usePostMajor = () => {
+  const mutation = useMutation((changeParmas: MajorChangeParams) =>
+    ProfileRepositoryImpl.postMajorChange(changeParmas),
+  );
+  return mutation;
 };
 
 export const usePatchPassword = () => {

@@ -5,7 +5,7 @@ import Profile from "@/asset/img/Avatar.svg";
 import Photo from "public/svgs/Write.svg";
 import Close from "public/svgs/close.svg";
 import useProfileChange from "@/hooks/modal/useProfileChange";
-import { useGetProfileInfo, usePostEditSchoolAndMajor } from "@/queries/profile/query";
+import { useGetProfileInfo, usePostEditSchoolAndMajor, usePostMajor, usePostSchool } from "@/queries/profile/query";
 import Modal from "@/components/common/modal/index";
 import SelectSchool from "./selectSchool";
 import SelectMajor from "./selectMajor";
@@ -32,21 +32,40 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
     setCorrection((prev) => !prev);
   };
 
-  const editProfileMutation = usePostEditSchoolAndMajor();
+  const editSchoolMutation = usePostSchool();
+  const editMajorMutation = usePostMajor();
 
-  const editProfile = () => {
-    editProfileMutation.mutate(
+  const editSchool = () => {
+    editSchoolMutation.mutate(
       {
-        school: changeSchool,
-        major: changeMajor,
-        stsMessage: ".",
-        introduce: ".",
+        schoolName: changeSchool.schoolName,
+        seq: changeSchool.seq,
+        link: changeSchool.link,
+        adres: changeSchool.adres,
       },
       {
         onSuccess: () => {
-          dearToast.sucessToast("프로필 수정 성공");
+          dearToast.sucessToast("학교정보 수정 성공");
         },
-        onError: (error) => {
+        onError(error) {
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+        },
+      },
+    );
+  };
+
+  const editMajor = () => {
+    editMajorMutation.mutate(
+      {
+        majorSeq: changeMajor.majorSeq,
+        lclass: changeMajor.lclass,
+        mclass: changeMajor.mclass,
+      },
+      {
+        onSuccess: () => {
+          dearToast.sucessToast("학교정보 수정 성공");
+        },
+        onError(error) {
           dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         },
       },
@@ -96,11 +115,16 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
             <S.InputBox>
               <S.InputText>학교</S.InputText>
               <div>{isCorrection ? <span onClick={handleChange}>{data?.data.schoolName}</span> : <SelectSchool />}</div>
+            </S.InputBox>
+            <S.TextBox style={{ width: "700px" }}>
+              <S.FixBtn onClick={editSchool}>{isCorrection ? "수정하기" : "완료"}</S.FixBtn>
+            </S.TextBox>
+            <S.InputBox>
               <S.InputText>{data?.data.role === "PROFESSOR" ? "학과" : "관심 학과"}</S.InputText>
               <div>{isCorrection ? <span onClick={handleChange}>{data?.data.mclass}</span> : <SelectMajor />}</div>
             </S.InputBox>
             <S.TextBox style={{ width: "700px" }}>
-              <S.FixBtn onClick={editProfile}>{isCorrection ? "수정하기" : "완료"}</S.FixBtn>
+              <S.FixBtn onClick={editMajor}>{isCorrection ? "수정하기" : "완료"}</S.FixBtn>
             </S.TextBox>
             {isCorrection ? (
               <>

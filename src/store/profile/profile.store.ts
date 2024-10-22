@@ -1,3 +1,4 @@
+import { MajorChangeParams, SchoolChangeParams } from "@/repositories/profile/ProfileRepository";
 import { UserProfile } from "@/types/profile/profile.type";
 import { atom } from "recoil";
 
@@ -31,12 +32,12 @@ export const ProfileAtom = atom<UserProfile | undefined>({
   default: undefined,
 });
 
-export const ChangeSchoolAtom = atom<string>({
+export const ChangeSchoolAtom = atom<SchoolChangeParams>({
   key: "ChangeSchoolAtom",
-  default: "",
+  default: { seq: "", schoolName: "", link: "", adres: "" },
 });
 
-export const ChangeMajorAtom = atom<string>({
+export const ChangeMajorAtom = atom<MajorChangeParams>({
   key: "ChangeMajorAtom",
-  default: "",
+  default: { majorSeq: "", lclass: "", mclass: "" },
 });

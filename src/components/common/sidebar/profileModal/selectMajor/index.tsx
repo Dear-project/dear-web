@@ -4,17 +4,17 @@ import Image from "next/image";
 import Search from "@/asset/search.svg";
 import useSelectModal from "@/hooks/firstLogin/selectModal";
 import { useGetMajorBySubject } from "@/queries/firstLogin/firstLogin.query";
-import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
 import { MAJOR_TYPE_LIST } from "@/constants/majorType/majorType.constants";
 import convertMajorListType from "@/utils/majorList/convertMajorListType";
 import { useRecoilState } from "recoil";
 import { ChangeMajorAtom } from "@/store/profile/profile.store";
+import { MajorChangeParams } from "@/repositories/profile/ProfileRepository";
 
 const SelectMajor = () => {
   const { ...select } = useSelectModal();
   const [selectedMajor, setSelectedMajor] = useState<string | null>(null);
   const searchMajorBySubjectMutation = useGetMajorBySubject();
-  const [, setEditMajor] = useRecoilState<string>(ChangeMajorAtom);
+  const [, setEditMajor] = useRecoilState<MajorChangeParams>(ChangeMajorAtom);
 
   return (
     <div style={{ height: "100%" }}>
@@ -53,7 +53,7 @@ const SelectMajor = () => {
                 $isSelected={selectedMajor === item.majorSeq}
                 onClick={() => {
                   setSelectedMajor(item.majorSeq);
-                  setEditMajor(item.mClass);
+                  setEditMajor({ majorSeq: item.majorSeq, mclass: item.mClass, lclass: item.lClass });
                   console.log(item.mClass);
                   select.handleSubmitParams(item.majorSeq, item.lClass, item.mClass);
                 }}

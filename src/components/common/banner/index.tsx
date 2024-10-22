@@ -8,8 +8,8 @@ import * as S from "./style";
 import CommonBanner from "@/asset/commonBanner.svg";
 
 const SimpleSlider = () => {
-  const { getAllbanner } = useBanner();
-  const bannerList = getAllbanner();
+  const { getAllBanner } = useBanner();
+  const bannerList = getAllBanner();
 
   useEffect(() => {
     console.log(bannerList); // 데이터 확인
@@ -35,7 +35,7 @@ const SimpleSlider = () => {
             <S.Slide key={item.id}>
               <S.StyledImageWrapper>
                 {item.imagePath !== null && item.imagePath !== undefined ? (
-                  <Image src={item.url} alt={`Banner ${item.id}`} />
+                  <Image src={item.url} alt={`Banner ${item.id}`} width={100} height={200} />
                 ) : (
                   <Image src={CommonBanner} alt="기본 배너" width={100} height={200} />
                 )}
