@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { IoIosArrowForward } from "react-icons/io";
-import { useRouter } from "next/navigation";
-import { useParams } from "react-router-dom";
 import MatchingList from "./matchingList";
 import { useGetMatching } from "@/queries/matching/matching.query";
 
@@ -17,10 +14,9 @@ const Matching = () => {
     <S.MatchingBox>
       <S.Header>
         <span>매칭요청이 왔어요</span>
-        <IoIosArrowForward size={25}></IoIosArrowForward>
       </S.Header>
       <S.Content>
-        {Array.isArray(data?.data) ? data?.data.map((item,index)=>(
+        {data?.data.length===null ? data?.data.map((item,index)=>(
         <MatchingList key={index} data={item} /> 
         )): (<span style={{textAlign:"center"}}>내용이 없습니다.</span>)}
       </S.Content>
