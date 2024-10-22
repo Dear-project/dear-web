@@ -26,7 +26,7 @@ const SignUpEmail = () => {
               >
                 이메일 주소
               </TextField>
-              <S.VerifyButton onClick={hooks.onAuthCode}>인증번호 전송</S.VerifyButton>
+              <S.VerifyButton onClick={hooks.onAuthCode}>    {hooks.loading ? "전송 중..." : "인증번호 전송"} </S.VerifyButton>
             </S.Verify>
             <S.retryVerify>
               <TextField

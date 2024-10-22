@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { EmailAtom } from "src/store/auth/signup/signup.store";
@@ -7,6 +7,7 @@ import patternCheck from "src/utils/check/patternCheck";
 import CONFIG from "src/config/config.json";
 import DearToast from "src/libs/Swal/Swal";
 import { useRouter } from "next/navigation";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 const useEmail = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const useEmail = () => {
   const [resend, setResend] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [timeActive, setTimeActive] = useState<boolean>();
+  const [loading, setLoading] = useState(false); 
 
   const handleDataChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,13 +37,14 @@ const useEmail = () => {
   };
 
   const onAuthCode = async () => {
+    setLoading(true);
     const { email } = emailData;
     try {
       await axios.get(`${CONFIG.serverUrl}/auth/${email}/duplicate`).then(() => {
         setResend(false);
       });
     } catch (error) {
-      DearToast.errorToast("사용 불가한 이메일입니다.");
+      DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
     }
 
     if (resend === false) {
@@ -49,10 +52,14 @@ const useEmail = () => {
         await axios.post(`${CONFIG.serverUrl}/auth/email?email=${email}`).then(() => {
           startTimer();
           setResend(true);
-          DearToast.sucessToast("인증번호 요청 성공");
+          setTimeout(() => {
+            DearToast.sucessToast("인증번호 요청 성공");
+          }, 1000);
+        
+        
         });
       } catch (error) {
-        DearToast.errorToast("인증번호 요청 실패");
+        DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       }
     } else {
       try {
@@ -60,9 +67,10 @@ const useEmail = () => {
           startTimer();
         });
       } catch (error) {
-        DearToast.errorToast("인증번호 재전송 실패");
+        DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       }
     }
+    setLoading(false); 
   };
 
   const onCheckAuthCode = async () => {
@@ -73,7 +81,7 @@ const useEmail = () => {
         router.push("/signup/password");
       });
     } catch (error) {
-      DearToast.errorToast("이메일 인증 실패");
+      DearToast.errorToast(ErrorTransform((error as AxiosError).status!));
     }
   };
 
@@ -100,6 +108,7 @@ const useEmail = () => {
   const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 
   return {
+    loading,
     emailData,
     resend,
     handleDataChange,

@@ -3,12 +3,15 @@ import dearToast from "@/libs/Swal/Swal";
 import { usePatchCommunity, usePostMultiPart } from "@/queries/community/community.query";
 import { WriteData } from "@/types/community/write/write.types";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useCallback, useRef, useState, ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
 import CONFIG from "@/config/config.json";
 import token from "@/libs/token/tokens";
 import { ACCESS_TOKEN_KEY } from "@/constants/token/token.constants";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
+import { PostImageParams } from "@/repositories/community/communityRepository";
+import { useLocation } from "react-router-dom";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -16,6 +19,7 @@ const useWrite = () => {
     content: "",
   });
 
+  const pathname = usePathname();
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [image, setImage] = useState<string[]>([]);
   const [file, setFile] = useState<File[]>([]);
@@ -64,13 +68,12 @@ const useWrite = () => {
       },
       // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
       onError: (error) => {
-        const errorResponse = error as AxiosError;
         if (title.length < 0) {
           dearToast.infoToast("제목을 입력해주세요");
         } else if (content.length < 0) {
           dearToast.infoToast("내용을 입력해주세요");
         } else {
-          dearToast.errorToast((errorResponse as AxiosError).message);
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         }
       },
     });
@@ -91,22 +94,19 @@ const useWrite = () => {
 
     setImage((prevImages) => [...prevImages, ...fileURLs]);
 
-    fileArray.forEach((file) => formData.append("image", file));
+    // FormData 생성
+    const formData = new FormData();
+    fileArray.forEach((file) => formData.append("files", file)); // 키를 'files'로 설정
 
-    const params = {
-      id: id,
-      files: formData,
-    };
-
-    await axios.post(
-      `${CONFIG.serverUrl}/community/${id}`,
+    // 요청 보내기
+    postPostMultiPartMutation.mutate(
       {
-        files: formData.get("image"),
+        id: id,
+        files: formData.get("files")!,
       },
       {
-        headers: {
-          Authorization: `Bearer ${token.getToken(ACCESS_TOKEN_KEY)}`,
-          "Content-Type": "multipart/form-data",
+        onSuccess: () => {
+          // 성공 시 처리
         },
       },
     );

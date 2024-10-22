@@ -1,23 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { theme } from "@/styles/theme";
 
-export const layout = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-`;
 export const Boxlayout = styled.div`
-  width: 80%;
-  height: 80%;
+  width: 40rem;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -26,6 +12,8 @@ export const Boxlayout = styled.div`
   padding: 30px;
   -webkit-box-align: center;
   align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 
 export const Close = styled.svg`
@@ -41,7 +29,7 @@ export const Close = styled.svg`
 export const ProfileTextBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 700px;
+  width: 100%;
   height: 100px;
   -webkit-box-align: center;
   align-items: center;
@@ -59,11 +47,12 @@ export const ProfileText = styled.span`
   font-size: 1rem;
   color: var(--Black, #000);
   font-weight: 500;
+  margin-bottom: 10px;
 `;
 
 export const ProfileImgBox = styled.div`
   display: flex;
-  width: 700px;
+  width: 100%;
   padding: 10px 0px;
   flex-direction: column;
   -webkit-box-align: center;
@@ -94,17 +83,24 @@ export const ProfileImg = styled.img`
 
 export const Label = styled.label`
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 65%;
+  width: 30px;
+  height: 30px;
+  top: 53%;
   left: 65%;
   border-radius: 50%;
-  background-color: rgb(224, 224, 224);
+  border:  2px solid ${theme.colors.white};
+  background-color: ${theme.colors.gray300}; 
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
+ cursor: pointer;
+    img{
+      width: 25px;
+      height: 25px;
+    }
+ 
 `;
 export const InputImg = styled.input`
   display: none;
@@ -123,7 +119,7 @@ export const ChangeDefultImg = styled.div`
 `;
 export const ChangeInput = styled.div`
   display: flex;
-  width: 700px;
+  width: 100%;
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
@@ -134,22 +130,16 @@ export const InputText = styled.p`
   font-weight: 700;
 `;
 export const InputBox = styled.div`
-  width: 690px;
   display: flex;
+  width: 100%;
   flex-direction: column;
   padding: 20px 0px 10px 10px;
-  border-bottom: 1px solid rgb(224, 224, 224);
   gap: 10px;
-
-  div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+  border-radius: 12px;
+ 
     span {
       font-size: 1.1rem;
     }
-  }
 
   input {
     color: var(--Black, #000);

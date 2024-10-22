@@ -6,7 +6,7 @@ export const CommunityWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  position: relative;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -15,21 +15,43 @@ export const CommunityWrap = styled.div`
 
 export const Main = styled.div`
   width: 90%;
-  height: 70%;
+  height: 90%;
   padding: 49px 0px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
+  overflow-y: auto;
+  position: relative;
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
+  }
+
+  .groomy {
+    position: absolute;
+    top: 58%;
+    left: 75%;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .professor-groomy {
+    position: absolute;
+    top: 75%;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 `;
 
 export const Community = styled.div`
   width: 55%;
-  height: 100%;
+  height: 80%;
   background: ${theme.colors.white};
   border: none;
   border-radius: 20px;
@@ -82,7 +104,7 @@ export const TitleWrap = styled.div`
 
 export const CommunityPostWrap = styled.div`
   width: 90%;
-  height: 650px;
+  height: 85%;
   display: flex;
   flex-direction: column;
 
@@ -91,6 +113,12 @@ export const CommunityPostWrap = styled.div`
   align-items: center;
 
   overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const CommunityPost = styled.div`
@@ -156,9 +184,25 @@ export const PostInfo = styled.div`
     border-radius: 50%;
   }
 `;
-export const MyPostWrap = styled.div`
+
+export const SubCommunityWrap = styled.div`
   width: 40%;
-  height: 60%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 추가 */
+  }
+`;
+
+export const MyPostWrap = styled.div`
+  width: 100%;
+  height: 55%;
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -184,11 +228,17 @@ export const MyPost = styled.div`
   gap: 10px;
 
   overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const PostWrap = styled.div`
   width: 80%;
-  height: 50%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -199,4 +249,74 @@ export const PostWrap = styled.div`
 
   border: 1px solid #000;
   border-radius: 16px;
+`;
+
+export const ProfessorsWrap = styled.div`
+  width: 100%;
+  height: 40%;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (max-width: 768px) {
+    width: 100%; /* 너비를 100%로 설정 */
+    margin-top: 20px; /* 상단 여백 추가 */
+  }
+`;
+
+export const Professor = styled.div`
+  width: 85%;
+  height: 70%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+
+  overflow-y: auto;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const ProfessorWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    display: flex;
+    gap: 15px;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    img {
+      border-radius: 15px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      h1 {
+        color: ${theme.colors.black};
+        font-size: 14px;
+        font-weight: ${theme.fontWeight.bold};
+      }
+
+      span {
+        color: ${theme.colors.gray600};
+        font-size: 12px;
+        font-weight: ${theme.fontWeight.normal};
+      }
+    }
+  }
 `;

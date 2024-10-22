@@ -1,6 +1,6 @@
 import * as S from "./style"
 import Image from "next/image"
-import Avartar from "@/asset/Avatar.svg";
+import Avartar from "@/asset/img/Avatar.svg";
 import ChatIcon from "@/asset/chatIcon.svg";
 import { useRouter } from "next/navigation";
 

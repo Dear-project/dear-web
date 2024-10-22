@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import * as S from "./style";
 import useLogin from "src/hooks/auth/login/useLogin";
@@ -45,7 +44,7 @@ const Login = () => {
           <S.Span
           style={{paddingLeft:"20px"}}
             onClick={() => {
-              router.push("/signup/email");
+              router.push("/signup/user");
               setErrorState({});
             }}
           >

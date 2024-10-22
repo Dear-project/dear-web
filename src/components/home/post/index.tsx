@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import ChatIcon from "@/asset/chatIcon.svg";
-import Avartar from "@/asset/Avatar.svg";
+import Avartar from "@/asset/img/Avatar.svg";
 
 const Post = () => {
   const router = useRouter();

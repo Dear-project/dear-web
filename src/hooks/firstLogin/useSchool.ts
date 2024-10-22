@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 import { ELEM_TYPE } from "@/constants/elemType/elemType.constants";
 import convertElemList from "@/utils/transform/elemList/convertElemListType";
 import { GetSchoolListRespose } from "@/types/firstLogin/firstLogin.types";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 interface InfoType {
   seq: string;
@@ -52,7 +53,7 @@ const useSchool = () => {
         setSchoolList(data);
       },
       onError: (error) => {
-        console.log((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -73,7 +74,7 @@ const useSchool = () => {
         setIsNext(true);
       },
       onError: (error) => {
-        dearToast.errorToast((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };

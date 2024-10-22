@@ -4,10 +4,10 @@ export interface CommentById {
   commentId: number;
   content: string;
   commentor: string;
-  subComment: SubComment[];
+  subComments: SubComment[];
 }
 
-interface SubComment {
+export interface SubComment {
   commentId: number;
   content: string;
   commentor: string;

@@ -4,6 +4,8 @@ import { usePostMatching } from "@/queries/matching/matching.query";
 import { useParams, useRouter } from "next/navigation";
 import dearToast from "@/libs/Swal/Swal";
 import { useCallback } from "react";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
+import { AxiosError } from "axios";
 
 const useMatching = () => {
   const router = useRouter();
@@ -29,8 +31,8 @@ const useMatching = () => {
       onSuccess: () => {
         router.push("/chat");
       },
-      onError: () => {
-        dearToast.errorToast("알수없는 문제가 발생하였습니다.");
+      onError: (error) => {
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };

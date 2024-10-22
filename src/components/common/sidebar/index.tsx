@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import * as S from "./style";
-import Homelight from "src/asset/homeLight.svg";
-import Home1 from "src/asset/home.svg";
-import Chat from "src/asset/chat.svg";
-import Chatlight from "src/asset/chatLight.svg";
-import Shcool from "src/asset/school.svg";
-import Findlight from "src/asset/findLight.svg";
-import Community from "src/asset/community.svg";
-import Communitylight from "src/asset/communityLight.svg";
-import Profile from "src/asset/Avatar.svg";
+import Homelight from "@/asset/img/sidebar/HomeLight.svg";
+import Home from "@/asset/img/sidebar/home.svg";
+import Chat from "@/asset/img/sidebar/chat.svg";
+import Chatlight from "@/asset/img/sidebar/chatLight.svg";
+import Shcool from "@/asset/img/sidebar/school.svg";
+import Findlight from "@/asset/img/sidebar/findLight.svg";
+import Community from "@/asset/img/sidebar/community.svg";
+import Communitylight from "@/asset/img/sidebar/communityLight.svg";
+import Profile from "@/asset/img/Avatar.svg";
 import Link from "next/link";
-import Logo from "@/asset/DEAR.svg";
-import Logo2 from "@/asset/LogoSmall.svg";
+import Logo from "@/asset/img/sidebar/DEAR.svg";
+import Logo2 from "@/asset/img/sidebar/LogoSmall.svg";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import SideBarModal from "./sidebarModal/index";
 import ProfileModal from "./profileModal/index";
@@ -27,7 +27,7 @@ export const SideBar = () => {
   const { data } = useGetProfileInfo();
   const [isFirst, setFirst] = useRecoilState(IsFirst);
   const [, setProfileId] = useRecoilState(ProfileId);
-  const [, setProfessorCheck] = useRecoilState(ProfessorCheck);
+  const [professorCheck, setProfessorCheck] = useRecoilState(ProfessorCheck);
   const [, setProfileAtom] = useRecoilState(ProfileAtom);
   setProfileId(data?.data.id!);
   setProfileAtom(data?.data);
@@ -66,7 +66,7 @@ export const SideBar = () => {
       <S.Option $isSidebarOpen={sidebar.isSidebarOpen}>
         <Link href="/" style={{ textDecoration: "none", outline: "none" }}>
           <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/" == sidebar.pathname}>
-            <Image src={"/" == sidebar.pathname ? Homelight : Home1} alt="메인" width={30} height={30} />
+            <Image src={"/" == sidebar.pathname ? Homelight : Home} alt="메인" width={30} height={30} />
             <span>메인</span>
           </S.Select>
         </Link>
@@ -78,17 +78,36 @@ export const SideBar = () => {
           </S.Select>
         </Link>
 
-        <Link href="/find" style={{ textDecoration: "none" }}>
-          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/find" == sidebar.pathname}>
-            <Image src={"/find" == sidebar.pathname ? Findlight : Shcool} alt="교수찾기" width={30} height={30} />
-            <span>교수찾기</span>
+        <Link href={professorCheck ? "/community/professor" : "/find"} style={{ textDecoration: "none" }}>
+          <S.Select
+            $isSidebarOpen={sidebar.isSidebarOpen}
+            isSelected={"/find" == sidebar.pathname || sidebar.pathname.startsWith("/community/professor")}
+          >
+            <Image
+              src={
+                sidebar.pathname.startsWith("/community/professor") || "/find" === sidebar.pathname ? Findlight : Shcool
+              }
+              alt="교수찾기"
+              width={30}
+              height={30}
+            />
+            <span>{professorCheck ? "교수 커뮤니티" : "교수찾기"}</span>
           </S.Select>
         </Link>
 
         <Link href="/community" style={{ textDecoration: "none" }}>
-          <S.Select $isSidebarOpen={sidebar.isSidebarOpen} isSelected={"/community" == sidebar.pathname}>
+          <S.Select
+            $isSidebarOpen={sidebar.isSidebarOpen}
+            isSelected={
+              sidebar.pathname.startsWith("/community") && !sidebar.pathname.startsWith("/community/professor")
+            }
+          >
             <Image
-              src={"/community" == sidebar.pathname ? Communitylight : Community}
+              src={
+                sidebar.pathname.startsWith("/community") && !sidebar.pathname.startsWith("/community/professor")
+                  ? Communitylight
+                  : Community
+              }
               alt="커뮤니티 광장"
               width={30}
               height={30}
@@ -114,7 +133,7 @@ export const SideBar = () => {
           {sidebar.isSidebarOpen && (
             <S.Detail>
               <S.Name>{data?.data.name || "홍길동"}</S.Name>
-              <S.School>{data?.data.schoolName || "대구소프트웨어 마이스터 고등학교"}</S.School>
+              <S.School>{data?.data.schoolName || "학교정보 없음"}</S.School>
             </S.Detail>
           )}
         </S.My>

@@ -10,6 +10,7 @@ import token from "@/libs/token/tokens";
 import { ErrorStateAtom } from "src/store/common/common.store";
 import { LoginParam, LoginResponse } from "src/types/auth/auth.type";
 import { usePostLoginMutation } from "@/queries/auth/auth.query";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 
 const useLogin = () => {
   const router = useRouter();
@@ -41,8 +42,8 @@ const useLogin = () => {
           dearToast.sucessToast("로그인 성공");
           router.push("/");
         },
-        onError: () => {
-          dearToast.errorToast("로그인 실패");
+        onError: (error) => {
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         },
       },
     );

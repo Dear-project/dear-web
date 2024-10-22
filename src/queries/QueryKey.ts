@@ -12,13 +12,14 @@ export const QUERY_KEYS = Object.freeze({
     getMyCommunity: "/community/my-articles",
     comment: {
       comment: "comment",
+      getComment: (id: number) => ["comment", id],
     },
   },
   profile: {
     getProfile: "/profile",
     postSchoolChange: "",
     postMajorChange: "",
-    postProfileImage: "",
+    postProfileImage: "/profile/image",
     patchPassword: "/profile/password",
   },
   school: {
@@ -32,8 +33,8 @@ export const QUERY_KEYS = Object.freeze({
   banner: {
     getAllbanner: "/banner",
   },
-  chat:{
-    getChatMy:"/chat/get",
-    getChaySerach:"/chat/search"
-  }
+  chat: {
+    getChatMy: "/chat/get",
+    getChaySerach: "/chat/search",
+  },
 });

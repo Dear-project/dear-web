@@ -4,6 +4,7 @@ import { MAJOR_TYPE } from "@/constants/majorType/majorType.constants";
 import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
 import dearToast from "@/libs/Swal/Swal";
 import { AxiosError } from "axios";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 const useMajor = () => {
   const [subject, setSubjuect] = useState<MAJOR_TYPE>();
   const [keyword, setKeyword] = useState<string>("");
@@ -35,7 +36,7 @@ const useMajor = () => {
         setMajorList(data);
       },
       onError: (error) => {
-        dearToast.errorToast((error as AxiosError).message);
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };
@@ -59,8 +60,8 @@ const useMajor = () => {
         setIsOpen(false);
 
       },
-      onError: () => {
-        dearToast.errorToast("알 수 없는 에러가 발생하였습니다.");
+      onError: (error) => {
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };

@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Search from "@/asset/search.svg";
@@ -31,7 +31,6 @@ const SelectMajorModal = ({
   const [selectedMajor, setSelectedMajor] = useState<string | null>(null);
   const searchMajorBySubjectMutation = useGetMajorBySubject();
 
-
   return (
     <>
       <S.Header>
@@ -61,20 +60,22 @@ const SelectMajorModal = ({
               </S.MajorTypeList>
             ))}
           </S.MajorTypeWrap>
-          <S.MajorListWrap>
-            {majorList?.data.map((item, idx) => (
-              <S.Major
-                key={idx}
-                $isSelected={selectedMajor === item.majorSeq} 
-                onClick={() => {
-                  setSelectedMajor(item.majorSeq);
-                  handleSubmitParams(item.majorSeq, item.lClass, item.mClass);
-                }}
-              >
-                <span>{item.mClass}</span>
-              </S.Major>
-            ))}
-          </S.MajorListWrap>
+          <S.MajorListBox>
+            <S.MajorListWrap>
+              {majorList?.data.map((item, idx) => (
+                <S.Major
+                  key={idx}
+                  $isSelected={selectedMajor === item.majorSeq}
+                  onClick={() => {
+                    setSelectedMajor(selectedMajor === item.majorSeq ? null : item.majorSeq);
+                    handleSubmitParams(item.majorSeq, item.lClass, item.mClass);
+                  }}
+                >
+                  <span>{item.mClass}</span>
+                </S.Major>
+              ))}
+            </S.MajorListWrap>
+          </S.MajorListBox>
         </S.MajorWrap>
       </S.MajorBoxWrap>
       <S.NextButton onClick={onSubmit}>완료</S.NextButton>

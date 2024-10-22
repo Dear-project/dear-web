@@ -6,6 +6,8 @@ import { usePatchPassword, usePostEditSchoolAndMajor, usePostProfileImage } from
 import token from "../../libs/token/tokens";
 import { useRouter } from "next/navigation";
 import { EditSchoolAndMajorParams } from "@/repositories/profile/ProfileRepository";
+import { ErrorTransform } from "@/utils/transform/error/errorTransform";
+import { AxiosError } from "axios";
 const useProfileChange = () => {
   const [UserData, serUserData] = useState<UserProfile>({
     id: 0,
@@ -58,8 +60,8 @@ const useProfileChange = () => {
           token.clearToken();
           router.push("/login");
         },
-        onError: () => {
-          dearToast.errorToast("알수없는 에러가 발생하였습니다.");
+        onError: (error) => {
+          dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
         },
       });
     }
@@ -92,8 +94,8 @@ const useProfileChange = () => {
       onSuccess: () => {
         dearToast.sucessToast("이미지 변경에 성공하였습니다.");
       },
-      onError: () => {
-        dearToast.errorToast("알수없는 오류가 발생하였습니다");
+      onError: (error) => {
+        dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
       },
     });
   };

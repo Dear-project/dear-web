@@ -1,13 +1,14 @@
+import { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Profile from "public/svgs/Avatar.svg";
-import Photo from "public/svgs/photo.svg";
+import Photo from "public/svgs/Write.svg";
 import Close from "public/svgs/close.svg";
 import useProfileChange from "@/hooks/modal/useProfileChange";
 import { useGetProfileInfo } from "@/queries/profile/query";
 import Modal from "@/components/common/modal/index";
-import SelectMajorModal from "../../selectMajorModal";
-import SelectSchoolModal from "../../selectSchoolModal";
+import SelectSchool from "./selectSchool";
+import SelectMajor from "./selectMajor";
 
 interface ProfileModalProps {
   isOpen: boolean;
@@ -16,8 +17,14 @@ interface ProfileModalProps {
 }
 
 const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) => {
+  const [isCorrection, setCorrection]= useState(true);
   const { ...modal } = useProfileChange();
   const { data } = useGetProfileInfo();
+
+  const handleChange = ()=>{
+    setCorrection((prev)=>!prev)
+  }
+
   return (
     <>
       <Modal isOpen={isOpen} close={close}>
@@ -46,15 +53,13 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
                   id="profile"
                   src={data?.data.imgPath ? data?.data.imgPath : Profile}
                   alt="프로필"
-                  width={130}
-                  height={130}
+                  width={100}
+                  height={100}
                   style={{ borderRadius: "50%" }}
                 />
               </div>
               <S.Label htmlFor="file_upload">
-                <div>
                   <Image src={Photo} alt="" />
-                </div>
               </S.Label>
               <S.InputImg type="file" accept=".jpg, .png, .jpeg" id="file_upload" onChange={modal.changeProfileImage} />
             </S.ProfileImgBunddle>
@@ -63,25 +68,28 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
             <S.InputBox>
               <S.InputText>학교</S.InputText>
               <div>
-                <input
-                  value={data?.data.schoolName !== null ? data?.data.schoolName : modal.UserData.schoolName}
-                  placeholder="학교를 등록해주세요"
-                  onChange={modal.handleProfileChange}
-                />
+                {
+                  isCorrection ?
+                <span onClick={handleChange}>{data?.data.schoolName}</span>
+                :<SelectSchool/>
+                }
+                
+               
               </div>
               <S.InputText>{data?.data.role === "PROFESSOR" ? "학과" : "관심 학과"}</S.InputText>
               <div>
-                <input
-                  value={data?.data.mclass !== null ? data?.data.mclass : modal.UserData.mclass}
-                  placeholder="학과를 등록해주세요"
-                  onChange={modal.handleProfileChange}
-                />
+             {
+              isCorrection ? 
+              <span onClick={handleChange}>{data?.data.schoolName}</span>
+              : <SelectMajor/>
+             }
               </div>
-              <S.TextBox style={{ width: "700px" }}>
-                <S.FixBtn onClick={modal.handleChangeSchoolAndMajor}>수정하기</S.FixBtn>
-              </S.TextBox>
+              
             </S.InputBox>
-            <S.InputBox style={{ background: "#E6E6E6" }}>
+            <S.TextBox style={{ width: "700px" }}>
+                <S.FixBtn onClick={handleChange}>{isCorrection? "수정하기" : "완료"}</S.FixBtn>
+              </S.TextBox>
+            {isCorrection ? <><S.InputBox style={{ background: "#F5F5F5" }}>
               <S.InputText>현재 비밀번호</S.InputText>
               <input
                 type="password"
@@ -102,7 +110,9 @@ const ProfileModal = ({ isOpen, close, handleProfileClick }: ProfileModalProps) 
             <S.FixBtn style={{ background: "#0E2764", width: "20%", color: "white" }} onClick={modal.changePassword}>
               비밀번호 변경
             </S.FixBtn>
-          </S.ChangeInput>
+          </> :
+           ""}
+          </S.ChangeInput>  
         </S.Boxlayout>
       </Modal>
     </>
