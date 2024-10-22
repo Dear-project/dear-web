@@ -15,23 +15,26 @@ interface ChatRoomProps {
   setNewMessage: (value: string) => void;
   sendMessage: () => void;
   userId: number;
+  roomimg:string;
 }
 
 
-const ChatRoom = ({ selectedChat, messages, newMessage, userId, setNewMessage, sendMessage }:ChatRoomProps) => {
+const ChatRoom = ({ selectedChat, messages, newMessage, userId,roomimg, setNewMessage, sendMessage }:ChatRoomProps) => {
     
     const formatTime = (timeStamp: string) => {
         return dayjs(timeStamp).format('A h시 mm분'); // A는 오전/오후, h는 시, mm는 분
       };
     
-    
       const sortedMessages = [...messages].sort((a, b) => {
         return new Date(a.timeStamp).getTime() - new Date(b.timeStamp).getTime();
       });
-      console.log(sortedMessages);
+
   return (
     <S.ChatRoom>
-        <S.ChatRoomHeader><h2>{selectedChat.chatName}</h2></S.ChatRoomHeader>
+        <S.ChatRoomHeader>
+        <Image src={roomimg ||Profile} alt="프로필" width={30} height={30}/>
+            <h1>{selectedChat.chatName}</h1>
+        </S.ChatRoomHeader>
       <S.ChatRoomContainer>
        
       <S.MyMessageList>     

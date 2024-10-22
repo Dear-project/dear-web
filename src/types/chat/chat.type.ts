@@ -6,6 +6,7 @@ export interface ChatData {
   joinedUserId: number;
   lastMessage: string;
   lastMessageTimeStamp: string;
+  roomImage:string;
   notReadCnt: 0;
   chatStatus: "ALIVE" | "DELETE";
 }

@@ -13,7 +13,7 @@ import ChatRoom from "./chatRoom";
 import { useRecoilState } from "recoil";
 import { ProfileId } from "@/store/profile/profile.store";
 import dearAxios from "@/libs/axios/customAxios";
-
+import { chatProfile } from "@/store/chat/chat.store";
 
 const Chat = () => {
   const [selectedChat, setSelectedChat] = useState<ChatData | null>(null);
@@ -23,15 +23,16 @@ const Chat = () => {
   const roomId = selectedChat ? selectedChat.id : null;
   const accessToken = token.getToken(ACCESS_TOKEN_KEY);
   const [userId] = useRecoilState(ProfileId);
-
+  const [profileImg] = useRecoilState(chatProfile);
+  
 const fetchMessageHistory = async (roomId: string) => {
+  
   try {
     const response = await dearAxios.get(`/message/search/${roomId}`, {
       params: {
         userId: userId,
       },
     });
-    console.log();
     
     const messageHistory = response.data.messages;
     setMessages(messageHistory);
@@ -92,7 +93,6 @@ const fetchMessageHistory = async (roomId: string) => {
       setNewMessage(""); 
     }
   };
-  console.log("jbjgvb",messages);
   return (
     <S.ChatContainer>
       <ChatSideBar setSelectedChat={setSelectedChat} selectedChat={selectedChat} />
@@ -105,6 +105,7 @@ const fetchMessageHistory = async (roomId: string) => {
             setNewMessage={setNewMessage}
             sendMessage={handleSendMessage}
             userId={userId} 
+            roomimg={profileImg}
           />
         ) : (
           <S.ChatPlaceholder>

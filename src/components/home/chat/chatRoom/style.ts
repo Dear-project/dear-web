@@ -10,11 +10,17 @@ export const ChatRoom = styled.div`
   background-color: ${theme.colors.gray100};
 `;
 export const ChatRoomHeader = styled.div`
+display: flex;
+align-items: center;
 height: 5%;
 border-bottom: 1px solid ${theme.colors.gray300};
 background:${theme.colors.white};
 border-radius: 0 10px;
 padding: 20px;
+img{
+  border-radius: 50%;
+  margin-right: 10px;
+}
 `
 export const ChatRoomContainer = styled.div`
 display: flex;
