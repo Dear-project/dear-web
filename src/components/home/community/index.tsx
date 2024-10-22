@@ -27,7 +27,7 @@ const Community = () => {
       <S.Main>
         <S.Community>
           <S.TitleWrap style={{ width: "90%" }}>
-            <h1>커뮤니티</h1>
+            <h1>{isProfessor ? "교수 커뮤니티" : "커뮤니티"}</h1>
             <button onClick={setWrite}>커뮤니티 작성</button>
           </S.TitleWrap>
           {pathname === "/community/professor" ? <ProfessorPost /> : <Post />}
