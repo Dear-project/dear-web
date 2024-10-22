@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
 import Search from "@/asset/search.svg";
@@ -7,16 +7,18 @@ import { useGetMajorBySubject } from "@/queries/firstLogin/firstLogin.query";
 import { GetMajorListReposne } from "@/types/firstLogin/firstLogin.types";
 import { MAJOR_TYPE_LIST } from "@/constants/majorType/majorType.constants";
 import convertMajorListType from "@/utils/majorList/convertMajorListType";
+import { useRecoilState } from "recoil";
+import { ChangeMajorAtom } from "@/store/profile/profile.store";
 
-const SelectMajor = ()=>{
-    const {...select}= useSelectModal();
-    const [selectedMajor, setSelectedMajor] = useState<string | null>(null);
-    const searchMajorBySubjectMutation = useGetMajorBySubject();
+const SelectMajor = () => {
+  const { ...select } = useSelectModal();
+  const [selectedMajor, setSelectedMajor] = useState<string | null>(null);
+  const searchMajorBySubjectMutation = useGetMajorBySubject();
+  const [, setEditMajor] = useRecoilState<string>(ChangeMajorAtom);
 
-    
-    return(
-        <>
-              <S.Header>
+  return (
+    <div style={{ height: "100%" }}>
+      <S.Header>
         <S.Title>자신의 학과 선택</S.Title>
         <S.SearchWrap>
           <input type="text" placeholder="학과를 입력해주세요" value={select.keyword} onChange={select.handleKeyword} />
@@ -31,6 +33,7 @@ const SelectMajor = ()=>{
                 key={idx}
                 $isclicked={select.subject === item ? "true" : "false"}
                 onClick={() => {
+                  select.handleSubject(item);
                   const params = { subject: item };
                   searchMajorBySubjectMutation.mutate(params, {
                     onSuccess: (data) => {
@@ -47,9 +50,11 @@ const SelectMajor = ()=>{
             {select.majorList?.data.map((item, idx) => (
               <S.Major
                 key={idx}
-                $isSelected={selectedMajor === item.majorSeq} 
+                $isSelected={selectedMajor === item.majorSeq}
                 onClick={() => {
                   setSelectedMajor(item.majorSeq);
+                  setEditMajor(item.mClass);
+                  console.log(item.mClass);
                   select.handleSubmitParams(item.majorSeq, item.lClass, item.mClass);
                 }}
               >
@@ -59,7 +64,7 @@ const SelectMajor = ()=>{
           </S.MajorListWrap>
         </S.MajorWrap>
       </S.MajorBoxWrap>
-        </>
-    )
-}
+    </div>
+  );
+};
 export default SelectMajor;

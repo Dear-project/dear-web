@@ -28,6 +28,6 @@ export interface PassswrodChangeParams {
 export interface EditSchoolAndMajorParams {
   school: string;
   major: string;
-  stsMessage: "";
-  introduce: "";
+  stsMessage: ".";
+  introduce: ".";
 }
