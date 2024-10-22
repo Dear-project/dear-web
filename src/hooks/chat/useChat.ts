@@ -1,23 +1,38 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { useGetChat } from "@/queries/chat/chat.query";
+import { useGetChat, useChatSearch } from "@/queries/chat/chat.query";
 import { ProfileId } from "@/store/profile/profile.store";
-import { useChatSearch } from "@/queries/chat/chat.query"; 
 
 const useChat = () => {
-  const [chatSearch, setChatSearch] = useState("");
+  const [chatSearch, setCatSearch] = useState("");
   const [profileId] = useRecoilState(ProfileId);
-  const { data: allChats } = useGetChat(profileId);
-  
-  const { data: searchChat } = useChatSearch({ userId: profileId, word: chatSearch }); // useChatSearch 호출
-  
-  const roomData = chatSearch ? searchChat : allChats;
+  const { data: allChats } = useGetChat(profileId); 
+  const [roomData, setRoomData] = useState(allChats); 
 
+  
+  const searchButton = async () => {
+    if (chatSearch.trim() === "") {
+      
+      setRoomData(allChats);
+    } else {
+      const { data: searchChat } = await useChatSearch({
+        userId: profileId,
+        word: chatSearch,
+      });
+      setRoomData(searchChat); // 검색 결과로 roomData 업데이트
+    }
+  };
+
+  // allChats가 변경될 때 roomData 초기화
+  useEffect(() => {
+    setRoomData(allChats);
+  }, [allChats]);
 
   return {
     roomData,
     chatSearch,
-    setChatSearch,
+    setCatSearch,
+    searchButton,
   };
 };
 

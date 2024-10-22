@@ -30,3 +30,11 @@ border-radius: 12px;
 background: #0E2764;
 cursor: pointer;
 `
+
+export const chatList  = styled.div`
+display: flex;
+flex-direction: column;
+height: 100%;
+padding: 10px;
+gap: 10px;
+`

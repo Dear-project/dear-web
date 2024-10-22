@@ -1,6 +1,6 @@
 
 export interface ChatData {
-    data:{
+    
         id: string,
         adminId: number,
         chatName: string,
@@ -10,7 +10,6 @@ export interface ChatData {
         lastMessageTimeStamp: string,
         notReadCnt: 0,
         chatStatus: "ALIVE" | "DELETE"
-    }
     
 }
 export interface ChatSearchProps {
