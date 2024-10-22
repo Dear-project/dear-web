@@ -32,9 +32,16 @@ height: 100%;
 export const MyMessageList = styled.div`
 display: flex;
 flex-direction: column;
+margin-top: 30px;
 gap:60px;
-width: 50%;
+width: 100%;
 height: 100%;
+span{
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 10px;
+  font-size: 9px;
+}
 `
 export const ChatPlaceholder = styled.div`
   flex-grow: 1;
@@ -47,6 +54,43 @@ export const ChatPlaceholder = styled.div`
   border-radius: 8px;
 `;
 
+export const MessageProfile = styled.div`
+display: flex;
+margin-left: 30px;
+min-width: 100px;
+min-height: 20px;
+gap: 10px;
+img{
+  border-radius: 50%;
+}
+p{
+  min-width: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 0 10px;
+  background-color: ${theme.colors.white};
+}
+`
+export const MyChat = styled.div`
+display: flex;
+margin-right: 30px;
+min-width: 100px;
+min-height: 20px;
+flex-direction: row-reverse;
+gap: 5px;
+p{
+  min-width: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px 10px;
+  background-color: ${theme.colors.white};
+}
+`
 export const MessageInputContainer = styled.div`
   display: flex;
   margin-top: 20px;
@@ -57,18 +101,21 @@ export const MessageInputContainer = styled.div`
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 10px;
+    &:focus{
+      outline: none;
+    }
   }
 
   button {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #ccc;
     color: white;
     cursor: pointer;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: ${theme.colors.new};
     }
   }
 `;

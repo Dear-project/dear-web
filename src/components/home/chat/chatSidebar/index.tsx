@@ -1,5 +1,3 @@
-import { useRecoilState } from "recoil";
-import { ProfileId } from "@/store/profile/profile.store";
 import { ChatData } from "@/types/chat/chat.type";
 import { SearchBar } from "@/components/common/searchBar/index";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -14,7 +12,7 @@ interface ChatSideBarProps {
 
 const ChatSideBar = ({ setSelectedChat,selectedChat }: ChatSideBarProps) => {
   const { roomData, setCatSearch, chatSearch, searchButton } = useChat();
-  const [profileId] = useRecoilState(ProfileId);
+
 
   return (
     <S.sideChatList>

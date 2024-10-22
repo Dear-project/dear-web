@@ -11,6 +11,7 @@
   "dependencies": {
     "@stomp/stompjs": "^7.0.0",
     "@types/sockjs-client": "^1.5.4",
+    "@types/stompjs": "^2.3.9",
     "axios": "^1.7.2",
     "cookies-next": "^4.1.1",
     "dayjs": "^1.11.11",

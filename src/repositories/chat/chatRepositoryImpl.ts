@@ -15,6 +15,6 @@ class ChatRepositoryImpl implements ChatRepository {
     const { data } = await dearAxios.get(`/chat/search?userId=${userId}&word=${word}`);
     return data;
   }
-  public async openChat() {}
+  public async openChatMessage(userId:number):Promise {}
 }
 export default new ChatRepositoryImpl();
