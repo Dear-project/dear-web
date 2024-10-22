@@ -28,7 +28,6 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "slick-carousel": "^1.8.1",
-    "sockjs-client": "^1.6.1",
     "styled-components": "^6.1.8",
     "styled-reset": "^4.5.2",
     "sweetalert2": "^11.10.7"

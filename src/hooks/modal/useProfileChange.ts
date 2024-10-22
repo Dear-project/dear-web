@@ -103,7 +103,7 @@ const useProfileChange = () => {
   const postEditSchoolAndMajor = usePostEditSchoolAndMajor();
   const handleChangeSchoolAndMajor = () => {
     postEditSchoolAndMajor.mutate(
-      { school: UserData.schoolName, major: UserData.mclass, introduce: "", stsMessage: "" },
+      { school: UserData.schoolName, major: UserData.mclass, introduce: ".", stsMessage: "." },
       {
         onSuccess: () => {
           dearToast.sucessToast("정보 변경에 성공하였습니다.");
