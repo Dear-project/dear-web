@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as S from "./style";
 import Image from "next/image";
-import Profile from "public/svgs/Avatar.svg";
+import Profile from "@/asset/img/Avatar.svg";
 import Photo from "public/svgs/Write.svg";
 import Close from "public/svgs/close.svg";
 import useProfileChange from "@/hooks/modal/useProfileChange";
