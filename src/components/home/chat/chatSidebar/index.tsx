@@ -29,10 +29,7 @@ const ChatSideBar = ({ setSelectedChat,selectedChat }: ChatSideBarProps) => {
 
       <S.chatList>
         {Array.isArray(roomData) ? (
-          roomData?.map((chat: ChatData) => <ChatItem 
-          key={chat.id} 
-          chat={chat} 
-          setSelectedChat={setSelectedChat}  
+          roomData?.map((chat: ChatData) => <ChatItem key={chat.id} chat={chat} setSelectedChat={setSelectedChat}  
           isSelected={selectedChat?.id === chat.id} />)
         ) : (
           <span>채팅방이 없습니다.</span>

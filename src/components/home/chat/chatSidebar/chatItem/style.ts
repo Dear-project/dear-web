@@ -5,7 +5,7 @@ import { theme } from "@/styles/theme";
 export const chatItem = styled.div<{ isSelected: boolean }>`
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 20px 10px;
   background-color: ${({ isSelected }) => (isSelected ? "#f0f0f0" : "#fff")}; // 선택된 경우 배경색 변경
   cursor: pointer;
   border-radius: 8px;
@@ -21,6 +21,7 @@ export const chatDetail = styled.div`
     flex-direction: column;
     height: 100%;
     width: 200px;
+    margin-left: 10px;
     justify-content: space-evenly;
     img{
     width: 40px;
@@ -46,12 +47,16 @@ gap: 5px;
 `
 export const timeDetail = styled.div`
     display: flex;
-
+    position: relative;
+    width: 90px;
     height: 100%;
+    text-align: center;
     
     span{
-        padding: 0.9rem;
-        font-size: 13px;
+        position: absolute;
+        top: 4px;
+        left: 0px;
+        font-size: 10px;
         font-weight: ${theme.fontWeight.medium};
     }
 `
