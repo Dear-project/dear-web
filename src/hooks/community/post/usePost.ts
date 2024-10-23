@@ -41,7 +41,7 @@ const usePost = () => {
     if (isRequesting) return; // 요청 중이면 아무 것도 하지 않음
     setIsRequesting(true);
 
-    if (!isProfessor) {
+    if (!pathname.includes("/professor")) {
       postCommunitymutation.mutate(undefined, {
         onSuccess: (res) => {
           setWritetId(res.data.id);

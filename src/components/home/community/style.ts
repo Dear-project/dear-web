@@ -222,10 +222,10 @@ export const MyPostWrap = styled.div`
 export const MyPost = styled.div`
   display: flex;
   width: 100%;
-  height: 40%;
+  height: 70%;
   padding: 15px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
 
@@ -242,7 +242,7 @@ export const MyPost = styled.div`
 
 export const PostWrap = styled.div`
   width: 80%;
-  height: 100%;
+  height: 80%;
 
   display: flex;
   flex-direction: column;
