@@ -70,7 +70,7 @@ const useWrite = () => {
       },
     };
 
-    if (pathname.includes("/professor")) {
+    if (!pathname.includes("/professor")) {
       patchCommunityMutation.mutate(params, {
         onSuccess: () => {
           dearToast.sucessToast("글 등록 성공!");
@@ -128,7 +128,7 @@ const useWrite = () => {
     const formData = new FormData();
     fileArray.forEach((file) => formData.append("files", file)); // 키를 'files'로 설정
 
-    if (!isProfessor) {
+    if (!pathname.includes("/professor")) {
       postPostMultiPartMutation.mutate(
         {
           id: id,
