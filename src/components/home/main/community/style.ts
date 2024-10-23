@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CommunityBox = styled.div`
 display: flex;
-max-width: 450px;
+max-width: 550px;
 min-width: 350px;
 height: 80%;
 padding:16px 21px;

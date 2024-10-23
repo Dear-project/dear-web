@@ -2,7 +2,7 @@ import { PostIdAtom } from "@/store/community/community.store";
 import dearToast from "@/libs/Swal/Swal";
 import { usePostCommunity } from "@/queries/community/community.query";
 import axios, { Axios, AxiosError } from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   useDeleteComoment,
@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import { ErrorTransform } from "@/utils/transform/error/errorTransform";
 import { ProfessorCheck } from "@/store/profile/profile.store";
 import { usePostProfessorCommunity } from "@/queries/community/professor/professorCommunity.query";
+import dearAxios from "@/libs/axios/customAxios";
 
 const usePost = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const usePost = () => {
   const [comment, setComment] = useState<string>("");
   const [isOpen, setIsOpen] = useState<number | null>(null);
   const [replyComent, setReplyComment] = useState<string>("");
-
+  const pathname = usePathname();
   const postCommunitymutation = usePostCommunity();
   const postProfessorCommunityMutation = usePostProfessorCommunity();
   const postCommentMutation = usePostComment();
@@ -120,6 +121,33 @@ const usePost = () => {
         },
       },
     );
+
+    if (pathname.includes("/professor")) {
+      dearAxios
+        .post("/comment/professor", {
+          id,
+          content,
+        })
+        .then(() => {
+          queryClient.invalidateQueries("comment");
+        });
+    } else {
+      postReplyCommentMutation.mutate(
+        {
+          id,
+          content,
+        },
+        {
+          onSuccess: () => {
+            dearToast.sucessToast("대댓글이 등록되었습니다.");
+            queryClient.invalidateQueries("comment");
+          },
+          onError: (error) => {
+            dearToast.errorToast(ErrorTransform((error as AxiosError).status!));
+          },
+        },
+      );
+    }
   };
 
   const deleteCommentMutation = useDeleteComoment();

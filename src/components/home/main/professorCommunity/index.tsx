@@ -12,10 +12,10 @@ const ProfessorCommunity = () => {
   useEffect(() => {
     const handleResize = () => {
       if(window.innerWidth <= 738){
-        setVisiblePosts(1);
+        setVisiblePosts(3);
       }
       else if (window.innerWidth <= 1264) {
-        setVisiblePosts(2);
+        setVisiblePosts(3);
       } else {
         setVisiblePosts(3);
       }
@@ -48,7 +48,7 @@ const ProfessorCommunity = () => {
         
         {Array.isArray(communityList?.data) ? (
           communityList?.data
-            .slice(0, visiblePosts) 
+            .slice(0, 3) 
             .map((community) => (
               <CommunityPost
                 key={community.id}
@@ -60,7 +60,7 @@ const ProfessorCommunity = () => {
                 userName={community.userName}
                 createdDateTime={convertCreatedDate(community.createdDateTime)}
                 comment={community.comment}
-                customStyle={{ width: visiblePosts===1 ? "90%" : "30%" , height: "80%" }}
+                customStyle={{ width: "30%" , height: "80%" }}
               />
             ))
         ) : (

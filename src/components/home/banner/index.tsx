@@ -36,7 +36,7 @@ const Banner = () => {
   return (
     <S.BannerContainer>
       <Slider {...bannerSetting}>
-        {bannerList?.data.map((banner) => (
+        {bannerList?.data.slice(1, 2).map((banner) => (
           <BannerItem
             title={banner.title}
             imgSrc={banner.imagePath}

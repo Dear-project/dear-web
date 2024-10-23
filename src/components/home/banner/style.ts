@@ -26,6 +26,7 @@ export const BannerContainer = styled.div`
     align-items: center;
     justify-content: center;
     column-gap: 15px;
+    object-fit: fill;
 
     .slick-active {
       opacity: 100%;

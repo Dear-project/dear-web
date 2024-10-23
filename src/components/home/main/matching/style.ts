@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MatchingBox = styled.div`
 background-color: #fff;
 display: flex;
-min-width: 10rem;
+min-width:40rem;
 height: 90%;
 padding: 19px 0px;
 flex-direction: column;

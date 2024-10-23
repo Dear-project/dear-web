@@ -17,6 +17,7 @@ import {
   usePatchProfessorCommunity,
   usePostProfessorMultiPart,
 } from "@/queries/community/professor/professorCommunity.query";
+import { useQueryClient } from "react-query";
 
 const useWrite = () => {
   const [writeData, setWriteData] = useState<WriteData>({
@@ -57,7 +58,7 @@ const useWrite = () => {
   const patchProfessorCommunityMutation = usePatchProfessorCommunity();
   const postPostMultiPartMutation = usePostMultiPart();
   const postPostProfessorMultipartMutation = usePostProfessorMultiPart();
-
+  const queryClient = useQueryClient();
   const onWrite = async () => {
     const { title, content } = writeData;
 
@@ -69,11 +70,12 @@ const useWrite = () => {
       },
     };
 
-    if (!isProfessor) {
+    if (pathname.includes("/professor")) {
       patchCommunityMutation.mutate(params, {
         onSuccess: () => {
           dearToast.sucessToast("글 등록 성공!");
           router.back();
+          queryClient.invalidateQueries("/community");
         },
         // Auth 브랜치에서 axios interceptor timedout 예외처리 하기
         onError: (error) => {
@@ -90,6 +92,7 @@ const useWrite = () => {
       patchProfessorCommunityMutation.mutate(params, {
         onSuccess: () => {
           dearToast.sucessToast("글 등록 성공!");
+          queryClient.invalidateQueries("/community/professor");
           router.back();
         },
         // Auth 브랜치에서 axios interceptor timedout 예외처리 하기

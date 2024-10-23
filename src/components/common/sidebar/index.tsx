@@ -59,7 +59,7 @@ export const SideBar = () => {
       />
       <Link href={"/"}>
         <S.Logo $isSidebarOpen={sidebar.isSidebarOpen}>
-          <Image src={logoSrc} alt="로고" />
+          <Image src={sidebar.isSidebarOpen ? Logo  : Logo2} alt="로고" />
         </S.Logo>
       </Link>
 
