@@ -52,7 +52,7 @@ const fetchMessageHistory = async (roomId: string) => {
           Authorization: `Bearer ${accessToken}`,
         },
         debug: (str) => {
-          // console.log(str);
+          console.log(str);
         },
         onConnect: (frame) => {
           console.log("Connected: " + frame);
@@ -80,7 +80,7 @@ const fetchMessageHistory = async (roomId: string) => {
 
   const handleSendMessage = () => {
     if (client.current && newMessage.trim() !== "") {
-
+      console.log("Sending message:", newMessage);
       client.current.publish({
         destination: '/pub/chat.message',
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -88,8 +88,9 @@ const fetchMessageHistory = async (roomId: string) => {
           roomId: roomId,
           type: "MESSAGE",
           message: newMessage,
-        })
+        }),
       });
+      
       setNewMessage(""); 
     }
   };

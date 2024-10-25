@@ -37,7 +37,8 @@ const ChatRoom = ({ selectedChat, messages, newMessage, userId,roomimg, setNewMe
         </S.ChatRoomHeader>
       <S.ChatRoomContainer>
        
-      <S.MyMessageList>     
+      <S.MyMessageList> 
+        <div style={{display:"flex", flexDirection:"column", height:"100%", gap:"60px"}}>
       {sortedMessages.map((msg, index) => (
           msg.userId !== userId ? ( 
             <S.MessageProfile key={index}>
@@ -51,7 +52,7 @@ const ChatRoom = ({ selectedChat, messages, newMessage, userId,roomimg, setNewMe
         </S.MyChat>
         ))}
        
-        
+       </div>    
         </S.MyMessageList>
       </S.ChatRoomContainer>
       <S.MessageInputContainer>

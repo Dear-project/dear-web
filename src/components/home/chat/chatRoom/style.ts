@@ -26,6 +26,8 @@ export const ChatRoomContainer = styled.div`
 display: flex;
 width: 100%;
 height: 100%;
+overflow-x: hidden;
+overflow-y: scroll;
 
 `
 export const OpponentMessageList = styled.div`
@@ -39,13 +41,15 @@ export const MyMessageList = styled.div`
 display: flex;
 flex-direction: column;
 margin-top: 30px;
-gap:60px;
+
 width: 100%;
 height: 100%;
+overflow-y: scroll;
 span{
   display: flex;
   flex-direction: column-reverse;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
+
   font-size: 9px;
 }
 `
