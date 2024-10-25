@@ -4,17 +4,21 @@ import Slider from "react-slick";
 import CommunityPost from "../../communityPost";
 import { convertDescriptionDate, convertCreatedDate } from "@/utils/transform/date/convertDate";
 import { useAllGetProfessorCommunityQuery } from "@/queries/community/professor/professorCommunity.query";
+import { useQueryClient } from "react-query";
 
 const ProfessorCommunity = () => {
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    queryClient.invalidateQueries("/community/professor");
+  }, []);
   const { data: communityList } = useAllGetProfessorCommunityQuery(1);
   const [visiblePosts, setVisiblePosts] = useState(3);
 
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth <= 738){
+      if (window.innerWidth <= 738) {
         setVisiblePosts(3);
-      }
-      else if (window.innerWidth <= 1264) {
+      } else if (window.innerWidth <= 1264) {
         setVisiblePosts(3);
       } else {
         setVisiblePosts(3);
@@ -37,7 +41,7 @@ const ProfessorCommunity = () => {
       autoplaySpeed: 4000,
       pauseOnHover: true,
     }),
-    []
+    [],
   );
   return (
     <S.MainBox>
@@ -45,10 +49,9 @@ const ProfessorCommunity = () => {
         <span>교수커뮤니티</span>
       </S.CommunityMainHeader>
       <S.CommunityMainContents>
-        
         {Array.isArray(communityList?.data) ? (
           communityList?.data
-            .slice(0, 3) 
+            .slice(0, 3)
             .map((community) => (
               <CommunityPost
                 key={community.id}
@@ -60,13 +63,12 @@ const ProfessorCommunity = () => {
                 userName={community.userName}
                 createdDateTime={convertCreatedDate(community.createdDateTime)}
                 comment={community.comment}
-                customStyle={{ width: "30%" , height: "80%" }}
+                customStyle={{ width: "30%", height: "80%" }}
               />
             ))
         ) : (
           <p>내용이 없습니다.</p>
         )}
-        
       </S.CommunityMainContents>
     </S.MainBox>
   );

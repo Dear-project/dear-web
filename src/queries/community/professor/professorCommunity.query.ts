@@ -53,5 +53,5 @@ export const usePostProfessorMultiPart = () => {
   const mutation = useMutation((params: PostImageParams) =>
     professorCommunityRepositoryImpl.postMultiPartCommunityById(params),
   );
-  return mutation
+  return mutation;
 };
