@@ -24,9 +24,6 @@ jobs:
       - name: Build Next.js project
         run: yarn run build
 
-      - name: Export Next.js project
-        run: yarn run export  
-
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
         with:
@@ -34,5 +31,5 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "out/*"  
-          target: "/home/ec2-user/dear" 
+          source: ".next/*"  
+          target: "/var/www/dear" 
