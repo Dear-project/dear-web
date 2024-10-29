@@ -24,6 +24,9 @@ jobs:
       - name: Build Next.js project
         run: yarn run build
 
+      - name: Export Next.js project
+        run: yarn run export  
+
       - name: Deploy to EC2
         uses: appleboy/scp-action@master
         with:
@@ -31,52 +34,5 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: ".next/*"  
+          source: "out/*"  
           target: "/home/ec2-user/dear" 
-
-
-
-# name: dear Web
-
-# on:
-#   push:
-#     branches: "main"
-
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
-
-#       - name: Install Node.js
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version: '18' 
-
-#       - name: Install dependencies
-#         run: yarn install
-
-#       - name: Create config directory and config.json
-#         run: |
-#           mkdir -p ./src/config
-#           echo '${{ secrets.CONFIG }}' > ./src/config/config.json
-
-#       - name: Build Next.js application
-#         run: yarn run build
-
-#       - name: Deploy with SSH
-#         if: github.ref == 'refs/heads/main'
-#         uses: appleboy/ssh-action@master
-#         with:
-#           host: ${{ secrets.HOST }} # EC2 인스턴스 퍼블릭 DNS 또는 퍼블릭 IP
-#           username: ec2-user
-#           key: ${{ secrets.PRIVATE_KEY }} # pem 키
-#           port: ${{ secrets.PORT }}
-
-#     env:
-#       S3_BUCKET_NAME: dear-web
-#       CODE_DEPLOY_APPLICATION_NAME: dear-web
-#       CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: dear-web-group
