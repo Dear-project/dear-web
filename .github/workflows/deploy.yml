@@ -32,7 +32,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: ".next/*"  
-          target: "/home/dear" 
+          target: "/home/ec2-user/dear" 
 
 
 
