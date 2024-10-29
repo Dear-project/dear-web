@@ -24,7 +24,7 @@ jobs:
       - name: Create config directory and config.json
         run: |
           mkdir -p ./src/config
-          echo "{\"server\": \"${{ secrets.CONFIG }}\"}" > ./src/config/config.json
+          echo '${{ secrets.CONFIG }}' > ./src/config/config.json
       
       - name: Build Next.js project
         run: yarn run build
@@ -38,4 +38,3 @@ jobs:
           port: ${{ secrets.PORT }}
           source: ".next/*"  
           target: "/var/www/dear"
-          
