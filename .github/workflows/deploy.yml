@@ -38,3 +38,11 @@ jobs:
           port: ${{ secrets.PORT }}
           source: ".next/*"  
           target: "/var/www/dear"
+
+      - name: Reload PM2 for zero-downtime deployment
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.HOST }} "
+            cd /var/www/dear &&
+            pm2 start yarn --name dear-app -- start &&
+            pm2 reload dear-app
+          "
