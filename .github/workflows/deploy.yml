@@ -31,7 +31,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
-          source: "out/*"  
+          source: ".next/*"  
           target: "/home/dear" 
 
 
