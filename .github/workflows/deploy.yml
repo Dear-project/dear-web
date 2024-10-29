@@ -32,4 +32,5 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: ".next/*"  
-          target: "/var/www/dear" 
+          target: "/var/www/dear"
+           
