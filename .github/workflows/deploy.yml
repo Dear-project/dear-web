@@ -40,10 +40,14 @@ jobs:
           target: "/home/ec2-user/www/dear"
 
       - name: Reload PM2 for zero-downtime deployment
+        env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.HOST }} "
+          echo "${PRIVATE_KEY}" > private_key.pem
+          chmod 600 private_key.pem
+          ssh -i private_key.pem -o StrictHostKeyChecking=no ec2-user@${{ secrets.HOST }} "
             cd /home/ec2-user/www/dear &&
             pm2 start yarn --name dear -- start &&
             pm2 reload dear
           "
-          
+     
