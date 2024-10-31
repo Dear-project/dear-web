@@ -45,4 +45,3 @@ jobs:
           cd /var/www/dear &&
           pm2 reload dear || pm2 start yarn --name dear -- start
           "
-          
