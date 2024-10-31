@@ -42,7 +42,6 @@ jobs:
       - name: Reload PM2 for zero-downtime deployment
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.HOST }} "
-            cd /var/www/dear &&
-            pm2 start yarn --name dear -- start &&
-            pm2 reload dear
+          cd /var/www/dear &&
+          pm2 reload dear || pm2 start yarn --name dear -- start
           "
