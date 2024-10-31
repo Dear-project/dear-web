@@ -78,7 +78,7 @@ p{
   align-items: center;
   margin-left: 10px;
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 15px 10px;
   background-color: ${theme.colors.white};
 }
 `
@@ -95,7 +95,7 @@ p{
   justify-content: flex-start;
   align-items: center;
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 15px 10px;
   background-color: ${theme.colors.white};
 }
 `
