@@ -37,7 +37,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
           source: ".next/*"  
-          target: "/var/www/dear"
+          target: "/home/ec2-user/www/dear"
 
       - name: Reload PM2 for zero-downtime deployment
         run: |
@@ -45,4 +45,3 @@ jobs:
           cd /var/www/dear &&
           pm2 reload dear || pm2 start yarn --name dear -- start
           "
-          
