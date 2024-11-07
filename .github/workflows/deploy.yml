@@ -54,5 +54,3 @@ jobs:
             yarn install --production &&
             pm2 restart dear || pm2 start yarn --name dear -- start
           "
-
-        
